@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Emoji-Picker</title>
+    <link href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css" type="text/css" rel="stylesheet">
+    <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container p-5">
+<h1>Hello, world!</h1>
+    <div class="input-group mb-3">
+        <div id="emoji-picker"></div>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">:D Welcome <3</textarea>
+    </div>
+
+
+    <button type="button" class="btn btn-primary" id="btnEmojify">Emojify Input</button>
+    <button type="button" class="btn btn-primary" id="btnEmojifyText">Emojify Text</button>
+</div>
+<script src="../vendor/components/jquery/jquery.min.js"></script>
+<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/bs-emoji-picker.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#emoji-picker').bsEmojiPicker({
+            targetInput:'#exampleFormControlTextarea1',
+            labels: {
+                classics: 'Klassisch'
+            }
+        });
+        $('#btnEmojify').on('click', function () {
+            $('#emoji-picker').bsEmojiPicker('emojifyTarget', '#exampleFormControlTextarea1');
+        })
+        $('#btnEmojifyText').on('click', function () {
+            const text = $.bsEmojiPicker.emojify($('#exampleFormControlTextarea1').val());
+            alert(text);
+        })
+    })
+</script>
+</body>
+</html>
