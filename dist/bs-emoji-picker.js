@@ -611,19 +611,19 @@
 
             }).appendTo($dropdown);
 
-            const $dropdownSearch = $('<div>', {
-                class: 'dropdown-search d-flex align-items-center flex-nowrap p-1',
-            }).appendTo($dropdownMenu);
-            const $dropdownSearchInput = $('<input>', {
-                class: 'form-control',
-                type: 'search',
-                placeholder: 'Search',
-            }).appendTo($dropdownSearch);
-            const $dropdownSearchClear = $('<button>', {
-                class: 'btn btn-link dropdown-search-clear',
-                type: 'button',
-                html: '<i class="bi bi-x-lg"></i>',
-            }).appendTo($dropdownSearch);
+            // const $dropdownSearch = $('<div>', {
+            //     class: 'dropdown-search d-flex align-items-center flex-nowrap p-1',
+            // }).appendTo($dropdownMenu);
+            // const $dropdownSearchInput = $('<input>', {
+            //     class: 'form-control',
+            //     type: 'search',
+            //     placeholder: 'Search',
+            // }).appendTo($dropdownSearch);
+            // const $dropdownSearchClear = $('<button>', {
+            //     class: 'btn btn-link dropdown-search-clear',
+            //     type: 'button',
+            //     html: '<i class="bi bi-x-lg"></i>',
+            // }).appendTo($dropdownSearch);
 
             const $iconWrapper = $('<div>', {
                 class: 'dropdown-emoji-menu-wrapper',
@@ -942,6 +942,11 @@
         globalEvents($wrapper) {
             if (!$.bsEmojiPicker.globalEvents) {
                 $(document)
+                    .on('show.bs.dropdown', '.dropdown-emoji', function () {
+                        const $dropdown = $(this);
+                        $dropdown.find('.dropdown-emoji-menu-wrapper').stop(true).animate({ scrollTop: 0 }, 150);
+
+                    })
                     .on('input paste change', '.bs-emoji-picker-listener', function(e){
                         pluginFunctions.emojifyTarget($(e.currentTarget));
                     })

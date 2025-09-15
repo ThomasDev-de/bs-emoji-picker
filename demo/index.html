@@ -9,14 +9,14 @@
 </head>
 <body>
 <div class="container p-5">
-    <h1>Hello, world!</h1>
+    <h1 class="mb-4">Hello, Emoji! :)</h1>
     <div class=" d-flex gap-3 mb-3">
         <div class="emoji-picker"></div>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">:D with picker <3</textarea>
     </div>
-
+    <hr>
     <textarea class="form-control mb-3" id="exampleFormControlTextarea2" rows="3">:D without picker <3</textarea>
-
+    <hr>
     <p><span>:D in html</span><3</p>
 </div>
 <script src="../vendor/components/jquery/jquery.min.js"></script>
@@ -31,7 +31,7 @@
             }
         });
 
-        $.bsEmojiPicker.emojify('p:first');
+        $.bsEmojiPicker.emojify('h1, p:first');
         $.bsEmojiPicker.emojify('#exampleFormControlTextarea2');
     })
 </script>
