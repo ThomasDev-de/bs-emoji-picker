@@ -1,4 +1,12 @@
 {
+  "version": "0.0.1",
+  "homepage": "https://github.com/webcito/bs-emoji-picker",
+  "type": "library",
+  "keywords": ["emoji", "picker", "bootstrap"],
+  "support": {
+    "issues": "https://github.com/webcito/bs-emoji-picker/issues",
+    "source": "https://github.com/webcito/bs-emoji-picker"
+  },
   "name": "webcito/bs-emoji-picker",
   "description": "description",
   "minimum-stability": "stable",

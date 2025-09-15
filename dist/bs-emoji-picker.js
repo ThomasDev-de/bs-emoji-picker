@@ -13,6 +13,17 @@
                 handsAndGestures: "Hands & Gestures",
                 symbolsAndObjects: "Symbols & Objects",
                 animalsAndNature: "Animals & Nature",
+                // neue Kategorien
+                foodAndDrink: "Food & Drink",
+                activitiesAndSports: "Activities & Sports",
+                travelAndPlaces: "Travel & Places",
+                weatherAndNatureExtras: "Weather & Nature (Extra)",
+                plantsAndFlowers: "Plants & Flowers",
+                techAndObjectsExtra: "Tech & Objects (Extra)",
+                uiSymbolsExtra: "UI Symbols",
+                communicationAndMedia: "Communication & Media",
+                peopleAndEmotionsExtra: "People & Emotions (Extra)",
+                flagsBasic: "Flags (Basic)"
             },
             onClickEmoji(emoji) {
                 return emoji;
@@ -384,13 +395,185 @@
                 {re: /:partying_face:/gi, emoji: "🥳"},
                 {re: /:mindblown:|:exploding_head:/gi, emoji: "🤯"},
             ],
+            plantsAndFlowers: [
+                {re: /:rose:/gi, emoji: "🌹"},
+                {re: /:tulip:/gi, emoji: "🌷"},
+                {re: /:sunflower:/gi, emoji: "🌻"},
+                {re: /:cherry_blossom:/gi, emoji: "🌸"},
+                {re: /:hibiscus:/gi, emoji: "🌺"},
+                {re: /:blossom:/gi, emoji: "🌼"},
+                {re: /:seedling:/gi, emoji: "🌱"},
+                {re: /:herb:/gi, emoji: "🌿"},
+                {re: /:deciduous_tree:/gi, emoji: "🌳"},
+                {re: /:evergreen_tree:/gi, emoji: "🌲"},
+                {re: /:palm_tree:/gi, emoji: "🌴"},
+                {re: /:cactus:/gi, emoji: "🌵"},
+                {re: /:shamrock:/gi, emoji: "☘️"},
+                {re: /:four_leaf_clover:/gi, emoji: "🍀"},
+                {re: /:maple_leaf:/gi, emoji: "🍁"},
+                {re: /:fallen_leaf:/gi, emoji: "🍂"},
+                {re: /:leaf_fluttering_in_wind:/gi, emoji: "🍃"},
+                {re: /:mushroom:/gi, emoji: "🍄"}
+            ],
+            techAndObjectsExtra: [
+                {re: /:computer_mouse:/gi, emoji: "🖱️"},
+                {re: /:trackball:/gi, emoji: "🖲️"},
+                {re: /:joystick:/gi, emoji: "🕹️"},
+                {re: /:dvd:/gi, emoji: "📀"},
+                {re: /:cd:/gi, emoji: "💿"},
+                {re: /:floppy_disk:/gi, emoji: "💾"},
+                {re: /:minidisc:/gi, emoji: "💽"},
+                {re: /:pager:/gi, emoji: "📟"},
+                {re: /:fax:/gi, emoji: "📠"},
+                {re: /:tv:/gi, emoji: "📺"},
+                {re: /:radio:/gi, emoji: "📻"},
+                {re: /:satellite:/gi, emoji: "🛰️"},
+                {re: /:satellite_antenna:/gi, emoji: "📡"},
+                {re: /:game_die:/gi, emoji: "🎲"},
+                {re: /:magnet:/gi, emoji: "🧲"}
+            ],
+            uiSymbolsExtra: [
+                {re: /:play:/gi, emoji: "▶️"},
+                {re: /:pause:/gi, emoji: "⏸️"},
+                {re: /:stop:/gi, emoji: "⏹️"},
+                {re: /:record:/gi, emoji: "⏺️"},
+                {re: /:fast_forward:/gi, emoji: "⏩"},
+                {re: /:rewind:/gi, emoji: "⏪"},
+                {re: /:repeat_one:/gi, emoji: "🔂"},
+                {re: /:repeat:/gi, emoji: "🔁"},
+                {re: /:shuffle:/gi, emoji: "🔀"},
+                {re: /:info:/gi, emoji: "ℹ️"},
+                {re: /:arrow_up:/gi, emoji: "⬆️"},
+                {re: /:arrow_down:/gi, emoji: "⬇️"},
+                {re: /:arrow_left:/gi, emoji: "⬅️"},
+                {re: /:arrow_right:/gi, emoji: "➡️"}
+            ],
+            communicationAndMedia: [
+                {re: /:incoming_envelope:/gi, emoji: "📨"},
+                {re: /:mailbox:/gi, emoji: "📫"},
+                {re: /:postbox:/gi, emoji: "📮"},
+                {re: /:loudspeaker:/gi, emoji: "📢"},
+                {re: /:mega:/gi, emoji: "📣"},
+                {re: /:speech_balloon:/gi, emoji: "💬"},
+                {re: /:thought_balloon:/gi, emoji: "💭"},
+                {re: /:telephone_receiver:/gi, emoji: "📞"}
+            ],
+            peopleAndEmotionsExtra: [
+                {re: /:smiling_face_with_3_hearts:/gi, emoji: "🥰"},
+                {re: /:face_with_hand_over_mouth:/gi, emoji: "🤭"},
+                {re: /:hugging_face:/gi, emoji: "🤗"},
+                {re: /:yawning_face:/gi, emoji: "🥱"},
+                {re: /:face_with_symbols_over_mouth:/gi, emoji: "🤬"},
+                {re: /:ninja:/gi, emoji: "🥷"},
+                {re: /:detective:/gi, emoji: "🕵️"},
+                {re: /:mage:/gi, emoji: "🧙"},
+                {re: /:fairy:/gi, emoji: "🧚"},
+                {re: /:vampire:/gi, emoji: "🧛"},
+                {re: /:zombie:/gi, emoji: "🧟"},
+                {re: /:robot:/gi, emoji: "🤖"}
+            ],
+            flagsBasic: [
+                {re: /:flag_de:/gi, emoji: "🇩🇪"},
+                {re: /:flag_at:/gi, emoji: "🇦🇹"},
+                {re: /:flag_ch:/gi, emoji: "🇨🇭"},
+                {re: /:flag_us:/gi, emoji: "🇺🇸"},
+                {re: /:flag_gb:|:flag_uk:/gi, emoji: "🇬🇧"},
+                {re: /:flag_fr:/gi, emoji: "🇫🇷"},
+                {re: /:flag_es:/gi, emoji: "🇪🇸"},
+                {re: /:flag_it:/gi, emoji: "🇮🇹"},
+                {re: /:flag_br:/gi, emoji: "🇧🇷"},
+                {re: /:flag_in:/gi, emoji: "🇮🇳"},
+                {re: /:flag_cn:/gi, emoji: "🇨🇳"},
+                {re: /:flag_jp:/gi, emoji: "🇯🇵"},
+                {re: /:flag_kr:/gi, emoji: "🇰🇷"},
+                {re: /:flag_ru:/gi, emoji: "🇷🇺"}
+            ],
+            foodAndDrink: [
+                {re: /:pizza:/gi, emoji: "🍕"},
+                {re: /:burger:|:hamburger:/gi, emoji: "🍔"},
+                {re: /:fries:/gi, emoji: "🍟"},
+                {re: /:hotdog:/gi, emoji: "🌭"},
+                {re: /:taco:/gi, emoji: "🌮"},
+                {re: /:burrito:/gi, emoji: "🌯"},
+                {re: /:sushi:/gi, emoji: "🍣"},
+                {re: /:ramen:/gi, emoji: "🍜"},
+                {re: /:spaghetti:/gi, emoji: "🍝"},
+                {re: /:salad:|:green_salad:/gi, emoji: "🥗"},
+                {re: /:apple:/gi, emoji: "🍎"},
+                {re: /:banana:/gi, emoji: "🍌"},
+                {re: /:strawberry:/gi, emoji: "🍓"},
+                {re: /:grapes:/gi, emoji: "🍇"},
+                {re: /:coffee:/gi, emoji: "☕"},
+                {re: /:tea:/gi, emoji: "🍵"},
+                {re: /:beer:/gi, emoji: "🍺"},
+                {re: /:beers:/gi, emoji: "🍻"},
+                {re: /:wine:|:wine_glass:/gi, emoji: "🍷"},
+                {re: /:tropical_drink:/gi, emoji: "🍹"},
+                {re: /:cake:|:birthday:/gi, emoji: "🎂"},
+                {re: /:cupcake:/gi, emoji: "🧁"},
+                {re: /:cookie:/gi, emoji: "🍪"},
+                {re: /:chocolate_bar:/gi, emoji: "🍫"},
+                {re: /:icecream:/gi, emoji: "🍦"},
+                {re: /:ice_cream:/gi, emoji: "🍨"},
+                {re: /:doughnut:/gi, emoji: "🍩"}
+            ],
+            // NEU: Aktivitäten & Sport
+            activitiesAndSports: [
+                {re: /:soccer:/gi, emoji: "⚽"},
+                {re: /:basketball:/gi, emoji: "🏀"},
+                {re: /:tennis:/gi, emoji: "🎾"},
+                {re: /:football:/gi, emoji: "🏈"},
+                {re: /:baseball:/gi, emoji: "⚾"},
+                {re: /:golf:/gi, emoji: "⛳"},
+                {re: /:run:|:running:/gi, emoji: "🏃"},
+                {re: /:swim:|:swimming:/gi, emoji: "🏊"},
+                {re: /:cycle:|:biking:|:bicycle:/gi, emoji: "🚴"},
+                {re: /:medal_sports?:/gi, emoji: "🥇"},
+                {re: /:trophy:/gi, emoji: "🏆"}
+            ],
+            // NEU: Reisen & Orte
+            travelAndPlaces: [
+                {re: /:airplane:/gi, emoji: "✈️"},
+                {re: /:train:/gi, emoji: "🚆"},
+                {re: /:car:/gi, emoji: "🚗"},
+                {re: /:bus:/gi, emoji: "🚌"},
+                {re: /:ship:/gi, emoji: "🚢"},
+                {re: /:hotel:/gi, emoji: "🏨"},
+                {re: /:house:/gi, emoji: "🏠"},
+                {re: /:office:/gi, emoji: "🏢"},
+                {re: /:bridge:/gi, emoji: "🌉"},
+                {re: /:beach:|:beach_with_umbrella:/gi, emoji: "🏖️"},
+                {re: /:mountain:/gi, emoji: "⛰️"}
+            ],
+            // NEU: Wetter & Natur (Extras)
+            weatherAndNatureExtras: [
+                {re: /:sun:/gi, emoji: "☀️"},
+                {re: /:cloud:/gi, emoji: "☁️"},
+                {re: /:rain:/gi, emoji: "🌧️"},
+                {re: /:snow:/gi, emoji: "❄️"},
+                {re: /:thunder:|:lightning:/gi, emoji: "🌩️"},
+                {re: /:rainbow:/gi, emoji: "🌈"},
+                {re: /:moon:/gi, emoji: "🌙"},
+                {re: /:new_moon:/gi, emoji: "🌑"},
+                {re: /:full_moon:/gi, emoji: "🌕"}
+            ]
         },
         globalEvents: false
     };
 
     $.bsEmojiPicker.emojify = function(text) {
-        // Beispielverarbeitung, z. B. Emoji-Ersetzungen
         return pluginMethods.emojify(text);
+    };
+    $.bsEmojiPicker.emojifyElement = function($target) {
+        return pluginMethods.emojifyTarget($target);
+    };
+
+    $.bsEmojiPicker.emojifyHtml = function(html) {
+        return pluginMethods.emojifyHtml(html);
+    };
+
+    $.bsEmojiPicker.emojifyDom = function(root) {
+        return pluginMethods.emojifyDom(root);
     };
 
     const pluginFunctions = {
@@ -408,9 +591,6 @@
 
             const index = $('body').find('.dropdown-emoji.dropdown-emoji').length + 1;
             $wrapper.empty();
-            const inInputGroup = $wrapper.closest('.input-group').length > 0;
-
-            // the dropdown wrapper element
 
             const $dropdown = $('<div>', {
                 class: `dropdown dropdown-emoji`,
@@ -550,7 +730,8 @@
             renderSections();
         },
         emojifyTarget($target) {
-            if (!$target || !$($target).length) {
+            if (!$target || !$($target).length || $($target).prop('tagName') !== 'INPUT' && $($target).prop('tagName') !== 'TEXTAREA') {
+                console.error('Invalid target');
                 return new Error('Invalid target');
             }
             const $input = $($target); // jQuery-Objekt aus dem Zieltextfeld
@@ -574,8 +755,53 @@
                 $input.prop('selectionStart', newEnd); // Auswahl-Start aktualisieren
                 $input.prop('selectionEnd', newEnd); // Auswahl-Ende aktualisieren
             }
+            $input.addClass('bs-emoji-picker-listener')
         },
-        emojify(str) {
+        emojify(input) {
+            // Dispatcher:
+            // - jQuery/DOM/Selector -> DOM in-place
+            // - String mit HTML -> emojifyHtml
+            // - Plain String -> emojifyText
+            if (input == null) {
+                return new Error('Invalid input');
+            }
+            // jQuery
+            if (input && input.jquery) {
+                return pluginFunctions.emojifyDom(input);
+            }
+            // DOM-Node / Window / Document
+            if (input instanceof Element || input === document || input === window) {
+                return pluginFunctions.emojifyDom(input);
+            }
+            // NodeList/HTMLCollection/Array-like
+            if (typeof input === 'object' && typeof input.length === 'number' && !input.nodeType) {
+                return pluginFunctions.emojifyDom(input);
+            }
+
+            if (typeof input === 'string') {
+                // 1) HTML-String?
+                const looksLikeHtml = /<[^>]+>/.test(input);
+                if (looksLikeHtml) {
+                    return pluginFunctions.emojifyHtml(input);
+                }
+
+                // 2) Selector? Sicher mit try/catch prüfen und nur bei Treffern als DOM behandeln
+                try {
+                    const $maybe = $(input);
+                    if ($maybe && $maybe.length) {
+                        return pluginFunctions.emojifyDom($maybe);
+                    }
+                } catch (e) {
+                    // Ignorieren: war kein gültiger Selector -> als Plain-Text behandeln
+                }
+
+                // 3) Fallback: Plain-Text
+                return pluginFunctions.emojifyText(input);
+            }
+
+            return new Error('Unsupported input type');
+        },
+        emojifyText(str) {
             if (typeof str !== 'string') {
                 return new Error('Input must be a string');
             }
@@ -586,6 +812,16 @@
                 ...EMOJI_MAP.classics,
                 ...EMOJI_MAP.handsAndGestures,
                 ...EMOJI_MAP.symbolsAndObjects,
+                ...EMOJI_MAP.foodAndDrink || [],
+                ...EMOJI_MAP.activitiesAndSports || [],
+                ...EMOJI_MAP.travelAndPlaces || [],
+                ...EMOJI_MAP.weatherAndNatureExtras || [],
+                ...EMOJI_MAP.plantsAndFlowers || [],
+                ...EMOJI_MAP.techAndObjectsExtra || [],
+                ...EMOJI_MAP.uiSymbolsExtra || [],
+                ...EMOJI_MAP.communicationAndMedia || [],
+                ...EMOJI_MAP.peopleAndEmotionsExtra || [],
+                ...EMOJI_MAP.flagsBasic || [],
                 ...EMOJI_MAP.animalsAndNature,
                 ...EMOJI_MAP.slackDiscordFaces,
             ];
@@ -594,6 +830,96 @@
                 out = out.replace(re, emoji);
             }
             return out;
+        },
+        emojifyHtml(html) {
+            if (typeof html !== 'string') {
+                return new Error('Input must be a string');
+            }
+            const $tmp = $('<div>').html(html);
+            const root = $tmp[0];
+
+            const walker = document.createTreeWalker(
+                root,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode(node) {
+                        const p = node.parentNode;
+                        if (!p) return NodeFilter.FILTER_REJECT;
+                        const tag = (p.nodeName || '').toLowerCase();
+                        if (tag === 'script' || tag === 'style' || tag === 'noscript' || tag === 'textarea' || tag === 'template') {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                },
+                false
+            );
+
+            let n;
+            while ((n = walker.nextNode())) {
+                const original = n.nodeValue;
+                const replaced = pluginFunctions.emojifyText(original);
+                if (replaced !== original) {
+                    n.nodeValue = replaced;
+                }
+            }
+            return $tmp.html();
+        },
+        emojifyDom(root) {
+            // root kann jQuery, DOM-Node, NodeList, Array, oder Selector-String sein
+            let $list;
+            if (typeof root === 'string') {
+                $list = $(root);
+            } else if (root && root.jquery) {
+                $list = root;
+            } else if (root instanceof Element || root === document || root === window) {
+                $list = $(root);
+            } else if (root && typeof root.length === 'number') {
+                $list = $(root);
+            } else {
+                return new Error('Invalid root');
+            }
+
+            $list.each(function () {
+                const el = this;
+
+                // Falls es ein Eingabefeld ist, Value neu setzen (mit Cursor-handling)
+                const tag = (el.nodeName || '').toLowerCase();
+                if (tag === 'input' || tag === 'textarea') {
+                    pluginFunctions.emojifyTarget($(el));
+                    return; // nächstes Element
+                }
+
+                const walker = document.createTreeWalker(
+                    el,
+                    NodeFilter.SHOW_TEXT,
+                    {
+                        acceptNode(node) {
+                            const p = node.parentNode;
+                            if (!p) return NodeFilter.FILTER_REJECT;
+                            const t = (p.nodeName || '').toLowerCase();
+                            if (t === 'script' || t === 'style' || t === 'noscript' || t === 'textarea' || t === 'template' || t === 'input') {
+                                return NodeFilter.FILTER_REJECT;
+                            }
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                    },
+                    false
+                );
+
+                let n;
+                while ((n = walker.nextNode())) {
+                    const original = n.nodeValue;
+                    const replaced = pluginFunctions.emojifyText
+                        ? pluginFunctions.emojifyText(original)
+                        : pluginFunctions.emojify(original); // Fallback
+                    if (replaced !== original) {
+                        n.nodeValue = replaced;
+                    }
+                }
+            });
+
+            return $list;
         },
         insertEmotjiAtCursor($input, emoji) {
             const $target = $($input); // jQuery-Objekt aus dem Eingabefeld
@@ -642,11 +968,17 @@
     };
 
     const pluginMethods = {
-        'emojify'(text) {
-            return pluginFunctions.emojify(text);
+        'emojify'(input) {
+            return pluginFunctions.emojify(input);
         },
         'emojifyTarget'($taget) {
             return pluginFunctions.emojifyTarget($taget);
+        },
+        'emojifyHtml'(html) {
+            return pluginFunctions.emojifyHtml(html);
+        },
+        'emojifyDom'(root) {
+            return pluginFunctions.emojifyDom(root);
         }
     };
     /**
