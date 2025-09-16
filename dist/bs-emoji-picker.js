@@ -416,6 +416,7 @@
                 {re: /:mushroom:/gi, emoji: "🍄"}
             ],
             techAndObjectsExtra: [
+                // Vorhandene Emojis
                 {re: /:computer_mouse:/gi, emoji: "🖱️"},
                 {re: /:trackball:/gi, emoji: "🖲️"},
                 {re: /:joystick:/gi, emoji: "🕹️"},
@@ -430,7 +431,50 @@
                 {re: /:satellite:/gi, emoji: "🛰️"},
                 {re: /:satellite_antenna:/gi, emoji: "📡"},
                 {re: /:game_die:/gi, emoji: "🎲"},
-                {re: /:magnet:/gi, emoji: "🧲"}
+                {re: /:magnet:/gi, emoji: "🧲"},
+
+                // Neue Emojis
+                {re: /:keyboard:/gi, emoji: "⌨️"},
+                {re: /:mouse:/gi, emoji: "🐁"}, // Duales Match: "computer mouse" weiter oben.
+                {re: /:printer:/gi, emoji: "🖨️"},
+                {re: /:phone:/gi, emoji: "📞"},
+                {re: /:mobile_phone:/gi, emoji: "📱"},
+                {re: /:beeper:/gi, emoji: "📟"},
+                {re: /:projector:/gi, emoji: "📽️"},
+                {re: /:film_projector:/gi, emoji: "📽️"},
+                {re: /:light_bulb:/gi, emoji: "💡"},
+                {re: /:plug:/gi, emoji: "🔌"},
+                {re: /:battery:/gi, emoji: "🔋"},
+                {re: /:camera:/gi, emoji: "📷"},
+                {re: /:video_camera:/gi, emoji: "📹"},
+                {re: /:movie_camera:/gi, emoji: "🎥"},
+                {re: /:clapper:/gi, emoji: "🎬"},
+                {re: /:headphones:/gi, emoji: "🎧"},
+                {re: /:mic:/gi, emoji: "🎤"},
+                {re: /:microphone:/gi, emoji: "🎤"},
+                {re: /:speaker:/gi, emoji: "🔈"},
+                {re: /:loudspeaker:/gi, emoji: "📢"},
+                {re: /:mute:/gi, emoji: "🔇"},
+                {re: /:bell:/gi, emoji: "🔔"},
+                {re: /:no_bell:/gi, emoji: "🔕"},
+                {re: /:watch:/gi, emoji: "⌚"},
+                {re: /:hourglass:/gi, emoji: "⌛"},
+                {re: /:timer:/gi, emoji: "⏱️"},
+                {re: /:alarm_clock:/gi, emoji: "⏰"},
+                {re: /:stopwatch:/gi, emoji: "⏱️"},
+                {re: /:desktop:/gi, emoji: "🖥️"},
+                {re: /:laptop:/gi, emoji: "💻"},
+                {re: /:tablet:/gi, emoji: "📱"}, // Emoji für Tablets und Smartphones sind gleich
+                {re: /:monitor:/gi, emoji: "🖥️"},
+                {re: /:server:/gi, emoji: "🖥️"}, // Alternativer Begriff
+                {re: /:cd_player:/gi, emoji: "💿"},
+                {re: /:computer:/gi, emoji: "🖥️"}, // Desktop-Computer
+                {re: /:notebook:/gi, emoji: "📓"}, // Notizbuch (Verwechslungsgefahr – evtl. tech)
+                {re: /:flashlight:/gi, emoji: "🔦"}, // Taschenlampe
+                {re: /:satellite_dish:/gi, emoji: "📡"}, // Satellitenschüssel (ähnlich wie "satellite_antenna")
+                {re: /:cpu:/gi, emoji: "🖥️"}, // Synonym für Computer
+                {re: /:usb:/gi, emoji: "🔌"}, // USB-Symbol
+                {re: /:sim_card:/gi, emoji: "💾"}, // SIM-Kartensymbol – häufige Associarionsszenerie - maps!
             ],
             uiSymbolsExtra: [
                 {re: /:play:/gi, emoji: "▶️"},
@@ -449,6 +493,7 @@
                 {re: /:arrow_right:/gi, emoji: "➡️"}
             ],
             communicationAndMedia: [
+                // Vorhandene Emojis
                 {re: /:incoming_envelope:/gi, emoji: "📨"},
                 {re: /:mailbox:/gi, emoji: "📫"},
                 {re: /:postbox:/gi, emoji: "📮"},
@@ -456,7 +501,46 @@
                 {re: /:mega:/gi, emoji: "📣"},
                 {re: /:speech_balloon:/gi, emoji: "💬"},
                 {re: /:thought_balloon:/gi, emoji: "💭"},
-                {re: /:telephone_receiver:/gi, emoji: "📞"}
+                {re: /:telephone_receiver:/gi, emoji: "📞"},
+
+                // Hinzugefügte Emojis
+                {re: /:email:/gi, emoji: "✉️"}, // E-Mail-Symbol
+                {re: /:envelope:/gi, emoji: "✉️"}, // Umschlag
+                {re: /:calling:/gi, emoji: "📲"}, // Smartphone mit Anruf
+                {re: /:pager:/gi, emoji: "📟"}, // Pager
+                {re: /:fax:/gi, emoji: "📠"}, // Faxgerät
+                {re: /:newspaper:/gi, emoji: "📰"}, // Zeitung
+                {re: /:microphone:/gi, emoji: "🎤"}, // Mikrofon
+                {re: /:studio_microphone:/gi, emoji: "🎙️"}, // Studiomikrofon
+                {re: /:tv:/gi, emoji: "📺"}, // Fernseher
+                {re: /:radio:/gi, emoji: "📻"}, // Radio
+                {re: /:satellite:/gi, emoji: "🛰️"}, // Satellit
+                {re: /:satellite_antenna:/gi, emoji: "📡"}, // Satellitenschüssel
+                {re: /:laptop:/gi, emoji: "💻"}, // Laptop
+                {re: /:computer:/gi, emoji: "🖥️"}, // Computer
+                {re: /:mobile_phone:/gi, emoji: "📱"}, // Smartphone
+                {re: /:phone:/gi, emoji: "📞"}, // Telefonhörer
+                {re: /:telephone:/gi, emoji: "☎️"}, // Klassisches Telefon
+                {re: /:film_projector:/gi, emoji: "📽️"}, // Filmprojektor
+                {re: /:camera:/gi, emoji: "📷"}, // Kamera
+                {re: /:movie_camera:/gi, emoji: "🎥"}, // Filmkamera
+                {re: /:video_camera:/gi, emoji: "📹"}, // Videokamera
+                {re: /:headphones:/gi, emoji: "🎧"}, // Kopfhörer
+                {re: /:loud_sound:/gi, emoji: "🔊"}, // Lautsprecher mit Lautstärke
+                {re: /:mute:/gi, emoji: "🔇"}, // Lautsprecher stumm
+                {re: /:bell:/gi, emoji: "🔔"}, // Glocke
+                {re: /:no_bell:/gi, emoji: "🔕"}, // Durchgestrichene Glocke
+                {re: /:record_button:/gi, emoji: "⏺️"}, // Aufnahmebutton
+                {re: /:play_button:/gi, emoji: "▶️"}, // Play-Button
+                {re: /:pause_button:/gi, emoji: "⏸️"}, // Pause-Button
+                {re: /:stop_button:/gi, emoji: "⏹️"}, // Stop-Button
+                {re: /:fast_forward:/gi, emoji: "⏩"}, // Vorspulen
+                {re: /:rewind:/gi, emoji: "⏪"}, // Zurückspulen
+                {re: /:eject_button:/gi, emoji: "⏏️"}, // Eject-Button
+                {re: /:clapper_board:/gi, emoji: "🎬"}, // Filmklappe
+                {re: /:megaphone:/gi, emoji: "📣"}, // Megaphon (Doppelnennung für "Lautsprecher")
+                {re: /:postal_horn:/gi, emoji: "📯"}, // Posthorn
+                {re: /:scroll:/gi, emoji: "📜"}, // Schriftrolle
             ],
             peopleAndEmotionsExtra: [
                 {re: /:smiling_face_with_3_hearts:/gi, emoji: "🥰"},
@@ -562,18 +646,27 @@
     };
 
     $.bsEmojiPicker.emojify = function(text) {
-        return pluginMethods.emojify(text);
+        return pluginFunctions.emojify(text);
     };
+
+    $.bsEmojiPicker.isOnlyEmoji = function(text) {
+        return pluginFunctions.isOnlyEmoji(text);
+    };
+
+    $.bsEmojiPicker.showDemo = function($wrapper, count = 100, time = 1000) {
+        return pluginFunctions.showDemo($wrapper, count, time);
+    };
+
     $.bsEmojiPicker.emojifyElement = function($target) {
-        return pluginMethods.emojifyTarget($target);
+        return pluginFunctions.emojifyTarget($target);
     };
 
     $.bsEmojiPicker.emojifyHtml = function(html) {
-        return pluginMethods.emojifyHtml(html);
+        return pluginFunctions.emojifyHtml(html);
     };
 
     $.bsEmojiPicker.emojifyDom = function(root) {
-        return pluginMethods.emojifyDom(root);
+        return pluginFunctions.emojifyDom(root);
     };
 
     const pluginFunctions = {
@@ -585,6 +678,14 @@
         },
         getDropdown($wrapper) {
             return $wrapper.find('.dropdown-emoji');
+        },
+        isOnlyEmoji(input) {
+            const t = (input || "").trim();
+            if (!t) return false;
+
+            // Regex für Emojis (ohne \p{Extended_Pictographic}, breiter kompatibel)
+            const emojiRegex = /^([\uD800-\uDBFF][\uDC00-\uDFFF]|\u2764\uFE0F?|[\u2600-\u26FF\uFE0F]?|[\u200D\uFE0F]|[\u2B50-\u2B55])+$/;
+            return emojiRegex.test(t);
         },
         buildDropdown($wrapper) {
             const settings = this.getSettings($wrapper);
@@ -734,28 +835,35 @@
                 console.error('Invalid target');
                 return new Error('Invalid target');
             }
-            const $input = $($target); // jQuery-Objekt aus dem Zieltextfeld
-            const value = $input.val(); // Textfeldinhalt abrufen
+
+            const $input = $($target); // Zieltextfeld
+            const value = $input.val(); // Textfeldinhalt
             const start = $input.prop('selectionStart') ?? value.length; // Startposition der Auswahl
             const end = $input.prop('selectionEnd') ?? value.length; // Endposition der Auswahl
 
+            // Textteile aufteilen
             const before = value.slice(0, start);
             const middle = value.slice(start, end);
             const after = value.slice(end);
 
-            const beforeRepl = $.bsEmojiPicker.emojify(before); // Emoji-Ersetzungen vor der Auswahl
-            const middleRepl = $.bsEmojiPicker.emojify(middle); // Emoji-Ersetzungen innerhalb der Auswahl
-            const afterRepl = $.bsEmojiPicker.emojify(after); // Emoji-Ersetzungen nach der Auswahl
+            // Prüfung: Wurden Emojis neu ergänzt?
+            const newBefore = $.bsEmojiPicker.emojify(before);
+            const newMiddle = $.bsEmojiPicker.emojify(middle);
+            const newAfter = $.bsEmojiPicker.emojify(after);
 
-            const newValue = beforeRepl + middleRepl + afterRepl;
+            const newValue = newBefore + newMiddle + newAfter;
 
+            // Nur überschreiben, wenn sich der Text tatsächlich geändert hat
             if (newValue !== value) {
-                $input.val(newValue); // Neuen Wert im Textfeld setzen
-                const newEnd = beforeRepl.length + middleRepl.length; // Neue Cursor-Position berechnen
+                $input.val(newValue); // Neuen Wert setzen
+
+                // Neue Cursorposition berechnen
+                const newEnd = newBefore.length + newMiddle.length;
                 $input.prop('selectionStart', newEnd); // Auswahl-Start aktualisieren
                 $input.prop('selectionEnd', newEnd); // Auswahl-Ende aktualisieren
             }
-            $input.addClass('bs-emoji-picker-listener')
+
+            $input.addClass('bs-emoji-picker-listener');
         },
         emojify(input) {
             // Dispatcher:
@@ -806,7 +914,8 @@
                 return new Error('Input must be a string');
             }
             const EMOJI_MAP = $.bsEmojiPicker.map;
-            // Flatten categories into a single ordered list (priority by order here)
+
+            // Flatten categories into a single ordered list
             const MAP = [
                 ...EMOJI_MAP.heartsAndLove,
                 ...EMOJI_MAP.classics,
@@ -825,6 +934,11 @@
                 ...EMOJI_MAP.animalsAndNature,
                 ...EMOJI_MAP.slackDiscordFaces,
             ];
+
+            // Sortiere Emoji-Mappings nach Länge der Regex (längere zuerst)
+            MAP.sort((a, b) => b.re.source.length - a.re.source.length);
+
+            // Emojis im String ersetzen
             let out = str;
             for (const {re, emoji} of MAP) {
                 out = out.replace(re, emoji);
@@ -921,6 +1035,63 @@
 
             return $list;
         },
+        showDemo($wrapper, count = 100, time = 1000) {
+            $wrapper.addClass('position-relative overflow-hidden'); // Wrapper sichern
+
+            // Hole alle Emojis aus $.bsEmojiPicker.map
+            const emojis = Object.values($.bsEmojiPicker.map)
+                .flat() // Alle Kategorien zusammenführen
+                .map(item => item.emoji); // Nur die Emoji-Werte extrahieren
+
+            let createdCount = 0;
+            const interval = setInterval(() => {
+                if (createdCount >= count) {
+                    clearInterval(interval); // Stop, wenn maximale Anzahl erreicht ist
+                    return;
+                }
+
+                // Zufälliges Emoji auswählen
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+                // Schriftgröße zufällig festlegen
+                const fontSize = Math.random() * 3 + 1; // Schriftgröße zwischen 1rem und 4rem
+                const fontSizeInPixels = fontSize * 16; // Konvertiere Schriftgröße in Pixel (1rem = 16px)
+
+                // Wrapper-Abmessungen erhalten
+                const wrapperWidth = $wrapper.width();
+                const wrapperHeight = $wrapper.height();
+
+                // Position berechnen, damit alle Ränder korrekt gefüllt werden
+                const top = Math.random() * (wrapperHeight - fontSizeInPixels) + fontSizeInPixels / 2;
+                const left = Math.random() * (wrapperWidth - fontSizeInPixels) + fontSizeInPixels / 2;
+
+                // Emoji-Element erstellen
+                const $emoji = $('<span>', {
+                    text: randomEmoji,
+                    class: 'emoji-demo',
+                    css: {
+                        zIndex: -1,
+                        position: 'absolute',
+                        fontSize: `${fontSize}rem`,
+                        top: `${top}px`,
+                        left: `${left}px`,
+                        transform: `translate(-50%, -50%) rotate(${Math.random() * 60 - 30}deg)`,
+                    }
+                }).appendTo($wrapper);
+
+                // Emoji dem Wrapper hinzufügen
+                // $wrapper.append($emoji);
+
+                // Optional: Emoji nach 5 Sekunden entfernen
+                // setTimeout(() => {
+                //     $emoji.fadeOut(500, () => {
+                //         $emoji.remove();
+                //     });
+                // }, 5000);
+
+                createdCount++;
+            }, time);
+        },
         insertEmotjiAtCursor($input, emoji) {
             const $target = $($input); // jQuery-Objekt aus dem Eingabefeld
             $target.focus(); // Fokus auf das Eingabefeld setzen
@@ -973,6 +1144,9 @@
     };
 
     const pluginMethods = {
+        'isOnlyEmoji'(input) {
+            return pluginFunctions.isOnlyEmoji(input);
+        },
         'emojify'(input) {
             return pluginFunctions.emojify(input);
         },

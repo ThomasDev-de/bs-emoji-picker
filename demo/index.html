@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,17 +7,34 @@
     <link href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css" type="text/css" rel="stylesheet">
     <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<div class="container p-5">
-    <h1 class="mb-4">Hello, Emoji! :)</h1>
+<body class="h-100">
+<div class="container text-bg-light border border-4 p-5 h-100 ">
+    <div class="emoji-article">
+        <h2>The Wonderful World of Emojis :D</h2>
+        <p>Emojis have become a universal language that transcends words. Whether you’re feeling happy :D, sad :(, or excited :P, there is always an emoji to express your emotions. They are simple yet powerful tools for communication in today’s digital world :). </p>
+
+        <p>The concept of emojis originated in Japan <3 and has since evolved into a global phenomenon. Today, emojis are used in texts, emails, social media posts, and even in customer service chatbots :). A simple thumbs up :thumbsup: or a heart <3 can convey a lot more than written words ever could.</p>
+
+        <p>There are thousands of emojis to choose from, spanning various categories such as people :), animals :cat: :dog:, nature :sun: :rainbow:, food :pizza: :burger:, activities :soccer: :game_die:, and objects :computer: :mobile_phone:. The diversity of emojis continues to grow, making it easier for everyone to find one that matches their personality or situation :D.</p>
+
+        <p>But emojis are more than just icons in a message. They bring people closer together :). Imagine receiving a message that simply says "Congratulations!" versus one that says "Congratulations! :tada: :party:". The emojis add excitement and a sense of celebration :party_popper:.</p>
+
+        <p>As technology advances :) so does the world of emojis. Every year new emojis are designed, reflecting growing cultures and trends. From gender-neutral emojis :person: to animals :dodo:, and even weather symbols like :cloud_with_lightning:, the emoji space is constantly evolving.</p>
+
+        <p>The next time you send someone a message, consider adding some emojis :) Whether it’s a "Hello! :wave:" or "Good luck! <3", emojis help make your texts brighter and filled with emotion :).</p>
+    </div>
+
+    <h3>An emoji textarea with a picker</h3>
     <div class=" d-flex gap-3 mb-3">
         <div class="emoji-picker"></div>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">:D with picker <3</textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">I am a text with emojis :).
+As help I have an emoji picker 👈</textarea>
     </div>
     <hr>
-    <textarea class="form-control mb-3" id="exampleFormControlTextarea2" rows="3">:D without picker <3</textarea>
-    <hr>
-    <p><span>:D in html</span><3</p>
+    <h3>An emoji textarea without a picker</h3>
+    <label for="exampleFormControlTextarea2"></label>
+    <textarea class="form-control mb-3" id="exampleFormControlTextarea2" rows="3">I am a text with emojis <3</textarea>
+
 </div>
 <script src="../vendor/components/jquery/jquery.min.js"></script>
 <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -25,14 +42,16 @@
 <script>
     $(document).ready(function () {
         $('.emoji-picker').bsEmojiPicker({
+            btnClass: 'btn btn-warning',
             targetInput: '#exampleFormControlTextarea1',
-            labels: {
-                classics: 'Klassisch'
-            }
         });
 
-        $.bsEmojiPicker.emojify('h1, p:first');
+        $.bsEmojiPicker.emojify('.emoji-article');
         $.bsEmojiPicker.emojify('#exampleFormControlTextarea2');
+        const testString = '😁 test';
+        const check = $.bsEmojiPicker.isOnlyEmoji(testString);
+        // alert(testString + ' is only emoji: ' + (check?'yes':'no'));
+        $.bsEmojiPicker.showDemo($('body'), 200, 10);
     })
 </script>
 </body>
