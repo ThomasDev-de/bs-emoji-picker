@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/webcito/bs-emoji-picker",
   "type": "library",
   "keywords": ["emoji", "picker", "bootstrap"],
@@ -19,7 +19,7 @@
   ],
   "require": {
     "twbs/bootstrap-icons": "^1",
-    "twbs/bootstrap": "^v5",
+    "twbs/bootstrap": "^v4 | ^v5",
     "components/jquery": "^3"
   }
 }
