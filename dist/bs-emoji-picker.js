@@ -1121,7 +1121,11 @@
 
                     })
                     .on('input paste change', '.bs-emoji-picker-listener', function(e){
-                        pluginFunctions.emojifyTarget($(e.currentTarget));
+                        const $element = $(e.currentTarget);
+                        const value = $element.val();
+                        if (value && value.length >= 2) {
+                            pluginFunctions.emojifyTarget($element);
+                        }
                     })
                     .on('click', '.bs-emoji-picker [data-emoji]', function (e) {
                     e.preventDefault();
