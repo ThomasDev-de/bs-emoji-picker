@@ -40,9 +40,31 @@ Initialize the picker:
 
 ```javascript
 $('.emoji-picker').bsEmojiPicker({
+    btnClass: 'btn btn-outline-secondary',
+    btnText: '<i class="bi bi-emoji-smile"></i>',
+    btnIconClass: 'bi bi-emoji-smile',
+    btnShowToggle: false,
     targetInput: '#myTextarea',
     labels: {
-        classics: 'Classic Emojis'
+        classics: "Classics",
+        slackDiscordFaces: "Slack/Discord Faces",
+        heartsAndLove: "Hearts & Love",
+        handsAndGestures: "Hands & Gestures",
+        symbolsAndObjects: "Symbols & Objects",
+        animalsAndNature: "Animals & Nature",
+        foodAndDrink: "Food & Drink",
+        activitiesAndSports: "Activities & Sports",
+        travelAndPlaces: "Travel & Places",
+        weatherAndNatureExtras: "Weather & Nature (Extra)",
+        plantsAndFlowers: "Plants & Flowers",
+        techAndObjectsExtra: "Tech & Objects (Extra)",
+        uiSymbolsExtra: "UI Symbols",
+        communicationAndMedia: "Communication & Media",
+        peopleAndEmotionsExtra: "People & Emotions (Extra)",
+        flagsBasic: "Flags (Basic)"
+    },
+    onClickEmoji(emoji) {
+        return emoji;
     }
 });
 ```

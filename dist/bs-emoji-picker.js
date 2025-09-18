@@ -4,7 +4,9 @@
         version: '0.0.1',
         defaults: {
             btnClass: 'btn btn-outline-secondary',
+            btnText: '<i class="bi bi-emoji-smile"></i>',
             btnIconClass: 'bi bi-emoji-smile',
+            btnShowToggle: false,
             targetInput: undefined,
             labels: {
                 classics: "Classics",
@@ -13,7 +15,6 @@
                 handsAndGestures: "Hands & Gestures",
                 symbolsAndObjects: "Symbols & Objects",
                 animalsAndNature: "Animals & Nature",
-                // neue Kategorien
                 foodAndDrink: "Food & Drink",
                 activitiesAndSports: "Activities & Sports",
                 travelAndPlaces: "Travel & Places",
@@ -699,12 +700,13 @@
             }).appendTo($wrapper);
 
             // the dropdown-toggle element
+            const dropdownToggleClass = settings.btnShowToggle ? ' dropdown-toggle' : '';
             const $dropdownToggle = $('<button>', {
-                class: settings.btnClass + ' dropdown-toggle',
+                class: settings.btnClass + dropdownToggleClass,
                 type: 'button',
                 'data-bs-toggle': 'dropdown',
                 'aria-expanded': 'false',
-                html: `<i class="${settings.btnIconClass}"></i>`,
+                html: settings.btnText,
             }).appendTo($dropdown);
 
             const $dropdownMenu = $('<div>', {
