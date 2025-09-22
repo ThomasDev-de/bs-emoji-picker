@@ -646,27 +646,27 @@
         globalEvents: false
     };
 
-    $.bsEmojiPicker.emojify = function(text) {
+    $.bsEmojiPicker.emojify = function (text) {
         return pluginFunctions.emojify(text);
     };
 
-    $.bsEmojiPicker.isOnlyEmoji = function(text) {
+    $.bsEmojiPicker.isOnlyEmoji = function (text) {
         return pluginFunctions.isOnlyEmoji(text);
     };
 
-    $.bsEmojiPicker.showDemo = function($wrapper, count = 100, time = 1000) {
+    $.bsEmojiPicker.showDemo = function ($wrapper, count = 100, time = 1000) {
         return pluginFunctions.showDemo($wrapper, count, time);
     };
 
-    $.bsEmojiPicker.emojifyElement = function($target) {
+    $.bsEmojiPicker.emojifyElement = function ($target) {
         return pluginFunctions.emojifyTarget($target);
     };
 
-    $.bsEmojiPicker.emojifyHtml = function(html) {
+    $.bsEmojiPicker.emojifyHtml = function (html) {
         return pluginFunctions.emojifyHtml(html);
     };
 
-    $.bsEmojiPicker.emojifyDom = function(root) {
+    $.bsEmojiPicker.emojifyDom = function (root) {
         return pluginFunctions.emojifyDom(root);
     };
 
@@ -1117,10 +1117,10 @@
                 $(document)
                     .on('show.bs.dropdown', '.dropdown-emoji', function () {
                         const $dropdown = $(this);
-                        $dropdown.find('.dropdown-emoji-menu-wrapper').stop(true).animate({ scrollTop: 0 }, 150);
+                        $dropdown.find('.dropdown-emoji-menu-wrapper').stop(true).animate({scrollTop: 0}, 150);
 
                     })
-                    .on('input paste change', '.bs-emoji-picker-listener', function(e){
+                    .on('input paste change', '.bs-emoji-picker-listener', function (e) {
                         const $element = $(e.currentTarget);
                         const value = $element.val();
                         if (value && value.length >= 2) {
@@ -1128,20 +1128,20 @@
                         }
                     })
                     .on('click', '.bs-emoji-picker [data-emoji]', function (e) {
-                    e.preventDefault();
-                    const element = $(e.currentTarget);
-                    const wrap = element.closest('.bs-emoji-picker');
-                    const settings = pluginFunctions.getSettings(wrap);
-                    const emoji = element.data('emoji');
-                    if (settings) {
-                        if (settings.hasOwnProperty('onClickEmoji') && typeof settings.onClickEmoji === 'function') {
-                            settings.onClickEmoji(emoji);
+                        e.preventDefault();
+                        const element = $(e.currentTarget);
+                        const wrap = element.closest('.bs-emoji-picker');
+                        const settings = pluginFunctions.getSettings(wrap);
+                        const emoji = element.data('emoji');
+                        if (settings) {
+                            if (settings.hasOwnProperty('onClickEmoji') && typeof settings.onClickEmoji === 'function') {
+                                settings.onClickEmoji(emoji);
+                            }
+                            if (settings.hasOwnProperty('targetInput') && $(settings.targetInput).length) {
+                                pluginFunctions.insertEmotjiAtCursor($(settings.targetInput), emoji);
+                            }
                         }
-                        if (settings.hasOwnProperty('targetInput') && $(settings.targetInput).length) {
-                            pluginFunctions.insertEmotjiAtCursor($(settings.targetInput), emoji);
-                        }
-                    }
-                })
+                    })
                 $.bsEmojiPicker.globalEvents = true;
             } else {
                 console.warn('Global events already enabled');
