@@ -2,7 +2,7 @@
     'use strict';
 
     if (!$) {
-        throw new Error('bsEmojiPicker requires jQuery');
+        throw new Error('bsEmojiPicker requires jQuery.');
     }
 
     const DATA_KEY = 'bsEmojiPicker';
@@ -11,10 +11,12 @@
     const DROPDOWN_CLASS = 'dropdown-emoji';
 
     $.bsEmojiPicker = {
-        version: '1.0.1',
+        version: '1.0.2',
         defaults: {
             btnClass: 'btn btn-outline-secondary',
+            btnText: '<i class="bi bi-emoji-smile"></i>',
             btnIconClass: 'bi bi-emoji-smile',
+            btnShowToggle: false,
             targetInput: null,
             labels: {
                 classics: 'Classics',
@@ -596,12 +598,11 @@
             const el = $editable[0];
             const selection = window.getSelection();
 
-            let range = null;
             let startNode = null;
             let startOffset = 0;
 
             if (selection && selection.rangeCount > 0) {
-                range = selection.getRangeAt(0);
+                const range = selection.getRangeAt(0);
                 if (el.contains(range.startContainer)) {
                     startNode = range.startContainer;
                     startOffset = range.startOffset;
@@ -810,12 +811,15 @@
                 'data-index': index
             }).appendTo($wrapper);
 
+            const dropdownToggleClass = settings.btnShowToggle ? ' dropdown-toggle' : '';
+            const buttonHtml = settings.btnText || `<i class="${this.escapeHtml(settings.btnIconClass)}"></i>`;
+
             $('<button>', {
-                class: `${settings.btnClass} dropdown-toggle`,
+                class: `${settings.btnClass}${dropdownToggleClass}`,
                 type: 'button',
                 'data-bs-toggle': 'dropdown',
                 'aria-expanded': 'false',
-                html: `<i class="${this.escapeHtml(settings.btnIconClass)}"></i>`
+                html: buttonHtml
             }).appendTo($dropdown);
 
             const $menu = $('<div>', {
