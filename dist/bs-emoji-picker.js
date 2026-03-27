@@ -11,7 +11,7 @@
     const DROPDOWN_CLASS = 'dropdown-emoji';
 
     $.bsEmojiPicker = {
-        version: '2.0.0',
+        version: '2.0.1',
 
         defaults: {
             btnClass: 'btn btn-outline-secondary',
@@ -1162,20 +1162,19 @@
                 throw new TypeError('Invalid contenteditable target');
             }
 
-            el.focus();
-
             const selection = window.getSelection();
             let range;
 
             if (selection && selection.rangeCount > 0) {
-                range = selection.getRangeAt(0);
-            } else {
-                range = document.createRange();
-                range.selectNodeContents(el);
-                range.collapse(false);
+                const tempRange = selection.getRangeAt(0);
+                if (el.contains(tempRange.commonAncestorContainer)) {
+                    range = tempRange;
+                }
             }
 
-            if (!el.contains(range.commonAncestorContainer)) {
+            if (!range) {
+                el.focus();
+                range = document.createRange();
                 range.selectNodeContents(el);
                 range.collapse(false);
             }
