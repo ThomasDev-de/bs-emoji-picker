@@ -1364,7 +1364,7 @@
             const uniqueEmojis = this.getAllUniqueEmojis();
             if (!uniqueEmojis.length) return;
 
-            $wrapper.addClass('position-relative overflow-hidden');
+            $wrapper.addClass('position-absolute overflow-hidden');
 
             let createdCount = 0;
             const interval = setInterval(() => {
