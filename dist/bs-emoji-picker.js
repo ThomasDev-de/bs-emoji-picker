@@ -11,7 +11,7 @@
     const DROPDOWN_CLASS = 'dropdown-emoji';
 
     $.bsEmojiPicker = {
-        version: '2.0.1',
+        version: '2.0.2',
 
         defaults: {
             btnClass: 'btn btn-outline-secondary',
@@ -36,6 +36,25 @@
                 communicationAndMedia: 'Communication & Media',
                 peopleAndEmotionsExtra: 'People & Emotions',
                 flagsBasic: 'Flags'
+            },
+            categoryIcons: {
+                recent: 'bi-clock-history',
+                classics: 'bi-emoji-smile',
+                slackDiscordFaces: 'bi-emoji-laughing',
+                heartsAndLove: 'bi-heart',
+                handsAndGestures: 'bi-hand-thumbs-up',
+                symbolsAndObjects: 'bi-hash',
+                animalsAndNature: 'bi-bug',
+                foodAndDrink: 'bi-cup-straw',
+                activitiesAndSports: 'bi-controller',
+                travelAndPlaces: 'bi-airplane',
+                weatherAndNatureExtras: 'bi-cloud-sun',
+                plantsAndFlowers: 'bi-flower1',
+                techAndObjectsExtra: 'bi-laptop',
+                uiSymbolsExtra: 'bi-circle-square',
+                communicationAndMedia: 'bi-chat-dots',
+                peopleAndEmotionsExtra: 'bi-people',
+                flagsBasic: 'bi-flag'
             },
             onClickEmoji(emoji) {
                 return emoji;
@@ -92,36 +111,110 @@
                 { emoji: '🩷', shortcodes: ['pink_heart'] },
                 { emoji: '🩵', shortcodes: ['light_blue_heart'] },
                 { emoji: '🩶', shortcodes: ['grey_heart', 'gray_heart'] },
+                { emoji: '💔', shortcodes: ['broken_heart'] },
+                { emoji: '❣️', shortcodes: ['heart_exclamation'] },
                 { emoji: '❤️‍🔥', shortcodes: ['heart_on_fire'] },
                 { emoji: '❤️‍🩹', shortcodes: ['mending_heart'] },
+                { emoji: '♥️', shortcodes: ['hearts'] },
+                { emoji: '♠️', shortcodes: ['spades'] },
+                { emoji: '♣️', shortcodes: ['clubs'] },
+                { emoji: '♦️', shortcodes: ['diamonds'] },
                 { emoji: '💌', shortcodes: ['love_letter'] },
-                { emoji: '💋', shortcodes: ['kiss'] }
+                { emoji: '💍', shortcodes: ['ring'] },
+                { emoji: '💎', shortcodes: ['gem'] }
             ],
 
             classics: [
+                { emoji: '😀', shortcodes: ['grinning'] },
+                { emoji: '😃', shortcodes: ['smiley'] },
+                { emoji: '😄', shortcodes: ['smile'] },
                 { emoji: '😁', shortcodes: ['grin'] },
+                { emoji: '😆', shortcodes: ['laughing'] },
+                { emoji: '😅', shortcodes: ['sweat_smile'] },
+                { emoji: '🤣', shortcodes: ['rofl'] },
                 { emoji: '😂', shortcodes: ['joy'] },
                 { emoji: '🙂', shortcodes: ['slightly_smiling_face'] },
-                { emoji: '🙁', shortcodes: ['slightly_frowning_face'] },
-                { emoji: '😮', shortcodes: ['open_mouth'] },
-                { emoji: '😘', shortcodes: ['kissing_heart'] },
-                { emoji: '😊', shortcodes: ['blush'] },
+                { emoji: '🙃', shortcodes: ['upside_down_face'] },
                 { emoji: '😉', shortcodes: ['wink'] },
-                { emoji: '😛', shortcodes: ['stuck_out_tongue'] },
-                { emoji: '😖', shortcodes: ['confounded'] },
-                { emoji: '😐', shortcodes: ['neutral_face'] },
-                { emoji: '😠', shortcodes: ['angry'] },
-                { emoji: '😈', shortcodes: ['smiling_imp'] },
+                { emoji: '😊', shortcodes: ['blush'] },
                 { emoji: '😇', shortcodes: ['innocent'] },
+                { emoji: '🥰', shortcodes: ['smiling_face_with_three_hearts'] },
+                { emoji: '😍', shortcodes: ['heart_eyes'] },
+                { emoji: '🤩', shortcodes: ['star_struck'] },
+                { emoji: '😘', shortcodes: ['kissing_heart'] },
+                { emoji: '😗', shortcodes: ['kissing'] },
+                { emoji: '😚', shortcodes: ['kissing_closed_eyes'] },
+                { emoji: '😙', shortcodes: ['kissing_smiling_eyes'] },
+                { emoji: '😋', shortcodes: ['yum'] },
+                { emoji: '😛', shortcodes: ['stuck_out_tongue'] },
+                { emoji: '😜', shortcodes: ['stuck_out_tongue_winking_eye'] },
+                { emoji: '🤪', shortcodes: ['zany_face'] },
+                { emoji: '😝', shortcodes: ['stuck_out_tongue_closed_eyes'] },
+                { emoji: '🤑', shortcodes: ['money_mouth_face'] },
+                { emoji: '🤗', shortcodes: ['hugging_face'] },
+                { emoji: '🤭', shortcodes: ['face_with_hand_over_mouth'] },
+                { emoji: '🤫', shortcodes: ['shushing_face'] },
+                { emoji: '🤔', shortcodes: ['thinking'] },
+                { emoji: '🤐', shortcodes: ['zipper_mouth_face'] },
+                { emoji: '🤨', shortcodes: ['raised_eyebrow'] },
+                { emoji: '😐', shortcodes: ['neutral_face'] },
+                { emoji: '😑', shortcodes: ['expressionless'] },
+                { emoji: '😶', shortcodes: ['no_mouth'] },
+                { emoji: '😏', shortcodes: ['smirk'] },
+                { emoji: '😒', shortcodes: ['unamused'] },
+                { emoji: '🙄', shortcodes: ['rolling_eyes'] },
+                { emoji: '😬', shortcodes: ['grimacing'] },
+                { emoji: '🤥', shortcodes: ['lying_face'] },
+                { emoji: '😌', shortcodes: ['relieved'] },
+                { emoji: '😔', shortcodes: ['pensive'] },
+                { emoji: '😪', shortcodes: ['sleepy'] },
+                { emoji: '🤤', shortcodes: ['drooling_face'] },
                 { emoji: '😴', shortcodes: ['sleeping'] },
+                { emoji: '😷', shortcodes: ['mask'] },
+                { emoji: '🤒', shortcodes: ['face_with_thermometer'] },
+                { emoji: '🤕', shortcodes: ['face_with_head_bandage'] },
+                { emoji: '🤢', shortcodes: ['nauseated_face'] },
+                { emoji: '🤮', shortcodes: ['vomiting_face'] },
+                { emoji: '🤧', shortcodes: ['sneezing_face'] },
+                { emoji: '🥵', shortcodes: ['hot_face'] },
+                { emoji: '🥶', shortcodes: ['cold_face'] },
+                { emoji: '🥴', shortcodes: ['woozy_face'] },
+                { emoji: '😵', shortcodes: ['dizzy_face'] },
+                { emoji: '🤯', shortcodes: ['exploding_head'] },
+                { emoji: '🤠', shortcodes: ['cowboy_hat_face'] },
+                { emoji: '🥳', shortcodes: ['partying_face'] },
+                { emoji: '😎', shortcodes: ['sunglasses'] },
+                { emoji: '🤓', shortcodes: ['nerd_face'] },
+                { emoji: '🧐', shortcodes: ['monocle_face'] },
+                { emoji: '😕', shortcodes: ['confused'] },
+                { emoji: '😟', shortcodes: ['worried'] },
+                { emoji: '🙁', shortcodes: ['slightly_frowning_face'] },
+                { emoji: '☹️', shortcodes: ['frowning'] },
+                { emoji: '😮', shortcodes: ['open_mouth'] },
+                { emoji: '😯', shortcodes: ['hushed'] },
+                { emoji: '😲', shortcodes: ['astonished'] },
+                { emoji: '😳', shortcodes: ['flushed'] },
+                { emoji: '🥺', shortcodes: ['pleading_face'] },
                 { emoji: '😢', shortcodes: ['cry'] },
                 { emoji: '😭', shortcodes: ['sob'] },
-                { emoji: '🤐', shortcodes: ['zipper_mouth_face'] },
-                { emoji: '😳', shortcodes: ['flushed'] },
+                { emoji: '😤', shortcodes: ['triumph'] },
+                { emoji: '😡', shortcodes: ['rage'] },
+                { emoji: '😠', shortcodes: ['angry'] },
+                { emoji: '🤬', shortcodes: ['face_with_symbols_on_mouth'] },
+                { emoji: '😈', shortcodes: ['smiling_imp'] },
+                { emoji: '👿', shortcodes: ['imp'] },
+                { emoji: '💀', shortcodes: ['skull'] },
+                { emoji: '☠️', shortcodes: ['skull_and_crossbones'] },
+                { emoji: '💩', shortcodes: ['poop'] },
+                { emoji: '🤡', shortcodes: ['clown_face'] },
+                { emoji: '👹', shortcodes: ['ogre'] },
+                { emoji: '👺', shortcodes: ['goblin'] },
+                { emoji: '👻', shortcodes: ['ghost'] },
+                { emoji: '👽', shortcodes: ['alien'] },
+                { emoji: '👾', shortcodes: ['space_invader'] },
+                { emoji: '🤖', shortcodes: ['robot'] },
                 { emoji: '🤷', shortcodes: ['shrug'] },
-                { emoji: '🤦', shortcodes: ['facepalm'] },
-                { emoji: '🤔', shortcodes: ['thinking'] },
-                { emoji: '😎', shortcodes: ['sunglasses'] }
+                { emoji: '🤦', shortcodes: ['facepalm'] }
             ],
 
             slackDiscordFaces: [
@@ -134,78 +227,163 @@
                 { emoji: '😉', shortcodes: ['wink'] },
                 { emoji: '😊', shortcodes: ['blush'] },
                 { emoji: '😇', shortcodes: ['innocent'] },
-                { emoji: '🙂', shortcodes: ['slightly_smiling_face'] },
-                { emoji: '🙃', shortcodes: ['upside_down_face'] },
-                { emoji: '🫠', shortcodes: ['melting_face'] },
+                { emoji: '🥰', shortcodes: ['smiling_face_with_3_hearts'] },
                 { emoji: '😍', shortcodes: ['heart_eyes'] },
                 { emoji: '🤩', shortcodes: ['star_struck'] },
                 { emoji: '😘', shortcodes: ['kissing_heart'] },
+                { emoji: '😗', shortcodes: ['kissing'] },
+                { emoji: '😚', shortcodes: ['kissing_closed_eyes'] },
+                { emoji: '😙', shortcodes: ['kissing_smiling_eyes'] },
+                { emoji: '😋', shortcodes: ['yum'] },
+                { emoji: '😛', shortcodes: ['stuck_out_tongue'] },
+                { emoji: '😜', shortcodes: ['stuck_out_tongue_winking_eye'] },
+                { emoji: '🤪', shortcodes: ['zany_face'] },
+                { emoji: '😝', shortcodes: ['stuck_out_tongue_closed_eyes'] },
+                { emoji: '🤑', shortcodes: ['money_mouth_face'] },
+                { emoji: '🤗', shortcodes: ['hugging_face'] },
+                { emoji: '🤭', shortcodes: ['face_with_hand_over_mouth'] },
+                { emoji: '🫢', shortcodes: ['face_with_open_eyes_and_hand_over_mouth'] },
+                { emoji: '🫣', shortcodes: ['face_with_peeking_eye'] },
+                { emoji: '🤫', shortcodes: ['shushing_face'] },
                 { emoji: '🤔', shortcodes: ['thinking_face'] },
                 { emoji: '🫡', shortcodes: ['saluting_face'] },
+                { emoji: '🤐', shortcodes: ['zipper_mouth_face'] },
+                { emoji: '🤨', shortcodes: ['raised_eyebrow'] },
                 { emoji: '😐', shortcodes: ['neutral_face'] },
                 { emoji: '😑', shortcodes: ['expressionless'] },
                 { emoji: '😶', shortcodes: ['no_mouth'] },
                 { emoji: '🫥', shortcodes: ['dotted_line_face'] },
-                { emoji: '🙄', shortcodes: ['rolling_eyes'] },
+                { emoji: '😶‍🌫️', shortcodes: ['face_in_clouds'] },
                 { emoji: '😏', shortcodes: ['smirk'] },
-                { emoji: '😣', shortcodes: ['persevere'] },
-                { emoji: '😞', shortcodes: ['disappointed'] },
-                { emoji: '😟', shortcodes: ['worried'] },
+                { emoji: '😒', shortcodes: ['unamused'] },
+                { emoji: '🙄', shortcodes: ['rolling_eyes'] },
+                { emoji: '😬', shortcodes: ['grimacing'] },
+                { emoji: '😮‍💨', shortcodes: ['face_exhaling'] },
+                { emoji: '🤥', shortcodes: ['lying_face'] },
+                { emoji: '😌', shortcodes: ['relieved'] },
+                { emoji: '😔', shortcodes: ['pensive'] },
+                { emoji: '😪', shortcodes: ['sleepy'] },
+                { emoji: '🤤', shortcodes: ['drooling_face'] },
+                { emoji: '😴', shortcodes: ['sleeping'] },
+                { emoji: '😷', shortcodes: ['mask'] },
+                { emoji: '🤒', shortcodes: ['face_with_thermometer'] },
+                { emoji: '🤕', shortcodes: ['face_with_head_bandage'] },
+                { emoji: '🤢', shortcodes: ['nauseated_face'] },
+                { emoji: '🤮', shortcodes: ['vomiting_face'] },
+                { emoji: '🤧', shortcodes: ['sneezing_face'] },
+                { emoji: '🥵', shortcodes: ['hot_face'] },
+                { emoji: '🥶', shortcodes: ['cold_face'] },
+                { emoji: '🥴', shortcodes: ['woozy_face'] },
+                { emoji: '😵', shortcodes: ['dizzy_face'] },
+                { emoji: '😵‍💫', shortcodes: ['face_with_spiral_eyes'] },
+                { emoji: '🤯', shortcodes: ['exploding_head'] },
+                { emoji: '🤠', shortcodes: ['cowboy_hat_face'] },
+                { emoji: '🥳', shortcodes: ['partying_face'] },
+                { emoji: '🥸', shortcodes: ['disguised_face'] },
+                { emoji: '😎', shortcodes: ['sunglasses'] },
+                { emoji: '🤓', shortcodes: ['nerd_face'] },
+                { emoji: '🧐', shortcodes: ['monocle_face'] },
                 { emoji: '😕', shortcodes: ['confused'] },
-                { emoji: '☹️', shortcodes: ['frowning'] },
+                { emoji: '😟', shortcodes: ['worried'] },
                 { emoji: '🙁', shortcodes: ['slightly_frowning_face'] },
+                { emoji: '☹️', shortcodes: ['frowning'] },
                 { emoji: '😮', shortcodes: ['open_mouth'] },
                 { emoji: '😯', shortcodes: ['hushed'] },
                 { emoji: '😲', shortcodes: ['astonished'] },
                 { emoji: '😳', shortcodes: ['flushed'] },
                 { emoji: '🥺', shortcodes: ['pleading_face'] },
+                { emoji: '🥹', shortcodes: ['face_holding_back_tears'] },
+                { emoji: '😦', shortcodes: ['frowning_with_open_mouth'] },
+                { emoji: '😧', shortcodes: ['anguished'] },
+                { emoji: '😨', shortcodes: ['fearful'] },
+                { emoji: '😰', shortcodes: ['cold_sweat'] },
+                { emoji: '😥', shortcodes: ['disappointed_relieved'] },
                 { emoji: '😢', shortcodes: ['cry'] },
                 { emoji: '😭', shortcodes: ['sob'] },
-                { emoji: '😠', shortcodes: ['angry'] },
+                { emoji: '😱', shortcodes: ['scream'] },
+                { emoji: '😖', shortcodes: ['confounded'] },
+                { emoji: '😣', shortcodes: ['persevere'] },
+                { emoji: '😞', shortcodes: ['disappointed'] },
+                { emoji: '😓', shortcodes: ['sweat'] },
+                { emoji: '😩', shortcodes: ['weary'] },
+                { emoji: '😫', shortcodes: ['tired_face'] },
+                { emoji: '🥱', shortcodes: ['yawning_face'] },
+                { emoji: '😤', shortcodes: ['triumph'] },
                 { emoji: '😡', shortcodes: ['rage'] },
+                { emoji: '😠', shortcodes: ['angry'] },
                 { emoji: '🤬', shortcodes: ['face_with_symbols_on_mouth'] },
-                { emoji: '🤯', shortcodes: ['exploding_head', 'mindblown'] },
-                { emoji: '😎', shortcodes: ['sunglasses'] },
-                { emoji: '🥳', shortcodes: ['partying_face'] },
-                { emoji: '😴', shortcodes: ['sleeping'] },
-                { emoji: '🤤', shortcodes: ['drooling_face'] },
-                { emoji: '🥴', shortcodes: ['woozy_face'] },
-                { emoji: '😵‍💫', shortcodes: ['face_with_spiral_eyes'] },
-                { emoji: '😬', shortcodes: ['grimacing'] },
-                { emoji: '🤐', shortcodes: ['zipper_mouth_face'] }
+                { emoji: '😈', shortcodes: ['smiling_imp'] },
+                { emoji: '👿', shortcodes: ['imp'] },
+                { emoji: '💀', shortcodes: ['skull'] },
+                { emoji: '☠️', shortcodes: ['skull_and_crossbones'] },
+                { emoji: '💩', shortcodes: ['poop'] },
+                { emoji: '🤡', shortcodes: ['clown_face'] },
+                { emoji: '👹', shortcodes: ['ogre'] },
+                { emoji: '👺', shortcodes: ['goblin'] },
+                { emoji: '👻', shortcodes: ['ghost'] },
+                { emoji: '👽', shortcodes: ['alien'] },
+                { emoji: '👾', shortcodes: ['space_invader'] },
+                { emoji: '🤖', shortcodes: ['robot'] }
             ],
 
             handsAndGestures: [
-                { emoji: '👍', shortcodes: ['thumbsup', '+1', 'like'] },
+                { emoji: '👍', shortcodes: ['thumbsup', '+1'] },
                 { emoji: '👎', shortcodes: ['thumbsdown', '-1'] },
                 { emoji: '👏', shortcodes: ['clap'] },
-                { emoji: '🙏', shortcodes: ['pray', 'folded_hands'] },
-                { emoji: '👋', shortcodes: ['wave', 'waving_hand'] },
-                { emoji: '🤚', shortcodes: ['raised_back_of_hand'] },
-                { emoji: '🤝', shortcodes: ['handshake'] },
-                { emoji: '👌', shortcodes: ['ok_hand', 'ok'] },
-                { emoji: '🤌', shortcodes: ['pinched_fingers'] },
-                { emoji: '🤏', shortcodes: ['pinching_hand'] },
-                { emoji: '💪', shortcodes: ['muscle'] },
-                { emoji: '🦾', shortcodes: ['mechanical_arm'] },
-                { emoji: '🤞', shortcodes: ['fingers_crossed', 'crossed_fingers'] },
-                { emoji: '🤟', shortcodes: ['love_you_gesture'] },
-                { emoji: '🤘', shortcodes: ['metal', 'sign_of_the_horns'] },
-                { emoji: '✌️', shortcodes: ['v', 'victory_hand'] },
-                { emoji: '🤙', shortcodes: ['call_me', 'call_me_hand'] },
-                { emoji: '✋', shortcodes: ['raised_hand', 'hand'] },
-                { emoji: '☝️', shortcodes: ['point_up'] },
-                { emoji: '👇', shortcodes: ['point_down'] },
-                { emoji: '👈', shortcodes: ['point_left'] },
-                { emoji: '👉', shortcodes: ['point_right'] },
-                { emoji: '✊', shortcodes: ['fist'] },
-                { emoji: '👊', shortcodes: ['oncoming_fist'] },
-                { emoji: '🤛', shortcodes: ['left_facing_fist'] },
-                { emoji: '🤜', shortcodes: ['right_facing_fist'] },
                 { emoji: '🙌', shortcodes: ['raised_hands'] },
                 { emoji: '👐', shortcodes: ['open_hands'] },
                 { emoji: '🤲', shortcodes: ['palms_up_together'] },
-                { emoji: '✍️', shortcodes: ['writing_hand'] },
+                { emoji: '🙏', shortcodes: ['pray', 'folded_hands'] },
+                { emoji: '🤝', shortcodes: ['handshake'] },
+                { emoji: '🤝', shortcodes: ['handshake'] },
+                { emoji: '👋', shortcodes: ['wave', 'waving_hand'] },
+                { emoji: '🤚', shortcodes: ['raised_back_of_hand'] },
+                { emoji: '✋', shortcodes: ['raised_hand', 'hand'] },
+                { emoji: '🖐️', shortcodes: ['raised_hand_with_fingers_splayed'] },
+                { emoji: '🖖', shortcodes: ['vulcan_salute'] },
+                { emoji: '👌', shortcodes: ['ok_hand', 'ok'] },
+                { emoji: '🤌', shortcodes: ['pinched_fingers'] },
+                { emoji: '🤏', shortcodes: ['pinching_hand'] },
+                { emoji: '✌️', shortcodes: ['v', 'victory_hand'] },
+                { emoji: '🤞', shortcodes: ['fingers_crossed', 'crossed_fingers'] },
+                { emoji: '🤟', shortcodes: ['love_you_gesture'] },
+                { emoji: '🤘', shortcodes: ['metal', 'sign_of_the_horns'] },
+                { emoji: '🤙', shortcodes: ['call_me', 'call_me_hand'] },
+                { emoji: '👈', shortcodes: ['point_left', 'backhand_index_pointing_left'] },
+                { emoji: '👉', shortcodes: ['point_right', 'backhand_index_pointing_right'] },
+                { emoji: '👆', shortcodes: ['point_up', 'backhand_index_pointing_up'] },
+                { emoji: '👇', shortcodes: ['point_down', 'backhand_index_pointing_down'] },
+                { emoji: '☝️', shortcodes: ['point_up_2'] },
+                { emoji: '🖕', shortcodes: ['middle_finger'] },
+                { emoji: '✊', shortcodes: ['fist', 'raised_fist'] },
+                { emoji: '👊', shortcodes: ['oncoming_fist', 'punch'] },
+                { emoji: '🤛', shortcodes: ['left_facing_fist'] },
+                { emoji: '🤜', shortcodes: ['right_facing_fist'] },
+                { emoji: '🫰', shortcodes: ['hand_with_index_finger_and_thumb_crossed'] },
+                { emoji: '🫵', shortcodes: ['index_pointing_at_the_viewer'] },
+                { emoji: '🫱', shortcodes: ['rightwards_hand'] },
+                { emoji: '🫲', shortcodes: ['leftwards_hand'] },
+                { emoji: '🫳', shortcodes: ['palm_down_hand'] },
+                { emoji: '🫴', shortcodes: ['palm_up_hand'] },
+                { emoji: '💪', shortcodes: ['muscle'] },
+                { emoji: '🦾', shortcodes: ['mechanical_arm'] },
+                { emoji: '🦵', shortcodes: ['leg'] },
+                { emoji: '🦿', shortcodes: ['mechanical_leg'] },
+                { emoji: '🦶', shortcodes: ['foot'] },
+                { emoji: '👂', shortcodes: ['ear'] },
+                { emoji: '🦻', shortcodes: ['hearing_aid'] },
+                { emoji: '👃', shortcodes: ['nose'] },
+                { emoji: '🧠', shortcodes: ['brain'] },
+                { emoji: '🫀', shortcodes: ['heart_organ'] },
+                { emoji: '🫁', shortcodes: ['lungs'] },
+                { emoji: '🦷', shortcodes: ['tooth'] },
+                { emoji: '🦴', shortcodes: ['bone'] },
+                { emoji: '👀', shortcodes: ['eyes'] },
+                { emoji: '👁️', shortcodes: ['eye'] },
+                { emoji: '👅', shortcodes: ['tongue'] },
+                { emoji: '👄', shortcodes: ['mouth'] },
+                { emoji: '🫦', shortcodes: ['biting_lip'] },
+                { emoji: '🩸', shortcodes: ['drop_of_blood'] },
                 { emoji: '💅', shortcodes: ['nail_care'] },
                 { emoji: '🤳', shortcodes: ['selfie'] }
             ],
@@ -256,7 +434,66 @@
                 { emoji: '🧟', shortcodes: ['zombie'] },
                 { emoji: '🧜', shortcodes: ['merperson'] },
                 { emoji: '🧝', shortcodes: ['elf'] },
-                { emoji: '🧞', shortcodes: ['genie'] }
+                { emoji: '🧞', shortcodes: ['genie'] },
+                { emoji: '🧌', shortcodes: ['troll'] },
+                { emoji: '🦸', shortcodes: ['superhero'] },
+                { emoji: '🦹', shortcodes: ['supervillain'] },
+                { emoji: '🧑‍🚀', shortcodes: ['astronaut'] },
+                { emoji: '🧑‍🚒', shortcodes: ['firefighter'] },
+                { emoji: '🧑‍🔬', shortcodes: ['scientist'] },
+                { emoji: '🧑‍🎨', shortcodes: ['artist'] },
+                { emoji: '🧑‍🍳', shortcodes: ['cook'] },
+                { emoji: '🧑‍🏫', shortcodes: ['teacher'] },
+                { emoji: '🧑‍🏭', shortcodes: ['factory_worker'] },
+                { emoji: '🧑‍💻', shortcodes: ['technologist'] },
+                { emoji: '🧑‍💼', shortcodes: ['office_worker'] },
+                { emoji: '🧑‍🔧', shortcodes: ['mechanic'] },
+                { emoji: '🧑‍⚕️', shortcodes: ['health_worker'] },
+                { emoji: '🧑‍⚖️', shortcodes: ['judge'] },
+                { emoji: '🧑‍✈️', shortcodes: ['pilot'] },
+                { emoji: '👮', shortcodes: ['police_officer'] },
+                { emoji: '👷', shortcodes: ['construction_worker'] },
+                { emoji: '💂', shortcodes: ['guard'] },
+                { emoji: '🤵', shortcodes: ['person_in_tuxedo'] },
+                { emoji: '👰', shortcodes: ['person_with_veil'] },
+                { emoji: '🤴', shortcodes: ['prince'] },
+                { emoji: '👸', shortcodes: ['princess'] },
+                { emoji: '👶', shortcodes: ['baby'] },
+                { emoji: '👧', shortcodes: ['girl'] },
+                { emoji: '🧒', shortcodes: ['child'] },
+                { emoji: '👦', shortcodes: ['boy'] },
+                { emoji: '👩', shortcodes: ['woman'] },
+                { emoji: '🧑', shortcodes: ['person'] },
+                { emoji: '👨', shortcodes: ['man'] },
+                { emoji: '👵', shortcodes: ['old_woman'] },
+                { emoji: '🧓', shortcodes: ['older_person'] },
+                { emoji: '👴', shortcodes: ['old_man'] },
+                { emoji: '🤰', shortcodes: ['pregnant_woman'] },
+                { emoji: '🫄', shortcodes: ['pregnant_person'] },
+                { emoji: '🫃', shortcodes: ['pregnant_man'] },
+                { emoji: '🤱', shortcodes: ['breast_feeding'] },
+                { emoji: '👩‍🍼', shortcodes: ['woman_feeding_baby'] },
+                { emoji: '👨‍🍼', shortcodes: ['man_feeding_baby'] },
+                { emoji: '🧑‍🍼', shortcodes: ['person_feeding_baby'] },
+                { emoji: '👩‍🦱', shortcodes: ['woman_curly_hair'] },
+                { emoji: '🧑‍🦱', shortcodes: ['person_curly_hair'] },
+                { emoji: '👨‍🦱', shortcodes: ['man_curly_hair'] },
+                { emoji: '👩‍🦰', shortcodes: ['woman_red_hair'] },
+                { emoji: '🧑‍🦰', shortcodes: ['person_red_hair'] },
+                { emoji: '👨‍🦰', shortcodes: ['man_red_hair'] },
+                { emoji: '👱‍♀️', shortcodes: ['blonde_woman'] },
+                { emoji: '👱', shortcodes: ['blonde_person'] },
+                { emoji: '👱‍♂️', shortcodes: ['blonde_man'] },
+                { emoji: '👩‍🦳', shortcodes: ['woman_white_hair'] },
+                { emoji: '🧑‍🦳', shortcodes: ['person_white_hair'] },
+                { emoji: '👨‍🦳', shortcodes: ['man_white_hair'] },
+                { emoji: '👩‍🦲', shortcodes: ['woman_bald'] },
+                { emoji: '🧑‍🦲', shortcodes: ['person_bald'] },
+                { emoji: '👨‍🦲', shortcodes: ['man_bald'] },
+                { emoji: '🧔‍♀️', shortcodes: ['bearded_woman'] },
+                { emoji: '🧔', shortcodes: ['bearded_person'] },
+                { emoji: '🧔‍♂️', shortcodes: ['bearded_man'] },
+                { emoji: '👣', shortcodes: ['footprints'] }
             ],
 
             symbolsAndObjects: [
@@ -362,7 +599,37 @@
                 { emoji: '🗺️', shortcodes: ['map'] },
                 { emoji: '🧭', shortcodes: ['compass'] },
                 { emoji: '📍', shortcodes: ['pin', 'round_pushpin'] },
-                { emoji: '📌', shortcodes: ['pushpin'] }
+                { emoji: '📌', shortcodes: ['pushpin'] },
+                { emoji: '🔒', shortcodes: ['lock'] },
+                { emoji: '🔓', shortcodes: ['unlock'] },
+                { emoji: '🔏', shortcodes: ['lock_with_ink_pen'] },
+                { emoji: '🔐', shortcodes: ['closed_lock_with_key'] },
+                { emoji: '🔑', shortcodes: ['key'] },
+                { emoji: '🗝️', shortcodes: ['old_key'] },
+                { emoji: '🛠️', shortcodes: ['hammer_and_wrench'] },
+                { emoji: '⚒️', shortcodes: ['hammer_and_pick'] },
+                { emoji: '⛏️', shortcodes: ['pick'] },
+                { emoji: '🔩', shortcodes: ['nut_and_bolt'] },
+                { emoji: '⚙️', shortcodes: ['gear'] },
+                { emoji: '⚖️', shortcodes: ['balance_scale'] },
+                { emoji: '🦯', shortcodes: ['white_cane'] },
+                { emoji: '🔗', shortcodes: ['link'] },
+                { emoji: '⛓️', shortcodes: ['chains'] },
+                { emoji: '🪝', shortcodes: ['hook'] },
+                { emoji: '🧰', shortcodes: ['toolbox'] },
+                { emoji: '🧲', shortcodes: ['magnet'] },
+                { emoji: '🪜', shortcodes: ['ladder'] },
+                { emoji: '🧪', shortcodes: ['test_tube'] },
+                { emoji: '🧫', shortcodes: ['petri_dish'] },
+                { emoji: '🧬', shortcodes: ['dna'] },
+                { emoji: '🔬', shortcodes: ['microscope'] },
+                { emoji: '🔭', shortcodes: ['telescope'] },
+                { emoji: '📡', shortcodes: ['satellite'] },
+                { emoji: '💉', shortcodes: ['syringe'] },
+                { emoji: '🩸', shortcodes: ['drop_of_blood'] },
+                { emoji: '💊', shortcodes: ['pill'] },
+                { emoji: '🩹', shortcodes: ['adhesive_bandage'] },
+                { emoji: '🩺', shortcodes: ['stethoscope'] }
             ],
 
             animalsAndNature: [
@@ -396,6 +663,8 @@
                 { emoji: '🦩', shortcodes: ['flamingo'] },
                 { emoji: '🦚', shortcodes: ['peacock'] },
                 { emoji: '🦜', shortcodes: ['parrot'] },
+                { emoji: '🦢', shortcodes: ['swan'] },
+                { emoji: '🦤', shortcodes: ['dodo'] },
                 { emoji: '🐸', shortcodes: ['frog'] },
                 { emoji: '🐊', shortcodes: ['crocodile'] },
                 { emoji: '🐢', shortcodes: ['turtle'] },
@@ -416,6 +685,7 @@
                 { emoji: '🦀', shortcodes: ['crab'] },
                 { emoji: '🦞', shortcodes: ['lobster'] },
                 { emoji: '🦐', shortcodes: ['shrimp'] },
+                { emoji: '🐚', shortcodes: ['shell'] },
                 { emoji: '🐌', shortcodes: ['snail'] },
                 { emoji: '🦋', shortcodes: ['butterfly'] },
                 { emoji: '🐝', shortcodes: ['bee', 'honeybee'] },
@@ -428,13 +698,51 @@
                 { emoji: '🪱', shortcodes: ['worm'] },
                 { emoji: '🕷️', shortcodes: ['spider'] },
                 { emoji: '🦂', shortcodes: ['scorpion'] },
-                { emoji: '🐾', shortcodes: ['paw_print', 'paw_prints'] }
+                { emoji: '🐾', shortcodes: ['paw_print'] },
+                { emoji: '🦒', shortcodes: ['giraffe'] },
+                { emoji: '🦓', shortcodes: ['zebra'] },
+                { emoji: '🦌', shortcodes: ['deer'] },
+                { emoji: '🦬', shortcodes: ['bison'] },
+                { emoji: '🦏', shortcodes: ['rhinoceros'] },
+                { emoji: '🦛', shortcodes: ['hippopotamus'] },
+                { emoji: '🐘', shortcodes: ['elephant'] },
+                { emoji: '🐪', shortcodes: ['camel'] },
+                { emoji: '🐫', shortcodes: ['two_horned_camel'] },
+                { emoji: '🦙', shortcodes: ['llama'] },
+                { emoji: '🦮', shortcodes: ['guide_dog'] },
+                { emoji: '🐕‍🦺', shortcodes: ['service_dog'] },
+                { emoji: '🐈‍⬛', shortcodes: ['black_cat'] },
+                { emoji: '🦄', shortcodes: ['unicorn'] },
+                { emoji: '🐎', shortcodes: ['horse'] },
+                { emoji: '🐆', shortcodes: ['leopard'] },
+                { emoji: '🐅', shortcodes: ['tiger2'] },
+                { emoji: '🐃', shortcodes: ['water_buffalo'] },
+                { emoji: '🐂', shortcodes: ['ox'] },
+                { emoji: '🐄', shortcodes: ['cow2'] },
+                { emoji: '🐐', shortcodes: ['goat'] },
+                { emoji: '🐏', shortcodes: ['ram'] },
+                { emoji: '🐑', shortcodes: ['sheep'] },
+                { emoji: '🐕', shortcodes: ['dog2'] },
+                { emoji: '🐩', shortcodes: ['poodle'] },
+                { emoji: '🐈', shortcodes: ['cat2'] },
+                { emoji: '🐓', shortcodes: ['rooster'] },
+                { emoji: '🦃', shortcodes: ['turkey'] },
+                { emoji: '🕊️', shortcodes: ['dove'] },
+                { emoji: '🐇', shortcodes: ['rabbit2'] },
+                { emoji: '🐁', shortcodes: ['mouse2'] },
+                { emoji: '🐀', shortcodes: ['rat'] },
+                { emoji: '🐿️', shortcodes: ['chipmunk'] },
+                { emoji: '🦔', shortcodes: ['hedgehog'] },
+                { emoji: '🦫', shortcodes: ['beaver'] },
+                { emoji: '🦨', shortcodes: ['skunk'] },
+                { emoji: '🦡', shortcodes: ['badger'] }
             ],
 
             plantsAndFlowers: [
                 { emoji: '🌹', shortcodes: ['rose'] },
                 { emoji: '🥀', shortcodes: ['wilted_flower'] },
                 { emoji: '🌷', shortcodes: ['tulip'] },
+                { emoji: '🪻', shortcodes: ['hyacinth'] },
                 { emoji: '🌻', shortcodes: ['sunflower'] },
                 { emoji: '🌸', shortcodes: ['cherry_blossom'] },
                 { emoji: '🌺', shortcodes: ['hibiscus'] },
@@ -445,15 +753,18 @@
                 { emoji: '🪴', shortcodes: ['potted_plant'] },
                 { emoji: '🌿', shortcodes: ['herb'] },
                 { emoji: '☘️', shortcodes: ['shamrock'] },
-                { emoji: '🌳', shortcodes: ['deciduous_tree'] },
+                { emoji: '🍀', shortcodes: ['four_leaf_clover'] },
+                { emoji: '🎋', shortcodes: ['tanabata_tree'] },
                 { emoji: '🌲', shortcodes: ['evergreen_tree'] },
+                { emoji: '🌳', shortcodes: ['deciduous_tree'] },
                 { emoji: '🌴', shortcodes: ['palm_tree'] },
                 { emoji: '🌵', shortcodes: ['cactus'] },
-                { emoji: '🎋', shortcodes: ['tanabata_tree'] },
-                { emoji: '🍀', shortcodes: ['four_leaf_clover'] },
+                { emoji: '🌾', shortcodes: ['sheaf_of_rice'] },
                 { emoji: '🍁', shortcodes: ['maple_leaf'] },
                 { emoji: '🍂', shortcodes: ['fallen_leaf'] },
                 { emoji: '🍃', shortcodes: ['leaf_fluttering_in_wind'] },
+                { emoji: '🪹', shortcodes: ['empty_nest'] },
+                { emoji: '🪺', shortcodes: ['nest_with_eggs'] },
                 { emoji: '🍄', shortcodes: ['mushroom'] }
             ],
 
@@ -465,8 +776,11 @@
                 { emoji: '🥪', shortcodes: ['sandwich'] },
                 { emoji: '🌮', shortcodes: ['taco'] },
                 { emoji: '🌯', shortcodes: ['burrito'] },
+                { emoji: '🥙', shortcodes: ['stuffed_flatbread'] },
                 { emoji: '🧆', shortcodes: ['falafel'] },
                 { emoji: '🍣', shortcodes: ['sushi'] },
+                { emoji: '🍱', shortcodes: ['bento'] },
+                { emoji: '🍛', shortcodes: ['curry'] },
                 { emoji: '🍜', shortcodes: ['ramen'] },
                 { emoji: '🍝', shortcodes: ['spaghetti'] },
                 { emoji: '🥗', shortcodes: ['salad', 'green_salad'] },
@@ -496,35 +810,59 @@
                 { emoji: '🫒', shortcodes: ['olive'] },
                 { emoji: '🧄', shortcodes: ['garlic'] },
                 { emoji: '🧅', shortcodes: ['onion'] },
+                { emoji: '🥔', shortcodes: ['potato'] },
+                { emoji: '🍠', shortcodes: ['sweet_potato'] },
                 { emoji: '🍞', shortcodes: ['bread'] },
                 { emoji: '🥐', shortcodes: ['croissant'] },
                 { emoji: '🥖', shortcodes: ['baguette_bread'] },
                 { emoji: '🥨', shortcodes: ['pretzel'] },
+                { emoji: '🥯', shortcodes: ['bagel'] },
+                { emoji: '🥞', shortcodes: ['pancakes'] },
+                { emoji: '🧇', shortcodes: ['waffle'] },
                 { emoji: '🧀', shortcodes: ['cheese'] },
                 { emoji: '🥚', shortcodes: ['egg'] },
                 { emoji: '🥓', shortcodes: ['bacon'] },
-                { emoji: '🥞', shortcodes: ['pancakes'] },
-                { emoji: '🧇', shortcodes: ['waffle'] },
-                { emoji: '🎂', shortcodes: ['cake', 'birthday'] },
+                { emoji: '🥩', shortcodes: ['meat'] },
+                { emoji: '🍗', shortcodes: ['poultry_leg'] },
+                { emoji: '🍖', shortcodes: ['meat_on_bone'] },
+                { emoji: '🍤', shortcodes: ['shrimp'] },
+                { emoji: '🥟', shortcodes: ['dumpling'] },
+                { emoji: '🥡', shortcodes: ['takeout_box'] },
+                { emoji: '🍰', shortcodes: ['cake', 'shortcake'] },
+                { emoji: '🎂', shortcodes: ['birthday'] },
                 { emoji: '🧁', shortcodes: ['cupcake'] },
+                { emoji: '🥧', shortcodes: ['pie'] },
                 { emoji: '🍪', shortcodes: ['cookie'] },
                 { emoji: '🍩', shortcodes: ['doughnut'] },
                 { emoji: '🍫', shortcodes: ['chocolate_bar'] },
                 { emoji: '🍬', shortcodes: ['candy'] },
                 { emoji: '🍭', shortcodes: ['lollipop'] },
                 { emoji: '🍮', shortcodes: ['custard'] },
+                { emoji: '🍯', shortcodes: ['honey_pot'] },
                 { emoji: '🍦', shortcodes: ['icecream'] },
                 { emoji: '🍨', shortcodes: ['ice_cream'] },
+                { emoji: '🍧', shortcodes: ['shaved_ice'] },
                 { emoji: '☕', shortcodes: ['coffee'] },
                 { emoji: '🍵', shortcodes: ['tea'] },
                 { emoji: '🧋', shortcodes: ['bubble_tea'] },
                 { emoji: '🥛', shortcodes: ['milk'] },
                 { emoji: '🍹', shortcodes: ['tropical_drink'] },
                 { emoji: '🍸', shortcodes: ['cocktail'] },
-                { emoji: '🍷', shortcodes: ['wine', 'wine_glass'] },
+                { emoji: '🍷', shortcodes: ['wine_glass'] },
                 { emoji: '🍺', shortcodes: ['beer'] },
                 { emoji: '🍻', shortcodes: ['beers'] },
-                { emoji: '🥂', shortcodes: ['clinking_glasses'] }
+                { emoji: '🥂', shortcodes: ['clinking_glasses'] },
+                { emoji: '🥃', shortcodes: ['whiskey'] },
+                { emoji: '🥤', shortcodes: ['cup_with_straw'] },
+                { emoji: '🧃', shortcodes: ['beverage_box'] },
+                { emoji: '🧉', shortcodes: ['mate'] },
+                { emoji: '🧊', shortcodes: ['ice_cube'] },
+                { emoji: '🥢', shortcodes: ['chopsticks'] },
+                { emoji: '🍽️', shortcodes: ['plate_with_cutlery'] },
+                { emoji: '🍴', shortcodes: ['fork_and_knife'] },
+                { emoji: '🥄', shortcodes: ['spoon'] },
+                { emoji: '🔪', shortcodes: ['hocho', 'knife'] },
+                { emoji: '🏺', shortcodes: ['amphora'] }
             ],
 
             activitiesAndSports: [
@@ -545,32 +883,62 @@
                 { emoji: '⛸️', shortcodes: ['ice_skate'] },
                 { emoji: '🎿', shortcodes: ['ski'] },
                 { emoji: '🛷', shortcodes: ['sled'] },
+                { emoji: '⛷️', shortcodes: ['skier'] },
+                { emoji: '🏂', shortcodes: ['snowboarder'] },
                 { emoji: '🏃', shortcodes: ['run', 'running'] },
                 { emoji: '🚶', shortcodes: ['walk'] },
                 { emoji: '🏊', shortcodes: ['swim', 'swimming'] },
                 { emoji: '🏄', shortcodes: ['surfing'] },
-                { emoji: '🚣', shortcodes: ['rowboat'] },
+                { emoji: '🚣', shortcodes: ['rowboat', 'rowing'] },
                 { emoji: '🚴', shortcodes: ['cycle', 'biking', 'bicycle'] },
                 { emoji: '🚵', shortcodes: ['mountain_biking'] },
                 { emoji: '🏋️', shortcodes: ['weight_lifting'] },
                 { emoji: '🧘', shortcodes: ['person_in_lotus_position'] },
                 { emoji: '💃', shortcodes: ['dancer'] },
                 { emoji: '🕺', shortcodes: ['man_dancing'] },
+                { emoji: '🤸', shortcodes: ['cartwheel'] },
+                { emoji: '🤺', shortcodes: ['fencing'] },
+                { emoji: '🏇', shortcodes: ['horse_racing'] },
+                { emoji: '🧗', shortcodes: ['climbing'] },
                 { emoji: '🎭', shortcodes: ['performing_arts'] },
+                { emoji: '🖼️', shortcodes: ['framed_picture'] },
                 { emoji: '🎨', shortcodes: ['art'] },
+                { emoji: '🧵', shortcodes: ['thread'] },
+                { emoji: '🧶', shortcodes: ['yarn'] },
                 { emoji: '🎵', shortcodes: ['musical_note'] },
                 { emoji: '🎶', shortcodes: ['notes'] },
+                { emoji: '🎼', shortcodes: ['musical_score'] },
+                { emoji: '🎹', shortcodes: ['musical_keyboard', 'keyboard'] },
+                { emoji: '🎷', shortcodes: ['saxophone'] },
+                { emoji: '🎺', shortcodes: ['trumpet'] },
                 { emoji: '🎸', shortcodes: ['guitar'] },
-                { emoji: '🥁', shortcodes: ['drum'] },
+                { emoji: '🪕', shortcodes: ['banjo'] },
                 { emoji: '🎻', shortcodes: ['violin'] },
-                { emoji: '🎲', shortcodes: ['game_die'] },
+                { emoji: '🥁', shortcodes: ['drum'] },
+                { emoji: '🪗', shortcodes: ['accordion'] },
+                { emoji: '🎬', shortcodes: ['clapper'] },
+                { emoji: '🎮', shortcodes: ['video_game'] },
+                { emoji: '👾', shortcodes: ['alien_monster'] },
                 { emoji: '🎯', shortcodes: ['dart'] },
-                { emoji: '🎳', shortcodes: ['bowling'] },
                 { emoji: '🎰', shortcodes: ['slot_machine'] },
-                { emoji: '🥇', shortcodes: ['medal_sport', 'medal_sports', 'first_place_medal'] },
+                { emoji: '🎲', shortcodes: ['game_die'] },
+                { emoji: '🧩', shortcodes: ['puzzle_piece'] },
+                { emoji: '♟️', shortcodes: ['chess_pawn'] },
+                { emoji: '🧸', shortcodes: ['teddy_bear'] },
+                { emoji: '🪄', shortcodes: ['magic_wand'] },
+                { emoji: '🪅', shortcodes: ['piñata'] },
+                { emoji: '🪩', shortcodes: ['mirror_ball'] },
+                { emoji: '🪆', shortcodes: ['nesting_dolls'] },
+                { emoji: '🃏', shortcodes: ['joker'] },
+                { emoji: '🀄', shortcodes: ['mahjong'] },
+                { emoji: '🎴', shortcodes: ['flower_playing_cards'] },
+                { emoji: '🥇', shortcodes: ['first_place_medal'] },
                 { emoji: '🥈', shortcodes: ['second_place_medal'] },
                 { emoji: '🥉', shortcodes: ['third_place_medal'] },
-                { emoji: '🏆', shortcodes: ['trophy'] }
+                { emoji: '🏆', shortcodes: ['trophy'] },
+                { emoji: '🏅', shortcodes: ['medal'] },
+                { emoji: '🎫', shortcodes: ['ticket'] },
+                { emoji: '🎟️', shortcodes: ['admission_tickets'] }
             ],
 
             travelAndPlaces: [
@@ -624,34 +992,58 @@
                 { emoji: '🌋', shortcodes: ['volcano'] },
                 { emoji: '🏕️', shortcodes: ['camping'] },
                 { emoji: '⛺', shortcodes: ['tent'] },
-                { emoji: '🏞️', shortcodes: ['national_park'] }
+                { emoji: '🏞️', shortcodes: ['national_park'] },
+                { emoji: '🏙️', shortcodes: ['cityscape'] },
+                { emoji: '🌇', shortcodes: ['sunset'] },
+                { emoji: '🌆', shortcodes: ['city_at_dusk'] },
+                { emoji: '🌃', shortcodes: ['night_with_stars'] },
+                { emoji: '🌉', shortcodes: ['bridge_at_night'] },
+                { emoji: '🌌', shortcodes: ['milky_way'] },
+                { emoji: '🎠', shortcodes: ['carousel_horse'] },
+                { emoji: '🎡', shortcodes: ['ferris_wheel'] },
+                { emoji: '🎢', shortcodes: ['roller_coaster'] },
+                { emoji: '💈', shortcodes: ['barber'] },
+                { emoji: '🎪', shortcodes: ['circus_tent'] }
             ],
 
             weatherAndNatureExtras: [
                 { emoji: '☀️', shortcodes: ['sun'] },
                 { emoji: '🌞', shortcodes: ['sun_with_face'] },
+                { emoji: '🌤️', shortcodes: ['sun_behind_small_cloud'] },
+                { emoji: '⛅', shortcodes: ['sun_behind_cloud'] },
+                { emoji: '🌥️', shortcodes: ['sun_behind_large_cloud'] },
                 { emoji: '☁️', shortcodes: ['cloud'] },
+                { emoji: '🌦️', shortcodes: ['sun_behind_rain_cloud'] },
                 { emoji: '🌧️', shortcodes: ['cloud_with_rain', 'rain'] },
+                { emoji: '🌨️', shortcodes: ['cloud_with_snow'] },
+                { emoji: '🌩️', shortcodes: ['thunder', 'lightning'] },
+                { emoji: '⚡', shortcodes: ['zap', 'high_voltage'] },
                 { emoji: '❄️', shortcodes: ['snow', 'snowflake'] },
                 { emoji: '☃️', shortcodes: ['snowman'] },
-                { emoji: '🌩️', shortcodes: ['thunder', 'lightning'] },
-                { emoji: '⚡', shortcodes: ['zap'] },
+                { emoji: '⛄', shortcodes: ['snowman_without_snow'] },
                 { emoji: '🌪️', shortcodes: ['tornado'] },
                 { emoji: '🌫️', shortcodes: ['fog'] },
+                { emoji: '🌬️', shortcodes: ['wind_face'] },
+                { emoji: '🌀', shortcodes: ['cyclone'] },
                 { emoji: '🌈', shortcodes: ['rainbow'] },
-                { emoji: '☔', shortcodes: ['umbrella'] },
+                { emoji: '🌂', shortcodes: ['closed_umbrella'] },
+                { emoji: '☔', shortcodes: ['umbrella', 'umbrella_with_rain_drops'] },
                 { emoji: '💧', shortcodes: ['droplet'] },
-                { emoji: '🌊', shortcodes: ['ocean'] },
+                { emoji: '💦', shortcodes: ['sweat_drops'] },
+                { emoji: '🌊', shortcodes: ['ocean', 'water_wave'] },
                 { emoji: '🌙', shortcodes: ['moon', 'crescent_moon'] },
                 { emoji: '🌑', shortcodes: ['new_moon'] },
-                { emoji: '🌒', shortcodes: ['waxing_crescent_moon'] },
                 { emoji: '🌓', shortcodes: ['first_quarter_moon'] },
-                { emoji: '🌔', shortcodes: ['waxing_gibbous_moon'] },
                 { emoji: '🌕', shortcodes: ['full_moon'] },
-                { emoji: '🌖', shortcodes: ['waning_gibbous_moon'] },
                 { emoji: '🌗', shortcodes: ['last_quarter_moon'] },
-                { emoji: '🌘', shortcodes: ['waning_crescent_moon'] },
-                { emoji: '🌃', shortcodes: ['starry_night'] }
+                { emoji: '🪐', shortcodes: ['saturn'] },
+                { emoji: '☄️', shortcodes: ['comet'] },
+                { emoji: '🔥', shortcodes: ['fire'] },
+                { emoji: '🌡️', shortcodes: ['thermometer'] },
+                { emoji: '🌎', shortcodes: ['earth_americas'] },
+                { emoji: '🌍', shortcodes: ['earth_africa'] },
+                { emoji: '🌏', shortcodes: ['earth_asia'] },
+                { emoji: '🌐', shortcodes: ['globe_with_meridians'] }
             ],
 
             techAndObjectsExtra: [
@@ -684,18 +1076,36 @@
                 { emoji: '🧫', shortcodes: ['petri_dish'] },
                 { emoji: '🧬', shortcodes: ['dna'] },
                 { emoji: '💊', shortcodes: ['pill'] },
-                { emoji: '💉', shortcodes: ['syringe'] }
+                { emoji: '💉', shortcodes: ['syringe'] },
+                { emoji: '🩹', shortcodes: ['adhesive_bandage'] },
+                { emoji: '🩺', shortcodes: ['stethoscope'] },
+                { emoji: '⚖️', shortcodes: ['balance_scale'] },
+                { emoji: '🧱', shortcodes: ['brick'] },
+                { emoji: '⛓️', shortcodes: ['chain'] },
+                { emoji: '🪝', shortcodes: ['hook'] },
+                { emoji: '🪜', shortcodes: ['ladder'] },
+                { emoji: '🧰', shortcodes: ['toolbox'] },
+                { emoji: '🧲', shortcodes: ['magnet'] },
+                { emoji: '🧯', shortcodes: ['fire_extinguisher'] },
+                { emoji: '🛒', shortcodes: ['shopping_cart'] },
+                { emoji: '🧹', shortcodes: ['broom'] },
+                { emoji: '🧺', shortcodes: ['basket'] },
+                { emoji: '🧻', shortcodes: ['toilet_paper'] },
+                { emoji: '🧼', shortcodes: ['soap'] },
+                { emoji: '🧽', shortcodes: ['sponge'] },
+                { emoji: '🧴', shortcodes: ['lotion_bottle'] },
+                { emoji: '🪠', shortcodes: ['plunger'] }
             ],
 
             uiSymbolsExtra: [
-                { emoji: '▶️', shortcodes: ['play', 'play_button'] },
-                { emoji: '⏸️', shortcodes: ['pause', 'pause_button'] },
-                { emoji: '⏹️', shortcodes: ['stop', 'stop_button'] },
-                { emoji: '⏺️', shortcodes: ['record', 'record_button'] },
+                { emoji: '▶️', shortcodes: ['play'] },
+                { emoji: '⏸️', shortcodes: ['pause'] },
+                { emoji: '⏹️', shortcodes: ['stop'] },
+                { emoji: '⏺️', shortcodes: ['record'] },
                 { emoji: '⏩', shortcodes: ['fast_forward'] },
                 { emoji: '⏪', shortcodes: ['rewind'] },
-                { emoji: '⏭️', shortcodes: ['next_track_button'] },
-                { emoji: '⏮️', shortcodes: ['previous_track_button'] },
+                { emoji: '⏭️', shortcodes: ['next'] },
+                { emoji: '⏮️', shortcodes: ['previous'] },
                 { emoji: '🔂', shortcodes: ['repeat_one'] },
                 { emoji: '🔁', shortcodes: ['repeat'] },
                 { emoji: '🔀', shortcodes: ['shuffle'] },
@@ -704,37 +1114,83 @@
                 { emoji: '⬇️', shortcodes: ['arrow_down'] },
                 { emoji: '⬅️', shortcodes: ['arrow_left'] },
                 { emoji: '➡️', shortcodes: ['arrow_right'] },
-                { emoji: '↖️', shortcodes: ['arrow_upper_left'] },
-                { emoji: '↗️', shortcodes: ['arrow_upper_right'] },
-                { emoji: '↙️', shortcodes: ['arrow_lower_left'] },
-                { emoji: '↘️', shortcodes: ['arrow_lower_right'] },
-                { emoji: '↔️', shortcodes: ['left_right_arrow'] },
                 { emoji: '↕️', shortcodes: ['arrow_up_down'] },
+                { emoji: '↔️', shortcodes: ['left_right_arrow'] },
                 { emoji: '↩️', shortcodes: ['leftwards_arrow_with_hook'] },
                 { emoji: '↪️', shortcodes: ['arrow_right_hook'] },
-                { emoji: '➕', shortcodes: ['heavy_plus_sign'] },
-                { emoji: '➖', shortcodes: ['heavy_minus_sign'] },
-                { emoji: '➗', shortcodes: ['heavy_division_sign'] },
-                { emoji: '✖️', shortcodes: ['heavy_multiplication_x'] }
+                { emoji: '➕', shortcodes: ['plus'] },
+                { emoji: '➖', shortcodes: ['minus'] },
+                { emoji: '➗', shortcodes: ['divide'] },
+                { emoji: '✖️', shortcodes: ['multiply'] },
+                { emoji: '♾️', shortcodes: ['infinity'] },
+                { emoji: '💲', shortcodes: ['dollar'] },
+                { emoji: '💱', shortcodes: ['currency_exchange'] },
+                { emoji: '™️', shortcodes: ['tm'] },
+                { emoji: '©️', shortcodes: ['copyright'] },
+                { emoji: '®️', shortcodes: ['registered'] },
+                { emoji: '🔚', shortcodes: ['end'] },
+                { emoji: '🔙', shortcodes: ['back'] },
+                { emoji: '🔝', shortcodes: ['top'] },
+                { emoji: '🔜', shortcodes: ['soon'] },
+                { emoji: '🧿', shortcodes: ['nazar_amulet'] },
+                { emoji: '🪬', shortcodes: ['hamsa'] },
+                { emoji: '☸️', shortcodes: ['wheel_of_dharma'] },
+                { emoji: '☮️', shortcodes: ['peace_symbol'] },
+                { emoji: '✝️', shortcodes: ['latin_cross'] },
+                { emoji: '☪️', shortcodes: ['star_and_crescent'] },
+                { emoji: '🕉️', shortcodes: ['om'] },
+                { emoji: '✡️', shortcodes: ['star_of_david'] },
+                { emoji: '🔯', shortcodes: ['dotted_six_pointed_star'] },
+                { emoji: '🕎', shortcodes: ['menorah'] },
+                { emoji: '☯️', shortcodes: ['yin_yang'] }
             ],
 
             communicationAndMedia: [
+                { emoji: '✉️', shortcodes: ['email'] },
                 { emoji: '📨', shortcodes: ['incoming_envelope'] },
+                { emoji: '📧', shortcodes: ['e-mail'] },
+                { emoji: '📩', shortcodes: ['envelope_with_arrow'] },
+                { emoji: '📤', shortcodes: ['outbox'] },
+                { emoji: '📥', shortcodes: ['inbox'] },
+                { emoji: '📦', shortcodes: ['package'] },
                 { emoji: '📫', shortcodes: ['mailbox'] },
                 { emoji: '📪', shortcodes: ['mailbox_closed'] },
                 { emoji: '📬', shortcodes: ['mailbox_with_mail'] },
+                { emoji: '📭', shortcodes: ['mailbox_with_no_mail'] },
                 { emoji: '📮', shortcodes: ['postbox'] },
+                { emoji: '🗳️', shortcodes: ['ballot_box'] },
                 { emoji: '📢', shortcodes: ['loudspeaker'] },
-                { emoji: '📣', shortcodes: ['mega', 'megaphone'] },
+                { emoji: '📣', shortcodes: ['megaphone'] },
                 { emoji: '💬', shortcodes: ['speech_balloon'] },
                 { emoji: '💭', shortcodes: ['thought_balloon'] },
                 { emoji: '🗨️', shortcodes: ['left_speech_bubble'] },
                 { emoji: '🗯️', shortcodes: ['right_anger_bubble'] },
-                { emoji: '📞', shortcodes: ['telephone_receiver'] },
+                { emoji: '📞', shortcodes: ['telephone'] },
                 { emoji: '📲', shortcodes: ['calling'] },
                 { emoji: '📯', shortcodes: ['postal_horn'] },
                 { emoji: '📰', shortcodes: ['newspaper'] },
-                { emoji: '🗞️', shortcodes: ['rolled_up_newspaper'] }
+                { emoji: '🗞️', shortcodes: ['rolled_up_newspaper'] },
+                { emoji: '📑', shortcodes: ['bookmark_tabs'] },
+                { emoji: '🔖', shortcodes: ['bookmark'] },
+                { emoji: '🏷️', shortcodes: ['label'] },
+                { emoji: '💻', shortcodes: ['laptop', 'computer'] },
+                { emoji: '⌨️', shortcodes: ['keyboard'] },
+                { emoji: '🖥️', shortcodes: ['desktop_computer'] },
+                { emoji: '🖨️', shortcodes: ['printer'] },
+                { emoji: '🖱️', shortcodes: ['mouse'] },
+                { emoji: '🖲️', shortcodes: ['trackball'] },
+                { emoji: '🕹️', shortcodes: ['joystick'] },
+                { emoji: '📷', shortcodes: ['camera'] },
+                { emoji: '📸', shortcodes: ['camera_with_flash'] },
+                { emoji: '📹', shortcodes: ['video_camera'] },
+                { emoji: '🎥', shortcodes: ['movie_camera'] },
+                { emoji: '🎬', shortcodes: ['clapper'] },
+                { emoji: '🎞️', shortcodes: ['film_frames'] },
+                { emoji: '📽️', shortcodes: ['projector'] },
+                { emoji: '📺', shortcodes: ['tv'] },
+                { emoji: '📻', shortcodes: ['radio'] },
+                { emoji: '🎙️', shortcodes: ['studio_microphone'] },
+                { emoji: '🎧', shortcodes: ['headphones'] }
             ],
 
             flagsBasic: [
@@ -780,7 +1236,20 @@
                 { emoji: '🇵🇭', shortcodes: ['flag_ph'] },
                 { emoji: '🇲🇾', shortcodes: ['flag_my'] },
                 { emoji: '🇸🇬', shortcodes: ['flag_sg'] },
-                { emoji: '🇿🇦', shortcodes: ['flag_za'] }
+                { emoji: '🇿🇦', shortcodes: ['flag_za'] },
+                { emoji: '🏁', shortcodes: ['chequered_flag'] },
+                { emoji: '🚩', shortcodes: ['triangular_flag'] },
+                { emoji: '🎌', shortcodes: ['crossed_flags'] },
+                { emoji: '🏴‍☠️', shortcodes: ['pirate_flag'] },
+                { emoji: '🏳️‍🌈', shortcodes: ['rainbow_flag'] },
+                { emoji: '🏳️‍⚧️', shortcodes: ['transgender_flag'] },
+                { emoji: '🇪🇺', shortcodes: ['flag_eu'] },
+                { emoji: '🇺🇳', shortcodes: ['flag_un'] },
+                { emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', shortcodes: ['flag_england'] },
+                { emoji: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', shortcodes: ['flag_scotland'] },
+                { emoji: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', shortcodes: ['flag_wales'] },
+                { emoji: '🏴', shortcodes: ['black_flag'] },
+                { emoji: '🏳️', shortcodes: ['white_flag'] }
             ]
         }
     };
@@ -1258,16 +1727,89 @@
                 style: 'min-width:340px;max-width:520px;max-height:400px;overflow-y:auto;'
             }).appendTo($menu);
 
-            const $searchWrap = $('<div>', {
-                class: 'p-2 border-bottom sticky-top bg-white'
+            // Directly attach scroll handler for better reliability than delegation
+            $menuWrapper.on('scroll', (e) => {
+                const $target = $(e.currentTarget);
+                const $wrapper = $target.closest(`.${WRAPPER_CLASS}`);
+
+                if ($wrapper.find('.js-emoji-search').val()) return;
+
+                const $headers = $wrapper.find('.js-emoji-category-header');
+                const $tabs = $wrapper.find('.js-emoji-tab-btn');
+                const $stickyTop = $wrapper.find('.sticky-top').first();
+                const stickyNavHeight = $stickyTop.outerHeight() || 82;
+                let activeCategory = null;
+
+                const scrollTop = $target.scrollTop();
+                const isAtBottom = Math.abs(scrollTop + $target.innerHeight() - $target[0].scrollHeight) < 5;
+
+                let lastCategory = null;
+                $headers.each(function() {
+                    const $header = $(this);
+                    
+                    const originalStyle = $header.attr('style') || '';
+                    $header.css({ position: 'relative', top: '0' });
+                    const realHeaderRect = $header[0].getBoundingClientRect();
+                    $header.attr('style', originalStyle);
+
+                    const containerRect = $target[0].getBoundingClientRect();
+                    const offsetTop = realHeaderRect.top - containerRect.top + scrollTop;
+                    
+                    if (scrollTop >= offsetTop - stickyNavHeight - 5) {
+                        activeCategory = $header.data('category');
+                    }
+                    lastCategory = $header.data('category');
+                });
+
+                if (isAtBottom && lastCategory) {
+                    activeCategory = lastCategory;
+                }
+
+                if (!activeCategory && $headers.length) {
+                    activeCategory = $headers.first().data('category');
+                }
+
+                if (activeCategory) {
+                    $tabs.each(function() {
+                        const $tab = $(this);
+                        if ($tab.data('tab') === activeCategory) {
+                            $tab.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
+                                'border-bottom': '2px solid var(--bs-primary)',
+                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
+                                'position': 'relative',
+                                'z-index': '2'
+                            });
+                        } else {
+                            $tab.removeClass('btn-light text-primary border-bottom border-primary').addClass('text-muted').css({
+                                'border-bottom': '',
+                                'background-color': '',
+                                'position': '',
+                                'z-index': ''
+                            });
+                        }
+                    });
+                }
+            });
+
+            const $stickyTop = $('<div>', {
+                class: 'sticky-top bg-body border-bottom',
+                style: 'z-index: 1020 !important;'
             }).appendTo($menuWrapper);
+
+            const $searchWrap = $('<div>', {
+                class: 'py-2 px-5'
+            }).appendTo($stickyTop);
 
             $('<input>', {
                 type: 'search',
-                class: 'form-control form-control-sm js-emoji-search',
-                placeholder: 'Search emoji…',
+                class: 'form-control rounded-pill form-control-sm js-emoji-search',
+                placeholder: 'Search emojis',
                 autocomplete: 'off'
             }).appendTo($searchWrap);
+
+            $('<div>', {
+                class: 'js-emoji-tabs-nav d-flex overflow-x-auto border-top'
+            }).appendTo($stickyTop);
 
             $('<div>', {
                 class: 'dropdown-emoji-list'
@@ -1280,14 +1822,64 @@
             const settings = this.getSettings($wrapper);
             const $dropdown = this.getDropdown($wrapper);
             const $list = $dropdown.find('.dropdown-emoji-list').first();
+            const $tabsNav = $dropdown.find('.js-emoji-tabs-nav').first();
             const index = this.buildCategoryIndex(settings);
             const q = String(query || '').trim().toLowerCase();
+            const icons = settings.categoryIcons || $.bsEmojiPicker.defaults.categoryIcons || {};
+
+            // Recent Emojis
+            const recent = JSON.parse(localStorage.getItem('bs-emoji-picker-recent') || '[]');
+            if (recent.length && !index.some(c => c.key === 'recent')) {
+                index.unshift({
+                    key: 'recent',
+                    label: 'Recently Used',
+                    items: recent.map(e => ({ emoji: e, shortcodes: [] }))
+                });
+            }
 
             $list.empty();
 
+            let activeTabKey = $wrapper.data('active-tab') || (index.length ? index[0].key : null);
+            
+            // Ensure the active tab exists in index (safety)
+            if (activeTabKey && !index.some(c => c.key === activeTabKey)) {
+                activeTabKey = index.length ? index[0].key : null;
+            }
+
+            // Re-render tabs nav if empty or search state changed
+            if ($tabsNav.is(':empty') || (q && !$tabsNav.hasClass('d-none')) || (!q && $tabsNav.hasClass('d-none'))) {
+                $tabsNav.empty();
+                if (!q) {
+                    $tabsNav.removeClass('d-none');
+                    index.forEach((cat) => {
+                        const iconClass = icons[cat.key] || 'bi-tag';
+                        const $btn = $('<button>', {
+                            type: 'button',
+                            class: 'btn btn-sm border-0 rounded-0 flex-fill py-2 js-emoji-tab-btn text-muted',
+                            'data-tab': cat.key,
+                            'data-bs-auto-close': 'outside',
+                            title: cat.label,
+                            html: `<i class="${iconClass}"></i>`
+                        }).appendTo($tabsNav);
+
+                        if (cat.key === activeTabKey) {
+                            $btn.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
+                                'border-bottom': '2px solid var(--bs-primary)',
+                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
+                                'position': 'relative',
+                                'z-index': '2'
+                            });
+                        }
+                    });
+                } else {
+                    $tabsNav.addClass('d-none');
+                }
+            }
+
             let anyShown = false;
 
-            index.forEach(({ label, items }) => {
+
+            index.forEach(({ key, label, items }) => {
                 const filtered = q
                     ? items.filter((item) => {
                         const haystack = [
@@ -1304,12 +1896,14 @@
                 anyShown = true;
 
                 $('<div>', {
-                    class: 'dropdown-header sticky-top text-bg-light',
-                    text: label
+                    class: 'dropdown-header sticky-top bg-body py-1 js-emoji-category-header',
+                    style: `top: ${q ? '48px' : '82px'}; z-index: 1010; font-size: 0.75rem;`, // Align below sticky top
+                    text: label,
+                    'data-category': key
                 }).appendTo($list);
 
                 const $grid = $('<div>', {
-                    class: 'd-flex flex-wrap gap-1 px-1 pb-1'
+                    class: 'd-flex flex-wrap gap-1 px-1 pb-1 pt-1 js-emoji-grid'
                 }).appendTo($list);
 
                 filtered.forEach(({ emoji, shortcodes }) => {
@@ -1403,11 +1997,97 @@
 
             $(document)
                 .on('show.bs.dropdown', `.${DROPDOWN_CLASS}`, function () {
-                    $(this).find('.dropdown-emoji-menu-wrapper').stop(true).animate({ scrollTop: 0 }, 150);
-                    $(this).find('.js-emoji-search').val('');
+                    const $dropdown = $(this);
+                    const $wrapper = $dropdown.closest(`.${WRAPPER_CLASS}`);
+                    
+                    if ($wrapper.length) {
+                        pluginFunctions.fillDropdown($wrapper);
+                    }
+
+                    $dropdown.find('.dropdown-emoji-menu-wrapper').stop(true).animate({ scrollTop: 0 }, 150);
+                    $dropdown.find('.js-emoji-search').val('');
                 })
                 .on('shown.bs.dropdown', `.${DROPDOWN_CLASS}`, function () {
                     $(this).find('.js-emoji-search').trigger('focus');
+                    $(this).find('.dropdown-emoji-menu-wrapper').trigger('scroll');
+                })
+                .on('mousedown', `.${WRAPPER_CLASS} .dropdown-menu`, (e) => {
+                    // This catches the mousedown before Bootstrap's dropdown-toggle listener
+                    // which usually closes the menu on click/mousedown elsewhere.
+                    const $target = $(e.target);
+                    if ($target.closest('.js-emoji-tab-btn').length || $target.closest('.js-emoji-search').length) {
+                        // e.preventDefault(); // Don't prevent default on search or it won't focus
+                        e.stopPropagation();
+                    }
+                })
+                .on('hide.bs.dropdown', `.${DROPDOWN_CLASS}`, (e) => {
+                    if (this._keepOpen) {
+                        e.preventDefault();
+                        this._keepOpen = false;
+                    }
+                })
+                .on('click', `.${WRAPPER_CLASS} .dropdown-menu`, (e) => {
+                    // Prevent closing when clicking anywhere in the menu EXCEPT on emoji buttons
+                    const $target = $(e.target);
+                    // Use a more specific selector to identify emoji insert buttons
+                    const isEmoji = $target.closest('.js-emoji-insert').length > 0;
+
+                    if (!isEmoji) {
+                        e.stopPropagation();
+                    } else {
+                        // If it is an emoji, ensure we don't prevent Bootstrap from closing the dropdown
+                        this._keepOpen = false;
+                        $(e.currentTarget).closest(`.${DROPDOWN_CLASS}`).dropdown('hide');
+                    }
+                })
+                .on('mousedown click', `.js-emoji-tab-btn, .js-emoji-tab-btn i`, (e) => {
+                    // Prevent any dropdown closing behavior from Bootstrap
+                    this._keepOpen = true;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation(); 
+
+                    if (e.type === 'click') {
+                        const $btn = $(e.currentTarget).closest('.js-emoji-tab-btn');
+                        const $wrapper = $btn.closest(`.${WRAPPER_CLASS}`);
+                        const tabKey = $btn.data('tab');
+                        const $menuWrapper = $wrapper.find('.dropdown-emoji-menu-wrapper');
+                        const $header = $wrapper.find(`.js-emoji-category-header[data-category="${tabKey}"]`);
+
+                        if ($header.length) {
+                            $wrapper.find('.js-emoji-tab-btn').removeClass('btn-light text-primary border-bottom border-primary').addClass('text-muted').css({
+                                'border-bottom': '',
+                                'background-color': '',
+                                'position': '',
+                                'z-index': ''
+                            });
+                            $btn.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
+                                'border-bottom': '2px solid var(--bs-primary)',
+                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
+                                'position': 'relative',
+                                'z-index': '2'
+                            });
+
+                            const stickyNavHeight = $wrapper.find('.sticky-top').outerHeight() || 82;
+                            const wrapperRect = $menuWrapper[0].getBoundingClientRect();
+                            
+                            const originalStyle = $header.attr('style') || '';
+                            $header.css({ position: 'relative', top: '0' });
+                            const realHeaderRect = $header[0].getBoundingClientRect();
+                            $header.attr('style', originalStyle);
+
+                            const headerOffsetTop = realHeaderRect.top - wrapperRect.top + $menuWrapper.scrollTop();
+
+                            const targetScrollTop = headerOffsetTop - stickyNavHeight + 1;
+
+                            $menuWrapper.stop(true).animate({
+                                scrollTop: targetScrollTop
+                            }, 200, () => {
+                                // Force scroll trigger to update tabs immediately
+                                $menuWrapper.trigger('scroll');
+                            });
+                        }
+                    }
                 })
                 .on('input', `.${WRAPPER_CLASS} .js-emoji-search`, (e) => {
                     const $input = $(e.currentTarget);
@@ -1430,6 +2110,21 @@
                     if (!settings) return;
 
                     const emoji = String($button.data('emoji') || '');
+
+                    // Update Recent Emojis
+                    let recent = JSON.parse(localStorage.getItem('bs-emoji-picker-recent') || '[]');
+                    
+                    // Remove if already exists and move to front
+                    const existingIndex = recent.indexOf(emoji);
+                    if (existingIndex !== -1) {
+                        recent.splice(existingIndex, 1);
+                    }
+                    recent.unshift(emoji);
+                    recent = recent.slice(0, 20); // Keep last 20
+                    localStorage.setItem('bs-emoji-picker-recent', JSON.stringify(recent));
+
+                    // Invalidate caches to show updated recent list next time dropdown opens
+                    this.invalidateCaches();
 
                     if (typeof settings.onClickEmoji === 'function') {
                         settings.onClickEmoji(emoji);
