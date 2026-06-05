@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [dev-main]
+
+### Fixed
+- Fixed emoji dropdown width so it never exceeds the viewport width.
+
 ## [2.0.2] - 2026-06-04
 
 ### Added

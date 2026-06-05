@@ -1724,7 +1724,7 @@
 
             const $menuWrapper = $('<div>', {
                 class: 'dropdown-emoji-menu-wrapper',
-                style: 'min-width:340px;max-width:520px;max-height:400px;overflow-y:auto;'
+                style: 'min-width:min(340px,100vw);max-width:min(520px,100vw);box-sizing:border-box;max-height:400px;overflow-y:auto;'
             }).appendTo($menu);
 
             // Directly attach scroll handler for better reliability than delegation
