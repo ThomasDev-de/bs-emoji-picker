@@ -8,16 +8,18 @@
     const DATA_KEY = 'bsEmojiPicker';
     const LISTENER_CLASS = 'bs-emoji-picker-listener';
     const WRAPPER_CLASS = 'bs-emoji-picker';
-    const DROPDOWN_CLASS = 'dropdown-emoji';
+    const MENU_CLASS = 'menu-emoji';
+    let menuInstanceCounter = 0;
 
     $.bsEmojiPicker = {
-        version: '2.0.2',
+        version: '6.0.0-alpha.1',
 
         defaults: {
-            btnClass: 'btn btn-outline-secondary',
+            btnClass: 'btn btn-outline theme-secondary',
             btnText: '<i class="bi bi-emoji-smile"></i>',
             btnIconClass: 'bi bi-emoji-smile',
             btnShowToggle: false,
+            navOverflow: null,
             targetInput: null,
             labels: {
                 classics: 'Classics',
@@ -1267,7 +1269,7 @@
         },
 
         getDropdown($wrapper) {
-            return $wrapper.find(`.${DROPDOWN_CLASS}`).first();
+            return $wrapper.find(`.${MENU_CLASS}`).first();
         },
 
         getTarget(settings) {
@@ -1698,32 +1700,45 @@
 
         buildDropdown($wrapper) {
             const settings = this.getSettings($wrapper);
+            const $existingTabsNav = $wrapper.find('.js-emoji-tabs-nav').first();
+            if ($existingTabsNav.length && settings.navOverflow?.getInstance) {
+                settings.navOverflow.getInstance($existingTabsNav[0])?.dispose();
+            }
             $wrapper.empty();
 
-            const index = $(`body .${DROPDOWN_CLASS}`).length + 1;
+            const index = ++menuInstanceCounter;
 
-            const $dropdown = $('<div>', {
-                class: `dropdown ${DROPDOWN_CLASS}`,
+            const menuContainerId = `bs-emoji-picker-menu-container-${index}`;
+            const $menuContainer = $('<div>', {
+                id: menuContainerId,
+                class: `menu-wrapper ${MENU_CLASS}`,
                 'data-index': index
             }).appendTo($wrapper);
 
-            const dropdownToggleClass = settings.btnShowToggle ? ' dropdown-toggle' : '';
+            const menuToggleClass = settings.btnShowToggle ? ' menu-toggle' : '';
+            if (settings.btnShowToggle && !document.getElementById('bs-emoji-picker-menu-toggle-style')) {
+                $('<style>', {
+                    id: 'bs-emoji-picker-menu-toggle-style',
+                    text: `.${MENU_CLASS} .menu-toggle::after { display: inline-block; margin-left: .255em; vertical-align: .255em; content: ''; border-top: .3em solid; border-right: .3em solid transparent; border-bottom: 0; border-left: .3em solid transparent; }`
+                }).appendTo(document.head);
+            }
             const buttonHtml = settings.btnText || `<i class="${this.escapeHtml(settings.btnIconClass)}"></i>`;
 
             $('<button>', {
-                class: `${settings.btnClass}${dropdownToggleClass}`,
+                class: `${settings.btnClass}${menuToggleClass}`,
                 type: 'button',
-                'data-bs-toggle': 'dropdown',
+                'data-bs-toggle': 'menu',
+                'data-bs-container': `#${menuContainerId}`,
                 'aria-expanded': 'false',
                 html: buttonHtml
-            }).appendTo($dropdown);
+            }).appendTo($menuContainer);
 
             const $menu = $('<div>', {
-                class: 'dropdown-menu p-0'
-            }).appendTo($dropdown);
+                class: 'menu menu-emoji-content p-0'
+            }).appendTo($menuContainer);
 
             const $menuWrapper = $('<div>', {
-                class: 'dropdown-emoji-menu-wrapper',
+                class: 'menu-emoji-scroll-area',
                 style: 'min-width:min(340px,100vw);max-width:min(520px,100vw);box-sizing:border-box;max-height:400px;overflow-y:auto;'
             }).appendTo($menu);
 
@@ -1735,7 +1750,7 @@
                 if ($wrapper.find('.js-emoji-search').val()) return;
 
                 const $headers = $wrapper.find('.js-emoji-category-header');
-                const $tabs = $wrapper.find('.js-emoji-tab-btn');
+                const $tabs = $wrapper.find('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab]');
                 const $stickyTop = $wrapper.find('.sticky-top').first();
                 const stickyNavHeight = $stickyTop.outerHeight() || 82;
                 let activeCategory = null;
@@ -1770,17 +1785,22 @@
                 }
 
                 if (activeCategory) {
+                    $wrapper.data('active-tab', activeCategory);
                     $tabs.each(function() {
                         const $tab = $(this);
+                        if ($tab.hasClass('menu-item')) {
+                            $tab.toggleClass('active', $tab.data('tab') === activeCategory);
+                            return;
+                        }
                         if ($tab.data('tab') === activeCategory) {
-                            $tab.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
-                                'border-bottom': '2px solid var(--bs-primary)',
-                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
+                            $tab.addClass('active').attr('aria-pressed', 'true').removeClass('fg-muted').addClass('btn-subtle theme-primary fg-primary border-bottom border-primary').css({
+                                'border-bottom': '2px solid var(--bs-primary-base)',
+                                'background-color': 'color-mix(in srgb, var(--bs-primary-base) 10%, transparent)',
                                 'position': 'relative',
                                 'z-index': '2'
                             });
                         } else {
-                            $tab.removeClass('btn-light text-primary border-bottom border-primary').addClass('text-muted').css({
+                            $tab.removeClass('active').attr('aria-pressed', 'false').removeClass('btn-subtle theme-primary fg-primary border-bottom border-primary').addClass('fg-muted').css({
                                 'border-bottom': '',
                                 'background-color': '',
                                 'position': '',
@@ -1807,74 +1827,104 @@
                 autocomplete: 'off'
             }).appendTo($searchWrap);
 
-            $('<div>', {
-                class: 'js-emoji-tabs-nav d-flex overflow-x-auto border-top'
+            const $tabsNav = $('<div>', {
+                class: 'nav-overflow js-emoji-tabs-nav border-top',
+                style: 'overflow-x: auto;',
+                'data-bs-toggle': 'nav-overflow',
+                'data-bs-threshold': '3',
+                'data-bs-more-text': ' '
             }).appendTo($stickyTop);
 
+            $('<ul>', {
+                class: 'nav'
+            }).appendTo($tabsNav);
+
+            if (!document.getElementById('bs-emoji-picker-nav-overflow-label-style')) {
+                $('<style>', {
+                    id: 'bs-emoji-picker-nav-overflow-label-style',
+                    text: '.js-emoji-tabs-nav .emoji-category-label { display: none; } .nav-overflow-menu .emoji-category-label { display: inline !important; position: static !important; width: auto !important; height: auto !important; padding: 0 !important; margin: 0 !important; overflow: visible !important; clip: auto !important; white-space: nowrap !important; }'
+                }).appendTo(document.head);
+            }
+
             $('<div>', {
-                class: 'dropdown-emoji-list'
+                class: 'menu-emoji-list'
             }).appendTo($menuWrapper);
 
             this.fillDropdown($wrapper);
+
+            if (settings.navOverflow?.getOrCreateInstance && $tabsNav.length) {
+                settings.navOverflow.getOrCreateInstance($tabsNav[0], {
+                    threshold: 3,
+                    moreText: 'More'
+                });
+                // Keep the overflow menu outside the scrollable picker panel so it isn't clipped.
+                $tabsNav.find('.nav-overflow-toggle').attr('data-bs-container', 'body');
+                $tabsNav.find('.nav-overflow-menu').attr('data-picker-wrapper', menuContainerId).css({
+                    'max-height': 'min(24rem, calc(100vh - 1rem))',
+                    'overflow-y': 'auto',
+                    'overscroll-behavior': 'contain'
+                });
+            }
         },
 
         fillDropdown($wrapper, query = '') {
             const settings = this.getSettings($wrapper);
-            const $dropdown = this.getDropdown($wrapper);
-            const $list = $dropdown.find('.dropdown-emoji-list').first();
-            const $tabsNav = $dropdown.find('.js-emoji-tabs-nav').first();
+            const $menu = this.getDropdown($wrapper);
+            const $list = $menu.find('.menu-emoji-list').first();
+            const $tabsNav = $menu.find('.js-emoji-tabs-nav').first();
+            const $nav = $tabsNav.find('.nav').first();
             const index = this.buildCategoryIndex(settings);
             const q = String(query || '').trim().toLowerCase();
             const icons = settings.categoryIcons || $.bsEmojiPicker.defaults.categoryIcons || {};
 
             // Recent Emojis
             const recent = JSON.parse(localStorage.getItem('bs-emoji-picker-recent') || '[]');
-            if (recent.length && !index.some(c => c.key === 'recent')) {
+            if (!index.some(c => c.key === 'recent')) {
                 index.unshift({
                     key: 'recent',
                     label: 'Recently Used',
                     items: recent.map(e => ({ emoji: e, shortcodes: [] }))
                 });
+            } else {
+                const recentCategory = index.find(c => c.key === 'recent');
+                recentCategory.items = recent.map(e => ({ emoji: e, shortcodes: [] }));
             }
 
             $list.empty();
 
-            let activeTabKey = $wrapper.data('active-tab') || (index.length ? index[0].key : null);
+            let activeTabKey = $wrapper.data('active-tab') || index.find(category => category.key !== 'recent' && category.items.length)?.key || (index.length ? index[0].key : null);
             
             // Ensure the active tab exists in index (safety)
             if (activeTabKey && !index.some(c => c.key === activeTabKey)) {
                 activeTabKey = index.length ? index[0].key : null;
             }
 
-            // Re-render tabs nav if empty or search state changed
-            if ($tabsNav.is(':empty') || (q && !$tabsNav.hasClass('d-none')) || (!q && $tabsNav.hasClass('d-none'))) {
-                $tabsNav.empty();
-                if (!q) {
-                    $tabsNav.removeClass('d-none');
-                    index.forEach((cat) => {
-                        const iconClass = icons[cat.key] || 'bi-tag';
-                        const $btn = $('<button>', {
-                            type: 'button',
-                            class: 'btn btn-sm border-0 rounded-0 flex-fill py-2 js-emoji-tab-btn text-muted',
-                            'data-tab': cat.key,
-                            'data-bs-auto-close': 'outside',
-                            title: cat.label,
-                            html: `<i class="${iconClass}"></i>`
-                        }).appendTo($tabsNav);
+            // Keep nav items stable after NavOverflow captures them; only hide the nav during search.
+            if ($nav.is(':empty')) {
+                index.forEach((cat) => {
+                    const iconClass = icons[cat.key] || 'bi-tag';
+                    const $item = $('<li>', { class: 'nav-item' }).appendTo($nav);
+                    const $btn = $('<button>', {
+                        type: 'button',
+                        class: 'nav-link btn-sm border-0 rounded-0 flex-fill py-2 js-emoji-tab-btn fg-muted',
+                        'data-tab': cat.key,
+                        'aria-pressed': cat.key === activeTabKey ? 'true' : 'false',
+                        'aria-label': cat.label,
+                        title: cat.label,
+                        html: `<i class="${iconClass}" aria-hidden="true"></i><span class="emoji-category-label">${this.escapeHtml(cat.label)}</span>`
+                    }).appendTo($item);
 
-                        if (cat.key === activeTabKey) {
-                            $btn.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
-                                'border-bottom': '2px solid var(--bs-primary)',
-                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
-                                'position': 'relative',
-                                'z-index': '2'
-                            });
-                        }
-                    });
-                } else {
-                    $tabsNav.addClass('d-none');
-                }
+                    if (cat.key === activeTabKey) {
+                        $btn.addClass('active').removeClass('fg-muted').addClass('btn-subtle theme-primary fg-primary border-bottom border-primary').css({
+                            'border-bottom': '2px solid var(--bs-primary-base)',
+                            'background-color': 'color-mix(in srgb, var(--bs-primary-base) 10%, transparent)',
+                            'position': 'relative',
+                            'z-index': '2'
+                        });
+                    }
+                });
             }
+            $tabsNav.toggleClass('d-none', Boolean(q));
 
             let anyShown = false;
 
@@ -1891,12 +1941,27 @@
                     })
                     : items;
 
-                if (!filtered.length) return;
+                if (!filtered.length) {
+                    if (key === 'recent' && !q) {
+                        anyShown = true;
+                        $('<div>', {
+                            class: 'menu-header sticky-top bg-body py-1 js-emoji-category-header',
+                            style: 'top: 82px; z-index: 1010; font-size: 0.75rem;',
+                            text: label,
+                            'data-category': key
+                        }).appendTo($list);
+                        $('<div>', {
+                            class: 'fg-muted small px-2 py-2',
+                            text: 'No recently used emojis yet'
+                        }).appendTo($list);
+                    }
+                    return;
+                }
 
                 anyShown = true;
 
                 $('<div>', {
-                    class: 'dropdown-header sticky-top bg-body py-1 js-emoji-category-header',
+                    class: 'menu-header sticky-top bg-body py-1 js-emoji-category-header',
                     style: `top: ${q ? '48px' : '82px'}; z-index: 1010; font-size: 0.75rem;`, // Align below sticky top
                     text: label,
                     'data-category': key
@@ -1923,7 +1988,7 @@
 
             if (!anyShown) {
                 $('<div>', {
-                    class: 'text-muted small px-2 py-2',
+                    class: 'fg-muted small px-2 py-2',
                     text: 'No matches'
                 }).appendTo($list);
             }
@@ -1995,38 +2060,54 @@
         bindGlobalEvents() {
             if (this.globalEventsBound) return;
 
-            $(document)
-                .on('show.bs.dropdown', `.${DROPDOWN_CLASS}`, function () {
-                    const $dropdown = $(this);
-                    const $wrapper = $dropdown.closest(`.${WRAPPER_CLASS}`);
-                    
-                    if ($wrapper.length) {
-                        pluginFunctions.fillDropdown($wrapper);
-                    }
+            document.addEventListener('show.bs.menu', (event) => {
+                const $toggle = $(event.target);
+                if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
 
-                    $dropdown.find('.dropdown-emoji-menu-wrapper').stop(true).animate({ scrollTop: 0 }, 150);
-                    $dropdown.find('.js-emoji-search').val('');
-                })
-                .on('shown.bs.dropdown', `.${DROPDOWN_CLASS}`, function () {
-                    $(this).find('.js-emoji-search').trigger('focus');
-                    $(this).find('.dropdown-emoji-menu-wrapper').trigger('scroll');
-                })
-                .on('mousedown', `.${WRAPPER_CLASS} .dropdown-menu`, (e) => {
-                    // This catches the mousedown before Bootstrap's dropdown-toggle listener
+                const $wrapper = $toggle.closest(`.${WRAPPER_CLASS}`);
+                if ($wrapper.length) pluginFunctions.fillDropdown($wrapper);
+
+                const $menu = $wrapper.find('.menu-emoji-content').first();
+                $menu.find('.menu-emoji-scroll-area').stop(true).animate({ scrollTop: 0 }, 150);
+                $menu.find('.js-emoji-search').val('');
+            });
+
+            document.addEventListener('shown.bs.menu', (event) => {
+                const $toggle = $(event.target);
+                if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
+
+                const $menu = $toggle.closest(`.${WRAPPER_CLASS}`).find('.menu-emoji-content').first();
+                $menu.find('.js-emoji-search').trigger('focus');
+                $menu.find('.menu-emoji-scroll-area').trigger('scroll');
+            });
+
+            document.addEventListener('hide.bs.menu', (event) => {
+                const $toggle = $(event.target);
+                if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
+                if (this._keepOpen) {
+                    event.preventDefault();
+                    this._keepOpen = false;
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if ($(event.target).closest('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab], .nav-overflow-toggle').length) {
+                    this._keepOpen = true;
+                }
+            }, true);
+
+            $(document)
+                .on('mousedown', `.${WRAPPER_CLASS} .menu-emoji-content`, (e) => {
+                    // This catches the mousedown before Bootstrap's menu toggle listener
                     // which usually closes the menu on click/mousedown elsewhere.
                     const $target = $(e.target);
-                    if ($target.closest('.js-emoji-tab-btn').length || $target.closest('.js-emoji-search').length) {
+                    if ($target.closest('.js-emoji-tab-btn').length || $target.closest('.js-emoji-search').length || $target.closest('.nav-overflow-toggle').length) {
+                        if ($target.closest('.nav-overflow-toggle').length) this._keepOpen = true;
                         // e.preventDefault(); // Don't prevent default on search or it won't focus
                         e.stopPropagation();
                     }
                 })
-                .on('hide.bs.dropdown', `.${DROPDOWN_CLASS}`, (e) => {
-                    if (this._keepOpen) {
-                        e.preventDefault();
-                        this._keepOpen = false;
-                    }
-                })
-                .on('click', `.${WRAPPER_CLASS} .dropdown-menu`, (e) => {
+                .on('click', `.${WRAPPER_CLASS} .menu-emoji-content`, (e) => {
                     // Prevent closing when clicking anywhere in the menu EXCEPT on emoji buttons
                     const $target = $(e.target);
                     // Use a more specific selector to identify emoji insert buttons
@@ -2035,38 +2116,52 @@
                     if (!isEmoji) {
                         e.stopPropagation();
                     } else {
-                        // If it is an emoji, ensure we don't prevent Bootstrap from closing the dropdown
+                        // If it is an emoji, ensure we don't prevent Bootstrap from closing the menu
                         this._keepOpen = false;
-                        $(e.currentTarget).closest(`.${DROPDOWN_CLASS}`).dropdown('hide');
                     }
                 })
-                .on('mousedown click', `.js-emoji-tab-btn, .js-emoji-tab-btn i`, (e) => {
-                    // Prevent any dropdown closing behavior from Bootstrap
+                .on('mousedown click', `.js-emoji-tab-btn, .js-emoji-tab-btn i, .nav-overflow-menu .menu-item[data-tab]`, (e) => {
+                    // Prevent any menu closing behavior from Bootstrap
                     this._keepOpen = true;
                     e.preventDefault();
                     e.stopPropagation();
-                    e.stopImmediatePropagation(); 
+                    e.stopImmediatePropagation();
 
                     if (e.type === 'click') {
-                        const $btn = $(e.currentTarget).closest('.js-emoji-tab-btn');
-                        const $wrapper = $btn.closest(`.${WRAPPER_CLASS}`);
+                        const $btn = $(e.currentTarget).closest('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab]');
+                        let $wrapper = $btn.closest(`.${WRAPPER_CLASS}`);
+                        if (!$wrapper.length) {
+                            const wrapperId = $btn.closest('.nav-overflow-menu').attr('data-picker-wrapper');
+                            const menuContainer = wrapperId && document.getElementById(wrapperId);
+                            if (menuContainer) $wrapper = $(menuContainer).closest(`.${WRAPPER_CLASS}`);
+                        }
+                        if (!$wrapper.length) return;
                         const tabKey = $btn.data('tab');
-                        const $menuWrapper = $wrapper.find('.dropdown-emoji-menu-wrapper');
+                        const $menuWrapper = $wrapper.find('.menu-emoji-scroll-area');
                         const $header = $wrapper.find(`.js-emoji-category-header[data-category="${tabKey}"]`);
 
                         if ($header.length) {
-                            $wrapper.find('.js-emoji-tab-btn').removeClass('btn-light text-primary border-bottom border-primary').addClass('text-muted').css({
+                            $wrapper.data('active-tab', tabKey);
+                            const $navTabs = $wrapper.find('.js-emoji-tab-btn');
+                            $navTabs.removeClass('active btn-subtle theme-primary fg-primary border-bottom border-primary').attr('aria-pressed', 'false').addClass('fg-muted').css({
                                 'border-bottom': '',
                                 'background-color': '',
                                 'position': '',
                                 'z-index': ''
                             });
-                            $btn.removeClass('text-muted').addClass('btn-light text-primary border-bottom border-primary').css({
-                                'border-bottom': '2px solid var(--bs-primary)',
-                                'background-color': 'rgba(var(--bs-primary-rgb), 0.1)',
+                            const $activeNavTab = $navTabs.filter((_, element) => $(element).data('tab') === tabKey).first();
+                            $activeNavTab.addClass('active').attr('aria-pressed', 'true').removeClass('fg-muted').addClass('btn-subtle theme-primary fg-primary border-bottom border-primary').css({
+                                'border-bottom': '2px solid var(--bs-primary-base)',
+                                'background-color': 'color-mix(in srgb, var(--bs-primary-base) 10%, transparent)',
                                 'position': 'relative',
                                 'z-index': '2'
                             });
+                            const $overflowMenu = $btn.closest('.nav-overflow-menu');
+                            if ($overflowMenu.length) {
+                                const $overflowItems = $overflowMenu.find('.menu-item[data-tab]');
+                                $overflowItems.removeClass('active').attr('aria-pressed', 'false');
+                                $btn.addClass('active').attr('aria-pressed', 'true');
+                            }
 
                             const stickyNavHeight = $wrapper.find('.sticky-top').outerHeight() || 82;
                             const wrapperRect = $menuWrapper[0].getBoundingClientRect();
@@ -2087,6 +2182,7 @@
                                 $menuWrapper.trigger('scroll');
                             });
                         }
+                        this._keepOpen = false;
                     }
                 })
                 .on('input', `.${WRAPPER_CLASS} .js-emoji-search`, (e) => {
@@ -2123,7 +2219,7 @@
                     recent = recent.slice(0, 20); // Keep last 20
                     localStorage.setItem('bs-emoji-picker-recent', JSON.stringify(recent));
 
-                    // Invalidate caches to show updated recent list next time dropdown opens
+                    // Invalidate caches to show updated recent list next time menu opens
                     this.invalidateCaches();
 
                     if (typeof settings.onClickEmoji === 'function') {

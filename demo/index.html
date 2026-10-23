@@ -1,86 +1,475 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Emoji-Picker</title>
-    <link href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css" type="text/css" rel="stylesheet">
-    <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>Emoji Picker for Bootstrap 6 — bs-emoji-picker</title>
+    <meta name="description" content="A lightweight Bootstrap 6 emoji picker for jQuery. Try the live composer, search emojis, and explore shortcode helpers.">
+    <link href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        :root {
+            color-scheme: light;
+            --demo-ink: #20271f;
+            --demo-muted: #73796f;
+            --demo-paper: #f7f5f1;
+            --demo-card: #fffefa;
+            --demo-line: #e9e7df;
+            --demo-green: #395842;
+            --demo-green-dark: #263d2e;
+            --demo-lime: #d9f27b;
+            --demo-lilac: #e9e0fa;
+            --demo-peach: #f8dfce;
+            --demo-shadow: 0 24px 70px rgb(39 45 35 / 9%);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            background: var(--bs-body-bg);
-            /*min-height: 100vh;*/
-            overflow-y: auto;
+            min-width: 320px;
+            margin: 0;
+            color: var(--demo-ink);
+            background:
+                radial-gradient(ellipse at 85% 9%, rgb(226 235 203 / 48%), transparent 27rem),
+                var(--demo-paper);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .emoji-demo-background {
-            position: absolute;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
+        a { color: inherit; }
+
+        .site-shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 82px;
+            border-bottom: 1px solid rgb(32 39 31 / 8%);
         }
 
-        .emoji-demo-background .emoji-demo {
-            z-index: 0 !important;
-            opacity: 0.25;
+        .brand {
+            display: inline-flex;
+            gap: 11px;
+            align-items: center;
+            color: var(--demo-ink);
+            font-size: 15px;
+            font-weight: 760;
+            letter-spacing: -.035em;
+            text-decoration: none;
         }
 
-        .demo-content {
+        .brand-mark {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            color: #fff;
+            background: var(--demo-green);
+            border-radius: 12px;
+            font-size: 17px;
+        }
+
+        .header-links { display: flex; gap: 28px; align-items: center; }
+        .header-links a { color: #666e62; font-size: 13px; font-weight: 620; text-decoration: none; }
+        .header-links a:hover { color: var(--demo-green); }
+
+        .header-github {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 14px;
+            color: var(--demo-ink) !important;
+            border: 1px solid var(--demo-line);
+            border-radius: 999px;
+            background: rgb(255 254 250 / 72%);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.03fr .97fr;
+            gap: 68px;
+            align-items: center;
+            padding-block: 76px 82px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            color: var(--demo-green);
+            font-size: 11px;
+            font-weight: 780;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot { width: 7px; height: 7px; background: #9aba4b; border-radius: 50%; }
+
+        h1 {
+            max-width: 610px;
+            margin: 19px 0 19px;
+            font-size: clamp(46px, 6.2vw, 76px);
+            font-weight: 690;
+            letter-spacing: -.075em;
+            line-height: .99;
+        }
+
+        h1 span { color: var(--demo-green); }
+
+        .hero-copy {
+            max-width: 480px;
+            margin: 0;
+            color: var(--demo-muted);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 29px; }
+
+        .button-primary, .button-quiet {
+            display: inline-flex;
+            min-height: 47px;
+            gap: 9px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+
+        .button-primary { color: white; background: var(--demo-green); box-shadow: 0 8px 18px rgb(57 88 66 / 18%); }
+        .button-primary:hover { color: white; background: var(--demo-green-dark); box-shadow: 0 11px 22px rgb(57 88 66 / 23%); transform: translateY(-1px); }
+        .button-quiet { color: var(--demo-ink); border: 1px solid var(--demo-line); background: var(--demo-card); }
+        .button-quiet:hover { color: var(--demo-green); background: white; transform: translateY(-1px); }
+
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+        .meta-pill { padding: 7px 10px; color: #687065; border: 1px solid #e8e6dd; border-radius: 999px; background: rgb(255 254 250 / 66%); font-size: 11px; font-weight: 650; }
+
+        .hero-visual {
             position: relative;
-            z-index: 1;
+            min-height: 390px;
+            overflow: hidden;
+            border: 1px solid rgb(60 74 55 / 8%);
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at 20% 19%, rgb(255 255 255 / 88%) 0 2px, transparent 3px),
+                radial-gradient(circle at 73% 70%, rgb(255 255 255 / 58%) 0 1.5px, transparent 3px),
+                linear-gradient(145deg, #e7edda 0%, #dbe7d5 51%, #e7e4f0 100%);
+            background-size: 30px 30px, 37px 37px, auto;
+            box-shadow: var(--demo-shadow);
+        }
+
+        .visual-caption { position: absolute; top: 23px; left: 25px; color: #63715f; font-size: 10px; font-weight: 780; letter-spacing: .13em; text-transform: uppercase; }
+
+        .chat-window {
+            position: absolute;
+            top: 67px;
+            right: 30px;
+            left: 30px;
+            padding: 17px;
+            border: 1px solid rgb(48 65 46 / 8%);
+            border-radius: 19px;
+            background: rgb(255 254 250 / 91%);
+            box-shadow: 0 20px 44px rgb(46 58 42 / 13%);
+            transform: rotate(-2deg);
+        }
+
+        .chat-top { display: flex; align-items: center; gap: 10px; padding-bottom: 13px; border-bottom: 1px solid #eeece6; }
+        .avatar { display: grid; width: 33px; height: 33px; place-items: center; border-radius: 50%; background: #f6dfbc; font-size: 17px; }
+        .chat-person { font-size: 12px; font-weight: 750; }
+        .chat-online { margin-top: 2px; color: #8a9086; font-size: 10px; }
+        .chat-time { margin-left: auto; color: #a0a49d; font-size: 10px; }
+        .chat-messages { display: grid; gap: 9px; padding-top: 14px; }
+        .bubble { width: fit-content; max-width: 89%; padding: 10px 12px; color: #434a40; border-radius: 13px 13px 13px 4px; background: #f0efe9; font-size: 12px; line-height: 1.55; }
+        .bubble.outgoing { justify-self: end; color: #fff; border-radius: 13px 13px 4px 13px; background: var(--demo-green); }
+        .bubble .big-emoji { font-size: 20px; vertical-align: -2px; }
+
+        .float-emoji { position: absolute; display: grid; place-items: center; border: 1px solid rgb(52 66 48 / 7%); border-radius: 17px; background: rgb(255 254 250 / 92%); box-shadow: 0 12px 28px rgb(45 56 42 / 12%); }
+        .float-emoji.heart { right: 19px; bottom: 46px; width: 63px; height: 63px; font-size: 30px; transform: rotate(8deg); }
+        .float-emoji.sun { bottom: 35px; left: 24px; width: 54px; height: 54px; font-size: 27px; transform: rotate(-9deg); }
+        .float-emoji.spark { top: 46px; right: 39px; width: 43px; height: 43px; border-radius: 14px; background: var(--demo-lime); font-size: 21px; transform: rotate(10deg); }
+
+        .playground-section { padding-block: 8px 92px; scroll-margin-top: 20px; }
+        .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+        .section-kicker { margin-bottom: 8px; color: var(--demo-green); font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+        h2 { margin: 0; font-size: clamp(26px, 3.3vw, 38px); font-weight: 680; letter-spacing: -.055em; }
+        .section-description { max-width: 380px; margin: 0 0 2px; color: var(--demo-muted); font-size: 13px; line-height: 1.65; }
+
+        .playground-card {
+            display: grid;
+            grid-template-columns: 1.06fr .94fr;
+            overflow: visible;
+            border: 1px solid var(--demo-line);
+            border-radius: 24px;
+            background: var(--demo-card);
+            box-shadow: 0 15px 45px rgb(39 45 35 / 5%);
+        }
+
+        .composer-side, .preview-side { min-width: 0; padding: 28px; }
+        .composer-side { border-right: 1px solid var(--demo-line); }
+        .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+        .panel-title { font-size: 13px; font-weight: 760; }
+        .panel-caption { color: #969b92; font-size: 10px; }
+        .field-label { display: block; margin-bottom: 9px; color: #697166; font-size: 11px; font-weight: 700; }
+
+        .composer-input {
+            min-height: 144px;
+            padding: 15px 16px;
+            color: #384137;
+            border-color: #e5e4dc;
+            border-radius: 14px;
+            background: #fff;
+            font-size: 13px;
+            line-height: 1.7;
+            resize: vertical;
+            box-shadow: none !important;
+        }
+
+        .composer-input:focus { border-color: #90a988; }
+        .composer-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 12px; }
+        .toolbar-hint { color: #8a9086; font-size: 10px; line-height: 1.5; }
+        .picker-mount { position: relative; z-index: 3; }
+
+        .composer-side .emoji-picker .btn {
+            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            color: #435746;
+            border-color: #e4e6dd;
+            border-radius: 13px;
+            background: #f8f8f3;
+            font-size: 19px;
+        }
+
+        .composer-side .emoji-picker .btn:hover { background: #eef2e8; }
+        .composer-side .emoji-picker .menu { border: 1px solid #e5e4dc; border-radius: 15px; box-shadow: 0 20px 48px rgb(33 42 31 / 17%); }
+        .composer-side .emoji-picker .menu-emoji-scroll-area { background: #fffefa; border-radius: 15px; }
+        .composer-side .emoji-picker .form-control { color: var(--demo-ink); background-color: white; }
+
+        .preview-side { display: flex; flex-direction: column; background: #fbfaf6; border-radius: 0 24px 24px 0; }
+        .preview-window { display: flex; flex: 1; flex-direction: column; min-height: 200px; padding: 18px; border: 1px solid #eceae2; border-radius: 16px; background: white; }
+        .preview-label { display: flex; align-items: center; gap: 7px; margin-bottom: 15px; color: #7b8277; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+        .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #7da363; box-shadow: 0 0 0 3px #e7f0df; }
+        .preview-copy { margin: 0; color: #424a40; font-size: 15px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .preview-foot { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 24px; color: #9a9e96; font-size: 10px; }
+        .preview-foot i { color: #84967b; }
+
+        .feature-section { padding-block: 0 86px; scroll-margin-top: 30px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 23px; }
+        .feature-card { min-height: 186px; padding: 22px; border: 1px solid var(--demo-line); border-radius: 19px; background: rgb(255 254 250 / 75%); }
+        .feature-icon { display: grid; width: 38px; height: 38px; place-items: center; margin-bottom: 20px; color: #45614a; border-radius: 13px; background: #e8efdf; font-size: 17px; }
+        .feature-card:nth-child(2) .feature-icon { color: #755f9d; background: var(--demo-lilac); }
+        .feature-card:nth-child(3) .feature-icon { color: #a06443; background: var(--demo-peach); }
+        .feature-card h3 { margin: 0 0 8px; font-size: 14px; font-weight: 760; letter-spacing: -.025em; }
+        .feature-card p { max-width: 290px; margin: 0; color: var(--demo-muted); font-size: 12px; line-height: 1.7; }
+
+        .code-strip { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 24px; padding: 18px 21px; border: 1px solid #e5e4dc; border-radius: 16px; background: #f0efe9; }
+        .code-label { color: #7b8277; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+        .code-strip code { color: #405845; font-size: 12px; }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 22px 30px;
+            color: #868c81;
+            border-top: 1px solid rgb(32 39 31 / 8%);
+            font-size: 10px;
+        }
+
+        .footer a { color: #526753; font-weight: 700; text-decoration: none; }
+
+        @media (max-width: 850px) {
+            .hero { grid-template-columns: 1fr .88fr; gap: 28px; padding-block: 62px 68px; }
+            .hero-visual { min-height: 340px; }
+            .chat-window { right: 20px; left: 20px; }
+            .playground-card { grid-template-columns: 1fr; }
+            .composer-side { border-right: 0; border-bottom: 1px solid var(--demo-line); }
+            .preview-side { border-radius: 0 0 24px 24px; }
+        }
+
+        @media (max-width: 620px) {
+            .site-shell { width: min(100% - 32px, 480px); }
+            .site-header { min-height: 70px; }
+            .header-links { gap: 14px; }
+            .header-links > a:not(.header-github) { display: none; }
+            .header-github { padding: 8px 11px; }
+            .hero { grid-template-columns: 1fr; gap: 35px; padding-block: 54px 58px; }
+            h1 { max-width: 510px; font-size: clamp(49px, 14vw, 67px); }
+            .hero-copy { font-size: 15px; }
+            .hero-visual { min-height: 330px; }
+            .section-heading { display: block; }
+            .section-description { margin-top: 11px; }
+            .composer-side, .preview-side { padding: 20px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .feature-card { min-height: 0; }
+            .code-strip { align-items: flex-start; flex-direction: column; gap: 9px; }
+            .code-strip code { overflow-wrap: anywhere; }
+            .footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
         }
     </style>
 </head>
 <body>
-<div class="emoji-demo-background" aria-hidden="true"></div>
-<div class="container bg-body border border-4 p-5 my-5 min-vh-100 demo-content">
-    <div class="emoji-article">
-        <h2>The Wonderful World of Emojis :D</h2>
-        <p>Emojis have become a universal language that transcends words. Whether you’re feeling happy :D, sad :(, or excited :P, there is always an emoji to express your emotions. They are simple yet powerful tools for communication in today’s digital world :). </p>
+<header class="site-shell site-header">
+    <a class="brand" href="#top" aria-label="bs-emoji-picker home">
+        <span class="brand-mark"><i class="bi bi-emoji-smile" aria-hidden="true"></i></span>
+        <span>bs-emoji-picker</span>
+    </a>
+    <nav class="header-links" aria-label="Main navigation">
+        <a href="#playground">Playground</a>
+        <a href="#features">Features</a>
+        <a class="header-github" href="https://github.com/ThomasDev-de/bs-emoji-picker" target="_blank" rel="noreferrer">
+            <i class="bi bi-github" aria-hidden="true"></i> GitHub
+        </a>
+    </nav>
+</header>
 
-        <p>The concept of emojis originated in Japan <3 and has since evolved into a global phenomenon. Today, emojis are used in texts, emails, social media posts, and even in customer service chatbots :). A simple thumbs up :thumbsup: or a heart <3 can convey a lot more than written words ever could.</p>
+<main id="top" class="site-shell">
+    <section class="hero" aria-labelledby="hero-title">
+        <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Bootstrap 6 · jQuery · open source</div>
+            <h1 id="hero-title">A little more <span>feeling.</span></h1>
+            <p class="hero-copy">A thoughtfully small emoji picker for the moments when plain text needs a little personality. Search, pick, and keep right on typing.</p>
+            <div class="hero-actions">
+                <a class="button-primary" href="#playground">Try the picker <i class="bi bi-arrow-down-right" aria-hidden="true"></i></a>
+                <a class="button-quiet" href="https://github.com/webcito/bs-emoji-picker#readme"><i class="bi bi-book" aria-hidden="true"></i> Read the docs</a>
+            </div>
+            <div class="hero-meta" aria-label="Compatibility">
+                <span class="meta-pill">Bootstrap 6 alpha</span>
+                <span class="meta-pill">jQuery 3+</span>
+                <span class="meta-pill">Inputs · textareas · editors</span>
+            </div>
+        </div>
 
-        <p>There are thousands of emojis to choose from, spanning various categories such as people :), animals :cat: :dog:, nature :sun: :rainbow:, food :pizza: :burger:, activities :soccer: :game_die:, and objects :computer: :mobile_phone:. The diversity of emojis continues to grow, making it easier for everyone to find one that matches their personality or situation :D.</p>
+        <div class="hero-visual" aria-label="A preview of emoji-rich chat messages">
+            <div class="visual-caption">A better way to say it</div>
+            <div class="chat-window">
+                <div class="chat-top">
+                    <div class="avatar" aria-hidden="true">🌿</div>
+                    <div><div class="chat-person">The good stuff</div><div class="chat-online">Maya, Jules &amp; you</div></div>
+                    <div class="chat-time">just now</div>
+                </div>
+                <div class="chat-messages">
+                    <div class="bubble">The launch is looking so good ✨</div>
+                    <div class="bubble outgoing">Couldn’t have done it without you <span class="big-emoji">💚</span></div>
+                    <div class="bubble">Celebratory coffee? ☕ <span class="big-emoji">🎉</span></div>
+                </div>
+            </div>
+            <span class="float-emoji heart" aria-hidden="true">💌</span>
+            <span class="float-emoji sun" aria-hidden="true">☀️</span>
+            <span class="float-emoji spark" aria-hidden="true">✳</span>
+        </div>
+    </section>
 
-        <p>But emojis are more than just icons in a message. They bring people closer together :). Imagine receiving a message that simply says "Congratulations!" versus one that says "Congratulations! :tada: :party:". The emojis add excitement and a sense of celebration :party_popper:.</p>
+    <section id="playground" class="playground-section" aria-labelledby="playground-title">
+        <div class="section-heading">
+            <div>
+                <div class="section-kicker">The live demo</div>
+                <h2 id="playground-title">Give it a try.</h2>
+            </div>
+            <p class="section-description">Open the picker, search for a favorite, or type a shortcode like <code>:heart:</code>. Your preview updates as you write.</p>
+        </div>
 
-        <p>As technology advances :) so does the world of emojis. Every year new emojis are designed, reflecting growing cultures and trends. From gender-neutral emojis :person: to animals :dodo:, and even weather symbols like :cloud_with_lightning:, the emoji space is constantly evolving.</p>
+        <div class="playground-card">
+            <div class="composer-side">
+                <div class="panel-heading">
+                    <span class="panel-title">Message composer</span>
+                    <span class="panel-caption">YOUR MESSAGE, YOUR MOOD</span>
+                </div>
+                <label class="field-label" for="messageInput">Write something nice</label>
+                <textarea id="messageInput" class="form-control composer-input" rows="4" spellcheck="false">Hey team! :tada:
+The new release is ready. Thanks for making it happen :heart: :raised_hands:</textarea>
+                <div class="composer-toolbar">
+                    <span class="toolbar-hint">Pick an emoji or use a shortcode.<br>It will land right where your cursor is.</span>
+                    <div class="picker-mount emoji-picker" aria-label="Open emoji picker"></div>
+                </div>
+            </div>
+            <div class="preview-side" aria-live="polite">
+                <div class="panel-heading">
+                    <span class="panel-title">The finished message</span>
+                    <span class="panel-caption">LIVE PREVIEW</span>
+                </div>
+                <div class="preview-window">
+                    <div class="preview-label"><span class="live-dot"></span> Preview</div>
+                    <p id="messagePreview" class="preview-copy"></p>
+                    <div class="preview-foot"><i class="bi bi-stars" aria-hidden="true"></i> Shortcodes become emoji as you type</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <p>The next time you send someone a message, consider adding some emojis :) Whether it’s a "Hello! :wave:" or "Good luck! <3", emojis help make your texts brighter and filled with emotion :).</p>
-    </div>
+    <section id="features" class="feature-section" aria-labelledby="features-title">
+        <div class="section-kicker">Made to fit your app</div>
+        <h2 id="features-title">Small plugin. Plenty of expression.</h2>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <div class="feature-icon"><i class="bi bi-cursor-text" aria-hidden="true"></i></div>
+                <h3>Stays in your flow</h3>
+                <p>Insert at the current caret in inputs, textareas, and contenteditable editors.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon"><i class="bi bi-chat-heart" aria-hidden="true"></i></div>
+                <h3>Understands your shorthand</h3>
+                <p>Turn familiar shortcodes and classic emoticons into emoji in text or existing content.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon"><i class="bi bi-sliders" aria-hidden="true"></i></div>
+                <h3>Fits your interface</h3>
+                <p>Bootstrap 6 menu, searchable categories, recent picks, and labels you can customize.</p>
+            </article>
+        </div>
+        <div class="code-strip">
+            <span class="code-label">One small setup</span>
+            <code>$('.emoji-picker').bsEmojiPicker({ targetInput: '#messageInput' });</code>
+        </div>
+    </section>
+</main>
 
-    <h3>An emoji textarea with a picker</h3>
-    <div class=" d-flex gap-3 mb-3">
-        <div class="emoji-picker"></div>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">I am a text with emojis :).
-As help I have an emoji picker 👈</textarea>
-    </div>
-    <hr>
-    <h3>An emoji textarea without a picker</h3>
-    <label for="exampleFormControlTextarea2"></label>
-    <textarea class="form-control mb-3" id="exampleFormControlTextarea2" rows="3">I am a text with emojis <3</textarea>
+<footer class="site-shell footer">
+    <span>Made for messages that sound like you.</span>
+    <a href="https://github.com/webcito/bs-emoji-picker" target="_blank" rel="noreferrer">Explore the project on GitHub <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+</footer>
 
-</div>
 <script src="../vendor/components/jquery/jquery.min.js"></script>
-<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../dist/bs-emoji-picker.js"></script>
-<script>
-    $(document).ready(function () {
+<script type="module">
+    import { NavOverflow } from '../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
+
+    $(function () {
+        const $message = $('#messageInput');
+        const $preview = $('#messagePreview');
+
         $('.emoji-picker').bsEmojiPicker({
-            btnClass: 'btn btn-outline-secondary',
-            targetInput: '#exampleFormControlTextarea1',
+            btnClass: 'btn btn-outline theme-secondary',
+            btnText: '<i class="bi bi-emoji-smile" aria-hidden="true"></i><span class="visually-hidden">Choose an emoji</span>',
+            btnShowToggle: false,
+            navOverflow: NavOverflow,
+            targetInput: '#messageInput'
         });
 
-        $.bsEmojiPicker.emojify('.emoji-article');
-        $.bsEmojiPicker.emojify('#exampleFormControlTextarea2');
-        const testString = '😁 test';
-        const check = $.bsEmojiPicker.isOnlyEmoji(testString);
-        // alert(testString + ' is only emoji: ' + (check?'yes':'no'));
-        $.bsEmojiPicker.showDemo($('.emoji-demo-background'), 200, 10);
-    })
+        const updatePreview = () => {
+            $preview.text($.bsEmojiPicker.emojifyText($message.val()));
+        };
+
+        $message.on('input', updatePreview);
+        updatePreview();
+    });
 </script>
 </body>
 </html>

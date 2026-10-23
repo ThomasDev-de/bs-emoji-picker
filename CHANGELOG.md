@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fixed emoji dropdown width so it never exceeds the viewport width.
 
+## [6.0.0-alpha.1] - 2026-10-23
+
+### Changed
+- Migrated the picker UI to Bootstrap 6 Menu markup, events, and class names.
+- Updated Bootstrap color utilities and button variants to Bootstrap 6 naming.
+- Added Bootstrap NavOverflow for category tabs, including active-state syncing in the “More” menu.
+- Updated the demo and Composer requirement for Bootstrap 6.0.0-alpha.1.
+
 ## [2.0.2] - 2026-06-04
 
 ### Added

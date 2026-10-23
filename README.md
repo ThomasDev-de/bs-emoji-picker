@@ -1,6 +1,6 @@
 # bs-emoji-picker
 
-A Bootstrap 5 compatible emoji picker for **jQuery**, with support for:
+A Bootstrap 6 compatible emoji picker for **jQuery**, with support for:
 
 - `input`
 - `textarea`
@@ -9,13 +9,13 @@ A Bootstrap 5 compatible emoji picker for **jQuery**, with support for:
 - parsing/replacing shortcodes in HTML and DOM nodes
 - inserting emojis at the current caret position
 
-It is designed as a lightweight plugin that adds a Bootstrap dropdown-based emoji picker and exposes utility methods for shortcode-to-emoji conversion.
+It is designed as a lightweight plugin that adds a Bootstrap menu based emoji picker and exposes utility methods for shortcode-to-emoji conversion.
 
 ---
 
 ## Features
 
-- Bootstrap 5 dropdown based UI
+- Bootstrap 6 menu based UI
 - Works with jQuery 3+
 - Inserts emojis into:
   - text inputs
@@ -24,6 +24,7 @@ It is designed as a lightweight plugin that adds a Bootstrap dropdown-based emoj
 - Converts classic emoticons like `:-)` and shortcodes like `:heart:`
 - DOM parsing helpers for existing content
 - Customizable category labels
+- Category navigation collapses into a “More” menu when space is limited
 - Click callback for selected emojis
 - Can be used as:
   - UI picker plugin
@@ -34,7 +35,7 @@ It is designed as a lightweight plugin that adds a Bootstrap dropdown-based emoj
 
 ## Requirements
 
-- Bootstrap 5+
+- Bootstrap 6.0.0-alpha.1 (Chrome/Edge 130+, Firefox 132+, Safari 18+)
 - Bootstrap Icons 1+
 - jQuery 3+
 
@@ -67,7 +68,7 @@ Then include the required dependencies.
 <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <script src="vendor/components/jquery/jquery.min.js"></script>
-<script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="dist/bs-emoji-picker.js"></script>
 ```
 
@@ -179,12 +180,21 @@ $('#picker1').bsEmojiPicker({
 
 ## Initialize the picker
 
+The category navigation is built dynamically. Pass Bootstrap 6's `NavOverflow` class to initialize its overflow menu after the picker creates it:
+
+```javascript
+import { NavOverflow } from './vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
+```
+
+Use the import and picker initialization in a `<script type="module">` block.
+
 ```javascript
 $('.emoji-picker').bsEmojiPicker({
-    btnClass: 'btn btn-outline-secondary',
+    btnClass: 'btn btn-outline theme-secondary',
     btnText: '<i class="bi bi-emoji-smile"></i>',
     btnIconClass: 'bi bi-emoji-smile',
     btnShowToggle: false,
+    navOverflow: NavOverflow,
     targetInput: '#myTextarea',
     labels: {
         classics: "Classics",
@@ -210,7 +220,7 @@ $('.emoji-picker').bsEmojiPicker({
 });
 ```
 
-The plugin creates a Bootstrap dropdown button and inserts the selected emoji into the configured target.
+The plugin creates a Bootstrap menu button and inserts the selected emoji into the configured target.
 
 ---
 
@@ -351,7 +361,7 @@ Default configuration:
 
 ```javascript
 {
-    btnClass: 'btn btn-outline-secondary',
+    btnClass: 'btn btn-outline theme-secondary',
     btnIconClass: 'bi bi-emoji-smile',
     targetInput: null,
     labels: {
@@ -404,12 +414,12 @@ Supported target types:
 #### `btnClass`
 Type: `string`
 
-CSS classes used for the Bootstrap dropdown toggle button.
+CSS classes used for the Bootstrap menu toggle button.
 
 Example:
 
 ```javascript
-btnClass: 'btn btn-sm btn-outline-primary'
+btnClass: 'btn-outline theme-primary btn-sm'
 ```
 
 ---
@@ -430,7 +440,7 @@ btnIconClass: 'bi bi-emoji-laughing'
 #### `labels`
 Type: `object`
 
-Allows renaming category headers in the dropdown.
+Allows renaming category headers in the menu.
 
 Example:
 
@@ -571,14 +581,14 @@ $('#container').html(parsedHtml);
 
 ## Styling
 
-The plugin uses Bootstrap dropdown markup and utility classes.
+The plugin uses Bootstrap menu markup and utility classes.
 
 You can style the picker further with your own CSS.
 
 Example:
 
 ```css
-.bs-emoji-picker .dropdown-menu {
+.bs-emoji-picker .menu {
     border-radius: 0.75rem;
 }
 
@@ -595,15 +605,15 @@ Example:
 
 ## Bootstrap Notes
 
-The plugin expects Bootstrap's dropdown JavaScript to be available.
+The plugin expects Bootstrap's menu JavaScript to be available.
 
 Include:
 
 ```html
-<script src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 ```
 
-Using `bootstrap.bundle.min.js` is recommended because it includes Popper.
+The Bootstrap 6 bundle includes the positioning dependency required by menus.
 
 ---
 
@@ -640,7 +650,7 @@ This depends partly on browser selection APIs and the complexity of your editor 
 The plugin is intended for modern browsers that support:
 
 - jQuery 3+
-- Bootstrap 5
+- Bootstrap 6.0.0-alpha.1
 - standard DOM Selection and Range APIs
 - Unicode emoji rendering
 
