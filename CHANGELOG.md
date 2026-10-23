@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [dev-main]
 
+### Added
+- Expanded the built-in emoji collection to the fully-qualified Unicode Emoji 18.0 repertoire, including skin-tone and family/profession sequences and complete country and subdivision flags.
+- Grouped skin-tone variants behind a floating picker inspired by common messaging apps; searching still exposes matching variants individually.
+- Remember the selected skin tone per base emoji and reflect it on the main variant button.
+
 ### Fixed
 - Fixed emoji dropdown width so it never exceeds the viewport width.
 

@@ -1,19 +1,15 @@
 (function ($) {
     'use strict';
-
     if (!$) {
         throw new Error('bsEmojiPicker requires jQuery.');
     }
-
     const DATA_KEY = 'bsEmojiPicker';
     const LISTENER_CLASS = 'bs-emoji-picker-listener';
     const WRAPPER_CLASS = 'bs-emoji-picker';
     const MENU_CLASS = 'menu-emoji';
     let menuInstanceCounter = 0;
-
     $.bsEmojiPicker = {
         version: '6.0.0-alpha.1',
-
         defaults: {
             btnClass: 'btn btn-outline theme-secondary',
             btnText: '<i class="bi bi-emoji-smile"></i>',
@@ -62,7 +58,6 @@
                 return emoji;
             }
         },
-
         asciiMap: [
             { re: /<\/3/g, emoji: '💔' },
             { re: /<3/g, emoji: '❤️' },
@@ -91,7 +86,9 @@
             { re: /B-?\)|b-?\)/g, emoji: '😎' }
         ],
 
+        // Unicode Emoji 18.0 fully-qualified repertoire, grouped into the picker's existing categories.
         emojiData: {
+
             heartsAndLove: [
                 { emoji: '❤️', shortcodes: ['heart', 'red_heart'] },
                 { emoji: '💖', shortcodes: ['sparkling_heart'] },
@@ -216,8 +213,31 @@
                 { emoji: '👾', shortcodes: ['space_invader'] },
                 { emoji: '🤖', shortcodes: ['robot'] },
                 { emoji: '🤷', shortcodes: ['shrug'] },
-                { emoji: '🤦', shortcodes: ['facepalm'] }
-            ],
+                { emoji: '🤦', shortcodes: ['facepalm'] },
+                { emoji: '🫠', shortcodes: ['melting_face'] },
+                { emoji: '☺️', shortcodes: ['smiling_face'] },
+                { emoji: '🥲', shortcodes: ['smiling_face_with_tear'] },
+                { emoji: '🫨', shortcodes: ['shaking_face'] },
+                { emoji: '🙂‍↔️', shortcodes: ['head_shaking_horizontally'] },
+                { emoji: '🙂‍↕️', shortcodes: ['head_shaking_vertically'] },
+                { emoji: '🫩', shortcodes: ['face_with_bags_under_eyes'] },
+                { emoji: '🫤', shortcodes: ['face_with_diagonal_mouth'] },
+                { emoji: '🫪', shortcodes: ['distorted_face'] },
+                { emoji: '😺', shortcodes: ['grinning_cat'] },
+                { emoji: '😸', shortcodes: ['grinning_cat_with_smiling_eyes'] },
+                { emoji: '😹', shortcodes: ['cat_with_tears_of_joy'] },
+                { emoji: '😻', shortcodes: ['smiling_cat_with_heart_eyes'] },
+                { emoji: '😼', shortcodes: ['cat_with_wry_smile'] },
+                { emoji: '😽', shortcodes: ['kissing_cat'] },
+                { emoji: '🙀', shortcodes: ['weary_cat'] },
+                { emoji: '😿', shortcodes: ['crying_cat'] },
+                { emoji: '😾', shortcodes: ['pouting_cat'] },
+                { emoji: '💋', shortcodes: ['kiss_mark'] },
+                { emoji: '🫯', shortcodes: ['fight_cloud'] },
+                { emoji: '👁️‍🗨️', shortcodes: ['eye_in_speech_bubble'] },
+                { emoji: '💤', shortcodes: ['zzz'] },
+                { emoji: '🫫', shortcodes: ['cracking_face'] },
+],
 
             slackDiscordFaces: [
                 { emoji: '😄', shortcodes: ['smile'] },
@@ -387,8 +407,259 @@
                 { emoji: '🫦', shortcodes: ['biting_lip'] },
                 { emoji: '🩸', shortcodes: ['drop_of_blood'] },
                 { emoji: '💅', shortcodes: ['nail_care'] },
-                { emoji: '🤳', shortcodes: ['selfie'] }
-            ],
+                { emoji: '🤳', shortcodes: ['selfie'] },
+                { emoji: '👋🏻', shortcodes: ['waving_hand_light_skin_tone'] },
+                { emoji: '👋🏼', shortcodes: ['waving_hand_medium_light_skin_tone'] },
+                { emoji: '👋🏽', shortcodes: ['waving_hand_medium_skin_tone'] },
+                { emoji: '👋🏾', shortcodes: ['waving_hand_medium_dark_skin_tone'] },
+                { emoji: '👋🏿', shortcodes: ['waving_hand_dark_skin_tone'] },
+                { emoji: '🤚🏻', shortcodes: ['raised_back_of_hand_light_skin_tone'] },
+                { emoji: '🤚🏼', shortcodes: ['raised_back_of_hand_medium_light_skin_tone'] },
+                { emoji: '🤚🏽', shortcodes: ['raised_back_of_hand_medium_skin_tone'] },
+                { emoji: '🤚🏾', shortcodes: ['raised_back_of_hand_medium_dark_skin_tone'] },
+                { emoji: '🤚🏿', shortcodes: ['raised_back_of_hand_dark_skin_tone'] },
+                { emoji: '🖐🏻', shortcodes: ['hand_with_fingers_splayed_light_skin_tone'] },
+                { emoji: '🖐🏼', shortcodes: ['hand_with_fingers_splayed_medium_light_skin_tone'] },
+                { emoji: '🖐🏽', shortcodes: ['hand_with_fingers_splayed_medium_skin_tone'] },
+                { emoji: '🖐🏾', shortcodes: ['hand_with_fingers_splayed_medium_dark_skin_tone'] },
+                { emoji: '🖐🏿', shortcodes: ['hand_with_fingers_splayed_dark_skin_tone'] },
+                { emoji: '✋🏻', shortcodes: ['raised_hand_light_skin_tone'] },
+                { emoji: '✋🏼', shortcodes: ['raised_hand_medium_light_skin_tone'] },
+                { emoji: '✋🏽', shortcodes: ['raised_hand_medium_skin_tone'] },
+                { emoji: '✋🏾', shortcodes: ['raised_hand_medium_dark_skin_tone'] },
+                { emoji: '✋🏿', shortcodes: ['raised_hand_dark_skin_tone'] },
+                { emoji: '🖖🏻', shortcodes: ['vulcan_salute_light_skin_tone'] },
+                { emoji: '🖖🏼', shortcodes: ['vulcan_salute_medium_light_skin_tone'] },
+                { emoji: '🖖🏽', shortcodes: ['vulcan_salute_medium_skin_tone'] },
+                { emoji: '🖖🏾', shortcodes: ['vulcan_salute_medium_dark_skin_tone'] },
+                { emoji: '🖖🏿', shortcodes: ['vulcan_salute_dark_skin_tone'] },
+                { emoji: '🫱🏻', shortcodes: ['rightwards_hand_light_skin_tone'] },
+                { emoji: '🫱🏼', shortcodes: ['rightwards_hand_medium_light_skin_tone'] },
+                { emoji: '🫱🏽', shortcodes: ['rightwards_hand_medium_skin_tone'] },
+                { emoji: '🫱🏾', shortcodes: ['rightwards_hand_medium_dark_skin_tone'] },
+                { emoji: '🫱🏿', shortcodes: ['rightwards_hand_dark_skin_tone'] },
+                { emoji: '🫲🏻', shortcodes: ['leftwards_hand_light_skin_tone'] },
+                { emoji: '🫲🏼', shortcodes: ['leftwards_hand_medium_light_skin_tone'] },
+                { emoji: '🫲🏽', shortcodes: ['leftwards_hand_medium_skin_tone'] },
+                { emoji: '🫲🏾', shortcodes: ['leftwards_hand_medium_dark_skin_tone'] },
+                { emoji: '🫲🏿', shortcodes: ['leftwards_hand_dark_skin_tone'] },
+                { emoji: '🫳🏻', shortcodes: ['palm_down_hand_light_skin_tone'] },
+                { emoji: '🫳🏼', shortcodes: ['palm_down_hand_medium_light_skin_tone'] },
+                { emoji: '🫳🏽', shortcodes: ['palm_down_hand_medium_skin_tone'] },
+                { emoji: '🫳🏾', shortcodes: ['palm_down_hand_medium_dark_skin_tone'] },
+                { emoji: '🫳🏿', shortcodes: ['palm_down_hand_dark_skin_tone'] },
+                { emoji: '🫴🏻', shortcodes: ['palm_up_hand_light_skin_tone'] },
+                { emoji: '🫴🏼', shortcodes: ['palm_up_hand_medium_light_skin_tone'] },
+                { emoji: '🫴🏽', shortcodes: ['palm_up_hand_medium_skin_tone'] },
+                { emoji: '🫴🏾', shortcodes: ['palm_up_hand_medium_dark_skin_tone'] },
+                { emoji: '🫴🏿', shortcodes: ['palm_up_hand_dark_skin_tone'] },
+                { emoji: '🫷', shortcodes: ['leftwards_pushing_hand'] },
+                { emoji: '🫷🏻', shortcodes: ['leftwards_pushing_hand_light_skin_tone'] },
+                { emoji: '🫷🏼', shortcodes: ['leftwards_pushing_hand_medium_light_skin_tone'] },
+                { emoji: '🫷🏽', shortcodes: ['leftwards_pushing_hand_medium_skin_tone'] },
+                { emoji: '🫷🏾', shortcodes: ['leftwards_pushing_hand_medium_dark_skin_tone'] },
+                { emoji: '🫷🏿', shortcodes: ['leftwards_pushing_hand_dark_skin_tone'] },
+                { emoji: '🫸', shortcodes: ['rightwards_pushing_hand'] },
+                { emoji: '🫸🏻', shortcodes: ['rightwards_pushing_hand_light_skin_tone'] },
+                { emoji: '🫸🏼', shortcodes: ['rightwards_pushing_hand_medium_light_skin_tone'] },
+                { emoji: '🫸🏽', shortcodes: ['rightwards_pushing_hand_medium_skin_tone'] },
+                { emoji: '🫸🏾', shortcodes: ['rightwards_pushing_hand_medium_dark_skin_tone'] },
+                { emoji: '🫸🏿', shortcodes: ['rightwards_pushing_hand_dark_skin_tone'] },
+                { emoji: '👌🏻', shortcodes: ['ok_hand_light_skin_tone'] },
+                { emoji: '👌🏼', shortcodes: ['ok_hand_medium_light_skin_tone'] },
+                { emoji: '👌🏽', shortcodes: ['ok_hand_medium_skin_tone'] },
+                { emoji: '👌🏾', shortcodes: ['ok_hand_medium_dark_skin_tone'] },
+                { emoji: '👌🏿', shortcodes: ['ok_hand_dark_skin_tone'] },
+                { emoji: '🤌🏻', shortcodes: ['pinched_fingers_light_skin_tone'] },
+                { emoji: '🤌🏼', shortcodes: ['pinched_fingers_medium_light_skin_tone'] },
+                { emoji: '🤌🏽', shortcodes: ['pinched_fingers_medium_skin_tone'] },
+                { emoji: '🤌🏾', shortcodes: ['pinched_fingers_medium_dark_skin_tone'] },
+                { emoji: '🤌🏿', shortcodes: ['pinched_fingers_dark_skin_tone'] },
+                { emoji: '🤏🏻', shortcodes: ['pinching_hand_light_skin_tone'] },
+                { emoji: '🤏🏼', shortcodes: ['pinching_hand_medium_light_skin_tone'] },
+                { emoji: '🤏🏽', shortcodes: ['pinching_hand_medium_skin_tone'] },
+                { emoji: '🤏🏾', shortcodes: ['pinching_hand_medium_dark_skin_tone'] },
+                { emoji: '🤏🏿', shortcodes: ['pinching_hand_dark_skin_tone'] },
+                { emoji: '✌🏻', shortcodes: ['victory_hand_light_skin_tone'] },
+                { emoji: '✌🏼', shortcodes: ['victory_hand_medium_light_skin_tone'] },
+                { emoji: '✌🏽', shortcodes: ['victory_hand_medium_skin_tone'] },
+                { emoji: '✌🏾', shortcodes: ['victory_hand_medium_dark_skin_tone'] },
+                { emoji: '✌🏿', shortcodes: ['victory_hand_dark_skin_tone'] },
+                { emoji: '🤞🏻', shortcodes: ['crossed_fingers_light_skin_tone'] },
+                { emoji: '🤞🏼', shortcodes: ['crossed_fingers_medium_light_skin_tone'] },
+                { emoji: '🤞🏽', shortcodes: ['crossed_fingers_medium_skin_tone'] },
+                { emoji: '🤞🏾', shortcodes: ['crossed_fingers_medium_dark_skin_tone'] },
+                { emoji: '🤞🏿', shortcodes: ['crossed_fingers_dark_skin_tone'] },
+                { emoji: '🫰🏻', shortcodes: ['hand_with_index_finger_and_thumb_crossed_light_skin_tone'] },
+                { emoji: '🫰🏼', shortcodes: ['hand_with_index_finger_and_thumb_crossed_medium_light_skin_tone'] },
+                { emoji: '🫰🏽', shortcodes: ['hand_with_index_finger_and_thumb_crossed_medium_skin_tone'] },
+                { emoji: '🫰🏾', shortcodes: ['hand_with_index_finger_and_thumb_crossed_medium_dark_skin_tone'] },
+                { emoji: '🫰🏿', shortcodes: ['hand_with_index_finger_and_thumb_crossed_dark_skin_tone'] },
+                { emoji: '🤟🏻', shortcodes: ['love_you_gesture_light_skin_tone'] },
+                { emoji: '🤟🏼', shortcodes: ['love_you_gesture_medium_light_skin_tone'] },
+                { emoji: '🤟🏽', shortcodes: ['love_you_gesture_medium_skin_tone'] },
+                { emoji: '🤟🏾', shortcodes: ['love_you_gesture_medium_dark_skin_tone'] },
+                { emoji: '🤟🏿', shortcodes: ['love_you_gesture_dark_skin_tone'] },
+                { emoji: '🤘🏻', shortcodes: ['sign_of_the_horns_light_skin_tone'] },
+                { emoji: '🤘🏼', shortcodes: ['sign_of_the_horns_medium_light_skin_tone'] },
+                { emoji: '🤘🏽', shortcodes: ['sign_of_the_horns_medium_skin_tone'] },
+                { emoji: '🤘🏾', shortcodes: ['sign_of_the_horns_medium_dark_skin_tone'] },
+                { emoji: '🤘🏿', shortcodes: ['sign_of_the_horns_dark_skin_tone'] },
+                { emoji: '🤙🏻', shortcodes: ['call_me_hand_light_skin_tone'] },
+                { emoji: '🤙🏼', shortcodes: ['call_me_hand_medium_light_skin_tone'] },
+                { emoji: '🤙🏽', shortcodes: ['call_me_hand_medium_skin_tone'] },
+                { emoji: '🤙🏾', shortcodes: ['call_me_hand_medium_dark_skin_tone'] },
+                { emoji: '🤙🏿', shortcodes: ['call_me_hand_dark_skin_tone'] },
+                { emoji: '👈🏻', shortcodes: ['backhand_index_pointing_left_light_skin_tone'] },
+                { emoji: '👈🏼', shortcodes: ['backhand_index_pointing_left_medium_light_skin_tone'] },
+                { emoji: '👈🏽', shortcodes: ['backhand_index_pointing_left_medium_skin_tone'] },
+                { emoji: '👈🏾', shortcodes: ['backhand_index_pointing_left_medium_dark_skin_tone'] },
+                { emoji: '👈🏿', shortcodes: ['backhand_index_pointing_left_dark_skin_tone'] },
+                { emoji: '👉🏻', shortcodes: ['backhand_index_pointing_right_light_skin_tone'] },
+                { emoji: '👉🏼', shortcodes: ['backhand_index_pointing_right_medium_light_skin_tone'] },
+                { emoji: '👉🏽', shortcodes: ['backhand_index_pointing_right_medium_skin_tone'] },
+                { emoji: '👉🏾', shortcodes: ['backhand_index_pointing_right_medium_dark_skin_tone'] },
+                { emoji: '👉🏿', shortcodes: ['backhand_index_pointing_right_dark_skin_tone'] },
+                { emoji: '👆🏻', shortcodes: ['backhand_index_pointing_up_light_skin_tone'] },
+                { emoji: '👆🏼', shortcodes: ['backhand_index_pointing_up_medium_light_skin_tone'] },
+                { emoji: '👆🏽', shortcodes: ['backhand_index_pointing_up_medium_skin_tone'] },
+                { emoji: '👆🏾', shortcodes: ['backhand_index_pointing_up_medium_dark_skin_tone'] },
+                { emoji: '👆🏿', shortcodes: ['backhand_index_pointing_up_dark_skin_tone'] },
+                { emoji: '🖕🏻', shortcodes: ['middle_finger_light_skin_tone'] },
+                { emoji: '🖕🏼', shortcodes: ['middle_finger_medium_light_skin_tone'] },
+                { emoji: '🖕🏽', shortcodes: ['middle_finger_medium_skin_tone'] },
+                { emoji: '🖕🏾', shortcodes: ['middle_finger_medium_dark_skin_tone'] },
+                { emoji: '🖕🏿', shortcodes: ['middle_finger_dark_skin_tone'] },
+                { emoji: '👇🏻', shortcodes: ['backhand_index_pointing_down_light_skin_tone'] },
+                { emoji: '👇🏼', shortcodes: ['backhand_index_pointing_down_medium_light_skin_tone'] },
+                { emoji: '👇🏽', shortcodes: ['backhand_index_pointing_down_medium_skin_tone'] },
+                { emoji: '👇🏾', shortcodes: ['backhand_index_pointing_down_medium_dark_skin_tone'] },
+                { emoji: '👇🏿', shortcodes: ['backhand_index_pointing_down_dark_skin_tone'] },
+                { emoji: '☝🏻', shortcodes: ['index_pointing_up_light_skin_tone'] },
+                { emoji: '☝🏼', shortcodes: ['index_pointing_up_medium_light_skin_tone'] },
+                { emoji: '☝🏽', shortcodes: ['index_pointing_up_medium_skin_tone'] },
+                { emoji: '☝🏾', shortcodes: ['index_pointing_up_medium_dark_skin_tone'] },
+                { emoji: '☝🏿', shortcodes: ['index_pointing_up_dark_skin_tone'] },
+                { emoji: '🫵🏻', shortcodes: ['index_pointing_at_the_viewer_light_skin_tone'] },
+                { emoji: '🫵🏼', shortcodes: ['index_pointing_at_the_viewer_medium_light_skin_tone'] },
+                { emoji: '🫵🏽', shortcodes: ['index_pointing_at_the_viewer_medium_skin_tone'] },
+                { emoji: '🫵🏾', shortcodes: ['index_pointing_at_the_viewer_medium_dark_skin_tone'] },
+                { emoji: '🫵🏿', shortcodes: ['index_pointing_at_the_viewer_dark_skin_tone'] },
+                { emoji: '👍🏻', shortcodes: ['thumbs_up_light_skin_tone'] },
+                { emoji: '👍🏼', shortcodes: ['thumbs_up_medium_light_skin_tone'] },
+                { emoji: '👍🏽', shortcodes: ['thumbs_up_medium_skin_tone'] },
+                { emoji: '👍🏾', shortcodes: ['thumbs_up_medium_dark_skin_tone'] },
+                { emoji: '👍🏿', shortcodes: ['thumbs_up_dark_skin_tone'] },
+                { emoji: '👎🏻', shortcodes: ['thumbs_down_light_skin_tone'] },
+                { emoji: '👎🏼', shortcodes: ['thumbs_down_medium_light_skin_tone'] },
+                { emoji: '👎🏽', shortcodes: ['thumbs_down_medium_skin_tone'] },
+                { emoji: '👎🏾', shortcodes: ['thumbs_down_medium_dark_skin_tone'] },
+                { emoji: '👎🏿', shortcodes: ['thumbs_down_dark_skin_tone'] },
+                { emoji: '✊🏻', shortcodes: ['raised_fist_light_skin_tone'] },
+                { emoji: '✊🏼', shortcodes: ['raised_fist_medium_light_skin_tone'] },
+                { emoji: '✊🏽', shortcodes: ['raised_fist_medium_skin_tone'] },
+                { emoji: '✊🏾', shortcodes: ['raised_fist_medium_dark_skin_tone'] },
+                { emoji: '✊🏿', shortcodes: ['raised_fist_dark_skin_tone'] },
+                { emoji: '👊🏻', shortcodes: ['oncoming_fist_light_skin_tone'] },
+                { emoji: '👊🏼', shortcodes: ['oncoming_fist_medium_light_skin_tone'] },
+                { emoji: '👊🏽', shortcodes: ['oncoming_fist_medium_skin_tone'] },
+                { emoji: '👊🏾', shortcodes: ['oncoming_fist_medium_dark_skin_tone'] },
+                { emoji: '👊🏿', shortcodes: ['oncoming_fist_dark_skin_tone'] },
+                { emoji: '🤛🏻', shortcodes: ['left_facing_fist_light_skin_tone'] },
+                { emoji: '🤛🏼', shortcodes: ['left_facing_fist_medium_light_skin_tone'] },
+                { emoji: '🤛🏽', shortcodes: ['left_facing_fist_medium_skin_tone'] },
+                { emoji: '🤛🏾', shortcodes: ['left_facing_fist_medium_dark_skin_tone'] },
+                { emoji: '🤛🏿', shortcodes: ['left_facing_fist_dark_skin_tone'] },
+                { emoji: '🤜🏻', shortcodes: ['right_facing_fist_light_skin_tone'] },
+                { emoji: '🤜🏼', shortcodes: ['right_facing_fist_medium_light_skin_tone'] },
+                { emoji: '🤜🏽', shortcodes: ['right_facing_fist_medium_skin_tone'] },
+                { emoji: '🤜🏾', shortcodes: ['right_facing_fist_medium_dark_skin_tone'] },
+                { emoji: '🤜🏿', shortcodes: ['right_facing_fist_dark_skin_tone'] },
+                { emoji: '👏🏻', shortcodes: ['clapping_hands_light_skin_tone'] },
+                { emoji: '👏🏼', shortcodes: ['clapping_hands_medium_light_skin_tone'] },
+                { emoji: '👏🏽', shortcodes: ['clapping_hands_medium_skin_tone'] },
+                { emoji: '👏🏾', shortcodes: ['clapping_hands_medium_dark_skin_tone'] },
+                { emoji: '👏🏿', shortcodes: ['clapping_hands_dark_skin_tone'] },
+                { emoji: '🙌🏻', shortcodes: ['raising_hands_light_skin_tone'] },
+                { emoji: '🙌🏼', shortcodes: ['raising_hands_medium_light_skin_tone'] },
+                { emoji: '🙌🏽', shortcodes: ['raising_hands_medium_skin_tone'] },
+                { emoji: '🙌🏾', shortcodes: ['raising_hands_medium_dark_skin_tone'] },
+                { emoji: '🙌🏿', shortcodes: ['raising_hands_dark_skin_tone'] },
+                { emoji: '🫶', shortcodes: ['heart_hands'] },
+                { emoji: '🫶🏻', shortcodes: ['heart_hands_light_skin_tone'] },
+                { emoji: '🫶🏼', shortcodes: ['heart_hands_medium_light_skin_tone'] },
+                { emoji: '🫶🏽', shortcodes: ['heart_hands_medium_skin_tone'] },
+                { emoji: '🫶🏾', shortcodes: ['heart_hands_medium_dark_skin_tone'] },
+                { emoji: '🫶🏿', shortcodes: ['heart_hands_dark_skin_tone'] },
+                { emoji: '👐🏻', shortcodes: ['open_hands_light_skin_tone'] },
+                { emoji: '👐🏼', shortcodes: ['open_hands_medium_light_skin_tone'] },
+                { emoji: '👐🏽', shortcodes: ['open_hands_medium_skin_tone'] },
+                { emoji: '👐🏾', shortcodes: ['open_hands_medium_dark_skin_tone'] },
+                { emoji: '👐🏿', shortcodes: ['open_hands_dark_skin_tone'] },
+                { emoji: '🤲🏻', shortcodes: ['palms_up_together_light_skin_tone'] },
+                { emoji: '🤲🏼', shortcodes: ['palms_up_together_medium_light_skin_tone'] },
+                { emoji: '🤲🏽', shortcodes: ['palms_up_together_medium_skin_tone'] },
+                { emoji: '🤲🏾', shortcodes: ['palms_up_together_medium_dark_skin_tone'] },
+                { emoji: '🤲🏿', shortcodes: ['palms_up_together_dark_skin_tone'] },
+                { emoji: '🤝🏻', shortcodes: ['handshake_light_skin_tone'] },
+                { emoji: '🤝🏼', shortcodes: ['handshake_medium_light_skin_tone'] },
+                { emoji: '🤝🏽', shortcodes: ['handshake_medium_skin_tone'] },
+                { emoji: '🤝🏾', shortcodes: ['handshake_medium_dark_skin_tone'] },
+                { emoji: '🤝🏿', shortcodes: ['handshake_dark_skin_tone'] },
+                { emoji: '🫱🏻‍🫲🏼', shortcodes: ['handshake_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🫱🏻‍🫲🏽', shortcodes: ['handshake_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🫱🏻‍🫲🏾', shortcodes: ['handshake_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🫱🏻‍🫲🏿', shortcodes: ['handshake_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🫱🏼‍🫲🏻', shortcodes: ['handshake_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🫱🏼‍🫲🏽', shortcodes: ['handshake_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🫱🏼‍🫲🏾', shortcodes: ['handshake_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🫱🏼‍🫲🏿', shortcodes: ['handshake_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🫱🏽‍🫲🏻', shortcodes: ['handshake_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🫱🏽‍🫲🏼', shortcodes: ['handshake_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🫱🏽‍🫲🏾', shortcodes: ['handshake_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🫱🏽‍🫲🏿', shortcodes: ['handshake_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🫱🏾‍🫲🏻', shortcodes: ['handshake_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🫱🏾‍🫲🏼', shortcodes: ['handshake_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🫱🏾‍🫲🏽', shortcodes: ['handshake_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🫱🏾‍🫲🏿', shortcodes: ['handshake_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🫱🏿‍🫲🏻', shortcodes: ['handshake_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🫱🏿‍🫲🏼', shortcodes: ['handshake_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🫱🏿‍🫲🏽', shortcodes: ['handshake_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🫱🏿‍🫲🏾', shortcodes: ['handshake_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🙏🏻', shortcodes: ['folded_hands_light_skin_tone'] },
+                { emoji: '🙏🏼', shortcodes: ['folded_hands_medium_light_skin_tone'] },
+                { emoji: '🙏🏽', shortcodes: ['folded_hands_medium_skin_tone'] },
+                { emoji: '🙏🏾', shortcodes: ['folded_hands_medium_dark_skin_tone'] },
+                { emoji: '🙏🏿', shortcodes: ['folded_hands_dark_skin_tone'] },
+                { emoji: '✍️', shortcodes: ['writing_hand'] },
+                { emoji: '✍🏻', shortcodes: ['writing_hand_light_skin_tone'] },
+                { emoji: '✍🏼', shortcodes: ['writing_hand_medium_light_skin_tone'] },
+                { emoji: '✍🏽', shortcodes: ['writing_hand_medium_skin_tone'] },
+                { emoji: '✍🏾', shortcodes: ['writing_hand_medium_dark_skin_tone'] },
+                { emoji: '✍🏿', shortcodes: ['writing_hand_dark_skin_tone'] },
+                { emoji: '💅🏻', shortcodes: ['nail_polish_light_skin_tone'] },
+                { emoji: '💅🏼', shortcodes: ['nail_polish_medium_light_skin_tone'] },
+                { emoji: '💅🏽', shortcodes: ['nail_polish_medium_skin_tone'] },
+                { emoji: '💅🏾', shortcodes: ['nail_polish_medium_dark_skin_tone'] },
+                { emoji: '💅🏿', shortcodes: ['nail_polish_dark_skin_tone'] },
+                { emoji: '🤳🏻', shortcodes: ['selfie_light_skin_tone'] },
+                { emoji: '🤳🏼', shortcodes: ['selfie_medium_light_skin_tone'] },
+                { emoji: '🤳🏽', shortcodes: ['selfie_medium_skin_tone'] },
+                { emoji: '🤳🏾', shortcodes: ['selfie_medium_dark_skin_tone'] },
+                { emoji: '🤳🏿', shortcodes: ['selfie_dark_skin_tone'] },
+                { emoji: '🫹', shortcodes: ['leftwards_thumb_sign'] },
+                { emoji: '🫹🏻', shortcodes: ['leftwards_thumb_sign_light_skin_tone'] },
+                { emoji: '🫹🏼', shortcodes: ['leftwards_thumb_sign_medium_light_skin_tone'] },
+                { emoji: '🫹🏽', shortcodes: ['leftwards_thumb_sign_medium_skin_tone'] },
+                { emoji: '🫹🏾', shortcodes: ['leftwards_thumb_sign_medium_dark_skin_tone'] },
+                { emoji: '🫹🏿', shortcodes: ['leftwards_thumb_sign_dark_skin_tone'] },
+                { emoji: '🫺', shortcodes: ['rightwards_thumb_sign'] },
+                { emoji: '🫺🏻', shortcodes: ['rightwards_thumb_sign_light_skin_tone'] },
+                { emoji: '🫺🏼', shortcodes: ['rightwards_thumb_sign_medium_light_skin_tone'] },
+                { emoji: '🫺🏽', shortcodes: ['rightwards_thumb_sign_medium_skin_tone'] },
+                { emoji: '🫺🏾', shortcodes: ['rightwards_thumb_sign_medium_dark_skin_tone'] },
+                { emoji: '🫺🏿', shortcodes: ['rightwards_thumb_sign_dark_skin_tone'] },
+],
 
             peopleAndEmotionsExtra: [
                 { emoji: '🥰', shortcodes: ['smiling_face_with_3_hearts'] },
@@ -495,8 +766,2043 @@
                 { emoji: '🧔‍♀️', shortcodes: ['bearded_woman'] },
                 { emoji: '🧔', shortcodes: ['bearded_person'] },
                 { emoji: '🧔‍♂️', shortcodes: ['bearded_man'] },
-                { emoji: '👣', shortcodes: ['footprints'] }
-            ],
+                { emoji: '👣', shortcodes: ['footprints'] },
+                { emoji: '💪🏻', shortcodes: ['flexed_biceps_light_skin_tone'] },
+                { emoji: '💪🏼', shortcodes: ['flexed_biceps_medium_light_skin_tone'] },
+                { emoji: '💪🏽', shortcodes: ['flexed_biceps_medium_skin_tone'] },
+                { emoji: '💪🏾', shortcodes: ['flexed_biceps_medium_dark_skin_tone'] },
+                { emoji: '💪🏿', shortcodes: ['flexed_biceps_dark_skin_tone'] },
+                { emoji: '🦵🏻', shortcodes: ['leg_light_skin_tone'] },
+                { emoji: '🦵🏼', shortcodes: ['leg_medium_light_skin_tone'] },
+                { emoji: '🦵🏽', shortcodes: ['leg_medium_skin_tone'] },
+                { emoji: '🦵🏾', shortcodes: ['leg_medium_dark_skin_tone'] },
+                { emoji: '🦵🏿', shortcodes: ['leg_dark_skin_tone'] },
+                { emoji: '🦶🏻', shortcodes: ['foot_light_skin_tone'] },
+                { emoji: '🦶🏼', shortcodes: ['foot_medium_light_skin_tone'] },
+                { emoji: '🦶🏽', shortcodes: ['foot_medium_skin_tone'] },
+                { emoji: '🦶🏾', shortcodes: ['foot_medium_dark_skin_tone'] },
+                { emoji: '🦶🏿', shortcodes: ['foot_dark_skin_tone'] },
+                { emoji: '👂🏻', shortcodes: ['ear_light_skin_tone'] },
+                { emoji: '👂🏼', shortcodes: ['ear_medium_light_skin_tone'] },
+                { emoji: '👂🏽', shortcodes: ['ear_medium_skin_tone'] },
+                { emoji: '👂🏾', shortcodes: ['ear_medium_dark_skin_tone'] },
+                { emoji: '👂🏿', shortcodes: ['ear_dark_skin_tone'] },
+                { emoji: '🦻🏻', shortcodes: ['ear_with_hearing_aid_light_skin_tone'] },
+                { emoji: '🦻🏼', shortcodes: ['ear_with_hearing_aid_medium_light_skin_tone'] },
+                { emoji: '🦻🏽', shortcodes: ['ear_with_hearing_aid_medium_skin_tone'] },
+                { emoji: '🦻🏾', shortcodes: ['ear_with_hearing_aid_medium_dark_skin_tone'] },
+                { emoji: '🦻🏿', shortcodes: ['ear_with_hearing_aid_dark_skin_tone'] },
+                { emoji: '👃🏻', shortcodes: ['nose_light_skin_tone'] },
+                { emoji: '👃🏼', shortcodes: ['nose_medium_light_skin_tone'] },
+                { emoji: '👃🏽', shortcodes: ['nose_medium_skin_tone'] },
+                { emoji: '👃🏾', shortcodes: ['nose_medium_dark_skin_tone'] },
+                { emoji: '👃🏿', shortcodes: ['nose_dark_skin_tone'] },
+                { emoji: '👶🏻', shortcodes: ['baby_light_skin_tone'] },
+                { emoji: '👶🏼', shortcodes: ['baby_medium_light_skin_tone'] },
+                { emoji: '👶🏽', shortcodes: ['baby_medium_skin_tone'] },
+                { emoji: '👶🏾', shortcodes: ['baby_medium_dark_skin_tone'] },
+                { emoji: '👶🏿', shortcodes: ['baby_dark_skin_tone'] },
+                { emoji: '🧒🏻', shortcodes: ['child_light_skin_tone'] },
+                { emoji: '🧒🏼', shortcodes: ['child_medium_light_skin_tone'] },
+                { emoji: '🧒🏽', shortcodes: ['child_medium_skin_tone'] },
+                { emoji: '🧒🏾', shortcodes: ['child_medium_dark_skin_tone'] },
+                { emoji: '🧒🏿', shortcodes: ['child_dark_skin_tone'] },
+                { emoji: '👦🏻', shortcodes: ['boy_light_skin_tone'] },
+                { emoji: '👦🏼', shortcodes: ['boy_medium_light_skin_tone'] },
+                { emoji: '👦🏽', shortcodes: ['boy_medium_skin_tone'] },
+                { emoji: '👦🏾', shortcodes: ['boy_medium_dark_skin_tone'] },
+                { emoji: '👦🏿', shortcodes: ['boy_dark_skin_tone'] },
+                { emoji: '👧🏻', shortcodes: ['girl_light_skin_tone'] },
+                { emoji: '👧🏼', shortcodes: ['girl_medium_light_skin_tone'] },
+                { emoji: '👧🏽', shortcodes: ['girl_medium_skin_tone'] },
+                { emoji: '👧🏾', shortcodes: ['girl_medium_dark_skin_tone'] },
+                { emoji: '👧🏿', shortcodes: ['girl_dark_skin_tone'] },
+                { emoji: '🧑🏻', shortcodes: ['person_light_skin_tone'] },
+                { emoji: '🧑🏼', shortcodes: ['person_medium_light_skin_tone'] },
+                { emoji: '🧑🏽', shortcodes: ['person_medium_skin_tone'] },
+                { emoji: '🧑🏾', shortcodes: ['person_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿', shortcodes: ['person_dark_skin_tone'] },
+                { emoji: '👱🏻', shortcodes: ['person_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏼', shortcodes: ['person_medium_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏽', shortcodes: ['person_medium_skin_tone_blond_hair'] },
+                { emoji: '👱🏾', shortcodes: ['person_medium_dark_skin_tone_blond_hair'] },
+                { emoji: '👱🏿', shortcodes: ['person_dark_skin_tone_blond_hair'] },
+                { emoji: '👨🏻', shortcodes: ['man_light_skin_tone'] },
+                { emoji: '👨🏼', shortcodes: ['man_medium_light_skin_tone'] },
+                { emoji: '👨🏽', shortcodes: ['man_medium_skin_tone'] },
+                { emoji: '👨🏾', shortcodes: ['man_medium_dark_skin_tone'] },
+                { emoji: '👨🏿', shortcodes: ['man_dark_skin_tone'] },
+                { emoji: '🧔🏻', shortcodes: ['person_light_skin_tone_beard'] },
+                { emoji: '🧔🏼', shortcodes: ['person_medium_light_skin_tone_beard'] },
+                { emoji: '🧔🏽', shortcodes: ['person_medium_skin_tone_beard'] },
+                { emoji: '🧔🏾', shortcodes: ['person_medium_dark_skin_tone_beard'] },
+                { emoji: '🧔🏿', shortcodes: ['person_dark_skin_tone_beard'] },
+                { emoji: '🧔🏻‍♂️', shortcodes: ['man_light_skin_tone_beard'] },
+                { emoji: '🧔🏼‍♂️', shortcodes: ['man_medium_light_skin_tone_beard'] },
+                { emoji: '🧔🏽‍♂️', shortcodes: ['man_medium_skin_tone_beard'] },
+                { emoji: '🧔🏾‍♂️', shortcodes: ['man_medium_dark_skin_tone_beard'] },
+                { emoji: '🧔🏿‍♂️', shortcodes: ['man_dark_skin_tone_beard'] },
+                { emoji: '🧔🏻‍♀️', shortcodes: ['woman_light_skin_tone_beard'] },
+                { emoji: '🧔🏼‍♀️', shortcodes: ['woman_medium_light_skin_tone_beard'] },
+                { emoji: '🧔🏽‍♀️', shortcodes: ['woman_medium_skin_tone_beard'] },
+                { emoji: '🧔🏾‍♀️', shortcodes: ['woman_medium_dark_skin_tone_beard'] },
+                { emoji: '🧔🏿‍♀️', shortcodes: ['woman_dark_skin_tone_beard'] },
+                { emoji: '👨🏻‍🦰', shortcodes: ['man_light_skin_tone_red_hair'] },
+                { emoji: '👨🏼‍🦰', shortcodes: ['man_medium_light_skin_tone_red_hair'] },
+                { emoji: '👨🏽‍🦰', shortcodes: ['man_medium_skin_tone_red_hair'] },
+                { emoji: '👨🏾‍🦰', shortcodes: ['man_medium_dark_skin_tone_red_hair'] },
+                { emoji: '👨🏿‍🦰', shortcodes: ['man_dark_skin_tone_red_hair'] },
+                { emoji: '👨🏻‍🦱', shortcodes: ['man_light_skin_tone_curly_hair'] },
+                { emoji: '👨🏼‍🦱', shortcodes: ['man_medium_light_skin_tone_curly_hair'] },
+                { emoji: '👨🏽‍🦱', shortcodes: ['man_medium_skin_tone_curly_hair'] },
+                { emoji: '👨🏾‍🦱', shortcodes: ['man_medium_dark_skin_tone_curly_hair'] },
+                { emoji: '👨🏿‍🦱', shortcodes: ['man_dark_skin_tone_curly_hair'] },
+                { emoji: '👨🏻‍🦳', shortcodes: ['man_light_skin_tone_white_hair'] },
+                { emoji: '👨🏼‍🦳', shortcodes: ['man_medium_light_skin_tone_white_hair'] },
+                { emoji: '👨🏽‍🦳', shortcodes: ['man_medium_skin_tone_white_hair'] },
+                { emoji: '👨🏾‍🦳', shortcodes: ['man_medium_dark_skin_tone_white_hair'] },
+                { emoji: '👨🏿‍🦳', shortcodes: ['man_dark_skin_tone_white_hair'] },
+                { emoji: '👨🏻‍🦲', shortcodes: ['man_light_skin_tone_bald'] },
+                { emoji: '👨🏼‍🦲', shortcodes: ['man_medium_light_skin_tone_bald'] },
+                { emoji: '👨🏽‍🦲', shortcodes: ['man_medium_skin_tone_bald'] },
+                { emoji: '👨🏾‍🦲', shortcodes: ['man_medium_dark_skin_tone_bald'] },
+                { emoji: '👨🏿‍🦲', shortcodes: ['man_dark_skin_tone_bald'] },
+                { emoji: '👩🏻', shortcodes: ['woman_light_skin_tone'] },
+                { emoji: '👩🏼', shortcodes: ['woman_medium_light_skin_tone'] },
+                { emoji: '👩🏽', shortcodes: ['woman_medium_skin_tone'] },
+                { emoji: '👩🏾', shortcodes: ['woman_medium_dark_skin_tone'] },
+                { emoji: '👩🏿', shortcodes: ['woman_dark_skin_tone'] },
+                { emoji: '👩🏻‍🦰', shortcodes: ['woman_light_skin_tone_red_hair'] },
+                { emoji: '👩🏼‍🦰', shortcodes: ['woman_medium_light_skin_tone_red_hair'] },
+                { emoji: '👩🏽‍🦰', shortcodes: ['woman_medium_skin_tone_red_hair'] },
+                { emoji: '👩🏾‍🦰', shortcodes: ['woman_medium_dark_skin_tone_red_hair'] },
+                { emoji: '👩🏿‍🦰', shortcodes: ['woman_dark_skin_tone_red_hair'] },
+                { emoji: '🧑🏻‍🦰', shortcodes: ['person_light_skin_tone_red_hair'] },
+                { emoji: '🧑🏼‍🦰', shortcodes: ['person_medium_light_skin_tone_red_hair'] },
+                { emoji: '🧑🏽‍🦰', shortcodes: ['person_medium_skin_tone_red_hair'] },
+                { emoji: '🧑🏾‍🦰', shortcodes: ['person_medium_dark_skin_tone_red_hair'] },
+                { emoji: '🧑🏿‍🦰', shortcodes: ['person_dark_skin_tone_red_hair'] },
+                { emoji: '👩🏻‍🦱', shortcodes: ['woman_light_skin_tone_curly_hair'] },
+                { emoji: '👩🏼‍🦱', shortcodes: ['woman_medium_light_skin_tone_curly_hair'] },
+                { emoji: '👩🏽‍🦱', shortcodes: ['woman_medium_skin_tone_curly_hair'] },
+                { emoji: '👩🏾‍🦱', shortcodes: ['woman_medium_dark_skin_tone_curly_hair'] },
+                { emoji: '👩🏿‍🦱', shortcodes: ['woman_dark_skin_tone_curly_hair'] },
+                { emoji: '🧑🏻‍🦱', shortcodes: ['person_light_skin_tone_curly_hair'] },
+                { emoji: '🧑🏼‍🦱', shortcodes: ['person_medium_light_skin_tone_curly_hair'] },
+                { emoji: '🧑🏽‍🦱', shortcodes: ['person_medium_skin_tone_curly_hair'] },
+                { emoji: '🧑🏾‍🦱', shortcodes: ['person_medium_dark_skin_tone_curly_hair'] },
+                { emoji: '🧑🏿‍🦱', shortcodes: ['person_dark_skin_tone_curly_hair'] },
+                { emoji: '👩🏻‍🦳', shortcodes: ['woman_light_skin_tone_white_hair'] },
+                { emoji: '👩🏼‍🦳', shortcodes: ['woman_medium_light_skin_tone_white_hair'] },
+                { emoji: '👩🏽‍🦳', shortcodes: ['woman_medium_skin_tone_white_hair'] },
+                { emoji: '👩🏾‍🦳', shortcodes: ['woman_medium_dark_skin_tone_white_hair'] },
+                { emoji: '👩🏿‍🦳', shortcodes: ['woman_dark_skin_tone_white_hair'] },
+                { emoji: '🧑🏻‍🦳', shortcodes: ['person_light_skin_tone_white_hair'] },
+                { emoji: '🧑🏼‍🦳', shortcodes: ['person_medium_light_skin_tone_white_hair'] },
+                { emoji: '🧑🏽‍🦳', shortcodes: ['person_medium_skin_tone_white_hair'] },
+                { emoji: '🧑🏾‍🦳', shortcodes: ['person_medium_dark_skin_tone_white_hair'] },
+                { emoji: '🧑🏿‍🦳', shortcodes: ['person_dark_skin_tone_white_hair'] },
+                { emoji: '👩🏻‍🦲', shortcodes: ['woman_light_skin_tone_bald'] },
+                { emoji: '👩🏼‍🦲', shortcodes: ['woman_medium_light_skin_tone_bald'] },
+                { emoji: '👩🏽‍🦲', shortcodes: ['woman_medium_skin_tone_bald'] },
+                { emoji: '👩🏾‍🦲', shortcodes: ['woman_medium_dark_skin_tone_bald'] },
+                { emoji: '👩🏿‍🦲', shortcodes: ['woman_dark_skin_tone_bald'] },
+                { emoji: '🧑🏻‍🦲', shortcodes: ['person_light_skin_tone_bald'] },
+                { emoji: '🧑🏼‍🦲', shortcodes: ['person_medium_light_skin_tone_bald'] },
+                { emoji: '🧑🏽‍🦲', shortcodes: ['person_medium_skin_tone_bald'] },
+                { emoji: '🧑🏾‍🦲', shortcodes: ['person_medium_dark_skin_tone_bald'] },
+                { emoji: '🧑🏿‍🦲', shortcodes: ['person_dark_skin_tone_bald'] },
+                { emoji: '👱🏻‍♀️', shortcodes: ['woman_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏼‍♀️', shortcodes: ['woman_medium_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏽‍♀️', shortcodes: ['woman_medium_skin_tone_blond_hair'] },
+                { emoji: '👱🏾‍♀️', shortcodes: ['woman_medium_dark_skin_tone_blond_hair'] },
+                { emoji: '👱🏿‍♀️', shortcodes: ['woman_dark_skin_tone_blond_hair'] },
+                { emoji: '👱🏻‍♂️', shortcodes: ['man_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏼‍♂️', shortcodes: ['man_medium_light_skin_tone_blond_hair'] },
+                { emoji: '👱🏽‍♂️', shortcodes: ['man_medium_skin_tone_blond_hair'] },
+                { emoji: '👱🏾‍♂️', shortcodes: ['man_medium_dark_skin_tone_blond_hair'] },
+                { emoji: '👱🏿‍♂️', shortcodes: ['man_dark_skin_tone_blond_hair'] },
+                { emoji: '🧓🏻', shortcodes: ['older_person_light_skin_tone'] },
+                { emoji: '🧓🏼', shortcodes: ['older_person_medium_light_skin_tone'] },
+                { emoji: '🧓🏽', shortcodes: ['older_person_medium_skin_tone'] },
+                { emoji: '🧓🏾', shortcodes: ['older_person_medium_dark_skin_tone'] },
+                { emoji: '🧓🏿', shortcodes: ['older_person_dark_skin_tone'] },
+                { emoji: '👴🏻', shortcodes: ['old_man_light_skin_tone'] },
+                { emoji: '👴🏼', shortcodes: ['old_man_medium_light_skin_tone'] },
+                { emoji: '👴🏽', shortcodes: ['old_man_medium_skin_tone'] },
+                { emoji: '👴🏾', shortcodes: ['old_man_medium_dark_skin_tone'] },
+                { emoji: '👴🏿', shortcodes: ['old_man_dark_skin_tone'] },
+                { emoji: '👵🏻', shortcodes: ['old_woman_light_skin_tone'] },
+                { emoji: '👵🏼', shortcodes: ['old_woman_medium_light_skin_tone'] },
+                { emoji: '👵🏽', shortcodes: ['old_woman_medium_skin_tone'] },
+                { emoji: '👵🏾', shortcodes: ['old_woman_medium_dark_skin_tone'] },
+                { emoji: '👵🏿', shortcodes: ['old_woman_dark_skin_tone'] },
+                { emoji: '🙍', shortcodes: ['person_frowning'] },
+                { emoji: '🙍🏻', shortcodes: ['person_frowning_light_skin_tone'] },
+                { emoji: '🙍🏼', shortcodes: ['person_frowning_medium_light_skin_tone'] },
+                { emoji: '🙍🏽', shortcodes: ['person_frowning_medium_skin_tone'] },
+                { emoji: '🙍🏾', shortcodes: ['person_frowning_medium_dark_skin_tone'] },
+                { emoji: '🙍🏿', shortcodes: ['person_frowning_dark_skin_tone'] },
+                { emoji: '🙍‍♂️', shortcodes: ['man_frowning'] },
+                { emoji: '🙍🏻‍♂️', shortcodes: ['man_frowning_light_skin_tone'] },
+                { emoji: '🙍🏼‍♂️', shortcodes: ['man_frowning_medium_light_skin_tone'] },
+                { emoji: '🙍🏽‍♂️', shortcodes: ['man_frowning_medium_skin_tone'] },
+                { emoji: '🙍🏾‍♂️', shortcodes: ['man_frowning_medium_dark_skin_tone'] },
+                { emoji: '🙍🏿‍♂️', shortcodes: ['man_frowning_dark_skin_tone'] },
+                { emoji: '🙍‍♀️', shortcodes: ['woman_frowning'] },
+                { emoji: '🙍🏻‍♀️', shortcodes: ['woman_frowning_light_skin_tone'] },
+                { emoji: '🙍🏼‍♀️', shortcodes: ['woman_frowning_medium_light_skin_tone'] },
+                { emoji: '🙍🏽‍♀️', shortcodes: ['woman_frowning_medium_skin_tone'] },
+                { emoji: '🙍🏾‍♀️', shortcodes: ['woman_frowning_medium_dark_skin_tone'] },
+                { emoji: '🙍🏿‍♀️', shortcodes: ['woman_frowning_dark_skin_tone'] },
+                { emoji: '🙎', shortcodes: ['person_pouting'] },
+                { emoji: '🙎🏻', shortcodes: ['person_pouting_light_skin_tone'] },
+                { emoji: '🙎🏼', shortcodes: ['person_pouting_medium_light_skin_tone'] },
+                { emoji: '🙎🏽', shortcodes: ['person_pouting_medium_skin_tone'] },
+                { emoji: '🙎🏾', shortcodes: ['person_pouting_medium_dark_skin_tone'] },
+                { emoji: '🙎🏿', shortcodes: ['person_pouting_dark_skin_tone'] },
+                { emoji: '🙎‍♂️', shortcodes: ['man_pouting'] },
+                { emoji: '🙎🏻‍♂️', shortcodes: ['man_pouting_light_skin_tone'] },
+                { emoji: '🙎🏼‍♂️', shortcodes: ['man_pouting_medium_light_skin_tone'] },
+                { emoji: '🙎🏽‍♂️', shortcodes: ['man_pouting_medium_skin_tone'] },
+                { emoji: '🙎🏾‍♂️', shortcodes: ['man_pouting_medium_dark_skin_tone'] },
+                { emoji: '🙎🏿‍♂️', shortcodes: ['man_pouting_dark_skin_tone'] },
+                { emoji: '🙎‍♀️', shortcodes: ['woman_pouting'] },
+                { emoji: '🙎🏻‍♀️', shortcodes: ['woman_pouting_light_skin_tone'] },
+                { emoji: '🙎🏼‍♀️', shortcodes: ['woman_pouting_medium_light_skin_tone'] },
+                { emoji: '🙎🏽‍♀️', shortcodes: ['woman_pouting_medium_skin_tone'] },
+                { emoji: '🙎🏾‍♀️', shortcodes: ['woman_pouting_medium_dark_skin_tone'] },
+                { emoji: '🙎🏿‍♀️', shortcodes: ['woman_pouting_dark_skin_tone'] },
+                { emoji: '🙅', shortcodes: ['person_gesturing_no'] },
+                { emoji: '🙅🏻', shortcodes: ['person_gesturing_no_light_skin_tone'] },
+                { emoji: '🙅🏼', shortcodes: ['person_gesturing_no_medium_light_skin_tone'] },
+                { emoji: '🙅🏽', shortcodes: ['person_gesturing_no_medium_skin_tone'] },
+                { emoji: '🙅🏾', shortcodes: ['person_gesturing_no_medium_dark_skin_tone'] },
+                { emoji: '🙅🏿', shortcodes: ['person_gesturing_no_dark_skin_tone'] },
+                { emoji: '🙅‍♂️', shortcodes: ['man_gesturing_no'] },
+                { emoji: '🙅🏻‍♂️', shortcodes: ['man_gesturing_no_light_skin_tone'] },
+                { emoji: '🙅🏼‍♂️', shortcodes: ['man_gesturing_no_medium_light_skin_tone'] },
+                { emoji: '🙅🏽‍♂️', shortcodes: ['man_gesturing_no_medium_skin_tone'] },
+                { emoji: '🙅🏾‍♂️', shortcodes: ['man_gesturing_no_medium_dark_skin_tone'] },
+                { emoji: '🙅🏿‍♂️', shortcodes: ['man_gesturing_no_dark_skin_tone'] },
+                { emoji: '🙅‍♀️', shortcodes: ['woman_gesturing_no'] },
+                { emoji: '🙅🏻‍♀️', shortcodes: ['woman_gesturing_no_light_skin_tone'] },
+                { emoji: '🙅🏼‍♀️', shortcodes: ['woman_gesturing_no_medium_light_skin_tone'] },
+                { emoji: '🙅🏽‍♀️', shortcodes: ['woman_gesturing_no_medium_skin_tone'] },
+                { emoji: '🙅🏾‍♀️', shortcodes: ['woman_gesturing_no_medium_dark_skin_tone'] },
+                { emoji: '🙅🏿‍♀️', shortcodes: ['woman_gesturing_no_dark_skin_tone'] },
+                { emoji: '🙆', shortcodes: ['person_gesturing_ok'] },
+                { emoji: '🙆🏻', shortcodes: ['person_gesturing_ok_light_skin_tone'] },
+                { emoji: '🙆🏼', shortcodes: ['person_gesturing_ok_medium_light_skin_tone'] },
+                { emoji: '🙆🏽', shortcodes: ['person_gesturing_ok_medium_skin_tone'] },
+                { emoji: '🙆🏾', shortcodes: ['person_gesturing_ok_medium_dark_skin_tone'] },
+                { emoji: '🙆🏿', shortcodes: ['person_gesturing_ok_dark_skin_tone'] },
+                { emoji: '🙆‍♂️', shortcodes: ['man_gesturing_ok'] },
+                { emoji: '🙆🏻‍♂️', shortcodes: ['man_gesturing_ok_light_skin_tone'] },
+                { emoji: '🙆🏼‍♂️', shortcodes: ['man_gesturing_ok_medium_light_skin_tone'] },
+                { emoji: '🙆🏽‍♂️', shortcodes: ['man_gesturing_ok_medium_skin_tone'] },
+                { emoji: '🙆🏾‍♂️', shortcodes: ['man_gesturing_ok_medium_dark_skin_tone'] },
+                { emoji: '🙆🏿‍♂️', shortcodes: ['man_gesturing_ok_dark_skin_tone'] },
+                { emoji: '🙆‍♀️', shortcodes: ['woman_gesturing_ok'] },
+                { emoji: '🙆🏻‍♀️', shortcodes: ['woman_gesturing_ok_light_skin_tone'] },
+                { emoji: '🙆🏼‍♀️', shortcodes: ['woman_gesturing_ok_medium_light_skin_tone'] },
+                { emoji: '🙆🏽‍♀️', shortcodes: ['woman_gesturing_ok_medium_skin_tone'] },
+                { emoji: '🙆🏾‍♀️', shortcodes: ['woman_gesturing_ok_medium_dark_skin_tone'] },
+                { emoji: '🙆🏿‍♀️', shortcodes: ['woman_gesturing_ok_dark_skin_tone'] },
+                { emoji: '💁', shortcodes: ['person_tipping_hand'] },
+                { emoji: '💁🏻', shortcodes: ['person_tipping_hand_light_skin_tone'] },
+                { emoji: '💁🏼', shortcodes: ['person_tipping_hand_medium_light_skin_tone'] },
+                { emoji: '💁🏽', shortcodes: ['person_tipping_hand_medium_skin_tone'] },
+                { emoji: '💁🏾', shortcodes: ['person_tipping_hand_medium_dark_skin_tone'] },
+                { emoji: '💁🏿', shortcodes: ['person_tipping_hand_dark_skin_tone'] },
+                { emoji: '💁‍♂️', shortcodes: ['man_tipping_hand'] },
+                { emoji: '💁🏻‍♂️', shortcodes: ['man_tipping_hand_light_skin_tone'] },
+                { emoji: '💁🏼‍♂️', shortcodes: ['man_tipping_hand_medium_light_skin_tone'] },
+                { emoji: '💁🏽‍♂️', shortcodes: ['man_tipping_hand_medium_skin_tone'] },
+                { emoji: '💁🏾‍♂️', shortcodes: ['man_tipping_hand_medium_dark_skin_tone'] },
+                { emoji: '💁🏿‍♂️', shortcodes: ['man_tipping_hand_dark_skin_tone'] },
+                { emoji: '💁‍♀️', shortcodes: ['woman_tipping_hand'] },
+                { emoji: '💁🏻‍♀️', shortcodes: ['woman_tipping_hand_light_skin_tone'] },
+                { emoji: '💁🏼‍♀️', shortcodes: ['woman_tipping_hand_medium_light_skin_tone'] },
+                { emoji: '💁🏽‍♀️', shortcodes: ['woman_tipping_hand_medium_skin_tone'] },
+                { emoji: '💁🏾‍♀️', shortcodes: ['woman_tipping_hand_medium_dark_skin_tone'] },
+                { emoji: '💁🏿‍♀️', shortcodes: ['woman_tipping_hand_dark_skin_tone'] },
+                { emoji: '🙋', shortcodes: ['person_raising_hand'] },
+                { emoji: '🙋🏻', shortcodes: ['person_raising_hand_light_skin_tone'] },
+                { emoji: '🙋🏼', shortcodes: ['person_raising_hand_medium_light_skin_tone'] },
+                { emoji: '🙋🏽', shortcodes: ['person_raising_hand_medium_skin_tone'] },
+                { emoji: '🙋🏾', shortcodes: ['person_raising_hand_medium_dark_skin_tone'] },
+                { emoji: '🙋🏿', shortcodes: ['person_raising_hand_dark_skin_tone'] },
+                { emoji: '🙋‍♂️', shortcodes: ['man_raising_hand'] },
+                { emoji: '🙋🏻‍♂️', shortcodes: ['man_raising_hand_light_skin_tone'] },
+                { emoji: '🙋🏼‍♂️', shortcodes: ['man_raising_hand_medium_light_skin_tone'] },
+                { emoji: '🙋🏽‍♂️', shortcodes: ['man_raising_hand_medium_skin_tone'] },
+                { emoji: '🙋🏾‍♂️', shortcodes: ['man_raising_hand_medium_dark_skin_tone'] },
+                { emoji: '🙋🏿‍♂️', shortcodes: ['man_raising_hand_dark_skin_tone'] },
+                { emoji: '🙋‍♀️', shortcodes: ['woman_raising_hand'] },
+                { emoji: '🙋🏻‍♀️', shortcodes: ['woman_raising_hand_light_skin_tone'] },
+                { emoji: '🙋🏼‍♀️', shortcodes: ['woman_raising_hand_medium_light_skin_tone'] },
+                { emoji: '🙋🏽‍♀️', shortcodes: ['woman_raising_hand_medium_skin_tone'] },
+                { emoji: '🙋🏾‍♀️', shortcodes: ['woman_raising_hand_medium_dark_skin_tone'] },
+                { emoji: '🙋🏿‍♀️', shortcodes: ['woman_raising_hand_dark_skin_tone'] },
+                { emoji: '🧏', shortcodes: ['deaf_person'] },
+                { emoji: '🧏🏻', shortcodes: ['deaf_person_light_skin_tone'] },
+                { emoji: '🧏🏼', shortcodes: ['deaf_person_medium_light_skin_tone'] },
+                { emoji: '🧏🏽', shortcodes: ['deaf_person_medium_skin_tone'] },
+                { emoji: '🧏🏾', shortcodes: ['deaf_person_medium_dark_skin_tone'] },
+                { emoji: '🧏🏿', shortcodes: ['deaf_person_dark_skin_tone'] },
+                { emoji: '🧏‍♂️', shortcodes: ['deaf_man'] },
+                { emoji: '🧏🏻‍♂️', shortcodes: ['deaf_man_light_skin_tone'] },
+                { emoji: '🧏🏼‍♂️', shortcodes: ['deaf_man_medium_light_skin_tone'] },
+                { emoji: '🧏🏽‍♂️', shortcodes: ['deaf_man_medium_skin_tone'] },
+                { emoji: '🧏🏾‍♂️', shortcodes: ['deaf_man_medium_dark_skin_tone'] },
+                { emoji: '🧏🏿‍♂️', shortcodes: ['deaf_man_dark_skin_tone'] },
+                { emoji: '🧏‍♀️', shortcodes: ['deaf_woman'] },
+                { emoji: '🧏🏻‍♀️', shortcodes: ['deaf_woman_light_skin_tone'] },
+                { emoji: '🧏🏼‍♀️', shortcodes: ['deaf_woman_medium_light_skin_tone'] },
+                { emoji: '🧏🏽‍♀️', shortcodes: ['deaf_woman_medium_skin_tone'] },
+                { emoji: '🧏🏾‍♀️', shortcodes: ['deaf_woman_medium_dark_skin_tone'] },
+                { emoji: '🧏🏿‍♀️', shortcodes: ['deaf_woman_dark_skin_tone'] },
+                { emoji: '🙇', shortcodes: ['person_bowing'] },
+                { emoji: '🙇🏻', shortcodes: ['person_bowing_light_skin_tone'] },
+                { emoji: '🙇🏼', shortcodes: ['person_bowing_medium_light_skin_tone'] },
+                { emoji: '🙇🏽', shortcodes: ['person_bowing_medium_skin_tone'] },
+                { emoji: '🙇🏾', shortcodes: ['person_bowing_medium_dark_skin_tone'] },
+                { emoji: '🙇🏿', shortcodes: ['person_bowing_dark_skin_tone'] },
+                { emoji: '🙇‍♂️', shortcodes: ['man_bowing'] },
+                { emoji: '🙇🏻‍♂️', shortcodes: ['man_bowing_light_skin_tone'] },
+                { emoji: '🙇🏼‍♂️', shortcodes: ['man_bowing_medium_light_skin_tone'] },
+                { emoji: '🙇🏽‍♂️', shortcodes: ['man_bowing_medium_skin_tone'] },
+                { emoji: '🙇🏾‍♂️', shortcodes: ['man_bowing_medium_dark_skin_tone'] },
+                { emoji: '🙇🏿‍♂️', shortcodes: ['man_bowing_dark_skin_tone'] },
+                { emoji: '🙇‍♀️', shortcodes: ['woman_bowing'] },
+                { emoji: '🙇🏻‍♀️', shortcodes: ['woman_bowing_light_skin_tone'] },
+                { emoji: '🙇🏼‍♀️', shortcodes: ['woman_bowing_medium_light_skin_tone'] },
+                { emoji: '🙇🏽‍♀️', shortcodes: ['woman_bowing_medium_skin_tone'] },
+                { emoji: '🙇🏾‍♀️', shortcodes: ['woman_bowing_medium_dark_skin_tone'] },
+                { emoji: '🙇🏿‍♀️', shortcodes: ['woman_bowing_dark_skin_tone'] },
+                { emoji: '🤦🏻', shortcodes: ['person_facepalming_light_skin_tone'] },
+                { emoji: '🤦🏼', shortcodes: ['person_facepalming_medium_light_skin_tone'] },
+                { emoji: '🤦🏽', shortcodes: ['person_facepalming_medium_skin_tone'] },
+                { emoji: '🤦🏾', shortcodes: ['person_facepalming_medium_dark_skin_tone'] },
+                { emoji: '🤦🏿', shortcodes: ['person_facepalming_dark_skin_tone'] },
+                { emoji: '🤦‍♂️', shortcodes: ['man_facepalming'] },
+                { emoji: '🤦🏻‍♂️', shortcodes: ['man_facepalming_light_skin_tone'] },
+                { emoji: '🤦🏼‍♂️', shortcodes: ['man_facepalming_medium_light_skin_tone'] },
+                { emoji: '🤦🏽‍♂️', shortcodes: ['man_facepalming_medium_skin_tone'] },
+                { emoji: '🤦🏾‍♂️', shortcodes: ['man_facepalming_medium_dark_skin_tone'] },
+                { emoji: '🤦🏿‍♂️', shortcodes: ['man_facepalming_dark_skin_tone'] },
+                { emoji: '🤦‍♀️', shortcodes: ['woman_facepalming'] },
+                { emoji: '🤦🏻‍♀️', shortcodes: ['woman_facepalming_light_skin_tone'] },
+                { emoji: '🤦🏼‍♀️', shortcodes: ['woman_facepalming_medium_light_skin_tone'] },
+                { emoji: '🤦🏽‍♀️', shortcodes: ['woman_facepalming_medium_skin_tone'] },
+                { emoji: '🤦🏾‍♀️', shortcodes: ['woman_facepalming_medium_dark_skin_tone'] },
+                { emoji: '🤦🏿‍♀️', shortcodes: ['woman_facepalming_dark_skin_tone'] },
+                { emoji: '🤷🏻', shortcodes: ['person_shrugging_light_skin_tone'] },
+                { emoji: '🤷🏼', shortcodes: ['person_shrugging_medium_light_skin_tone'] },
+                { emoji: '🤷🏽', shortcodes: ['person_shrugging_medium_skin_tone'] },
+                { emoji: '🤷🏾', shortcodes: ['person_shrugging_medium_dark_skin_tone'] },
+                { emoji: '🤷🏿', shortcodes: ['person_shrugging_dark_skin_tone'] },
+                { emoji: '🤷‍♂️', shortcodes: ['man_shrugging'] },
+                { emoji: '🤷🏻‍♂️', shortcodes: ['man_shrugging_light_skin_tone'] },
+                { emoji: '🤷🏼‍♂️', shortcodes: ['man_shrugging_medium_light_skin_tone'] },
+                { emoji: '🤷🏽‍♂️', shortcodes: ['man_shrugging_medium_skin_tone'] },
+                { emoji: '🤷🏾‍♂️', shortcodes: ['man_shrugging_medium_dark_skin_tone'] },
+                { emoji: '🤷🏿‍♂️', shortcodes: ['man_shrugging_dark_skin_tone'] },
+                { emoji: '🤷‍♀️', shortcodes: ['woman_shrugging'] },
+                { emoji: '🤷🏻‍♀️', shortcodes: ['woman_shrugging_light_skin_tone'] },
+                { emoji: '🤷🏼‍♀️', shortcodes: ['woman_shrugging_medium_light_skin_tone'] },
+                { emoji: '🤷🏽‍♀️', shortcodes: ['woman_shrugging_medium_skin_tone'] },
+                { emoji: '🤷🏾‍♀️', shortcodes: ['woman_shrugging_medium_dark_skin_tone'] },
+                { emoji: '🤷🏿‍♀️', shortcodes: ['woman_shrugging_dark_skin_tone'] },
+                { emoji: '🧑🏻‍⚕️', shortcodes: ['health_worker_light_skin_tone'] },
+                { emoji: '🧑🏼‍⚕️', shortcodes: ['health_worker_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍⚕️', shortcodes: ['health_worker_medium_skin_tone'] },
+                { emoji: '🧑🏾‍⚕️', shortcodes: ['health_worker_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍⚕️', shortcodes: ['health_worker_dark_skin_tone'] },
+                { emoji: '👨‍⚕️', shortcodes: ['man_health_worker'] },
+                { emoji: '👨🏻‍⚕️', shortcodes: ['man_health_worker_light_skin_tone'] },
+                { emoji: '👨🏼‍⚕️', shortcodes: ['man_health_worker_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍⚕️', shortcodes: ['man_health_worker_medium_skin_tone'] },
+                { emoji: '👨🏾‍⚕️', shortcodes: ['man_health_worker_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍⚕️', shortcodes: ['man_health_worker_dark_skin_tone'] },
+                { emoji: '👩‍⚕️', shortcodes: ['woman_health_worker'] },
+                { emoji: '👩🏻‍⚕️', shortcodes: ['woman_health_worker_light_skin_tone'] },
+                { emoji: '👩🏼‍⚕️', shortcodes: ['woman_health_worker_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍⚕️', shortcodes: ['woman_health_worker_medium_skin_tone'] },
+                { emoji: '👩🏾‍⚕️', shortcodes: ['woman_health_worker_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍⚕️', shortcodes: ['woman_health_worker_dark_skin_tone'] },
+                { emoji: '🧑‍🎓', shortcodes: ['student'] },
+                { emoji: '🧑🏻‍🎓', shortcodes: ['student_light_skin_tone'] },
+                { emoji: '🧑🏼‍🎓', shortcodes: ['student_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🎓', shortcodes: ['student_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🎓', shortcodes: ['student_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🎓', shortcodes: ['student_dark_skin_tone'] },
+                { emoji: '👨‍🎓', shortcodes: ['man_student'] },
+                { emoji: '👨🏻‍🎓', shortcodes: ['man_student_light_skin_tone'] },
+                { emoji: '👨🏼‍🎓', shortcodes: ['man_student_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🎓', shortcodes: ['man_student_medium_skin_tone'] },
+                { emoji: '👨🏾‍🎓', shortcodes: ['man_student_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🎓', shortcodes: ['man_student_dark_skin_tone'] },
+                { emoji: '👩‍🎓', shortcodes: ['woman_student'] },
+                { emoji: '👩🏻‍🎓', shortcodes: ['woman_student_light_skin_tone'] },
+                { emoji: '👩🏼‍🎓', shortcodes: ['woman_student_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🎓', shortcodes: ['woman_student_medium_skin_tone'] },
+                { emoji: '👩🏾‍🎓', shortcodes: ['woman_student_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🎓', shortcodes: ['woman_student_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🏫', shortcodes: ['teacher_light_skin_tone'] },
+                { emoji: '🧑🏼‍🏫', shortcodes: ['teacher_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🏫', shortcodes: ['teacher_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🏫', shortcodes: ['teacher_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🏫', shortcodes: ['teacher_dark_skin_tone'] },
+                { emoji: '👨‍🏫', shortcodes: ['man_teacher'] },
+                { emoji: '👨🏻‍🏫', shortcodes: ['man_teacher_light_skin_tone'] },
+                { emoji: '👨🏼‍🏫', shortcodes: ['man_teacher_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🏫', shortcodes: ['man_teacher_medium_skin_tone'] },
+                { emoji: '👨🏾‍🏫', shortcodes: ['man_teacher_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🏫', shortcodes: ['man_teacher_dark_skin_tone'] },
+                { emoji: '👩‍🏫', shortcodes: ['woman_teacher'] },
+                { emoji: '👩🏻‍🏫', shortcodes: ['woman_teacher_light_skin_tone'] },
+                { emoji: '👩🏼‍🏫', shortcodes: ['woman_teacher_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🏫', shortcodes: ['woman_teacher_medium_skin_tone'] },
+                { emoji: '👩🏾‍🏫', shortcodes: ['woman_teacher_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🏫', shortcodes: ['woman_teacher_dark_skin_tone'] },
+                { emoji: '🧑🏻‍⚖️', shortcodes: ['judge_light_skin_tone'] },
+                { emoji: '🧑🏼‍⚖️', shortcodes: ['judge_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍⚖️', shortcodes: ['judge_medium_skin_tone'] },
+                { emoji: '🧑🏾‍⚖️', shortcodes: ['judge_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍⚖️', shortcodes: ['judge_dark_skin_tone'] },
+                { emoji: '👨‍⚖️', shortcodes: ['man_judge'] },
+                { emoji: '👨🏻‍⚖️', shortcodes: ['man_judge_light_skin_tone'] },
+                { emoji: '👨🏼‍⚖️', shortcodes: ['man_judge_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍⚖️', shortcodes: ['man_judge_medium_skin_tone'] },
+                { emoji: '👨🏾‍⚖️', shortcodes: ['man_judge_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍⚖️', shortcodes: ['man_judge_dark_skin_tone'] },
+                { emoji: '👩‍⚖️', shortcodes: ['woman_judge'] },
+                { emoji: '👩🏻‍⚖️', shortcodes: ['woman_judge_light_skin_tone'] },
+                { emoji: '👩🏼‍⚖️', shortcodes: ['woman_judge_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍⚖️', shortcodes: ['woman_judge_medium_skin_tone'] },
+                { emoji: '👩🏾‍⚖️', shortcodes: ['woman_judge_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍⚖️', shortcodes: ['woman_judge_dark_skin_tone'] },
+                { emoji: '🧑‍🌾', shortcodes: ['farmer'] },
+                { emoji: '🧑🏻‍🌾', shortcodes: ['farmer_light_skin_tone'] },
+                { emoji: '🧑🏼‍🌾', shortcodes: ['farmer_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🌾', shortcodes: ['farmer_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🌾', shortcodes: ['farmer_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🌾', shortcodes: ['farmer_dark_skin_tone'] },
+                { emoji: '👨‍🌾', shortcodes: ['man_farmer'] },
+                { emoji: '👨🏻‍🌾', shortcodes: ['man_farmer_light_skin_tone'] },
+                { emoji: '👨🏼‍🌾', shortcodes: ['man_farmer_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🌾', shortcodes: ['man_farmer_medium_skin_tone'] },
+                { emoji: '👨🏾‍🌾', shortcodes: ['man_farmer_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🌾', shortcodes: ['man_farmer_dark_skin_tone'] },
+                { emoji: '👩‍🌾', shortcodes: ['woman_farmer'] },
+                { emoji: '👩🏻‍🌾', shortcodes: ['woman_farmer_light_skin_tone'] },
+                { emoji: '👩🏼‍🌾', shortcodes: ['woman_farmer_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🌾', shortcodes: ['woman_farmer_medium_skin_tone'] },
+                { emoji: '👩🏾‍🌾', shortcodes: ['woman_farmer_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🌾', shortcodes: ['woman_farmer_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🍳', shortcodes: ['cook_light_skin_tone'] },
+                { emoji: '🧑🏼‍🍳', shortcodes: ['cook_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🍳', shortcodes: ['cook_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🍳', shortcodes: ['cook_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🍳', shortcodes: ['cook_dark_skin_tone'] },
+                { emoji: '👨‍🍳', shortcodes: ['man_cook'] },
+                { emoji: '👨🏻‍🍳', shortcodes: ['man_cook_light_skin_tone'] },
+                { emoji: '👨🏼‍🍳', shortcodes: ['man_cook_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🍳', shortcodes: ['man_cook_medium_skin_tone'] },
+                { emoji: '👨🏾‍🍳', shortcodes: ['man_cook_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🍳', shortcodes: ['man_cook_dark_skin_tone'] },
+                { emoji: '👩‍🍳', shortcodes: ['woman_cook'] },
+                { emoji: '👩🏻‍🍳', shortcodes: ['woman_cook_light_skin_tone'] },
+                { emoji: '👩🏼‍🍳', shortcodes: ['woman_cook_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🍳', shortcodes: ['woman_cook_medium_skin_tone'] },
+                { emoji: '👩🏾‍🍳', shortcodes: ['woman_cook_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🍳', shortcodes: ['woman_cook_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🔧', shortcodes: ['mechanic_light_skin_tone'] },
+                { emoji: '🧑🏼‍🔧', shortcodes: ['mechanic_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🔧', shortcodes: ['mechanic_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🔧', shortcodes: ['mechanic_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🔧', shortcodes: ['mechanic_dark_skin_tone'] },
+                { emoji: '👨‍🔧', shortcodes: ['man_mechanic'] },
+                { emoji: '👨🏻‍🔧', shortcodes: ['man_mechanic_light_skin_tone'] },
+                { emoji: '👨🏼‍🔧', shortcodes: ['man_mechanic_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🔧', shortcodes: ['man_mechanic_medium_skin_tone'] },
+                { emoji: '👨🏾‍🔧', shortcodes: ['man_mechanic_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🔧', shortcodes: ['man_mechanic_dark_skin_tone'] },
+                { emoji: '👩‍🔧', shortcodes: ['woman_mechanic'] },
+                { emoji: '👩🏻‍🔧', shortcodes: ['woman_mechanic_light_skin_tone'] },
+                { emoji: '👩🏼‍🔧', shortcodes: ['woman_mechanic_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🔧', shortcodes: ['woman_mechanic_medium_skin_tone'] },
+                { emoji: '👩🏾‍🔧', shortcodes: ['woman_mechanic_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🔧', shortcodes: ['woman_mechanic_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🏭', shortcodes: ['factory_worker_light_skin_tone'] },
+                { emoji: '🧑🏼‍🏭', shortcodes: ['factory_worker_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🏭', shortcodes: ['factory_worker_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🏭', shortcodes: ['factory_worker_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🏭', shortcodes: ['factory_worker_dark_skin_tone'] },
+                { emoji: '👨‍🏭', shortcodes: ['man_factory_worker'] },
+                { emoji: '👨🏻‍🏭', shortcodes: ['man_factory_worker_light_skin_tone'] },
+                { emoji: '👨🏼‍🏭', shortcodes: ['man_factory_worker_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🏭', shortcodes: ['man_factory_worker_medium_skin_tone'] },
+                { emoji: '👨🏾‍🏭', shortcodes: ['man_factory_worker_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🏭', shortcodes: ['man_factory_worker_dark_skin_tone'] },
+                { emoji: '👩‍🏭', shortcodes: ['woman_factory_worker'] },
+                { emoji: '👩🏻‍🏭', shortcodes: ['woman_factory_worker_light_skin_tone'] },
+                { emoji: '👩🏼‍🏭', shortcodes: ['woman_factory_worker_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🏭', shortcodes: ['woman_factory_worker_medium_skin_tone'] },
+                { emoji: '👩🏾‍🏭', shortcodes: ['woman_factory_worker_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🏭', shortcodes: ['woman_factory_worker_dark_skin_tone'] },
+                { emoji: '🧑🏻‍💼', shortcodes: ['office_worker_light_skin_tone'] },
+                { emoji: '🧑🏼‍💼', shortcodes: ['office_worker_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍💼', shortcodes: ['office_worker_medium_skin_tone'] },
+                { emoji: '🧑🏾‍💼', shortcodes: ['office_worker_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍💼', shortcodes: ['office_worker_dark_skin_tone'] },
+                { emoji: '👨‍💼', shortcodes: ['man_office_worker'] },
+                { emoji: '👨🏻‍💼', shortcodes: ['man_office_worker_light_skin_tone'] },
+                { emoji: '👨🏼‍💼', shortcodes: ['man_office_worker_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍💼', shortcodes: ['man_office_worker_medium_skin_tone'] },
+                { emoji: '👨🏾‍💼', shortcodes: ['man_office_worker_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍💼', shortcodes: ['man_office_worker_dark_skin_tone'] },
+                { emoji: '👩‍💼', shortcodes: ['woman_office_worker'] },
+                { emoji: '👩🏻‍💼', shortcodes: ['woman_office_worker_light_skin_tone'] },
+                { emoji: '👩🏼‍💼', shortcodes: ['woman_office_worker_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍💼', shortcodes: ['woman_office_worker_medium_skin_tone'] },
+                { emoji: '👩🏾‍💼', shortcodes: ['woman_office_worker_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍💼', shortcodes: ['woman_office_worker_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🔬', shortcodes: ['scientist_light_skin_tone'] },
+                { emoji: '🧑🏼‍🔬', shortcodes: ['scientist_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🔬', shortcodes: ['scientist_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🔬', shortcodes: ['scientist_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🔬', shortcodes: ['scientist_dark_skin_tone'] },
+                { emoji: '👨‍🔬', shortcodes: ['man_scientist'] },
+                { emoji: '👨🏻‍🔬', shortcodes: ['man_scientist_light_skin_tone'] },
+                { emoji: '👨🏼‍🔬', shortcodes: ['man_scientist_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🔬', shortcodes: ['man_scientist_medium_skin_tone'] },
+                { emoji: '👨🏾‍🔬', shortcodes: ['man_scientist_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🔬', shortcodes: ['man_scientist_dark_skin_tone'] },
+                { emoji: '👩‍🔬', shortcodes: ['woman_scientist'] },
+                { emoji: '👩🏻‍🔬', shortcodes: ['woman_scientist_light_skin_tone'] },
+                { emoji: '👩🏼‍🔬', shortcodes: ['woman_scientist_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🔬', shortcodes: ['woman_scientist_medium_skin_tone'] },
+                { emoji: '👩🏾‍🔬', shortcodes: ['woman_scientist_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🔬', shortcodes: ['woman_scientist_dark_skin_tone'] },
+                { emoji: '🧑🏻‍💻', shortcodes: ['technologist_light_skin_tone'] },
+                { emoji: '🧑🏼‍💻', shortcodes: ['technologist_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍💻', shortcodes: ['technologist_medium_skin_tone'] },
+                { emoji: '🧑🏾‍💻', shortcodes: ['technologist_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍💻', shortcodes: ['technologist_dark_skin_tone'] },
+                { emoji: '👨‍💻', shortcodes: ['man_technologist'] },
+                { emoji: '👨🏻‍💻', shortcodes: ['man_technologist_light_skin_tone'] },
+                { emoji: '👨🏼‍💻', shortcodes: ['man_technologist_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍💻', shortcodes: ['man_technologist_medium_skin_tone'] },
+                { emoji: '👨🏾‍💻', shortcodes: ['man_technologist_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍💻', shortcodes: ['man_technologist_dark_skin_tone'] },
+                { emoji: '👩‍💻', shortcodes: ['woman_technologist'] },
+                { emoji: '👩🏻‍💻', shortcodes: ['woman_technologist_light_skin_tone'] },
+                { emoji: '👩🏼‍💻', shortcodes: ['woman_technologist_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍💻', shortcodes: ['woman_technologist_medium_skin_tone'] },
+                { emoji: '👩🏾‍💻', shortcodes: ['woman_technologist_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍💻', shortcodes: ['woman_technologist_dark_skin_tone'] },
+                { emoji: '🧑‍🎤', shortcodes: ['singer'] },
+                { emoji: '🧑🏻‍🎤', shortcodes: ['singer_light_skin_tone'] },
+                { emoji: '🧑🏼‍🎤', shortcodes: ['singer_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🎤', shortcodes: ['singer_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🎤', shortcodes: ['singer_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🎤', shortcodes: ['singer_dark_skin_tone'] },
+                { emoji: '👨‍🎤', shortcodes: ['man_singer'] },
+                { emoji: '👨🏻‍🎤', shortcodes: ['man_singer_light_skin_tone'] },
+                { emoji: '👨🏼‍🎤', shortcodes: ['man_singer_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🎤', shortcodes: ['man_singer_medium_skin_tone'] },
+                { emoji: '👨🏾‍🎤', shortcodes: ['man_singer_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🎤', shortcodes: ['man_singer_dark_skin_tone'] },
+                { emoji: '👩‍🎤', shortcodes: ['woman_singer'] },
+                { emoji: '👩🏻‍🎤', shortcodes: ['woman_singer_light_skin_tone'] },
+                { emoji: '👩🏼‍🎤', shortcodes: ['woman_singer_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🎤', shortcodes: ['woman_singer_medium_skin_tone'] },
+                { emoji: '👩🏾‍🎤', shortcodes: ['woman_singer_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🎤', shortcodes: ['woman_singer_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🎨', shortcodes: ['artist_light_skin_tone'] },
+                { emoji: '🧑🏼‍🎨', shortcodes: ['artist_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🎨', shortcodes: ['artist_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🎨', shortcodes: ['artist_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🎨', shortcodes: ['artist_dark_skin_tone'] },
+                { emoji: '👨‍🎨', shortcodes: ['man_artist'] },
+                { emoji: '👨🏻‍🎨', shortcodes: ['man_artist_light_skin_tone'] },
+                { emoji: '👨🏼‍🎨', shortcodes: ['man_artist_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🎨', shortcodes: ['man_artist_medium_skin_tone'] },
+                { emoji: '👨🏾‍🎨', shortcodes: ['man_artist_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🎨', shortcodes: ['man_artist_dark_skin_tone'] },
+                { emoji: '👩‍🎨', shortcodes: ['woman_artist'] },
+                { emoji: '👩🏻‍🎨', shortcodes: ['woman_artist_light_skin_tone'] },
+                { emoji: '👩🏼‍🎨', shortcodes: ['woman_artist_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🎨', shortcodes: ['woman_artist_medium_skin_tone'] },
+                { emoji: '👩🏾‍🎨', shortcodes: ['woman_artist_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🎨', shortcodes: ['woman_artist_dark_skin_tone'] },
+                { emoji: '🧑🏻‍✈️', shortcodes: ['pilot_light_skin_tone'] },
+                { emoji: '🧑🏼‍✈️', shortcodes: ['pilot_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍✈️', shortcodes: ['pilot_medium_skin_tone'] },
+                { emoji: '🧑🏾‍✈️', shortcodes: ['pilot_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍✈️', shortcodes: ['pilot_dark_skin_tone'] },
+                { emoji: '👨‍✈️', shortcodes: ['man_pilot'] },
+                { emoji: '👨🏻‍✈️', shortcodes: ['man_pilot_light_skin_tone'] },
+                { emoji: '👨🏼‍✈️', shortcodes: ['man_pilot_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍✈️', shortcodes: ['man_pilot_medium_skin_tone'] },
+                { emoji: '👨🏾‍✈️', shortcodes: ['man_pilot_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍✈️', shortcodes: ['man_pilot_dark_skin_tone'] },
+                { emoji: '👩‍✈️', shortcodes: ['woman_pilot'] },
+                { emoji: '👩🏻‍✈️', shortcodes: ['woman_pilot_light_skin_tone'] },
+                { emoji: '👩🏼‍✈️', shortcodes: ['woman_pilot_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍✈️', shortcodes: ['woman_pilot_medium_skin_tone'] },
+                { emoji: '👩🏾‍✈️', shortcodes: ['woman_pilot_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍✈️', shortcodes: ['woman_pilot_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🚀', shortcodes: ['astronaut_light_skin_tone'] },
+                { emoji: '🧑🏼‍🚀', shortcodes: ['astronaut_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🚀', shortcodes: ['astronaut_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🚀', shortcodes: ['astronaut_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🚀', shortcodes: ['astronaut_dark_skin_tone'] },
+                { emoji: '👨‍🚀', shortcodes: ['man_astronaut'] },
+                { emoji: '👨🏻‍🚀', shortcodes: ['man_astronaut_light_skin_tone'] },
+                { emoji: '👨🏼‍🚀', shortcodes: ['man_astronaut_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🚀', shortcodes: ['man_astronaut_medium_skin_tone'] },
+                { emoji: '👨🏾‍🚀', shortcodes: ['man_astronaut_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🚀', shortcodes: ['man_astronaut_dark_skin_tone'] },
+                { emoji: '👩‍🚀', shortcodes: ['woman_astronaut'] },
+                { emoji: '👩🏻‍🚀', shortcodes: ['woman_astronaut_light_skin_tone'] },
+                { emoji: '👩🏼‍🚀', shortcodes: ['woman_astronaut_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🚀', shortcodes: ['woman_astronaut_medium_skin_tone'] },
+                { emoji: '👩🏾‍🚀', shortcodes: ['woman_astronaut_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🚀', shortcodes: ['woman_astronaut_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🚒', shortcodes: ['firefighter_light_skin_tone'] },
+                { emoji: '🧑🏼‍🚒', shortcodes: ['firefighter_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🚒', shortcodes: ['firefighter_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🚒', shortcodes: ['firefighter_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🚒', shortcodes: ['firefighter_dark_skin_tone'] },
+                { emoji: '👨‍🚒', shortcodes: ['man_firefighter'] },
+                { emoji: '👨🏻‍🚒', shortcodes: ['man_firefighter_light_skin_tone'] },
+                { emoji: '👨🏼‍🚒', shortcodes: ['man_firefighter_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🚒', shortcodes: ['man_firefighter_medium_skin_tone'] },
+                { emoji: '👨🏾‍🚒', shortcodes: ['man_firefighter_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🚒', shortcodes: ['man_firefighter_dark_skin_tone'] },
+                { emoji: '👩‍🚒', shortcodes: ['woman_firefighter'] },
+                { emoji: '👩🏻‍🚒', shortcodes: ['woman_firefighter_light_skin_tone'] },
+                { emoji: '👩🏼‍🚒', shortcodes: ['woman_firefighter_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🚒', shortcodes: ['woman_firefighter_medium_skin_tone'] },
+                { emoji: '👩🏾‍🚒', shortcodes: ['woman_firefighter_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🚒', shortcodes: ['woman_firefighter_dark_skin_tone'] },
+                { emoji: '👮🏻', shortcodes: ['police_officer_light_skin_tone'] },
+                { emoji: '👮🏼', shortcodes: ['police_officer_medium_light_skin_tone'] },
+                { emoji: '👮🏽', shortcodes: ['police_officer_medium_skin_tone'] },
+                { emoji: '👮🏾', shortcodes: ['police_officer_medium_dark_skin_tone'] },
+                { emoji: '👮🏿', shortcodes: ['police_officer_dark_skin_tone'] },
+                { emoji: '👮‍♂️', shortcodes: ['man_police_officer'] },
+                { emoji: '👮🏻‍♂️', shortcodes: ['man_police_officer_light_skin_tone'] },
+                { emoji: '👮🏼‍♂️', shortcodes: ['man_police_officer_medium_light_skin_tone'] },
+                { emoji: '👮🏽‍♂️', shortcodes: ['man_police_officer_medium_skin_tone'] },
+                { emoji: '👮🏾‍♂️', shortcodes: ['man_police_officer_medium_dark_skin_tone'] },
+                { emoji: '👮🏿‍♂️', shortcodes: ['man_police_officer_dark_skin_tone'] },
+                { emoji: '👮‍♀️', shortcodes: ['woman_police_officer'] },
+                { emoji: '👮🏻‍♀️', shortcodes: ['woman_police_officer_light_skin_tone'] },
+                { emoji: '👮🏼‍♀️', shortcodes: ['woman_police_officer_medium_light_skin_tone'] },
+                { emoji: '👮🏽‍♀️', shortcodes: ['woman_police_officer_medium_skin_tone'] },
+                { emoji: '👮🏾‍♀️', shortcodes: ['woman_police_officer_medium_dark_skin_tone'] },
+                { emoji: '👮🏿‍♀️', shortcodes: ['woman_police_officer_dark_skin_tone'] },
+                { emoji: '🕵🏻', shortcodes: ['detective_light_skin_tone'] },
+                { emoji: '🕵🏼', shortcodes: ['detective_medium_light_skin_tone'] },
+                { emoji: '🕵🏽', shortcodes: ['detective_medium_skin_tone'] },
+                { emoji: '🕵🏾', shortcodes: ['detective_medium_dark_skin_tone'] },
+                { emoji: '🕵🏿', shortcodes: ['detective_dark_skin_tone'] },
+                { emoji: '🕵️‍♂️', shortcodes: ['man_detective'] },
+                { emoji: '🕵🏻‍♂️', shortcodes: ['man_detective_light_skin_tone'] },
+                { emoji: '🕵🏼‍♂️', shortcodes: ['man_detective_medium_light_skin_tone'] },
+                { emoji: '🕵🏽‍♂️', shortcodes: ['man_detective_medium_skin_tone'] },
+                { emoji: '🕵🏾‍♂️', shortcodes: ['man_detective_medium_dark_skin_tone'] },
+                { emoji: '🕵🏿‍♂️', shortcodes: ['man_detective_dark_skin_tone'] },
+                { emoji: '🕵️‍♀️', shortcodes: ['woman_detective'] },
+                { emoji: '🕵🏻‍♀️', shortcodes: ['woman_detective_light_skin_tone'] },
+                { emoji: '🕵🏼‍♀️', shortcodes: ['woman_detective_medium_light_skin_tone'] },
+                { emoji: '🕵🏽‍♀️', shortcodes: ['woman_detective_medium_skin_tone'] },
+                { emoji: '🕵🏾‍♀️', shortcodes: ['woman_detective_medium_dark_skin_tone'] },
+                { emoji: '🕵🏿‍♀️', shortcodes: ['woman_detective_dark_skin_tone'] },
+                { emoji: '💂🏻', shortcodes: ['guard_light_skin_tone'] },
+                { emoji: '💂🏼', shortcodes: ['guard_medium_light_skin_tone'] },
+                { emoji: '💂🏽', shortcodes: ['guard_medium_skin_tone'] },
+                { emoji: '💂🏾', shortcodes: ['guard_medium_dark_skin_tone'] },
+                { emoji: '💂🏿', shortcodes: ['guard_dark_skin_tone'] },
+                { emoji: '💂‍♂️', shortcodes: ['man_guard'] },
+                { emoji: '💂🏻‍♂️', shortcodes: ['man_guard_light_skin_tone'] },
+                { emoji: '💂🏼‍♂️', shortcodes: ['man_guard_medium_light_skin_tone'] },
+                { emoji: '💂🏽‍♂️', shortcodes: ['man_guard_medium_skin_tone'] },
+                { emoji: '💂🏾‍♂️', shortcodes: ['man_guard_medium_dark_skin_tone'] },
+                { emoji: '💂🏿‍♂️', shortcodes: ['man_guard_dark_skin_tone'] },
+                { emoji: '💂‍♀️', shortcodes: ['woman_guard'] },
+                { emoji: '💂🏻‍♀️', shortcodes: ['woman_guard_light_skin_tone'] },
+                { emoji: '💂🏼‍♀️', shortcodes: ['woman_guard_medium_light_skin_tone'] },
+                { emoji: '💂🏽‍♀️', shortcodes: ['woman_guard_medium_skin_tone'] },
+                { emoji: '💂🏾‍♀️', shortcodes: ['woman_guard_medium_dark_skin_tone'] },
+                { emoji: '💂🏿‍♀️', shortcodes: ['woman_guard_dark_skin_tone'] },
+                { emoji: '🥷🏻', shortcodes: ['ninja_light_skin_tone'] },
+                { emoji: '🥷🏼', shortcodes: ['ninja_medium_light_skin_tone'] },
+                { emoji: '🥷🏽', shortcodes: ['ninja_medium_skin_tone'] },
+                { emoji: '🥷🏾', shortcodes: ['ninja_medium_dark_skin_tone'] },
+                { emoji: '🥷🏿', shortcodes: ['ninja_dark_skin_tone'] },
+                { emoji: '👷🏻', shortcodes: ['construction_worker_light_skin_tone'] },
+                { emoji: '👷🏼', shortcodes: ['construction_worker_medium_light_skin_tone'] },
+                { emoji: '👷🏽', shortcodes: ['construction_worker_medium_skin_tone'] },
+                { emoji: '👷🏾', shortcodes: ['construction_worker_medium_dark_skin_tone'] },
+                { emoji: '👷🏿', shortcodes: ['construction_worker_dark_skin_tone'] },
+                { emoji: '👷‍♂️', shortcodes: ['man_construction_worker'] },
+                { emoji: '👷🏻‍♂️', shortcodes: ['man_construction_worker_light_skin_tone'] },
+                { emoji: '👷🏼‍♂️', shortcodes: ['man_construction_worker_medium_light_skin_tone'] },
+                { emoji: '👷🏽‍♂️', shortcodes: ['man_construction_worker_medium_skin_tone'] },
+                { emoji: '👷🏾‍♂️', shortcodes: ['man_construction_worker_medium_dark_skin_tone'] },
+                { emoji: '👷🏿‍♂️', shortcodes: ['man_construction_worker_dark_skin_tone'] },
+                { emoji: '👷‍♀️', shortcodes: ['woman_construction_worker'] },
+                { emoji: '👷🏻‍♀️', shortcodes: ['woman_construction_worker_light_skin_tone'] },
+                { emoji: '👷🏼‍♀️', shortcodes: ['woman_construction_worker_medium_light_skin_tone'] },
+                { emoji: '👷🏽‍♀️', shortcodes: ['woman_construction_worker_medium_skin_tone'] },
+                { emoji: '👷🏾‍♀️', shortcodes: ['woman_construction_worker_medium_dark_skin_tone'] },
+                { emoji: '👷🏿‍♀️', shortcodes: ['woman_construction_worker_dark_skin_tone'] },
+                { emoji: '🫅', shortcodes: ['person_with_crown'] },
+                { emoji: '🫅🏻', shortcodes: ['person_with_crown_light_skin_tone'] },
+                { emoji: '🫅🏼', shortcodes: ['person_with_crown_medium_light_skin_tone'] },
+                { emoji: '🫅🏽', shortcodes: ['person_with_crown_medium_skin_tone'] },
+                { emoji: '🫅🏾', shortcodes: ['person_with_crown_medium_dark_skin_tone'] },
+                { emoji: '🫅🏿', shortcodes: ['person_with_crown_dark_skin_tone'] },
+                { emoji: '🤴🏻', shortcodes: ['prince_light_skin_tone'] },
+                { emoji: '🤴🏼', shortcodes: ['prince_medium_light_skin_tone'] },
+                { emoji: '🤴🏽', shortcodes: ['prince_medium_skin_tone'] },
+                { emoji: '🤴🏾', shortcodes: ['prince_medium_dark_skin_tone'] },
+                { emoji: '🤴🏿', shortcodes: ['prince_dark_skin_tone'] },
+                { emoji: '👸🏻', shortcodes: ['princess_light_skin_tone'] },
+                { emoji: '👸🏼', shortcodes: ['princess_medium_light_skin_tone'] },
+                { emoji: '👸🏽', shortcodes: ['princess_medium_skin_tone'] },
+                { emoji: '👸🏾', shortcodes: ['princess_medium_dark_skin_tone'] },
+                { emoji: '👸🏿', shortcodes: ['princess_dark_skin_tone'] },
+                { emoji: '👳', shortcodes: ['person_wearing_turban'] },
+                { emoji: '👳🏻', shortcodes: ['person_wearing_turban_light_skin_tone'] },
+                { emoji: '👳🏼', shortcodes: ['person_wearing_turban_medium_light_skin_tone'] },
+                { emoji: '👳🏽', shortcodes: ['person_wearing_turban_medium_skin_tone'] },
+                { emoji: '👳🏾', shortcodes: ['person_wearing_turban_medium_dark_skin_tone'] },
+                { emoji: '👳🏿', shortcodes: ['person_wearing_turban_dark_skin_tone'] },
+                { emoji: '👳‍♂️', shortcodes: ['man_wearing_turban'] },
+                { emoji: '👳🏻‍♂️', shortcodes: ['man_wearing_turban_light_skin_tone'] },
+                { emoji: '👳🏼‍♂️', shortcodes: ['man_wearing_turban_medium_light_skin_tone'] },
+                { emoji: '👳🏽‍♂️', shortcodes: ['man_wearing_turban_medium_skin_tone'] },
+                { emoji: '👳🏾‍♂️', shortcodes: ['man_wearing_turban_medium_dark_skin_tone'] },
+                { emoji: '👳🏿‍♂️', shortcodes: ['man_wearing_turban_dark_skin_tone'] },
+                { emoji: '👳‍♀️', shortcodes: ['woman_wearing_turban'] },
+                { emoji: '👳🏻‍♀️', shortcodes: ['woman_wearing_turban_light_skin_tone'] },
+                { emoji: '👳🏼‍♀️', shortcodes: ['woman_wearing_turban_medium_light_skin_tone'] },
+                { emoji: '👳🏽‍♀️', shortcodes: ['woman_wearing_turban_medium_skin_tone'] },
+                { emoji: '👳🏾‍♀️', shortcodes: ['woman_wearing_turban_medium_dark_skin_tone'] },
+                { emoji: '👳🏿‍♀️', shortcodes: ['woman_wearing_turban_dark_skin_tone'] },
+                { emoji: '👲', shortcodes: ['person_with_skullcap'] },
+                { emoji: '👲🏻', shortcodes: ['person_with_skullcap_light_skin_tone'] },
+                { emoji: '👲🏼', shortcodes: ['person_with_skullcap_medium_light_skin_tone'] },
+                { emoji: '👲🏽', shortcodes: ['person_with_skullcap_medium_skin_tone'] },
+                { emoji: '👲🏾', shortcodes: ['person_with_skullcap_medium_dark_skin_tone'] },
+                { emoji: '👲🏿', shortcodes: ['person_with_skullcap_dark_skin_tone'] },
+                { emoji: '🧕', shortcodes: ['woman_with_headscarf'] },
+                { emoji: '🧕🏻', shortcodes: ['woman_with_headscarf_light_skin_tone'] },
+                { emoji: '🧕🏼', shortcodes: ['woman_with_headscarf_medium_light_skin_tone'] },
+                { emoji: '🧕🏽', shortcodes: ['woman_with_headscarf_medium_skin_tone'] },
+                { emoji: '🧕🏾', shortcodes: ['woman_with_headscarf_medium_dark_skin_tone'] },
+                { emoji: '🧕🏿', shortcodes: ['woman_with_headscarf_dark_skin_tone'] },
+                { emoji: '🤵🏻', shortcodes: ['person_in_tuxedo_light_skin_tone'] },
+                { emoji: '🤵🏼', shortcodes: ['person_in_tuxedo_medium_light_skin_tone'] },
+                { emoji: '🤵🏽', shortcodes: ['person_in_tuxedo_medium_skin_tone'] },
+                { emoji: '🤵🏾', shortcodes: ['person_in_tuxedo_medium_dark_skin_tone'] },
+                { emoji: '🤵🏿', shortcodes: ['person_in_tuxedo_dark_skin_tone'] },
+                { emoji: '🤵‍♂️', shortcodes: ['man_in_tuxedo'] },
+                { emoji: '🤵🏻‍♂️', shortcodes: ['man_in_tuxedo_light_skin_tone'] },
+                { emoji: '🤵🏼‍♂️', shortcodes: ['man_in_tuxedo_medium_light_skin_tone'] },
+                { emoji: '🤵🏽‍♂️', shortcodes: ['man_in_tuxedo_medium_skin_tone'] },
+                { emoji: '🤵🏾‍♂️', shortcodes: ['man_in_tuxedo_medium_dark_skin_tone'] },
+                { emoji: '🤵🏿‍♂️', shortcodes: ['man_in_tuxedo_dark_skin_tone'] },
+                { emoji: '🤵‍♀️', shortcodes: ['woman_in_tuxedo'] },
+                { emoji: '🤵🏻‍♀️', shortcodes: ['woman_in_tuxedo_light_skin_tone'] },
+                { emoji: '🤵🏼‍♀️', shortcodes: ['woman_in_tuxedo_medium_light_skin_tone'] },
+                { emoji: '🤵🏽‍♀️', shortcodes: ['woman_in_tuxedo_medium_skin_tone'] },
+                { emoji: '🤵🏾‍♀️', shortcodes: ['woman_in_tuxedo_medium_dark_skin_tone'] },
+                { emoji: '🤵🏿‍♀️', shortcodes: ['woman_in_tuxedo_dark_skin_tone'] },
+                { emoji: '👰🏻', shortcodes: ['person_with_veil_light_skin_tone'] },
+                { emoji: '👰🏼', shortcodes: ['person_with_veil_medium_light_skin_tone'] },
+                { emoji: '👰🏽', shortcodes: ['person_with_veil_medium_skin_tone'] },
+                { emoji: '👰🏾', shortcodes: ['person_with_veil_medium_dark_skin_tone'] },
+                { emoji: '👰🏿', shortcodes: ['person_with_veil_dark_skin_tone'] },
+                { emoji: '👰‍♂️', shortcodes: ['man_with_veil'] },
+                { emoji: '👰🏻‍♂️', shortcodes: ['man_with_veil_light_skin_tone'] },
+                { emoji: '👰🏼‍♂️', shortcodes: ['man_with_veil_medium_light_skin_tone'] },
+                { emoji: '👰🏽‍♂️', shortcodes: ['man_with_veil_medium_skin_tone'] },
+                { emoji: '👰🏾‍♂️', shortcodes: ['man_with_veil_medium_dark_skin_tone'] },
+                { emoji: '👰🏿‍♂️', shortcodes: ['man_with_veil_dark_skin_tone'] },
+                { emoji: '👰‍♀️', shortcodes: ['woman_with_veil'] },
+                { emoji: '👰🏻‍♀️', shortcodes: ['woman_with_veil_light_skin_tone'] },
+                { emoji: '👰🏼‍♀️', shortcodes: ['woman_with_veil_medium_light_skin_tone'] },
+                { emoji: '👰🏽‍♀️', shortcodes: ['woman_with_veil_medium_skin_tone'] },
+                { emoji: '👰🏾‍♀️', shortcodes: ['woman_with_veil_medium_dark_skin_tone'] },
+                { emoji: '👰🏿‍♀️', shortcodes: ['woman_with_veil_dark_skin_tone'] },
+                { emoji: '🤰🏻', shortcodes: ['pregnant_woman_light_skin_tone'] },
+                { emoji: '🤰🏼', shortcodes: ['pregnant_woman_medium_light_skin_tone'] },
+                { emoji: '🤰🏽', shortcodes: ['pregnant_woman_medium_skin_tone'] },
+                { emoji: '🤰🏾', shortcodes: ['pregnant_woman_medium_dark_skin_tone'] },
+                { emoji: '🤰🏿', shortcodes: ['pregnant_woman_dark_skin_tone'] },
+                { emoji: '🫃🏻', shortcodes: ['pregnant_man_light_skin_tone'] },
+                { emoji: '🫃🏼', shortcodes: ['pregnant_man_medium_light_skin_tone'] },
+                { emoji: '🫃🏽', shortcodes: ['pregnant_man_medium_skin_tone'] },
+                { emoji: '🫃🏾', shortcodes: ['pregnant_man_medium_dark_skin_tone'] },
+                { emoji: '🫃🏿', shortcodes: ['pregnant_man_dark_skin_tone'] },
+                { emoji: '🫄🏻', shortcodes: ['pregnant_person_light_skin_tone'] },
+                { emoji: '🫄🏼', shortcodes: ['pregnant_person_medium_light_skin_tone'] },
+                { emoji: '🫄🏽', shortcodes: ['pregnant_person_medium_skin_tone'] },
+                { emoji: '🫄🏾', shortcodes: ['pregnant_person_medium_dark_skin_tone'] },
+                { emoji: '🫄🏿', shortcodes: ['pregnant_person_dark_skin_tone'] },
+                { emoji: '🤱🏻', shortcodes: ['breast_feeding_light_skin_tone'] },
+                { emoji: '🤱🏼', shortcodes: ['breast_feeding_medium_light_skin_tone'] },
+                { emoji: '🤱🏽', shortcodes: ['breast_feeding_medium_skin_tone'] },
+                { emoji: '🤱🏾', shortcodes: ['breast_feeding_medium_dark_skin_tone'] },
+                { emoji: '🤱🏿', shortcodes: ['breast_feeding_dark_skin_tone'] },
+                { emoji: '👩🏻‍🍼', shortcodes: ['woman_feeding_baby_light_skin_tone'] },
+                { emoji: '👩🏼‍🍼', shortcodes: ['woman_feeding_baby_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🍼', shortcodes: ['woman_feeding_baby_medium_skin_tone'] },
+                { emoji: '👩🏾‍🍼', shortcodes: ['woman_feeding_baby_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🍼', shortcodes: ['woman_feeding_baby_dark_skin_tone'] },
+                { emoji: '👨🏻‍🍼', shortcodes: ['man_feeding_baby_light_skin_tone'] },
+                { emoji: '👨🏼‍🍼', shortcodes: ['man_feeding_baby_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🍼', shortcodes: ['man_feeding_baby_medium_skin_tone'] },
+                { emoji: '👨🏾‍🍼', shortcodes: ['man_feeding_baby_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🍼', shortcodes: ['man_feeding_baby_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🍼', shortcodes: ['person_feeding_baby_light_skin_tone'] },
+                { emoji: '🧑🏼‍🍼', shortcodes: ['person_feeding_baby_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🍼', shortcodes: ['person_feeding_baby_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🍼', shortcodes: ['person_feeding_baby_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🍼', shortcodes: ['person_feeding_baby_dark_skin_tone'] },
+                { emoji: '👼', shortcodes: ['baby_angel'] },
+                { emoji: '👼🏻', shortcodes: ['baby_angel_light_skin_tone'] },
+                { emoji: '👼🏼', shortcodes: ['baby_angel_medium_light_skin_tone'] },
+                { emoji: '👼🏽', shortcodes: ['baby_angel_medium_skin_tone'] },
+                { emoji: '👼🏾', shortcodes: ['baby_angel_medium_dark_skin_tone'] },
+                { emoji: '👼🏿', shortcodes: ['baby_angel_dark_skin_tone'] },
+                { emoji: '🎅', shortcodes: ['santa_claus'] },
+                { emoji: '🎅🏻', shortcodes: ['santa_claus_light_skin_tone'] },
+                { emoji: '🎅🏼', shortcodes: ['santa_claus_medium_light_skin_tone'] },
+                { emoji: '🎅🏽', shortcodes: ['santa_claus_medium_skin_tone'] },
+                { emoji: '🎅🏾', shortcodes: ['santa_claus_medium_dark_skin_tone'] },
+                { emoji: '🎅🏿', shortcodes: ['santa_claus_dark_skin_tone'] },
+                { emoji: '🤶', shortcodes: ['mrs_claus'] },
+                { emoji: '🤶🏻', shortcodes: ['mrs_claus_light_skin_tone'] },
+                { emoji: '🤶🏼', shortcodes: ['mrs_claus_medium_light_skin_tone'] },
+                { emoji: '🤶🏽', shortcodes: ['mrs_claus_medium_skin_tone'] },
+                { emoji: '🤶🏾', shortcodes: ['mrs_claus_medium_dark_skin_tone'] },
+                { emoji: '🤶🏿', shortcodes: ['mrs_claus_dark_skin_tone'] },
+                { emoji: '🧑‍🎄', shortcodes: ['mx_claus'] },
+                { emoji: '🧑🏻‍🎄', shortcodes: ['mx_claus_light_skin_tone'] },
+                { emoji: '🧑🏼‍🎄', shortcodes: ['mx_claus_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🎄', shortcodes: ['mx_claus_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🎄', shortcodes: ['mx_claus_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🎄', shortcodes: ['mx_claus_dark_skin_tone'] },
+                { emoji: '🦸🏻', shortcodes: ['superhero_light_skin_tone'] },
+                { emoji: '🦸🏼', shortcodes: ['superhero_medium_light_skin_tone'] },
+                { emoji: '🦸🏽', shortcodes: ['superhero_medium_skin_tone'] },
+                { emoji: '🦸🏾', shortcodes: ['superhero_medium_dark_skin_tone'] },
+                { emoji: '🦸🏿', shortcodes: ['superhero_dark_skin_tone'] },
+                { emoji: '🦸‍♂️', shortcodes: ['man_superhero'] },
+                { emoji: '🦸🏻‍♂️', shortcodes: ['man_superhero_light_skin_tone'] },
+                { emoji: '🦸🏼‍♂️', shortcodes: ['man_superhero_medium_light_skin_tone'] },
+                { emoji: '🦸🏽‍♂️', shortcodes: ['man_superhero_medium_skin_tone'] },
+                { emoji: '🦸🏾‍♂️', shortcodes: ['man_superhero_medium_dark_skin_tone'] },
+                { emoji: '🦸🏿‍♂️', shortcodes: ['man_superhero_dark_skin_tone'] },
+                { emoji: '🦸‍♀️', shortcodes: ['woman_superhero'] },
+                { emoji: '🦸🏻‍♀️', shortcodes: ['woman_superhero_light_skin_tone'] },
+                { emoji: '🦸🏼‍♀️', shortcodes: ['woman_superhero_medium_light_skin_tone'] },
+                { emoji: '🦸🏽‍♀️', shortcodes: ['woman_superhero_medium_skin_tone'] },
+                { emoji: '🦸🏾‍♀️', shortcodes: ['woman_superhero_medium_dark_skin_tone'] },
+                { emoji: '🦸🏿‍♀️', shortcodes: ['woman_superhero_dark_skin_tone'] },
+                { emoji: '🦹🏻', shortcodes: ['supervillain_light_skin_tone'] },
+                { emoji: '🦹🏼', shortcodes: ['supervillain_medium_light_skin_tone'] },
+                { emoji: '🦹🏽', shortcodes: ['supervillain_medium_skin_tone'] },
+                { emoji: '🦹🏾', shortcodes: ['supervillain_medium_dark_skin_tone'] },
+                { emoji: '🦹🏿', shortcodes: ['supervillain_dark_skin_tone'] },
+                { emoji: '🦹‍♂️', shortcodes: ['man_supervillain'] },
+                { emoji: '🦹🏻‍♂️', shortcodes: ['man_supervillain_light_skin_tone'] },
+                { emoji: '🦹🏼‍♂️', shortcodes: ['man_supervillain_medium_light_skin_tone'] },
+                { emoji: '🦹🏽‍♂️', shortcodes: ['man_supervillain_medium_skin_tone'] },
+                { emoji: '🦹🏾‍♂️', shortcodes: ['man_supervillain_medium_dark_skin_tone'] },
+                { emoji: '🦹🏿‍♂️', shortcodes: ['man_supervillain_dark_skin_tone'] },
+                { emoji: '🦹‍♀️', shortcodes: ['woman_supervillain'] },
+                { emoji: '🦹🏻‍♀️', shortcodes: ['woman_supervillain_light_skin_tone'] },
+                { emoji: '🦹🏼‍♀️', shortcodes: ['woman_supervillain_medium_light_skin_tone'] },
+                { emoji: '🦹🏽‍♀️', shortcodes: ['woman_supervillain_medium_skin_tone'] },
+                { emoji: '🦹🏾‍♀️', shortcodes: ['woman_supervillain_medium_dark_skin_tone'] },
+                { emoji: '🦹🏿‍♀️', shortcodes: ['woman_supervillain_dark_skin_tone'] },
+                { emoji: '🧙🏻', shortcodes: ['mage_light_skin_tone'] },
+                { emoji: '🧙🏼', shortcodes: ['mage_medium_light_skin_tone'] },
+                { emoji: '🧙🏽', shortcodes: ['mage_medium_skin_tone'] },
+                { emoji: '🧙🏾', shortcodes: ['mage_medium_dark_skin_tone'] },
+                { emoji: '🧙🏿', shortcodes: ['mage_dark_skin_tone'] },
+                { emoji: '🧙‍♂️', shortcodes: ['man_mage'] },
+                { emoji: '🧙🏻‍♂️', shortcodes: ['man_mage_light_skin_tone'] },
+                { emoji: '🧙🏼‍♂️', shortcodes: ['man_mage_medium_light_skin_tone'] },
+                { emoji: '🧙🏽‍♂️', shortcodes: ['man_mage_medium_skin_tone'] },
+                { emoji: '🧙🏾‍♂️', shortcodes: ['man_mage_medium_dark_skin_tone'] },
+                { emoji: '🧙🏿‍♂️', shortcodes: ['man_mage_dark_skin_tone'] },
+                { emoji: '🧙‍♀️', shortcodes: ['woman_mage'] },
+                { emoji: '🧙🏻‍♀️', shortcodes: ['woman_mage_light_skin_tone'] },
+                { emoji: '🧙🏼‍♀️', shortcodes: ['woman_mage_medium_light_skin_tone'] },
+                { emoji: '🧙🏽‍♀️', shortcodes: ['woman_mage_medium_skin_tone'] },
+                { emoji: '🧙🏾‍♀️', shortcodes: ['woman_mage_medium_dark_skin_tone'] },
+                { emoji: '🧙🏿‍♀️', shortcodes: ['woman_mage_dark_skin_tone'] },
+                { emoji: '🧚🏻', shortcodes: ['fairy_light_skin_tone'] },
+                { emoji: '🧚🏼', shortcodes: ['fairy_medium_light_skin_tone'] },
+                { emoji: '🧚🏽', shortcodes: ['fairy_medium_skin_tone'] },
+                { emoji: '🧚🏾', shortcodes: ['fairy_medium_dark_skin_tone'] },
+                { emoji: '🧚🏿', shortcodes: ['fairy_dark_skin_tone'] },
+                { emoji: '🧚‍♂️', shortcodes: ['man_fairy'] },
+                { emoji: '🧚🏻‍♂️', shortcodes: ['man_fairy_light_skin_tone'] },
+                { emoji: '🧚🏼‍♂️', shortcodes: ['man_fairy_medium_light_skin_tone'] },
+                { emoji: '🧚🏽‍♂️', shortcodes: ['man_fairy_medium_skin_tone'] },
+                { emoji: '🧚🏾‍♂️', shortcodes: ['man_fairy_medium_dark_skin_tone'] },
+                { emoji: '🧚🏿‍♂️', shortcodes: ['man_fairy_dark_skin_tone'] },
+                { emoji: '🧚‍♀️', shortcodes: ['woman_fairy'] },
+                { emoji: '🧚🏻‍♀️', shortcodes: ['woman_fairy_light_skin_tone'] },
+                { emoji: '🧚🏼‍♀️', shortcodes: ['woman_fairy_medium_light_skin_tone'] },
+                { emoji: '🧚🏽‍♀️', shortcodes: ['woman_fairy_medium_skin_tone'] },
+                { emoji: '🧚🏾‍♀️', shortcodes: ['woman_fairy_medium_dark_skin_tone'] },
+                { emoji: '🧚🏿‍♀️', shortcodes: ['woman_fairy_dark_skin_tone'] },
+                { emoji: '🧛🏻', shortcodes: ['vampire_light_skin_tone'] },
+                { emoji: '🧛🏼', shortcodes: ['vampire_medium_light_skin_tone'] },
+                { emoji: '🧛🏽', shortcodes: ['vampire_medium_skin_tone'] },
+                { emoji: '🧛🏾', shortcodes: ['vampire_medium_dark_skin_tone'] },
+                { emoji: '🧛🏿', shortcodes: ['vampire_dark_skin_tone'] },
+                { emoji: '🧛‍♂️', shortcodes: ['man_vampire'] },
+                { emoji: '🧛🏻‍♂️', shortcodes: ['man_vampire_light_skin_tone'] },
+                { emoji: '🧛🏼‍♂️', shortcodes: ['man_vampire_medium_light_skin_tone'] },
+                { emoji: '🧛🏽‍♂️', shortcodes: ['man_vampire_medium_skin_tone'] },
+                { emoji: '🧛🏾‍♂️', shortcodes: ['man_vampire_medium_dark_skin_tone'] },
+                { emoji: '🧛🏿‍♂️', shortcodes: ['man_vampire_dark_skin_tone'] },
+                { emoji: '🧛‍♀️', shortcodes: ['woman_vampire'] },
+                { emoji: '🧛🏻‍♀️', shortcodes: ['woman_vampire_light_skin_tone'] },
+                { emoji: '🧛🏼‍♀️', shortcodes: ['woman_vampire_medium_light_skin_tone'] },
+                { emoji: '🧛🏽‍♀️', shortcodes: ['woman_vampire_medium_skin_tone'] },
+                { emoji: '🧛🏾‍♀️', shortcodes: ['woman_vampire_medium_dark_skin_tone'] },
+                { emoji: '🧛🏿‍♀️', shortcodes: ['woman_vampire_dark_skin_tone'] },
+                { emoji: '🧜🏻', shortcodes: ['merperson_light_skin_tone'] },
+                { emoji: '🧜🏼', shortcodes: ['merperson_medium_light_skin_tone'] },
+                { emoji: '🧜🏽', shortcodes: ['merperson_medium_skin_tone'] },
+                { emoji: '🧜🏾', shortcodes: ['merperson_medium_dark_skin_tone'] },
+                { emoji: '🧜🏿', shortcodes: ['merperson_dark_skin_tone'] },
+                { emoji: '🧜‍♂️', shortcodes: ['merman'] },
+                { emoji: '🧜🏻‍♂️', shortcodes: ['merman_light_skin_tone'] },
+                { emoji: '🧜🏼‍♂️', shortcodes: ['merman_medium_light_skin_tone'] },
+                { emoji: '🧜🏽‍♂️', shortcodes: ['merman_medium_skin_tone'] },
+                { emoji: '🧜🏾‍♂️', shortcodes: ['merman_medium_dark_skin_tone'] },
+                { emoji: '🧜🏿‍♂️', shortcodes: ['merman_dark_skin_tone'] },
+                { emoji: '🧜‍♀️', shortcodes: ['mermaid'] },
+                { emoji: '🧜🏻‍♀️', shortcodes: ['mermaid_light_skin_tone'] },
+                { emoji: '🧜🏼‍♀️', shortcodes: ['mermaid_medium_light_skin_tone'] },
+                { emoji: '🧜🏽‍♀️', shortcodes: ['mermaid_medium_skin_tone'] },
+                { emoji: '🧜🏾‍♀️', shortcodes: ['mermaid_medium_dark_skin_tone'] },
+                { emoji: '🧜🏿‍♀️', shortcodes: ['mermaid_dark_skin_tone'] },
+                { emoji: '🧝🏻', shortcodes: ['elf_light_skin_tone'] },
+                { emoji: '🧝🏼', shortcodes: ['elf_medium_light_skin_tone'] },
+                { emoji: '🧝🏽', shortcodes: ['elf_medium_skin_tone'] },
+                { emoji: '🧝🏾', shortcodes: ['elf_medium_dark_skin_tone'] },
+                { emoji: '🧝🏿', shortcodes: ['elf_dark_skin_tone'] },
+                { emoji: '🧝‍♂️', shortcodes: ['man_elf'] },
+                { emoji: '🧝🏻‍♂️', shortcodes: ['man_elf_light_skin_tone'] },
+                { emoji: '🧝🏼‍♂️', shortcodes: ['man_elf_medium_light_skin_tone'] },
+                { emoji: '🧝🏽‍♂️', shortcodes: ['man_elf_medium_skin_tone'] },
+                { emoji: '🧝🏾‍♂️', shortcodes: ['man_elf_medium_dark_skin_tone'] },
+                { emoji: '🧝🏿‍♂️', shortcodes: ['man_elf_dark_skin_tone'] },
+                { emoji: '🧝‍♀️', shortcodes: ['woman_elf'] },
+                { emoji: '🧝🏻‍♀️', shortcodes: ['woman_elf_light_skin_tone'] },
+                { emoji: '🧝🏼‍♀️', shortcodes: ['woman_elf_medium_light_skin_tone'] },
+                { emoji: '🧝🏽‍♀️', shortcodes: ['woman_elf_medium_skin_tone'] },
+                { emoji: '🧝🏾‍♀️', shortcodes: ['woman_elf_medium_dark_skin_tone'] },
+                { emoji: '🧝🏿‍♀️', shortcodes: ['woman_elf_dark_skin_tone'] },
+                { emoji: '🧞‍♂️', shortcodes: ['man_genie'] },
+                { emoji: '🧞‍♀️', shortcodes: ['woman_genie'] },
+                { emoji: '🧟‍♂️', shortcodes: ['man_zombie'] },
+                { emoji: '🧟‍♀️', shortcodes: ['woman_zombie'] },
+                { emoji: '🫈', shortcodes: ['hairy_creature'] },
+                { emoji: '💆', shortcodes: ['person_getting_massage'] },
+                { emoji: '💆🏻', shortcodes: ['person_getting_massage_light_skin_tone'] },
+                { emoji: '💆🏼', shortcodes: ['person_getting_massage_medium_light_skin_tone'] },
+                { emoji: '💆🏽', shortcodes: ['person_getting_massage_medium_skin_tone'] },
+                { emoji: '💆🏾', shortcodes: ['person_getting_massage_medium_dark_skin_tone'] },
+                { emoji: '💆🏿', shortcodes: ['person_getting_massage_dark_skin_tone'] },
+                { emoji: '💆‍♂️', shortcodes: ['man_getting_massage'] },
+                { emoji: '💆🏻‍♂️', shortcodes: ['man_getting_massage_light_skin_tone'] },
+                { emoji: '💆🏼‍♂️', shortcodes: ['man_getting_massage_medium_light_skin_tone'] },
+                { emoji: '💆🏽‍♂️', shortcodes: ['man_getting_massage_medium_skin_tone'] },
+                { emoji: '💆🏾‍♂️', shortcodes: ['man_getting_massage_medium_dark_skin_tone'] },
+                { emoji: '💆🏿‍♂️', shortcodes: ['man_getting_massage_dark_skin_tone'] },
+                { emoji: '💆‍♀️', shortcodes: ['woman_getting_massage'] },
+                { emoji: '💆🏻‍♀️', shortcodes: ['woman_getting_massage_light_skin_tone'] },
+                { emoji: '💆🏼‍♀️', shortcodes: ['woman_getting_massage_medium_light_skin_tone'] },
+                { emoji: '💆🏽‍♀️', shortcodes: ['woman_getting_massage_medium_skin_tone'] },
+                { emoji: '💆🏾‍♀️', shortcodes: ['woman_getting_massage_medium_dark_skin_tone'] },
+                { emoji: '💆🏿‍♀️', shortcodes: ['woman_getting_massage_dark_skin_tone'] },
+                { emoji: '💇', shortcodes: ['person_getting_haircut'] },
+                { emoji: '💇🏻', shortcodes: ['person_getting_haircut_light_skin_tone'] },
+                { emoji: '💇🏼', shortcodes: ['person_getting_haircut_medium_light_skin_tone'] },
+                { emoji: '💇🏽', shortcodes: ['person_getting_haircut_medium_skin_tone'] },
+                { emoji: '💇🏾', shortcodes: ['person_getting_haircut_medium_dark_skin_tone'] },
+                { emoji: '💇🏿', shortcodes: ['person_getting_haircut_dark_skin_tone'] },
+                { emoji: '💇‍♂️', shortcodes: ['man_getting_haircut'] },
+                { emoji: '💇🏻‍♂️', shortcodes: ['man_getting_haircut_light_skin_tone'] },
+                { emoji: '💇🏼‍♂️', shortcodes: ['man_getting_haircut_medium_light_skin_tone'] },
+                { emoji: '💇🏽‍♂️', shortcodes: ['man_getting_haircut_medium_skin_tone'] },
+                { emoji: '💇🏾‍♂️', shortcodes: ['man_getting_haircut_medium_dark_skin_tone'] },
+                { emoji: '💇🏿‍♂️', shortcodes: ['man_getting_haircut_dark_skin_tone'] },
+                { emoji: '💇‍♀️', shortcodes: ['woman_getting_haircut'] },
+                { emoji: '💇🏻‍♀️', shortcodes: ['woman_getting_haircut_light_skin_tone'] },
+                { emoji: '💇🏼‍♀️', shortcodes: ['woman_getting_haircut_medium_light_skin_tone'] },
+                { emoji: '💇🏽‍♀️', shortcodes: ['woman_getting_haircut_medium_skin_tone'] },
+                { emoji: '💇🏾‍♀️', shortcodes: ['woman_getting_haircut_medium_dark_skin_tone'] },
+                { emoji: '💇🏿‍♀️', shortcodes: ['woman_getting_haircut_dark_skin_tone'] },
+                { emoji: '🚶🏻', shortcodes: ['person_walking_light_skin_tone'] },
+                { emoji: '🚶🏼', shortcodes: ['person_walking_medium_light_skin_tone'] },
+                { emoji: '🚶🏽', shortcodes: ['person_walking_medium_skin_tone'] },
+                { emoji: '🚶🏾', shortcodes: ['person_walking_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿', shortcodes: ['person_walking_dark_skin_tone'] },
+                { emoji: '🚶‍♂️', shortcodes: ['man_walking'] },
+                { emoji: '🚶🏻‍♂️', shortcodes: ['man_walking_light_skin_tone'] },
+                { emoji: '🚶🏼‍♂️', shortcodes: ['man_walking_medium_light_skin_tone'] },
+                { emoji: '🚶🏽‍♂️', shortcodes: ['man_walking_medium_skin_tone'] },
+                { emoji: '🚶🏾‍♂️', shortcodes: ['man_walking_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿‍♂️', shortcodes: ['man_walking_dark_skin_tone'] },
+                { emoji: '🚶‍♀️', shortcodes: ['woman_walking'] },
+                { emoji: '🚶🏻‍♀️', shortcodes: ['woman_walking_light_skin_tone'] },
+                { emoji: '🚶🏼‍♀️', shortcodes: ['woman_walking_medium_light_skin_tone'] },
+                { emoji: '🚶🏽‍♀️', shortcodes: ['woman_walking_medium_skin_tone'] },
+                { emoji: '🚶🏾‍♀️', shortcodes: ['woman_walking_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿‍♀️', shortcodes: ['woman_walking_dark_skin_tone'] },
+                { emoji: '🚶‍➡️', shortcodes: ['person_walking_facing_right'] },
+                { emoji: '🚶🏻‍➡️', shortcodes: ['person_walking_facing_right_light_skin_tone'] },
+                { emoji: '🚶🏼‍➡️', shortcodes: ['person_walking_facing_right_medium_light_skin_tone'] },
+                { emoji: '🚶🏽‍➡️', shortcodes: ['person_walking_facing_right_medium_skin_tone'] },
+                { emoji: '🚶🏾‍➡️', shortcodes: ['person_walking_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿‍➡️', shortcodes: ['person_walking_facing_right_dark_skin_tone'] },
+                { emoji: '🚶‍♀️‍➡️', shortcodes: ['woman_walking_facing_right'] },
+                { emoji: '🚶🏻‍♀️‍➡️', shortcodes: ['woman_walking_facing_right_light_skin_tone'] },
+                { emoji: '🚶🏼‍♀️‍➡️', shortcodes: ['woman_walking_facing_right_medium_light_skin_tone'] },
+                { emoji: '🚶🏽‍♀️‍➡️', shortcodes: ['woman_walking_facing_right_medium_skin_tone'] },
+                { emoji: '🚶🏾‍♀️‍➡️', shortcodes: ['woman_walking_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿‍♀️‍➡️', shortcodes: ['woman_walking_facing_right_dark_skin_tone'] },
+                { emoji: '🚶‍♂️‍➡️', shortcodes: ['man_walking_facing_right'] },
+                { emoji: '🚶🏻‍♂️‍➡️', shortcodes: ['man_walking_facing_right_light_skin_tone'] },
+                { emoji: '🚶🏼‍♂️‍➡️', shortcodes: ['man_walking_facing_right_medium_light_skin_tone'] },
+                { emoji: '🚶🏽‍♂️‍➡️', shortcodes: ['man_walking_facing_right_medium_skin_tone'] },
+                { emoji: '🚶🏾‍♂️‍➡️', shortcodes: ['man_walking_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🚶🏿‍♂️‍➡️', shortcodes: ['man_walking_facing_right_dark_skin_tone'] },
+                { emoji: '🧍', shortcodes: ['person_standing'] },
+                { emoji: '🧍🏻', shortcodes: ['person_standing_light_skin_tone'] },
+                { emoji: '🧍🏼', shortcodes: ['person_standing_medium_light_skin_tone'] },
+                { emoji: '🧍🏽', shortcodes: ['person_standing_medium_skin_tone'] },
+                { emoji: '🧍🏾', shortcodes: ['person_standing_medium_dark_skin_tone'] },
+                { emoji: '🧍🏿', shortcodes: ['person_standing_dark_skin_tone'] },
+                { emoji: '🧍‍♂️', shortcodes: ['man_standing'] },
+                { emoji: '🧍🏻‍♂️', shortcodes: ['man_standing_light_skin_tone'] },
+                { emoji: '🧍🏼‍♂️', shortcodes: ['man_standing_medium_light_skin_tone'] },
+                { emoji: '🧍🏽‍♂️', shortcodes: ['man_standing_medium_skin_tone'] },
+                { emoji: '🧍🏾‍♂️', shortcodes: ['man_standing_medium_dark_skin_tone'] },
+                { emoji: '🧍🏿‍♂️', shortcodes: ['man_standing_dark_skin_tone'] },
+                { emoji: '🧍‍♀️', shortcodes: ['woman_standing'] },
+                { emoji: '🧍🏻‍♀️', shortcodes: ['woman_standing_light_skin_tone'] },
+                { emoji: '🧍🏼‍♀️', shortcodes: ['woman_standing_medium_light_skin_tone'] },
+                { emoji: '🧍🏽‍♀️', shortcodes: ['woman_standing_medium_skin_tone'] },
+                { emoji: '🧍🏾‍♀️', shortcodes: ['woman_standing_medium_dark_skin_tone'] },
+                { emoji: '🧍🏿‍♀️', shortcodes: ['woman_standing_dark_skin_tone'] },
+                { emoji: '🧎', shortcodes: ['person_kneeling'] },
+                { emoji: '🧎🏻', shortcodes: ['person_kneeling_light_skin_tone'] },
+                { emoji: '🧎🏼', shortcodes: ['person_kneeling_medium_light_skin_tone'] },
+                { emoji: '🧎🏽', shortcodes: ['person_kneeling_medium_skin_tone'] },
+                { emoji: '🧎🏾', shortcodes: ['person_kneeling_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿', shortcodes: ['person_kneeling_dark_skin_tone'] },
+                { emoji: '🧎‍♂️', shortcodes: ['man_kneeling'] },
+                { emoji: '🧎🏻‍♂️', shortcodes: ['man_kneeling_light_skin_tone'] },
+                { emoji: '🧎🏼‍♂️', shortcodes: ['man_kneeling_medium_light_skin_tone'] },
+                { emoji: '🧎🏽‍♂️', shortcodes: ['man_kneeling_medium_skin_tone'] },
+                { emoji: '🧎🏾‍♂️', shortcodes: ['man_kneeling_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿‍♂️', shortcodes: ['man_kneeling_dark_skin_tone'] },
+                { emoji: '🧎‍♀️', shortcodes: ['woman_kneeling'] },
+                { emoji: '🧎🏻‍♀️', shortcodes: ['woman_kneeling_light_skin_tone'] },
+                { emoji: '🧎🏼‍♀️', shortcodes: ['woman_kneeling_medium_light_skin_tone'] },
+                { emoji: '🧎🏽‍♀️', shortcodes: ['woman_kneeling_medium_skin_tone'] },
+                { emoji: '🧎🏾‍♀️', shortcodes: ['woman_kneeling_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿‍♀️', shortcodes: ['woman_kneeling_dark_skin_tone'] },
+                { emoji: '🧎‍➡️', shortcodes: ['person_kneeling_facing_right'] },
+                { emoji: '🧎🏻‍➡️', shortcodes: ['person_kneeling_facing_right_light_skin_tone'] },
+                { emoji: '🧎🏼‍➡️', shortcodes: ['person_kneeling_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧎🏽‍➡️', shortcodes: ['person_kneeling_facing_right_medium_skin_tone'] },
+                { emoji: '🧎🏾‍➡️', shortcodes: ['person_kneeling_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿‍➡️', shortcodes: ['person_kneeling_facing_right_dark_skin_tone'] },
+                { emoji: '🧎‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right'] },
+                { emoji: '🧎🏻‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right_light_skin_tone'] },
+                { emoji: '🧎🏼‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧎🏽‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right_medium_skin_tone'] },
+                { emoji: '🧎🏾‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿‍♀️‍➡️', shortcodes: ['woman_kneeling_facing_right_dark_skin_tone'] },
+                { emoji: '🧎‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right'] },
+                { emoji: '🧎🏻‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right_light_skin_tone'] },
+                { emoji: '🧎🏼‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧎🏽‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right_medium_skin_tone'] },
+                { emoji: '🧎🏾‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧎🏿‍♂️‍➡️', shortcodes: ['man_kneeling_facing_right_dark_skin_tone'] },
+                { emoji: '🧑‍🦯', shortcodes: ['person_with_white_cane'] },
+                { emoji: '🧑🏻‍🦯', shortcodes: ['person_with_white_cane_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦯', shortcodes: ['person_with_white_cane_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦯', shortcodes: ['person_with_white_cane_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦯', shortcodes: ['person_with_white_cane_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦯', shortcodes: ['person_with_white_cane_dark_skin_tone'] },
+                { emoji: '🧑‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right'] },
+                { emoji: '🧑🏻‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦯‍➡️', shortcodes: ['person_with_white_cane_facing_right_dark_skin_tone'] },
+                { emoji: '👨‍🦯', shortcodes: ['man_with_white_cane'] },
+                { emoji: '👨🏻‍🦯', shortcodes: ['man_with_white_cane_light_skin_tone'] },
+                { emoji: '👨🏼‍🦯', shortcodes: ['man_with_white_cane_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦯', shortcodes: ['man_with_white_cane_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦯', shortcodes: ['man_with_white_cane_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦯', shortcodes: ['man_with_white_cane_dark_skin_tone'] },
+                { emoji: '👨‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right'] },
+                { emoji: '👨🏻‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right_light_skin_tone'] },
+                { emoji: '👨🏼‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦯‍➡️', shortcodes: ['man_with_white_cane_facing_right_dark_skin_tone'] },
+                { emoji: '👩‍🦯', shortcodes: ['woman_with_white_cane'] },
+                { emoji: '👩🏻‍🦯', shortcodes: ['woman_with_white_cane_light_skin_tone'] },
+                { emoji: '👩🏼‍🦯', shortcodes: ['woman_with_white_cane_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦯', shortcodes: ['woman_with_white_cane_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦯', shortcodes: ['woman_with_white_cane_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦯', shortcodes: ['woman_with_white_cane_dark_skin_tone'] },
+                { emoji: '👩‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right'] },
+                { emoji: '👩🏻‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right_light_skin_tone'] },
+                { emoji: '👩🏼‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦯‍➡️', shortcodes: ['woman_with_white_cane_facing_right_dark_skin_tone'] },
+                { emoji: '🧑‍🦼', shortcodes: ['person_in_motorized_wheelchair'] },
+                { emoji: '🧑🏻‍🦼', shortcodes: ['person_in_motorized_wheelchair_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦼', shortcodes: ['person_in_motorized_wheelchair_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦼', shortcodes: ['person_in_motorized_wheelchair_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦼', shortcodes: ['person_in_motorized_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦼', shortcodes: ['person_in_motorized_wheelchair_dark_skin_tone'] },
+                { emoji: '🧑‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right'] },
+                { emoji: '🧑🏻‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦼‍➡️', shortcodes: ['person_in_motorized_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '👨‍🦼', shortcodes: ['man_in_motorized_wheelchair'] },
+                { emoji: '👨🏻‍🦼', shortcodes: ['man_in_motorized_wheelchair_light_skin_tone'] },
+                { emoji: '👨🏼‍🦼', shortcodes: ['man_in_motorized_wheelchair_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦼', shortcodes: ['man_in_motorized_wheelchair_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦼', shortcodes: ['man_in_motorized_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦼', shortcodes: ['man_in_motorized_wheelchair_dark_skin_tone'] },
+                { emoji: '👨‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right'] },
+                { emoji: '👨🏻‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '👨🏼‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦼‍➡️', shortcodes: ['man_in_motorized_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '👩‍🦼', shortcodes: ['woman_in_motorized_wheelchair'] },
+                { emoji: '👩🏻‍🦼', shortcodes: ['woman_in_motorized_wheelchair_light_skin_tone'] },
+                { emoji: '👩🏼‍🦼', shortcodes: ['woman_in_motorized_wheelchair_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦼', shortcodes: ['woman_in_motorized_wheelchair_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦼', shortcodes: ['woman_in_motorized_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦼', shortcodes: ['woman_in_motorized_wheelchair_dark_skin_tone'] },
+                { emoji: '👩‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right'] },
+                { emoji: '👩🏻‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '👩🏼‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦼‍➡️', shortcodes: ['woman_in_motorized_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '🧑‍🦽', shortcodes: ['person_in_manual_wheelchair'] },
+                { emoji: '🧑🏻‍🦽', shortcodes: ['person_in_manual_wheelchair_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦽', shortcodes: ['person_in_manual_wheelchair_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦽', shortcodes: ['person_in_manual_wheelchair_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦽', shortcodes: ['person_in_manual_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦽', shortcodes: ['person_in_manual_wheelchair_dark_skin_tone'] },
+                { emoji: '🧑‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right'] },
+                { emoji: '🧑🏻‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '🧑🏼‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🦽‍➡️', shortcodes: ['person_in_manual_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '👨‍🦽', shortcodes: ['man_in_manual_wheelchair'] },
+                { emoji: '👨🏻‍🦽', shortcodes: ['man_in_manual_wheelchair_light_skin_tone'] },
+                { emoji: '👨🏼‍🦽', shortcodes: ['man_in_manual_wheelchair_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦽', shortcodes: ['man_in_manual_wheelchair_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦽', shortcodes: ['man_in_manual_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦽', shortcodes: ['man_in_manual_wheelchair_dark_skin_tone'] },
+                { emoji: '👨‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right'] },
+                { emoji: '👨🏻‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '👨🏼‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '👨🏾‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍🦽‍➡️', shortcodes: ['man_in_manual_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '👩‍🦽', shortcodes: ['woman_in_manual_wheelchair'] },
+                { emoji: '👩🏻‍🦽', shortcodes: ['woman_in_manual_wheelchair_light_skin_tone'] },
+                { emoji: '👩🏼‍🦽', shortcodes: ['woman_in_manual_wheelchair_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦽', shortcodes: ['woman_in_manual_wheelchair_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦽', shortcodes: ['woman_in_manual_wheelchair_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦽', shortcodes: ['woman_in_manual_wheelchair_dark_skin_tone'] },
+                { emoji: '👩‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right'] },
+                { emoji: '👩🏻‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right_light_skin_tone'] },
+                { emoji: '👩🏼‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right_medium_skin_tone'] },
+                { emoji: '👩🏾‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍🦽‍➡️', shortcodes: ['woman_in_manual_wheelchair_facing_right_dark_skin_tone'] },
+                { emoji: '🏃🏻', shortcodes: ['person_running_light_skin_tone'] },
+                { emoji: '🏃🏼', shortcodes: ['person_running_medium_light_skin_tone'] },
+                { emoji: '🏃🏽', shortcodes: ['person_running_medium_skin_tone'] },
+                { emoji: '🏃🏾', shortcodes: ['person_running_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿', shortcodes: ['person_running_dark_skin_tone'] },
+                { emoji: '🏃‍♂️', shortcodes: ['man_running'] },
+                { emoji: '🏃🏻‍♂️', shortcodes: ['man_running_light_skin_tone'] },
+                { emoji: '🏃🏼‍♂️', shortcodes: ['man_running_medium_light_skin_tone'] },
+                { emoji: '🏃🏽‍♂️', shortcodes: ['man_running_medium_skin_tone'] },
+                { emoji: '🏃🏾‍♂️', shortcodes: ['man_running_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿‍♂️', shortcodes: ['man_running_dark_skin_tone'] },
+                { emoji: '🏃‍♀️', shortcodes: ['woman_running'] },
+                { emoji: '🏃🏻‍♀️', shortcodes: ['woman_running_light_skin_tone'] },
+                { emoji: '🏃🏼‍♀️', shortcodes: ['woman_running_medium_light_skin_tone'] },
+                { emoji: '🏃🏽‍♀️', shortcodes: ['woman_running_medium_skin_tone'] },
+                { emoji: '🏃🏾‍♀️', shortcodes: ['woman_running_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿‍♀️', shortcodes: ['woman_running_dark_skin_tone'] },
+                { emoji: '🏃‍➡️', shortcodes: ['person_running_facing_right'] },
+                { emoji: '🏃🏻‍➡️', shortcodes: ['person_running_facing_right_light_skin_tone'] },
+                { emoji: '🏃🏼‍➡️', shortcodes: ['person_running_facing_right_medium_light_skin_tone'] },
+                { emoji: '🏃🏽‍➡️', shortcodes: ['person_running_facing_right_medium_skin_tone'] },
+                { emoji: '🏃🏾‍➡️', shortcodes: ['person_running_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿‍➡️', shortcodes: ['person_running_facing_right_dark_skin_tone'] },
+                { emoji: '🏃‍♀️‍➡️', shortcodes: ['woman_running_facing_right'] },
+                { emoji: '🏃🏻‍♀️‍➡️', shortcodes: ['woman_running_facing_right_light_skin_tone'] },
+                { emoji: '🏃🏼‍♀️‍➡️', shortcodes: ['woman_running_facing_right_medium_light_skin_tone'] },
+                { emoji: '🏃🏽‍♀️‍➡️', shortcodes: ['woman_running_facing_right_medium_skin_tone'] },
+                { emoji: '🏃🏾‍♀️‍➡️', shortcodes: ['woman_running_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿‍♀️‍➡️', shortcodes: ['woman_running_facing_right_dark_skin_tone'] },
+                { emoji: '🏃‍♂️‍➡️', shortcodes: ['man_running_facing_right'] },
+                { emoji: '🏃🏻‍♂️‍➡️', shortcodes: ['man_running_facing_right_light_skin_tone'] },
+                { emoji: '🏃🏼‍♂️‍➡️', shortcodes: ['man_running_facing_right_medium_light_skin_tone'] },
+                { emoji: '🏃🏽‍♂️‍➡️', shortcodes: ['man_running_facing_right_medium_skin_tone'] },
+                { emoji: '🏃🏾‍♂️‍➡️', shortcodes: ['man_running_facing_right_medium_dark_skin_tone'] },
+                { emoji: '🏃🏿‍♂️‍➡️', shortcodes: ['man_running_facing_right_dark_skin_tone'] },
+                { emoji: '🧑‍🩰', shortcodes: ['ballet_dancer'] },
+                { emoji: '🧑🏻‍🩰', shortcodes: ['ballet_dancer_light_skin_tone'] },
+                { emoji: '🧑🏼‍🩰', shortcodes: ['ballet_dancer_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🩰', shortcodes: ['ballet_dancer_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🩰', shortcodes: ['ballet_dancer_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🩰', shortcodes: ['ballet_dancer_dark_skin_tone'] },
+                { emoji: '💃🏻', shortcodes: ['woman_dancing_light_skin_tone'] },
+                { emoji: '💃🏼', shortcodes: ['woman_dancing_medium_light_skin_tone'] },
+                { emoji: '💃🏽', shortcodes: ['woman_dancing_medium_skin_tone'] },
+                { emoji: '💃🏾', shortcodes: ['woman_dancing_medium_dark_skin_tone'] },
+                { emoji: '💃🏿', shortcodes: ['woman_dancing_dark_skin_tone'] },
+                { emoji: '🕺🏻', shortcodes: ['man_dancing_light_skin_tone'] },
+                { emoji: '🕺🏼', shortcodes: ['man_dancing_medium_light_skin_tone'] },
+                { emoji: '🕺🏽', shortcodes: ['man_dancing_medium_skin_tone'] },
+                { emoji: '🕺🏾', shortcodes: ['man_dancing_medium_dark_skin_tone'] },
+                { emoji: '🕺🏿', shortcodes: ['man_dancing_dark_skin_tone'] },
+                { emoji: '🕴️', shortcodes: ['person_in_suit_levitating'] },
+                { emoji: '🕴🏻', shortcodes: ['person_in_suit_levitating_light_skin_tone'] },
+                { emoji: '🕴🏼', shortcodes: ['person_in_suit_levitating_medium_light_skin_tone'] },
+                { emoji: '🕴🏽', shortcodes: ['person_in_suit_levitating_medium_skin_tone'] },
+                { emoji: '🕴🏾', shortcodes: ['person_in_suit_levitating_medium_dark_skin_tone'] },
+                { emoji: '🕴🏿', shortcodes: ['person_in_suit_levitating_dark_skin_tone'] },
+                { emoji: '👯', shortcodes: ['people_with_bunny_ears'] },
+                { emoji: '👯🏻', shortcodes: ['people_with_bunny_ears_light_skin_tone'] },
+                { emoji: '👯🏼', shortcodes: ['people_with_bunny_ears_medium_light_skin_tone'] },
+                { emoji: '👯🏽', shortcodes: ['people_with_bunny_ears_medium_skin_tone'] },
+                { emoji: '👯🏾', shortcodes: ['people_with_bunny_ears_medium_dark_skin_tone'] },
+                { emoji: '👯🏿', shortcodes: ['people_with_bunny_ears_dark_skin_tone'] },
+                { emoji: '👯‍♂️', shortcodes: ['men_with_bunny_ears'] },
+                { emoji: '👯🏻‍♂️', shortcodes: ['men_with_bunny_ears_light_skin_tone'] },
+                { emoji: '👯🏼‍♂️', shortcodes: ['men_with_bunny_ears_medium_light_skin_tone'] },
+                { emoji: '👯🏽‍♂️', shortcodes: ['men_with_bunny_ears_medium_skin_tone'] },
+                { emoji: '👯🏾‍♂️', shortcodes: ['men_with_bunny_ears_medium_dark_skin_tone'] },
+                { emoji: '👯🏿‍♂️', shortcodes: ['men_with_bunny_ears_dark_skin_tone'] },
+                { emoji: '👯‍♀️', shortcodes: ['women_with_bunny_ears'] },
+                { emoji: '👯🏻‍♀️', shortcodes: ['women_with_bunny_ears_light_skin_tone'] },
+                { emoji: '👯🏼‍♀️', shortcodes: ['women_with_bunny_ears_medium_light_skin_tone'] },
+                { emoji: '👯🏽‍♀️', shortcodes: ['women_with_bunny_ears_medium_skin_tone'] },
+                { emoji: '👯🏾‍♀️', shortcodes: ['women_with_bunny_ears_medium_dark_skin_tone'] },
+                { emoji: '👯🏿‍♀️', shortcodes: ['women_with_bunny_ears_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🐰‍🧑🏼', shortcodes: ['people_with_bunny_ears_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏻‍🐰‍🧑🏽', shortcodes: ['people_with_bunny_ears_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏻‍🐰‍🧑🏾', shortcodes: ['people_with_bunny_ears_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🐰‍🧑🏿', shortcodes: ['people_with_bunny_ears_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🐰‍🧑🏻', shortcodes: ['people_with_bunny_ears_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏼‍🐰‍🧑🏽', shortcodes: ['people_with_bunny_ears_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏼‍🐰‍🧑🏾', shortcodes: ['people_with_bunny_ears_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🐰‍🧑🏿', shortcodes: ['people_with_bunny_ears_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🐰‍🧑🏻', shortcodes: ['people_with_bunny_ears_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏽‍🐰‍🧑🏼', shortcodes: ['people_with_bunny_ears_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🐰‍🧑🏾', shortcodes: ['people_with_bunny_ears_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🐰‍🧑🏿', shortcodes: ['people_with_bunny_ears_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏾‍🐰‍🧑🏻', shortcodes: ['people_with_bunny_ears_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏾‍🐰‍🧑🏼', shortcodes: ['people_with_bunny_ears_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏾‍🐰‍🧑🏽', shortcodes: ['people_with_bunny_ears_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🐰‍🧑🏿', shortcodes: ['people_with_bunny_ears_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🐰‍🧑🏻', shortcodes: ['people_with_bunny_ears_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏿‍🐰‍🧑🏼', shortcodes: ['people_with_bunny_ears_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏿‍🐰‍🧑🏽', shortcodes: ['people_with_bunny_ears_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏿‍🐰‍🧑🏾', shortcodes: ['people_with_bunny_ears_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍🐰‍👨🏼', shortcodes: ['men_with_bunny_ears_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏻‍🐰‍👨🏽', shortcodes: ['men_with_bunny_ears_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏻‍🐰‍👨🏾', shortcodes: ['men_with_bunny_ears_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍🐰‍👨🏿', shortcodes: ['men_with_bunny_ears_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏼‍🐰‍👨🏻', shortcodes: ['men_with_bunny_ears_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏼‍🐰‍👨🏽', shortcodes: ['men_with_bunny_ears_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏼‍🐰‍👨🏾', shortcodes: ['men_with_bunny_ears_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏼‍🐰‍👨🏿', shortcodes: ['men_with_bunny_ears_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏽‍🐰‍👨🏻', shortcodes: ['men_with_bunny_ears_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏽‍🐰‍👨🏼', shortcodes: ['men_with_bunny_ears_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🐰‍👨🏾', shortcodes: ['men_with_bunny_ears_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏽‍🐰‍👨🏿', shortcodes: ['men_with_bunny_ears_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏾‍🐰‍👨🏻', shortcodes: ['men_with_bunny_ears_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏾‍🐰‍👨🏼', shortcodes: ['men_with_bunny_ears_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏾‍🐰‍👨🏽', shortcodes: ['men_with_bunny_ears_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏾‍🐰‍👨🏿', shortcodes: ['men_with_bunny_ears_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏿‍🐰‍👨🏻', shortcodes: ['men_with_bunny_ears_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏿‍🐰‍👨🏼', shortcodes: ['men_with_bunny_ears_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏿‍🐰‍👨🏽', shortcodes: ['men_with_bunny_ears_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏿‍🐰‍👨🏾', shortcodes: ['men_with_bunny_ears_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🐰‍👩🏼', shortcodes: ['women_with_bunny_ears_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍🐰‍👩🏽', shortcodes: ['women_with_bunny_ears_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍🐰‍👩🏾', shortcodes: ['women_with_bunny_ears_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🐰‍👩🏿', shortcodes: ['women_with_bunny_ears_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍🐰‍👩🏻', shortcodes: ['women_with_bunny_ears_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍🐰‍👩🏽', shortcodes: ['women_with_bunny_ears_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍🐰‍👩🏾', shortcodes: ['women_with_bunny_ears_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍🐰‍👩🏿', shortcodes: ['women_with_bunny_ears_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍🐰‍👩🏻', shortcodes: ['women_with_bunny_ears_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍🐰‍👩🏼', shortcodes: ['women_with_bunny_ears_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🐰‍👩🏾', shortcodes: ['women_with_bunny_ears_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍🐰‍👩🏿', shortcodes: ['women_with_bunny_ears_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍🐰‍👩🏻', shortcodes: ['women_with_bunny_ears_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍🐰‍👩🏼', shortcodes: ['women_with_bunny_ears_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍🐰‍👩🏽', shortcodes: ['women_with_bunny_ears_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍🐰‍👩🏿', shortcodes: ['women_with_bunny_ears_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍🐰‍👩🏻', shortcodes: ['women_with_bunny_ears_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍🐰‍👩🏼', shortcodes: ['women_with_bunny_ears_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍🐰‍👩🏽', shortcodes: ['women_with_bunny_ears_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍🐰‍👩🏾', shortcodes: ['women_with_bunny_ears_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧖', shortcodes: ['person_in_steamy_room'] },
+                { emoji: '🧖🏻', shortcodes: ['person_in_steamy_room_light_skin_tone'] },
+                { emoji: '🧖🏼', shortcodes: ['person_in_steamy_room_medium_light_skin_tone'] },
+                { emoji: '🧖🏽', shortcodes: ['person_in_steamy_room_medium_skin_tone'] },
+                { emoji: '🧖🏾', shortcodes: ['person_in_steamy_room_medium_dark_skin_tone'] },
+                { emoji: '🧖🏿', shortcodes: ['person_in_steamy_room_dark_skin_tone'] },
+                { emoji: '🧖‍♂️', shortcodes: ['man_in_steamy_room'] },
+                { emoji: '🧖🏻‍♂️', shortcodes: ['man_in_steamy_room_light_skin_tone'] },
+                { emoji: '🧖🏼‍♂️', shortcodes: ['man_in_steamy_room_medium_light_skin_tone'] },
+                { emoji: '🧖🏽‍♂️', shortcodes: ['man_in_steamy_room_medium_skin_tone'] },
+                { emoji: '🧖🏾‍♂️', shortcodes: ['man_in_steamy_room_medium_dark_skin_tone'] },
+                { emoji: '🧖🏿‍♂️', shortcodes: ['man_in_steamy_room_dark_skin_tone'] },
+                { emoji: '🧖‍♀️', shortcodes: ['woman_in_steamy_room'] },
+                { emoji: '🧖🏻‍♀️', shortcodes: ['woman_in_steamy_room_light_skin_tone'] },
+                { emoji: '🧖🏼‍♀️', shortcodes: ['woman_in_steamy_room_medium_light_skin_tone'] },
+                { emoji: '🧖🏽‍♀️', shortcodes: ['woman_in_steamy_room_medium_skin_tone'] },
+                { emoji: '🧖🏾‍♀️', shortcodes: ['woman_in_steamy_room_medium_dark_skin_tone'] },
+                { emoji: '🧖🏿‍♀️', shortcodes: ['woman_in_steamy_room_dark_skin_tone'] },
+                { emoji: '🧗🏻', shortcodes: ['person_climbing_light_skin_tone'] },
+                { emoji: '🧗🏼', shortcodes: ['person_climbing_medium_light_skin_tone'] },
+                { emoji: '🧗🏽', shortcodes: ['person_climbing_medium_skin_tone'] },
+                { emoji: '🧗🏾', shortcodes: ['person_climbing_medium_dark_skin_tone'] },
+                { emoji: '🧗🏿', shortcodes: ['person_climbing_dark_skin_tone'] },
+                { emoji: '🧗‍♂️', shortcodes: ['man_climbing'] },
+                { emoji: '🧗🏻‍♂️', shortcodes: ['man_climbing_light_skin_tone'] },
+                { emoji: '🧗🏼‍♂️', shortcodes: ['man_climbing_medium_light_skin_tone'] },
+                { emoji: '🧗🏽‍♂️', shortcodes: ['man_climbing_medium_skin_tone'] },
+                { emoji: '🧗🏾‍♂️', shortcodes: ['man_climbing_medium_dark_skin_tone'] },
+                { emoji: '🧗🏿‍♂️', shortcodes: ['man_climbing_dark_skin_tone'] },
+                { emoji: '🧗‍♀️', shortcodes: ['woman_climbing'] },
+                { emoji: '🧗🏻‍♀️', shortcodes: ['woman_climbing_light_skin_tone'] },
+                { emoji: '🧗🏼‍♀️', shortcodes: ['woman_climbing_medium_light_skin_tone'] },
+                { emoji: '🧗🏽‍♀️', shortcodes: ['woman_climbing_medium_skin_tone'] },
+                { emoji: '🧗🏾‍♀️', shortcodes: ['woman_climbing_medium_dark_skin_tone'] },
+                { emoji: '🧗🏿‍♀️', shortcodes: ['woman_climbing_dark_skin_tone'] },
+                { emoji: '🏇🏻', shortcodes: ['horse_racing_light_skin_tone'] },
+                { emoji: '🏇🏼', shortcodes: ['horse_racing_medium_light_skin_tone'] },
+                { emoji: '🏇🏽', shortcodes: ['horse_racing_medium_skin_tone'] },
+                { emoji: '🏇🏾', shortcodes: ['horse_racing_medium_dark_skin_tone'] },
+                { emoji: '🏇🏿', shortcodes: ['horse_racing_dark_skin_tone'] },
+                { emoji: '🏂🏻', shortcodes: ['snowboarder_light_skin_tone'] },
+                { emoji: '🏂🏼', shortcodes: ['snowboarder_medium_light_skin_tone'] },
+                { emoji: '🏂🏽', shortcodes: ['snowboarder_medium_skin_tone'] },
+                { emoji: '🏂🏾', shortcodes: ['snowboarder_medium_dark_skin_tone'] },
+                { emoji: '🏂🏿', shortcodes: ['snowboarder_dark_skin_tone'] },
+                { emoji: '🏌️', shortcodes: ['person_golfing'] },
+                { emoji: '🏌🏻', shortcodes: ['person_golfing_light_skin_tone'] },
+                { emoji: '🏌🏼', shortcodes: ['person_golfing_medium_light_skin_tone'] },
+                { emoji: '🏌🏽', shortcodes: ['person_golfing_medium_skin_tone'] },
+                { emoji: '🏌🏾', shortcodes: ['person_golfing_medium_dark_skin_tone'] },
+                { emoji: '🏌🏿', shortcodes: ['person_golfing_dark_skin_tone'] },
+                { emoji: '🏌️‍♂️', shortcodes: ['man_golfing'] },
+                { emoji: '🏌🏻‍♂️', shortcodes: ['man_golfing_light_skin_tone'] },
+                { emoji: '🏌🏼‍♂️', shortcodes: ['man_golfing_medium_light_skin_tone'] },
+                { emoji: '🏌🏽‍♂️', shortcodes: ['man_golfing_medium_skin_tone'] },
+                { emoji: '🏌🏾‍♂️', shortcodes: ['man_golfing_medium_dark_skin_tone'] },
+                { emoji: '🏌🏿‍♂️', shortcodes: ['man_golfing_dark_skin_tone'] },
+                { emoji: '🏌️‍♀️', shortcodes: ['woman_golfing'] },
+                { emoji: '🏌🏻‍♀️', shortcodes: ['woman_golfing_light_skin_tone'] },
+                { emoji: '🏌🏼‍♀️', shortcodes: ['woman_golfing_medium_light_skin_tone'] },
+                { emoji: '🏌🏽‍♀️', shortcodes: ['woman_golfing_medium_skin_tone'] },
+                { emoji: '🏌🏾‍♀️', shortcodes: ['woman_golfing_medium_dark_skin_tone'] },
+                { emoji: '🏌🏿‍♀️', shortcodes: ['woman_golfing_dark_skin_tone'] },
+                { emoji: '🏄🏻', shortcodes: ['person_surfing_light_skin_tone'] },
+                { emoji: '🏄🏼', shortcodes: ['person_surfing_medium_light_skin_tone'] },
+                { emoji: '🏄🏽', shortcodes: ['person_surfing_medium_skin_tone'] },
+                { emoji: '🏄🏾', shortcodes: ['person_surfing_medium_dark_skin_tone'] },
+                { emoji: '🏄🏿', shortcodes: ['person_surfing_dark_skin_tone'] },
+                { emoji: '🏄‍♂️', shortcodes: ['man_surfing'] },
+                { emoji: '🏄🏻‍♂️', shortcodes: ['man_surfing_light_skin_tone'] },
+                { emoji: '🏄🏼‍♂️', shortcodes: ['man_surfing_medium_light_skin_tone'] },
+                { emoji: '🏄🏽‍♂️', shortcodes: ['man_surfing_medium_skin_tone'] },
+                { emoji: '🏄🏾‍♂️', shortcodes: ['man_surfing_medium_dark_skin_tone'] },
+                { emoji: '🏄🏿‍♂️', shortcodes: ['man_surfing_dark_skin_tone'] },
+                { emoji: '🏄‍♀️', shortcodes: ['woman_surfing'] },
+                { emoji: '🏄🏻‍♀️', shortcodes: ['woman_surfing_light_skin_tone'] },
+                { emoji: '🏄🏼‍♀️', shortcodes: ['woman_surfing_medium_light_skin_tone'] },
+                { emoji: '🏄🏽‍♀️', shortcodes: ['woman_surfing_medium_skin_tone'] },
+                { emoji: '🏄🏾‍♀️', shortcodes: ['woman_surfing_medium_dark_skin_tone'] },
+                { emoji: '🏄🏿‍♀️', shortcodes: ['woman_surfing_dark_skin_tone'] },
+                { emoji: '🚣🏻', shortcodes: ['person_rowing_boat_light_skin_tone'] },
+                { emoji: '🚣🏼', shortcodes: ['person_rowing_boat_medium_light_skin_tone'] },
+                { emoji: '🚣🏽', shortcodes: ['person_rowing_boat_medium_skin_tone'] },
+                { emoji: '🚣🏾', shortcodes: ['person_rowing_boat_medium_dark_skin_tone'] },
+                { emoji: '🚣🏿', shortcodes: ['person_rowing_boat_dark_skin_tone'] },
+                { emoji: '🚣‍♂️', shortcodes: ['man_rowing_boat'] },
+                { emoji: '🚣🏻‍♂️', shortcodes: ['man_rowing_boat_light_skin_tone'] },
+                { emoji: '🚣🏼‍♂️', shortcodes: ['man_rowing_boat_medium_light_skin_tone'] },
+                { emoji: '🚣🏽‍♂️', shortcodes: ['man_rowing_boat_medium_skin_tone'] },
+                { emoji: '🚣🏾‍♂️', shortcodes: ['man_rowing_boat_medium_dark_skin_tone'] },
+                { emoji: '🚣🏿‍♂️', shortcodes: ['man_rowing_boat_dark_skin_tone'] },
+                { emoji: '🚣‍♀️', shortcodes: ['woman_rowing_boat'] },
+                { emoji: '🚣🏻‍♀️', shortcodes: ['woman_rowing_boat_light_skin_tone'] },
+                { emoji: '🚣🏼‍♀️', shortcodes: ['woman_rowing_boat_medium_light_skin_tone'] },
+                { emoji: '🚣🏽‍♀️', shortcodes: ['woman_rowing_boat_medium_skin_tone'] },
+                { emoji: '🚣🏾‍♀️', shortcodes: ['woman_rowing_boat_medium_dark_skin_tone'] },
+                { emoji: '🚣🏿‍♀️', shortcodes: ['woman_rowing_boat_dark_skin_tone'] },
+                { emoji: '🏊🏻', shortcodes: ['person_swimming_light_skin_tone'] },
+                { emoji: '🏊🏼', shortcodes: ['person_swimming_medium_light_skin_tone'] },
+                { emoji: '🏊🏽', shortcodes: ['person_swimming_medium_skin_tone'] },
+                { emoji: '🏊🏾', shortcodes: ['person_swimming_medium_dark_skin_tone'] },
+                { emoji: '🏊🏿', shortcodes: ['person_swimming_dark_skin_tone'] },
+                { emoji: '🏊‍♂️', shortcodes: ['man_swimming'] },
+                { emoji: '🏊🏻‍♂️', shortcodes: ['man_swimming_light_skin_tone'] },
+                { emoji: '🏊🏼‍♂️', shortcodes: ['man_swimming_medium_light_skin_tone'] },
+                { emoji: '🏊🏽‍♂️', shortcodes: ['man_swimming_medium_skin_tone'] },
+                { emoji: '🏊🏾‍♂️', shortcodes: ['man_swimming_medium_dark_skin_tone'] },
+                { emoji: '🏊🏿‍♂️', shortcodes: ['man_swimming_dark_skin_tone'] },
+                { emoji: '🏊‍♀️', shortcodes: ['woman_swimming'] },
+                { emoji: '🏊🏻‍♀️', shortcodes: ['woman_swimming_light_skin_tone'] },
+                { emoji: '🏊🏼‍♀️', shortcodes: ['woman_swimming_medium_light_skin_tone'] },
+                { emoji: '🏊🏽‍♀️', shortcodes: ['woman_swimming_medium_skin_tone'] },
+                { emoji: '🏊🏾‍♀️', shortcodes: ['woman_swimming_medium_dark_skin_tone'] },
+                { emoji: '🏊🏿‍♀️', shortcodes: ['woman_swimming_dark_skin_tone'] },
+                { emoji: '⛹️', shortcodes: ['person_bouncing_ball'] },
+                { emoji: '⛹🏻', shortcodes: ['person_bouncing_ball_light_skin_tone'] },
+                { emoji: '⛹🏼', shortcodes: ['person_bouncing_ball_medium_light_skin_tone'] },
+                { emoji: '⛹🏽', shortcodes: ['person_bouncing_ball_medium_skin_tone'] },
+                { emoji: '⛹🏾', shortcodes: ['person_bouncing_ball_medium_dark_skin_tone'] },
+                { emoji: '⛹🏿', shortcodes: ['person_bouncing_ball_dark_skin_tone'] },
+                { emoji: '⛹️‍♂️', shortcodes: ['man_bouncing_ball'] },
+                { emoji: '⛹🏻‍♂️', shortcodes: ['man_bouncing_ball_light_skin_tone'] },
+                { emoji: '⛹🏼‍♂️', shortcodes: ['man_bouncing_ball_medium_light_skin_tone'] },
+                { emoji: '⛹🏽‍♂️', shortcodes: ['man_bouncing_ball_medium_skin_tone'] },
+                { emoji: '⛹🏾‍♂️', shortcodes: ['man_bouncing_ball_medium_dark_skin_tone'] },
+                { emoji: '⛹🏿‍♂️', shortcodes: ['man_bouncing_ball_dark_skin_tone'] },
+                { emoji: '⛹️‍♀️', shortcodes: ['woman_bouncing_ball'] },
+                { emoji: '⛹🏻‍♀️', shortcodes: ['woman_bouncing_ball_light_skin_tone'] },
+                { emoji: '⛹🏼‍♀️', shortcodes: ['woman_bouncing_ball_medium_light_skin_tone'] },
+                { emoji: '⛹🏽‍♀️', shortcodes: ['woman_bouncing_ball_medium_skin_tone'] },
+                { emoji: '⛹🏾‍♀️', shortcodes: ['woman_bouncing_ball_medium_dark_skin_tone'] },
+                { emoji: '⛹🏿‍♀️', shortcodes: ['woman_bouncing_ball_dark_skin_tone'] },
+                { emoji: '🏋🏻', shortcodes: ['person_lifting_weights_light_skin_tone'] },
+                { emoji: '🏋🏼', shortcodes: ['person_lifting_weights_medium_light_skin_tone'] },
+                { emoji: '🏋🏽', shortcodes: ['person_lifting_weights_medium_skin_tone'] },
+                { emoji: '🏋🏾', shortcodes: ['person_lifting_weights_medium_dark_skin_tone'] },
+                { emoji: '🏋🏿', shortcodes: ['person_lifting_weights_dark_skin_tone'] },
+                { emoji: '🏋️‍♂️', shortcodes: ['man_lifting_weights'] },
+                { emoji: '🏋🏻‍♂️', shortcodes: ['man_lifting_weights_light_skin_tone'] },
+                { emoji: '🏋🏼‍♂️', shortcodes: ['man_lifting_weights_medium_light_skin_tone'] },
+                { emoji: '🏋🏽‍♂️', shortcodes: ['man_lifting_weights_medium_skin_tone'] },
+                { emoji: '🏋🏾‍♂️', shortcodes: ['man_lifting_weights_medium_dark_skin_tone'] },
+                { emoji: '🏋🏿‍♂️', shortcodes: ['man_lifting_weights_dark_skin_tone'] },
+                { emoji: '🏋️‍♀️', shortcodes: ['woman_lifting_weights'] },
+                { emoji: '🏋🏻‍♀️', shortcodes: ['woman_lifting_weights_light_skin_tone'] },
+                { emoji: '🏋🏼‍♀️', shortcodes: ['woman_lifting_weights_medium_light_skin_tone'] },
+                { emoji: '🏋🏽‍♀️', shortcodes: ['woman_lifting_weights_medium_skin_tone'] },
+                { emoji: '🏋🏾‍♀️', shortcodes: ['woman_lifting_weights_medium_dark_skin_tone'] },
+                { emoji: '🏋🏿‍♀️', shortcodes: ['woman_lifting_weights_dark_skin_tone'] },
+                { emoji: '🚴🏻', shortcodes: ['person_biking_light_skin_tone'] },
+                { emoji: '🚴🏼', shortcodes: ['person_biking_medium_light_skin_tone'] },
+                { emoji: '🚴🏽', shortcodes: ['person_biking_medium_skin_tone'] },
+                { emoji: '🚴🏾', shortcodes: ['person_biking_medium_dark_skin_tone'] },
+                { emoji: '🚴🏿', shortcodes: ['person_biking_dark_skin_tone'] },
+                { emoji: '🚴‍♂️', shortcodes: ['man_biking'] },
+                { emoji: '🚴🏻‍♂️', shortcodes: ['man_biking_light_skin_tone'] },
+                { emoji: '🚴🏼‍♂️', shortcodes: ['man_biking_medium_light_skin_tone'] },
+                { emoji: '🚴🏽‍♂️', shortcodes: ['man_biking_medium_skin_tone'] },
+                { emoji: '🚴🏾‍♂️', shortcodes: ['man_biking_medium_dark_skin_tone'] },
+                { emoji: '🚴🏿‍♂️', shortcodes: ['man_biking_dark_skin_tone'] },
+                { emoji: '🚴‍♀️', shortcodes: ['woman_biking'] },
+                { emoji: '🚴🏻‍♀️', shortcodes: ['woman_biking_light_skin_tone'] },
+                { emoji: '🚴🏼‍♀️', shortcodes: ['woman_biking_medium_light_skin_tone'] },
+                { emoji: '🚴🏽‍♀️', shortcodes: ['woman_biking_medium_skin_tone'] },
+                { emoji: '🚴🏾‍♀️', shortcodes: ['woman_biking_medium_dark_skin_tone'] },
+                { emoji: '🚴🏿‍♀️', shortcodes: ['woman_biking_dark_skin_tone'] },
+                { emoji: '🚵🏻', shortcodes: ['person_mountain_biking_light_skin_tone'] },
+                { emoji: '🚵🏼', shortcodes: ['person_mountain_biking_medium_light_skin_tone'] },
+                { emoji: '🚵🏽', shortcodes: ['person_mountain_biking_medium_skin_tone'] },
+                { emoji: '🚵🏾', shortcodes: ['person_mountain_biking_medium_dark_skin_tone'] },
+                { emoji: '🚵🏿', shortcodes: ['person_mountain_biking_dark_skin_tone'] },
+                { emoji: '🚵‍♂️', shortcodes: ['man_mountain_biking'] },
+                { emoji: '🚵🏻‍♂️', shortcodes: ['man_mountain_biking_light_skin_tone'] },
+                { emoji: '🚵🏼‍♂️', shortcodes: ['man_mountain_biking_medium_light_skin_tone'] },
+                { emoji: '🚵🏽‍♂️', shortcodes: ['man_mountain_biking_medium_skin_tone'] },
+                { emoji: '🚵🏾‍♂️', shortcodes: ['man_mountain_biking_medium_dark_skin_tone'] },
+                { emoji: '🚵🏿‍♂️', shortcodes: ['man_mountain_biking_dark_skin_tone'] },
+                { emoji: '🚵‍♀️', shortcodes: ['woman_mountain_biking'] },
+                { emoji: '🚵🏻‍♀️', shortcodes: ['woman_mountain_biking_light_skin_tone'] },
+                { emoji: '🚵🏼‍♀️', shortcodes: ['woman_mountain_biking_medium_light_skin_tone'] },
+                { emoji: '🚵🏽‍♀️', shortcodes: ['woman_mountain_biking_medium_skin_tone'] },
+                { emoji: '🚵🏾‍♀️', shortcodes: ['woman_mountain_biking_medium_dark_skin_tone'] },
+                { emoji: '🚵🏿‍♀️', shortcodes: ['woman_mountain_biking_dark_skin_tone'] },
+                { emoji: '🤸🏻', shortcodes: ['person_cartwheeling_light_skin_tone'] },
+                { emoji: '🤸🏼', shortcodes: ['person_cartwheeling_medium_light_skin_tone'] },
+                { emoji: '🤸🏽', shortcodes: ['person_cartwheeling_medium_skin_tone'] },
+                { emoji: '🤸🏾', shortcodes: ['person_cartwheeling_medium_dark_skin_tone'] },
+                { emoji: '🤸🏿', shortcodes: ['person_cartwheeling_dark_skin_tone'] },
+                { emoji: '🤸‍♂️', shortcodes: ['man_cartwheeling'] },
+                { emoji: '🤸🏻‍♂️', shortcodes: ['man_cartwheeling_light_skin_tone'] },
+                { emoji: '🤸🏼‍♂️', shortcodes: ['man_cartwheeling_medium_light_skin_tone'] },
+                { emoji: '🤸🏽‍♂️', shortcodes: ['man_cartwheeling_medium_skin_tone'] },
+                { emoji: '🤸🏾‍♂️', shortcodes: ['man_cartwheeling_medium_dark_skin_tone'] },
+                { emoji: '🤸🏿‍♂️', shortcodes: ['man_cartwheeling_dark_skin_tone'] },
+                { emoji: '🤸‍♀️', shortcodes: ['woman_cartwheeling'] },
+                { emoji: '🤸🏻‍♀️', shortcodes: ['woman_cartwheeling_light_skin_tone'] },
+                { emoji: '🤸🏼‍♀️', shortcodes: ['woman_cartwheeling_medium_light_skin_tone'] },
+                { emoji: '🤸🏽‍♀️', shortcodes: ['woman_cartwheeling_medium_skin_tone'] },
+                { emoji: '🤸🏾‍♀️', shortcodes: ['woman_cartwheeling_medium_dark_skin_tone'] },
+                { emoji: '🤸🏿‍♀️', shortcodes: ['woman_cartwheeling_dark_skin_tone'] },
+                { emoji: '🤼', shortcodes: ['people_wrestling'] },
+                { emoji: '🤼🏻', shortcodes: ['people_wrestling_light_skin_tone'] },
+                { emoji: '🤼🏼', shortcodes: ['people_wrestling_medium_light_skin_tone'] },
+                { emoji: '🤼🏽', shortcodes: ['people_wrestling_medium_skin_tone'] },
+                { emoji: '🤼🏾', shortcodes: ['people_wrestling_medium_dark_skin_tone'] },
+                { emoji: '🤼🏿', shortcodes: ['people_wrestling_dark_skin_tone'] },
+                { emoji: '🤼‍♂️', shortcodes: ['men_wrestling'] },
+                { emoji: '🤼🏻‍♂️', shortcodes: ['men_wrestling_light_skin_tone'] },
+                { emoji: '🤼🏼‍♂️', shortcodes: ['men_wrestling_medium_light_skin_tone'] },
+                { emoji: '🤼🏽‍♂️', shortcodes: ['men_wrestling_medium_skin_tone'] },
+                { emoji: '🤼🏾‍♂️', shortcodes: ['men_wrestling_medium_dark_skin_tone'] },
+                { emoji: '🤼🏿‍♂️', shortcodes: ['men_wrestling_dark_skin_tone'] },
+                { emoji: '🤼‍♀️', shortcodes: ['women_wrestling'] },
+                { emoji: '🤼🏻‍♀️', shortcodes: ['women_wrestling_light_skin_tone'] },
+                { emoji: '🤼🏼‍♀️', shortcodes: ['women_wrestling_medium_light_skin_tone'] },
+                { emoji: '🤼🏽‍♀️', shortcodes: ['women_wrestling_medium_skin_tone'] },
+                { emoji: '🤼🏾‍♀️', shortcodes: ['women_wrestling_medium_dark_skin_tone'] },
+                { emoji: '🤼🏿‍♀️', shortcodes: ['women_wrestling_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🫯‍🧑🏼', shortcodes: ['people_wrestling_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏻‍🫯‍🧑🏽', shortcodes: ['people_wrestling_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏻‍🫯‍🧑🏾', shortcodes: ['people_wrestling_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🫯‍🧑🏿', shortcodes: ['people_wrestling_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🫯‍🧑🏻', shortcodes: ['people_wrestling_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏼‍🫯‍🧑🏽', shortcodes: ['people_wrestling_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏼‍🫯‍🧑🏾', shortcodes: ['people_wrestling_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🫯‍🧑🏿', shortcodes: ['people_wrestling_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🫯‍🧑🏻', shortcodes: ['people_wrestling_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏽‍🫯‍🧑🏼', shortcodes: ['people_wrestling_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🫯‍🧑🏾', shortcodes: ['people_wrestling_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🫯‍🧑🏿', shortcodes: ['people_wrestling_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏾‍🫯‍🧑🏻', shortcodes: ['people_wrestling_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏾‍🫯‍🧑🏼', shortcodes: ['people_wrestling_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏾‍🫯‍🧑🏽', shortcodes: ['people_wrestling_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🫯‍🧑🏿', shortcodes: ['people_wrestling_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🫯‍🧑🏻', shortcodes: ['people_wrestling_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏿‍🫯‍🧑🏼', shortcodes: ['people_wrestling_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏿‍🫯‍🧑🏽', shortcodes: ['people_wrestling_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏿‍🫯‍🧑🏾', shortcodes: ['people_wrestling_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍🫯‍👨🏼', shortcodes: ['men_wrestling_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏻‍🫯‍👨🏽', shortcodes: ['men_wrestling_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏻‍🫯‍👨🏾', shortcodes: ['men_wrestling_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍🫯‍👨🏿', shortcodes: ['men_wrestling_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏼‍🫯‍👨🏻', shortcodes: ['men_wrestling_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏼‍🫯‍👨🏽', shortcodes: ['men_wrestling_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏼‍🫯‍👨🏾', shortcodes: ['men_wrestling_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏼‍🫯‍👨🏿', shortcodes: ['men_wrestling_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏽‍🫯‍👨🏻', shortcodes: ['men_wrestling_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏽‍🫯‍👨🏼', shortcodes: ['men_wrestling_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍🫯‍👨🏾', shortcodes: ['men_wrestling_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏽‍🫯‍👨🏿', shortcodes: ['men_wrestling_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏾‍🫯‍👨🏻', shortcodes: ['men_wrestling_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏾‍🫯‍👨🏼', shortcodes: ['men_wrestling_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏾‍🫯‍👨🏽', shortcodes: ['men_wrestling_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏾‍🫯‍👨🏿', shortcodes: ['men_wrestling_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏿‍🫯‍👨🏻', shortcodes: ['men_wrestling_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏿‍🫯‍👨🏼', shortcodes: ['men_wrestling_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏿‍🫯‍👨🏽', shortcodes: ['men_wrestling_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏿‍🫯‍👨🏾', shortcodes: ['men_wrestling_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🫯‍👩🏼', shortcodes: ['women_wrestling_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍🫯‍👩🏽', shortcodes: ['women_wrestling_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍🫯‍👩🏾', shortcodes: ['women_wrestling_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🫯‍👩🏿', shortcodes: ['women_wrestling_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍🫯‍👩🏻', shortcodes: ['women_wrestling_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍🫯‍👩🏽', shortcodes: ['women_wrestling_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍🫯‍👩🏾', shortcodes: ['women_wrestling_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍🫯‍👩🏿', shortcodes: ['women_wrestling_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍🫯‍👩🏻', shortcodes: ['women_wrestling_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍🫯‍👩🏼', shortcodes: ['women_wrestling_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍🫯‍👩🏾', shortcodes: ['women_wrestling_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍🫯‍👩🏿', shortcodes: ['women_wrestling_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍🫯‍👩🏻', shortcodes: ['women_wrestling_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍🫯‍👩🏼', shortcodes: ['women_wrestling_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍🫯‍👩🏽', shortcodes: ['women_wrestling_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍🫯‍👩🏿', shortcodes: ['women_wrestling_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍🫯‍👩🏻', shortcodes: ['women_wrestling_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍🫯‍👩🏼', shortcodes: ['women_wrestling_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍🫯‍👩🏽', shortcodes: ['women_wrestling_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍🫯‍👩🏾', shortcodes: ['women_wrestling_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🤽', shortcodes: ['person_playing_water_polo'] },
+                { emoji: '🤽🏻', shortcodes: ['person_playing_water_polo_light_skin_tone'] },
+                { emoji: '🤽🏼', shortcodes: ['person_playing_water_polo_medium_light_skin_tone'] },
+                { emoji: '🤽🏽', shortcodes: ['person_playing_water_polo_medium_skin_tone'] },
+                { emoji: '🤽🏾', shortcodes: ['person_playing_water_polo_medium_dark_skin_tone'] },
+                { emoji: '🤽🏿', shortcodes: ['person_playing_water_polo_dark_skin_tone'] },
+                { emoji: '🤽‍♂️', shortcodes: ['man_playing_water_polo'] },
+                { emoji: '🤽🏻‍♂️', shortcodes: ['man_playing_water_polo_light_skin_tone'] },
+                { emoji: '🤽🏼‍♂️', shortcodes: ['man_playing_water_polo_medium_light_skin_tone'] },
+                { emoji: '🤽🏽‍♂️', shortcodes: ['man_playing_water_polo_medium_skin_tone'] },
+                { emoji: '🤽🏾‍♂️', shortcodes: ['man_playing_water_polo_medium_dark_skin_tone'] },
+                { emoji: '🤽🏿‍♂️', shortcodes: ['man_playing_water_polo_dark_skin_tone'] },
+                { emoji: '🤽‍♀️', shortcodes: ['woman_playing_water_polo'] },
+                { emoji: '🤽🏻‍♀️', shortcodes: ['woman_playing_water_polo_light_skin_tone'] },
+                { emoji: '🤽🏼‍♀️', shortcodes: ['woman_playing_water_polo_medium_light_skin_tone'] },
+                { emoji: '🤽🏽‍♀️', shortcodes: ['woman_playing_water_polo_medium_skin_tone'] },
+                { emoji: '🤽🏾‍♀️', shortcodes: ['woman_playing_water_polo_medium_dark_skin_tone'] },
+                { emoji: '🤽🏿‍♀️', shortcodes: ['woman_playing_water_polo_dark_skin_tone'] },
+                { emoji: '🤾', shortcodes: ['person_playing_handball'] },
+                { emoji: '🤾🏻', shortcodes: ['person_playing_handball_light_skin_tone'] },
+                { emoji: '🤾🏼', shortcodes: ['person_playing_handball_medium_light_skin_tone'] },
+                { emoji: '🤾🏽', shortcodes: ['person_playing_handball_medium_skin_tone'] },
+                { emoji: '🤾🏾', shortcodes: ['person_playing_handball_medium_dark_skin_tone'] },
+                { emoji: '🤾🏿', shortcodes: ['person_playing_handball_dark_skin_tone'] },
+                { emoji: '🤾‍♂️', shortcodes: ['man_playing_handball'] },
+                { emoji: '🤾🏻‍♂️', shortcodes: ['man_playing_handball_light_skin_tone'] },
+                { emoji: '🤾🏼‍♂️', shortcodes: ['man_playing_handball_medium_light_skin_tone'] },
+                { emoji: '🤾🏽‍♂️', shortcodes: ['man_playing_handball_medium_skin_tone'] },
+                { emoji: '🤾🏾‍♂️', shortcodes: ['man_playing_handball_medium_dark_skin_tone'] },
+                { emoji: '🤾🏿‍♂️', shortcodes: ['man_playing_handball_dark_skin_tone'] },
+                { emoji: '🤾‍♀️', shortcodes: ['woman_playing_handball'] },
+                { emoji: '🤾🏻‍♀️', shortcodes: ['woman_playing_handball_light_skin_tone'] },
+                { emoji: '🤾🏼‍♀️', shortcodes: ['woman_playing_handball_medium_light_skin_tone'] },
+                { emoji: '🤾🏽‍♀️', shortcodes: ['woman_playing_handball_medium_skin_tone'] },
+                { emoji: '🤾🏾‍♀️', shortcodes: ['woman_playing_handball_medium_dark_skin_tone'] },
+                { emoji: '🤾🏿‍♀️', shortcodes: ['woman_playing_handball_dark_skin_tone'] },
+                { emoji: '🤹', shortcodes: ['person_juggling'] },
+                { emoji: '🤹🏻', shortcodes: ['person_juggling_light_skin_tone'] },
+                { emoji: '🤹🏼', shortcodes: ['person_juggling_medium_light_skin_tone'] },
+                { emoji: '🤹🏽', shortcodes: ['person_juggling_medium_skin_tone'] },
+                { emoji: '🤹🏾', shortcodes: ['person_juggling_medium_dark_skin_tone'] },
+                { emoji: '🤹🏿', shortcodes: ['person_juggling_dark_skin_tone'] },
+                { emoji: '🤹‍♂️', shortcodes: ['man_juggling'] },
+                { emoji: '🤹🏻‍♂️', shortcodes: ['man_juggling_light_skin_tone'] },
+                { emoji: '🤹🏼‍♂️', shortcodes: ['man_juggling_medium_light_skin_tone'] },
+                { emoji: '🤹🏽‍♂️', shortcodes: ['man_juggling_medium_skin_tone'] },
+                { emoji: '🤹🏾‍♂️', shortcodes: ['man_juggling_medium_dark_skin_tone'] },
+                { emoji: '🤹🏿‍♂️', shortcodes: ['man_juggling_dark_skin_tone'] },
+                { emoji: '🤹‍♀️', shortcodes: ['woman_juggling'] },
+                { emoji: '🤹🏻‍♀️', shortcodes: ['woman_juggling_light_skin_tone'] },
+                { emoji: '🤹🏼‍♀️', shortcodes: ['woman_juggling_medium_light_skin_tone'] },
+                { emoji: '🤹🏽‍♀️', shortcodes: ['woman_juggling_medium_skin_tone'] },
+                { emoji: '🤹🏾‍♀️', shortcodes: ['woman_juggling_medium_dark_skin_tone'] },
+                { emoji: '🤹🏿‍♀️', shortcodes: ['woman_juggling_dark_skin_tone'] },
+                { emoji: '🧘🏻', shortcodes: ['person_in_lotus_position_light_skin_tone'] },
+                { emoji: '🧘🏼', shortcodes: ['person_in_lotus_position_medium_light_skin_tone'] },
+                { emoji: '🧘🏽', shortcodes: ['person_in_lotus_position_medium_skin_tone'] },
+                { emoji: '🧘🏾', shortcodes: ['person_in_lotus_position_medium_dark_skin_tone'] },
+                { emoji: '🧘🏿', shortcodes: ['person_in_lotus_position_dark_skin_tone'] },
+                { emoji: '🧘‍♂️', shortcodes: ['man_in_lotus_position'] },
+                { emoji: '🧘🏻‍♂️', shortcodes: ['man_in_lotus_position_light_skin_tone'] },
+                { emoji: '🧘🏼‍♂️', shortcodes: ['man_in_lotus_position_medium_light_skin_tone'] },
+                { emoji: '🧘🏽‍♂️', shortcodes: ['man_in_lotus_position_medium_skin_tone'] },
+                { emoji: '🧘🏾‍♂️', shortcodes: ['man_in_lotus_position_medium_dark_skin_tone'] },
+                { emoji: '🧘🏿‍♂️', shortcodes: ['man_in_lotus_position_dark_skin_tone'] },
+                { emoji: '🧘‍♀️', shortcodes: ['woman_in_lotus_position'] },
+                { emoji: '🧘🏻‍♀️', shortcodes: ['woman_in_lotus_position_light_skin_tone'] },
+                { emoji: '🧘🏼‍♀️', shortcodes: ['woman_in_lotus_position_medium_light_skin_tone'] },
+                { emoji: '🧘🏽‍♀️', shortcodes: ['woman_in_lotus_position_medium_skin_tone'] },
+                { emoji: '🧘🏾‍♀️', shortcodes: ['woman_in_lotus_position_medium_dark_skin_tone'] },
+                { emoji: '🧘🏿‍♀️', shortcodes: ['woman_in_lotus_position_dark_skin_tone'] },
+                { emoji: '🛀', shortcodes: ['person_taking_bath'] },
+                { emoji: '🛀🏻', shortcodes: ['person_taking_bath_light_skin_tone'] },
+                { emoji: '🛀🏼', shortcodes: ['person_taking_bath_medium_light_skin_tone'] },
+                { emoji: '🛀🏽', shortcodes: ['person_taking_bath_medium_skin_tone'] },
+                { emoji: '🛀🏾', shortcodes: ['person_taking_bath_medium_dark_skin_tone'] },
+                { emoji: '🛀🏿', shortcodes: ['person_taking_bath_dark_skin_tone'] },
+                { emoji: '🛌', shortcodes: ['person_in_bed'] },
+                { emoji: '🛌🏻', shortcodes: ['person_in_bed_light_skin_tone'] },
+                { emoji: '🛌🏼', shortcodes: ['person_in_bed_medium_light_skin_tone'] },
+                { emoji: '🛌🏽', shortcodes: ['person_in_bed_medium_skin_tone'] },
+                { emoji: '🛌🏾', shortcodes: ['person_in_bed_medium_dark_skin_tone'] },
+                { emoji: '🛌🏿', shortcodes: ['person_in_bed_dark_skin_tone'] },
+                { emoji: '🧑‍🤝‍🧑', shortcodes: ['people_holding_hands'] },
+                { emoji: '🧑🏻‍🤝‍🧑🏻', shortcodes: ['people_holding_hands_light_skin_tone'] },
+                { emoji: '🧑🏻‍🤝‍🧑🏼', shortcodes: ['people_holding_hands_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏻‍🤝‍🧑🏽', shortcodes: ['people_holding_hands_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏻‍🤝‍🧑🏾', shortcodes: ['people_holding_hands_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏻‍🤝‍🧑🏿', shortcodes: ['people_holding_hands_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🤝‍🧑🏻', shortcodes: ['people_holding_hands_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏼‍🤝‍🧑🏼', shortcodes: ['people_holding_hands_medium_light_skin_tone'] },
+                { emoji: '🧑🏼‍🤝‍🧑🏽', shortcodes: ['people_holding_hands_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏼‍🤝‍🧑🏾', shortcodes: ['people_holding_hands_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏼‍🤝‍🧑🏿', shortcodes: ['people_holding_hands_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🤝‍🧑🏻', shortcodes: ['people_holding_hands_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏽‍🤝‍🧑🏼', shortcodes: ['people_holding_hands_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍🤝‍🧑🏽', shortcodes: ['people_holding_hands_medium_skin_tone'] },
+                { emoji: '🧑🏽‍🤝‍🧑🏾', shortcodes: ['people_holding_hands_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏽‍🤝‍🧑🏿', shortcodes: ['people_holding_hands_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏾‍🤝‍🧑🏻', shortcodes: ['people_holding_hands_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏾‍🤝‍🧑🏼', shortcodes: ['people_holding_hands_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏾‍🤝‍🧑🏽', shortcodes: ['people_holding_hands_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏾‍🤝‍🧑🏾', shortcodes: ['people_holding_hands_medium_dark_skin_tone'] },
+                { emoji: '🧑🏾‍🤝‍🧑🏿', shortcodes: ['people_holding_hands_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🤝‍🧑🏻', shortcodes: ['people_holding_hands_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏿‍🤝‍🧑🏼', shortcodes: ['people_holding_hands_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏿‍🤝‍🧑🏽', shortcodes: ['people_holding_hands_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏿‍🤝‍🧑🏾', shortcodes: ['people_holding_hands_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏿‍🤝‍🧑🏿', shortcodes: ['people_holding_hands_dark_skin_tone'] },
+                { emoji: '👭', shortcodes: ['women_holding_hands'] },
+                { emoji: '👭🏻', shortcodes: ['women_holding_hands_light_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👩🏼', shortcodes: ['women_holding_hands_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👩🏽', shortcodes: ['women_holding_hands_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👩🏾', shortcodes: ['women_holding_hands_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👩🏿', shortcodes: ['women_holding_hands_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👩🏻', shortcodes: ['women_holding_hands_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👭🏼', shortcodes: ['women_holding_hands_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👩🏽', shortcodes: ['women_holding_hands_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👩🏾', shortcodes: ['women_holding_hands_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👩🏿', shortcodes: ['women_holding_hands_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👩🏻', shortcodes: ['women_holding_hands_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👩🏼', shortcodes: ['women_holding_hands_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👭🏽', shortcodes: ['women_holding_hands_medium_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👩🏾', shortcodes: ['women_holding_hands_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👩🏿', shortcodes: ['women_holding_hands_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👩🏻', shortcodes: ['women_holding_hands_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👩🏼', shortcodes: ['women_holding_hands_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👩🏽', shortcodes: ['women_holding_hands_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👭🏾', shortcodes: ['women_holding_hands_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👩🏿', shortcodes: ['women_holding_hands_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👩🏻', shortcodes: ['women_holding_hands_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👩🏼', shortcodes: ['women_holding_hands_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👩🏽', shortcodes: ['women_holding_hands_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👩🏾', shortcodes: ['women_holding_hands_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👭🏿', shortcodes: ['women_holding_hands_dark_skin_tone'] },
+                { emoji: '👫', shortcodes: ['woman_and_man_holding_hands'] },
+                { emoji: '👫🏻', shortcodes: ['woman_and_man_holding_hands_light_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👨🏼', shortcodes: ['woman_and_man_holding_hands_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👨🏽', shortcodes: ['woman_and_man_holding_hands_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👨🏾', shortcodes: ['woman_and_man_holding_hands_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍🤝‍👨🏿', shortcodes: ['woman_and_man_holding_hands_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👨🏻', shortcodes: ['woman_and_man_holding_hands_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👫🏼', shortcodes: ['woman_and_man_holding_hands_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👨🏽', shortcodes: ['woman_and_man_holding_hands_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👨🏾', shortcodes: ['woman_and_man_holding_hands_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍🤝‍👨🏿', shortcodes: ['woman_and_man_holding_hands_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👨🏻', shortcodes: ['woman_and_man_holding_hands_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👨🏼', shortcodes: ['woman_and_man_holding_hands_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👫🏽', shortcodes: ['woman_and_man_holding_hands_medium_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👨🏾', shortcodes: ['woman_and_man_holding_hands_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍🤝‍👨🏿', shortcodes: ['woman_and_man_holding_hands_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👨🏻', shortcodes: ['woman_and_man_holding_hands_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👨🏼', shortcodes: ['woman_and_man_holding_hands_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👨🏽', shortcodes: ['woman_and_man_holding_hands_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👫🏾', shortcodes: ['woman_and_man_holding_hands_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍🤝‍👨🏿', shortcodes: ['woman_and_man_holding_hands_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👨🏻', shortcodes: ['woman_and_man_holding_hands_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👨🏼', shortcodes: ['woman_and_man_holding_hands_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👨🏽', shortcodes: ['woman_and_man_holding_hands_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍🤝‍👨🏾', shortcodes: ['woman_and_man_holding_hands_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👫🏿', shortcodes: ['woman_and_man_holding_hands_dark_skin_tone'] },
+                { emoji: '👬', shortcodes: ['men_holding_hands'] },
+                { emoji: '👬🏻', shortcodes: ['men_holding_hands_light_skin_tone'] },
+                { emoji: '👨🏻‍🤝‍👨🏼', shortcodes: ['men_holding_hands_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏻‍🤝‍👨🏽', shortcodes: ['men_holding_hands_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏻‍🤝‍👨🏾', shortcodes: ['men_holding_hands_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍🤝‍👨🏿', shortcodes: ['men_holding_hands_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏼‍🤝‍👨🏻', shortcodes: ['men_holding_hands_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👬🏼', shortcodes: ['men_holding_hands_medium_light_skin_tone'] },
+                { emoji: '👨🏼‍🤝‍👨🏽', shortcodes: ['men_holding_hands_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏼‍🤝‍👨🏾', shortcodes: ['men_holding_hands_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏼‍🤝‍👨🏿', shortcodes: ['men_holding_hands_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏽‍🤝‍👨🏻', shortcodes: ['men_holding_hands_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏽‍🤝‍👨🏼', shortcodes: ['men_holding_hands_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👬🏽', shortcodes: ['men_holding_hands_medium_skin_tone'] },
+                { emoji: '👨🏽‍🤝‍👨🏾', shortcodes: ['men_holding_hands_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏽‍🤝‍👨🏿', shortcodes: ['men_holding_hands_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏾‍🤝‍👨🏻', shortcodes: ['men_holding_hands_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏾‍🤝‍👨🏼', shortcodes: ['men_holding_hands_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏾‍🤝‍👨🏽', shortcodes: ['men_holding_hands_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👬🏾', shortcodes: ['men_holding_hands_medium_dark_skin_tone'] },
+                { emoji: '👨🏾‍🤝‍👨🏿', shortcodes: ['men_holding_hands_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏿‍🤝‍👨🏻', shortcodes: ['men_holding_hands_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏿‍🤝‍👨🏼', shortcodes: ['men_holding_hands_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏿‍🤝‍👨🏽', shortcodes: ['men_holding_hands_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏿‍🤝‍👨🏾', shortcodes: ['men_holding_hands_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👬🏿', shortcodes: ['men_holding_hands_dark_skin_tone'] },
+                { emoji: '💏', shortcodes: ['kiss'] },
+                { emoji: '💏🏻', shortcodes: ['kiss_light_skin_tone'] },
+                { emoji: '💏🏼', shortcodes: ['kiss_medium_light_skin_tone'] },
+                { emoji: '💏🏽', shortcodes: ['kiss_medium_skin_tone'] },
+                { emoji: '💏🏾', shortcodes: ['kiss_medium_dark_skin_tone'] },
+                { emoji: '💏🏿', shortcodes: ['kiss_dark_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍💋‍🧑🏼', shortcodes: ['kiss_person_person_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍💋‍🧑🏽', shortcodes: ['kiss_person_person_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍💋‍🧑🏾', shortcodes: ['kiss_person_person_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍💋‍🧑🏿', shortcodes: ['kiss_person_person_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍💋‍🧑🏻', shortcodes: ['kiss_person_person_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍💋‍🧑🏽', shortcodes: ['kiss_person_person_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍💋‍🧑🏾', shortcodes: ['kiss_person_person_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍💋‍🧑🏿', shortcodes: ['kiss_person_person_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍💋‍🧑🏻', shortcodes: ['kiss_person_person_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍💋‍🧑🏼', shortcodes: ['kiss_person_person_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍💋‍🧑🏾', shortcodes: ['kiss_person_person_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍💋‍🧑🏿', shortcodes: ['kiss_person_person_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍💋‍🧑🏻', shortcodes: ['kiss_person_person_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍💋‍🧑🏼', shortcodes: ['kiss_person_person_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍💋‍🧑🏽', shortcodes: ['kiss_person_person_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍💋‍🧑🏿', shortcodes: ['kiss_person_person_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍💋‍🧑🏻', shortcodes: ['kiss_person_person_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍💋‍🧑🏼', shortcodes: ['kiss_person_person_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍💋‍🧑🏽', shortcodes: ['kiss_person_person_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍💋‍🧑🏾', shortcodes: ['kiss_person_person_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩‍❤️‍💋‍👨', shortcodes: ['kiss_woman_man'] },
+                { emoji: '👩🏻‍❤️‍💋‍👨🏻', shortcodes: ['kiss_woman_man_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👨🏼', shortcodes: ['kiss_woman_man_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👨🏽', shortcodes: ['kiss_woman_man_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👨🏾', shortcodes: ['kiss_woman_man_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👨🏿', shortcodes: ['kiss_woman_man_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👨🏻', shortcodes: ['kiss_woman_man_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👨🏼', shortcodes: ['kiss_woman_man_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👨🏽', shortcodes: ['kiss_woman_man_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👨🏾', shortcodes: ['kiss_woman_man_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👨🏿', shortcodes: ['kiss_woman_man_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👨🏻', shortcodes: ['kiss_woman_man_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👨🏼', shortcodes: ['kiss_woman_man_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👨🏽', shortcodes: ['kiss_woman_man_medium_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👨🏾', shortcodes: ['kiss_woman_man_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👨🏿', shortcodes: ['kiss_woman_man_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👨🏻', shortcodes: ['kiss_woman_man_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👨🏼', shortcodes: ['kiss_woman_man_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👨🏽', shortcodes: ['kiss_woman_man_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👨🏾', shortcodes: ['kiss_woman_man_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👨🏿', shortcodes: ['kiss_woman_man_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👨🏻', shortcodes: ['kiss_woman_man_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👨🏼', shortcodes: ['kiss_woman_man_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👨🏽', shortcodes: ['kiss_woman_man_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👨🏾', shortcodes: ['kiss_woman_man_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👨🏿', shortcodes: ['kiss_woman_man_dark_skin_tone'] },
+                { emoji: '👨‍❤️‍💋‍👨', shortcodes: ['kiss_man_man'] },
+                { emoji: '👨🏻‍❤️‍💋‍👨🏻', shortcodes: ['kiss_man_man_light_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍💋‍👨🏼', shortcodes: ['kiss_man_man_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍💋‍👨🏽', shortcodes: ['kiss_man_man_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍💋‍👨🏾', shortcodes: ['kiss_man_man_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍💋‍👨🏿', shortcodes: ['kiss_man_man_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍💋‍👨🏻', shortcodes: ['kiss_man_man_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍💋‍👨🏼', shortcodes: ['kiss_man_man_medium_light_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍💋‍👨🏽', shortcodes: ['kiss_man_man_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍💋‍👨🏾', shortcodes: ['kiss_man_man_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍💋‍👨🏿', shortcodes: ['kiss_man_man_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍💋‍👨🏻', shortcodes: ['kiss_man_man_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍💋‍👨🏼', shortcodes: ['kiss_man_man_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍💋‍👨🏽', shortcodes: ['kiss_man_man_medium_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍💋‍👨🏾', shortcodes: ['kiss_man_man_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍💋‍👨🏿', shortcodes: ['kiss_man_man_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍💋‍👨🏻', shortcodes: ['kiss_man_man_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍💋‍👨🏼', shortcodes: ['kiss_man_man_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍💋‍👨🏽', shortcodes: ['kiss_man_man_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍💋‍👨🏾', shortcodes: ['kiss_man_man_medium_dark_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍💋‍👨🏿', shortcodes: ['kiss_man_man_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍💋‍👨🏻', shortcodes: ['kiss_man_man_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍💋‍👨🏼', shortcodes: ['kiss_man_man_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍💋‍👨🏽', shortcodes: ['kiss_man_man_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍💋‍👨🏾', shortcodes: ['kiss_man_man_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍💋‍👨🏿', shortcodes: ['kiss_man_man_dark_skin_tone'] },
+                { emoji: '👩‍❤️‍💋‍👩', shortcodes: ['kiss_woman_woman'] },
+                { emoji: '👩🏻‍❤️‍💋‍👩🏻', shortcodes: ['kiss_woman_woman_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👩🏼', shortcodes: ['kiss_woman_woman_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👩🏽', shortcodes: ['kiss_woman_woman_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👩🏾', shortcodes: ['kiss_woman_woman_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍💋‍👩🏿', shortcodes: ['kiss_woman_woman_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👩🏻', shortcodes: ['kiss_woman_woman_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👩🏼', shortcodes: ['kiss_woman_woman_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👩🏽', shortcodes: ['kiss_woman_woman_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👩🏾', shortcodes: ['kiss_woman_woman_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍💋‍👩🏿', shortcodes: ['kiss_woman_woman_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👩🏻', shortcodes: ['kiss_woman_woman_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👩🏼', shortcodes: ['kiss_woman_woman_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👩🏽', shortcodes: ['kiss_woman_woman_medium_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👩🏾', shortcodes: ['kiss_woman_woman_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍💋‍👩🏿', shortcodes: ['kiss_woman_woman_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👩🏻', shortcodes: ['kiss_woman_woman_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👩🏼', shortcodes: ['kiss_woman_woman_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👩🏽', shortcodes: ['kiss_woman_woman_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👩🏾', shortcodes: ['kiss_woman_woman_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍💋‍👩🏿', shortcodes: ['kiss_woman_woman_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👩🏻', shortcodes: ['kiss_woman_woman_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👩🏼', shortcodes: ['kiss_woman_woman_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👩🏽', shortcodes: ['kiss_woman_woman_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👩🏾', shortcodes: ['kiss_woman_woman_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍💋‍👩🏿', shortcodes: ['kiss_woman_woman_dark_skin_tone'] },
+                { emoji: '💑', shortcodes: ['couple_with_heart'] },
+                { emoji: '💑🏻', shortcodes: ['couple_with_heart_light_skin_tone'] },
+                { emoji: '💑🏼', shortcodes: ['couple_with_heart_medium_light_skin_tone'] },
+                { emoji: '💑🏽', shortcodes: ['couple_with_heart_medium_skin_tone'] },
+                { emoji: '💑🏾', shortcodes: ['couple_with_heart_medium_dark_skin_tone'] },
+                { emoji: '💑🏿', shortcodes: ['couple_with_heart_dark_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍🧑🏼', shortcodes: ['couple_with_heart_person_person_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍🧑🏽', shortcodes: ['couple_with_heart_person_person_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍🧑🏾', shortcodes: ['couple_with_heart_person_person_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏻‍❤️‍🧑🏿', shortcodes: ['couple_with_heart_person_person_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍🧑🏻', shortcodes: ['couple_with_heart_person_person_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍🧑🏽', shortcodes: ['couple_with_heart_person_person_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍🧑🏾', shortcodes: ['couple_with_heart_person_person_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏼‍❤️‍🧑🏿', shortcodes: ['couple_with_heart_person_person_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍🧑🏻', shortcodes: ['couple_with_heart_person_person_medium_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍🧑🏼', shortcodes: ['couple_with_heart_person_person_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍🧑🏾', shortcodes: ['couple_with_heart_person_person_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '🧑🏽‍❤️‍🧑🏿', shortcodes: ['couple_with_heart_person_person_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍🧑🏻', shortcodes: ['couple_with_heart_person_person_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍🧑🏼', shortcodes: ['couple_with_heart_person_person_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍🧑🏽', shortcodes: ['couple_with_heart_person_person_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏾‍❤️‍🧑🏿', shortcodes: ['couple_with_heart_person_person_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍🧑🏻', shortcodes: ['couple_with_heart_person_person_dark_skin_tone_light_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍🧑🏼', shortcodes: ['couple_with_heart_person_person_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍🧑🏽', shortcodes: ['couple_with_heart_person_person_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '🧑🏿‍❤️‍🧑🏾', shortcodes: ['couple_with_heart_person_person_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩‍❤️‍👨', shortcodes: ['couple_with_heart_woman_man'] },
+                { emoji: '👩🏻‍❤️‍👨🏻', shortcodes: ['couple_with_heart_woman_man_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👨🏼', shortcodes: ['couple_with_heart_woman_man_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👨🏽', shortcodes: ['couple_with_heart_woman_man_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👨🏾', shortcodes: ['couple_with_heart_woman_man_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👨🏿', shortcodes: ['couple_with_heart_woman_man_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👨🏻', shortcodes: ['couple_with_heart_woman_man_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👨🏼', shortcodes: ['couple_with_heart_woman_man_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👨🏽', shortcodes: ['couple_with_heart_woman_man_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👨🏾', shortcodes: ['couple_with_heart_woman_man_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👨🏿', shortcodes: ['couple_with_heart_woman_man_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👨🏻', shortcodes: ['couple_with_heart_woman_man_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👨🏼', shortcodes: ['couple_with_heart_woman_man_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👨🏽', shortcodes: ['couple_with_heart_woman_man_medium_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👨🏾', shortcodes: ['couple_with_heart_woman_man_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👨🏿', shortcodes: ['couple_with_heart_woman_man_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👨🏻', shortcodes: ['couple_with_heart_woman_man_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👨🏼', shortcodes: ['couple_with_heart_woman_man_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👨🏽', shortcodes: ['couple_with_heart_woman_man_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👨🏾', shortcodes: ['couple_with_heart_woman_man_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👨🏿', shortcodes: ['couple_with_heart_woman_man_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👨🏻', shortcodes: ['couple_with_heart_woman_man_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👨🏼', shortcodes: ['couple_with_heart_woman_man_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👨🏽', shortcodes: ['couple_with_heart_woman_man_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👨🏾', shortcodes: ['couple_with_heart_woman_man_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👨🏿', shortcodes: ['couple_with_heart_woman_man_dark_skin_tone'] },
+                { emoji: '👨‍❤️‍👨', shortcodes: ['couple_with_heart_man_man'] },
+                { emoji: '👨🏻‍❤️‍👨🏻', shortcodes: ['couple_with_heart_man_man_light_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍👨🏼', shortcodes: ['couple_with_heart_man_man_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍👨🏽', shortcodes: ['couple_with_heart_man_man_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍👨🏾', shortcodes: ['couple_with_heart_man_man_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏻‍❤️‍👨🏿', shortcodes: ['couple_with_heart_man_man_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍👨🏻', shortcodes: ['couple_with_heart_man_man_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍👨🏼', shortcodes: ['couple_with_heart_man_man_medium_light_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍👨🏽', shortcodes: ['couple_with_heart_man_man_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍👨🏾', shortcodes: ['couple_with_heart_man_man_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏼‍❤️‍👨🏿', shortcodes: ['couple_with_heart_man_man_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍👨🏻', shortcodes: ['couple_with_heart_man_man_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍👨🏼', shortcodes: ['couple_with_heart_man_man_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍👨🏽', shortcodes: ['couple_with_heart_man_man_medium_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍👨🏾', shortcodes: ['couple_with_heart_man_man_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏽‍❤️‍👨🏿', shortcodes: ['couple_with_heart_man_man_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍👨🏻', shortcodes: ['couple_with_heart_man_man_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍👨🏼', shortcodes: ['couple_with_heart_man_man_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍👨🏽', shortcodes: ['couple_with_heart_man_man_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍👨🏾', shortcodes: ['couple_with_heart_man_man_medium_dark_skin_tone'] },
+                { emoji: '👨🏾‍❤️‍👨🏿', shortcodes: ['couple_with_heart_man_man_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍👨🏻', shortcodes: ['couple_with_heart_man_man_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍👨🏼', shortcodes: ['couple_with_heart_man_man_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍👨🏽', shortcodes: ['couple_with_heart_man_man_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍👨🏾', shortcodes: ['couple_with_heart_man_man_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👨🏿‍❤️‍👨🏿', shortcodes: ['couple_with_heart_man_man_dark_skin_tone'] },
+                { emoji: '👩‍❤️‍👩', shortcodes: ['couple_with_heart_woman_woman'] },
+                { emoji: '👩🏻‍❤️‍👩🏻', shortcodes: ['couple_with_heart_woman_woman_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👩🏼', shortcodes: ['couple_with_heart_woman_woman_light_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👩🏽', shortcodes: ['couple_with_heart_woman_woman_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👩🏾', shortcodes: ['couple_with_heart_woman_woman_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏻‍❤️‍👩🏿', shortcodes: ['couple_with_heart_woman_woman_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👩🏻', shortcodes: ['couple_with_heart_woman_woman_medium_light_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👩🏼', shortcodes: ['couple_with_heart_woman_woman_medium_light_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👩🏽', shortcodes: ['couple_with_heart_woman_woman_medium_light_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👩🏾', shortcodes: ['couple_with_heart_woman_woman_medium_light_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏼‍❤️‍👩🏿', shortcodes: ['couple_with_heart_woman_woman_medium_light_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👩🏻', shortcodes: ['couple_with_heart_woman_woman_medium_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👩🏼', shortcodes: ['couple_with_heart_woman_woman_medium_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👩🏽', shortcodes: ['couple_with_heart_woman_woman_medium_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👩🏾', shortcodes: ['couple_with_heart_woman_woman_medium_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏽‍❤️‍👩🏿', shortcodes: ['couple_with_heart_woman_woman_medium_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👩🏻', shortcodes: ['couple_with_heart_woman_woman_medium_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👩🏼', shortcodes: ['couple_with_heart_woman_woman_medium_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👩🏽', shortcodes: ['couple_with_heart_woman_woman_medium_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👩🏾', shortcodes: ['couple_with_heart_woman_woman_medium_dark_skin_tone'] },
+                { emoji: '👩🏾‍❤️‍👩🏿', shortcodes: ['couple_with_heart_woman_woman_medium_dark_skin_tone_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👩🏻', shortcodes: ['couple_with_heart_woman_woman_dark_skin_tone_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👩🏼', shortcodes: ['couple_with_heart_woman_woman_dark_skin_tone_medium_light_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👩🏽', shortcodes: ['couple_with_heart_woman_woman_dark_skin_tone_medium_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👩🏾', shortcodes: ['couple_with_heart_woman_woman_dark_skin_tone_medium_dark_skin_tone'] },
+                { emoji: '👩🏿‍❤️‍👩🏿', shortcodes: ['couple_with_heart_woman_woman_dark_skin_tone'] },
+                { emoji: '👨‍👩‍👦', shortcodes: ['family_man_woman_boy'] },
+                { emoji: '👨‍👩‍👧', shortcodes: ['family_man_woman_girl'] },
+                { emoji: '👨‍👩‍👧‍👦', shortcodes: ['family_man_woman_girl_boy'] },
+                { emoji: '👨‍👩‍👦‍👦', shortcodes: ['family_man_woman_boy_boy'] },
+                { emoji: '👨‍👩‍👧‍👧', shortcodes: ['family_man_woman_girl_girl'] },
+                { emoji: '👨‍👨‍👦', shortcodes: ['family_man_man_boy'] },
+                { emoji: '👨‍👨‍👧', shortcodes: ['family_man_man_girl'] },
+                { emoji: '👨‍👨‍👧‍👦', shortcodes: ['family_man_man_girl_boy'] },
+                { emoji: '👨‍👨‍👦‍👦', shortcodes: ['family_man_man_boy_boy'] },
+                { emoji: '👨‍👨‍👧‍👧', shortcodes: ['family_man_man_girl_girl'] },
+                { emoji: '👩‍👩‍👦', shortcodes: ['family_woman_woman_boy'] },
+                { emoji: '👩‍👩‍👧', shortcodes: ['family_woman_woman_girl'] },
+                { emoji: '👩‍👩‍👧‍👦', shortcodes: ['family_woman_woman_girl_boy'] },
+                { emoji: '👩‍👩‍👦‍👦', shortcodes: ['family_woman_woman_boy_boy'] },
+                { emoji: '👩‍👩‍👧‍👧', shortcodes: ['family_woman_woman_girl_girl'] },
+                { emoji: '👨‍👦', shortcodes: ['family_man_boy'] },
+                { emoji: '👨‍👦‍👦', shortcodes: ['family_man_boy_boy'] },
+                { emoji: '👨‍👧', shortcodes: ['family_man_girl'] },
+                { emoji: '👨‍👧‍👦', shortcodes: ['family_man_girl_boy'] },
+                { emoji: '👨‍👧‍👧', shortcodes: ['family_man_girl_girl'] },
+                { emoji: '👩‍👦', shortcodes: ['family_woman_boy'] },
+                { emoji: '👩‍👦‍👦', shortcodes: ['family_woman_boy_boy'] },
+                { emoji: '👩‍👧', shortcodes: ['family_woman_girl'] },
+                { emoji: '👩‍👧‍👦', shortcodes: ['family_woman_girl_boy'] },
+                { emoji: '👩‍👧‍👧', shortcodes: ['family_woman_girl_girl'] },
+                { emoji: '🗣️', shortcodes: ['speaking_head'] },
+                { emoji: '👤', shortcodes: ['bust_in_silhouette'] },
+                { emoji: '👥', shortcodes: ['busts_in_silhouette'] },
+                { emoji: '🫂', shortcodes: ['people_hugging'] },
+                { emoji: '👪', shortcodes: ['family'] },
+                { emoji: '🧑‍🧑‍🧒', shortcodes: ['family_adult_adult_child'] },
+                { emoji: '🧑‍🧑‍🧒‍🧒', shortcodes: ['family_adult_adult_child_child'] },
+                { emoji: '🧑‍🧒', shortcodes: ['family_adult_child'] },
+                { emoji: '🧑‍🧒‍🧒', shortcodes: ['family_adult_child_child'] },
+                { emoji: '🫆', shortcodes: ['fingerprint'] },
+],
 
             symbolsAndObjects: [
                 { emoji: '⭐', shortcodes: ['star'] },
@@ -737,8 +3043,40 @@
                 { emoji: '🦔', shortcodes: ['hedgehog'] },
                 { emoji: '🦫', shortcodes: ['beaver'] },
                 { emoji: '🦨', shortcodes: ['skunk'] },
-                { emoji: '🦡', shortcodes: ['badger'] }
-            ],
+                { emoji: '🦡', shortcodes: ['badger'] },
+                { emoji: '🐵', shortcodes: ['monkey_face'] },
+                { emoji: '🐺', shortcodes: ['wolf'] },
+                { emoji: '🦝', shortcodes: ['raccoon'] },
+                { emoji: '🐴', shortcodes: ['horse_face'] },
+                { emoji: '🫎', shortcodes: ['moose'] },
+                { emoji: '🫏', shortcodes: ['donkey'] },
+                { emoji: '🐖', shortcodes: ['pig'] },
+                { emoji: '🐽', shortcodes: ['pig_nose'] },
+                { emoji: '🦣', shortcodes: ['mammoth'] },
+                { emoji: '🦇', shortcodes: ['bat'] },
+                { emoji: '🦘', shortcodes: ['kangaroo'] },
+                { emoji: '🐣', shortcodes: ['hatching_chick'] },
+                { emoji: '🐥', shortcodes: ['front_facing_baby_chick'] },
+                { emoji: '🪶', shortcodes: ['feather'] },
+                { emoji: '🪽', shortcodes: ['wing'] },
+                { emoji: '🐦‍⬛', shortcodes: ['black_bird'] },
+                { emoji: '🪿', shortcodes: ['goose'] },
+                { emoji: '🐦‍🔥', shortcodes: ['phoenix'] },
+                { emoji: '🐲', shortcodes: ['dragon_face'] },
+                { emoji: '🐳', shortcodes: ['spouting_whale'] },
+                { emoji: '🫍', shortcodes: ['orca'] },
+                { emoji: '🪸', shortcodes: ['coral'] },
+                { emoji: '🪼', shortcodes: ['jellyfish'] },
+                { emoji: '🦪', shortcodes: ['oyster'] },
+                { emoji: '🦗', shortcodes: ['cricket'] },
+                { emoji: '🪳', shortcodes: ['cockroach'] },
+                { emoji: '🕸️', shortcodes: ['spider_web'] },
+                { emoji: '🦠', shortcodes: ['microbe'] },
+                { emoji: '💮', shortcodes: ['white_flower'] },
+                { emoji: '🏵️', shortcodes: ['rosette'] },
+                { emoji: '🪾', shortcodes: ['leafless_tree'] },
+                { emoji: '🫌', shortcodes: ['monarch_butterfly'] },
+],
 
             plantsAndFlowers: [
                 { emoji: '🌹', shortcodes: ['rose'] },
@@ -864,8 +3202,46 @@
                 { emoji: '🍴', shortcodes: ['fork_and_knife'] },
                 { emoji: '🥄', shortcodes: ['spoon'] },
                 { emoji: '🔪', shortcodes: ['hocho', 'knife'] },
-                { emoji: '🏺', shortcodes: ['amphora'] }
-            ],
+                { emoji: '🏺', shortcodes: ['amphora'] },
+                { emoji: '🍊', shortcodes: ['tangerine'] },
+                { emoji: '🍋', shortcodes: ['lemon'] },
+                { emoji: '🍋‍🟩', shortcodes: ['lime'] },
+                { emoji: '🫑', shortcodes: ['bell_pepper'] },
+                { emoji: '🥒', shortcodes: ['cucumber'] },
+                { emoji: '🥬', shortcodes: ['leafy_green'] },
+                { emoji: '🥜', shortcodes: ['peanuts'] },
+                { emoji: '🫘', shortcodes: ['beans'] },
+                { emoji: '🌰', shortcodes: ['chestnut'] },
+                { emoji: '🫚', shortcodes: ['ginger_root'] },
+                { emoji: '🫛', shortcodes: ['pea_pod'] },
+                { emoji: '🍄‍🟫', shortcodes: ['brown_mushroom'] },
+                { emoji: '🫜', shortcodes: ['root_vegetable'] },
+                { emoji: '🫓', shortcodes: ['flatbread'] },
+                { emoji: '🫔', shortcodes: ['tamale'] },
+                { emoji: '🍳', shortcodes: ['cooking'] },
+                { emoji: '🥘', shortcodes: ['shallow_pan_of_food'] },
+                { emoji: '🍲', shortcodes: ['pot_of_food'] },
+                { emoji: '🫕', shortcodes: ['fondue'] },
+                { emoji: '🥣', shortcodes: ['bowl_with_spoon'] },
+                { emoji: '🧈', shortcodes: ['butter'] },
+                { emoji: '🧂', shortcodes: ['salt'] },
+                { emoji: '🥫', shortcodes: ['canned_food'] },
+                { emoji: '🍘', shortcodes: ['rice_cracker'] },
+                { emoji: '🍙', shortcodes: ['rice_ball'] },
+                { emoji: '🍚', shortcodes: ['cooked_rice'] },
+                { emoji: '🍢', shortcodes: ['oden'] },
+                { emoji: '🍥', shortcodes: ['fish_cake_with_swirl'] },
+                { emoji: '🥮', shortcodes: ['moon_cake'] },
+                { emoji: '🍡', shortcodes: ['dango'] },
+                { emoji: '🥠', shortcodes: ['fortune_cookie'] },
+                { emoji: '🍼', shortcodes: ['baby_bottle'] },
+                { emoji: '🫖', shortcodes: ['teapot'] },
+                { emoji: '🍶', shortcodes: ['sake'] },
+                { emoji: '🍾', shortcodes: ['bottle_with_popping_cork'] },
+                { emoji: '🫗', shortcodes: ['pouring_liquid'] },
+                { emoji: '🫙', shortcodes: ['jar'] },
+                { emoji: '🫝', shortcodes: ['pickle'] },
+],
 
             activitiesAndSports: [
                 { emoji: '⚽', shortcodes: ['soccer'] },
@@ -940,8 +3316,40 @@
                 { emoji: '🏆', shortcodes: ['trophy'] },
                 { emoji: '🏅', shortcodes: ['medal'] },
                 { emoji: '🎫', shortcodes: ['ticket'] },
-                { emoji: '🎟️', shortcodes: ['admission_tickets'] }
-            ],
+                { emoji: '🎟️', shortcodes: ['admission_tickets'] },
+                { emoji: '🎃', shortcodes: ['jack_o_lantern'] },
+                { emoji: '🎄', shortcodes: ['christmas_tree'] },
+                { emoji: '🎆', shortcodes: ['fireworks'] },
+                { emoji: '🎇', shortcodes: ['sparkler'] },
+                { emoji: '🧨', shortcodes: ['firecracker'] },
+                { emoji: '🎈', shortcodes: ['balloon'] },
+                { emoji: '🎍', shortcodes: ['pine_decoration'] },
+                { emoji: '🎎', shortcodes: ['japanese_dolls'] },
+                { emoji: '🎏', shortcodes: ['carp_streamer'] },
+                { emoji: '🎐', shortcodes: ['wind_chime'] },
+                { emoji: '🎑', shortcodes: ['moon_viewing_ceremony'] },
+                { emoji: '🧧', shortcodes: ['red_envelope'] },
+                { emoji: '🎀', shortcodes: ['ribbon'] },
+                { emoji: '🎗️', shortcodes: ['reminder_ribbon'] },
+                { emoji: '🎖️', shortcodes: ['military_medal'] },
+                { emoji: '🥏', shortcodes: ['flying_disc'] },
+                { emoji: '🎳', shortcodes: ['bowling'] },
+                { emoji: '🏏', shortcodes: ['cricket_game'] },
+                { emoji: '🏑', shortcodes: ['field_hockey'] },
+                { emoji: '🏒', shortcodes: ['ice_hockey'] },
+                { emoji: '🥍', shortcodes: ['lacrosse'] },
+                { emoji: '🎣', shortcodes: ['fishing_pole'] },
+                { emoji: '🤿', shortcodes: ['diving_mask'] },
+                { emoji: '🎽', shortcodes: ['running_shirt'] },
+                { emoji: '🥌', shortcodes: ['curling_stone'] },
+                { emoji: '🪀', shortcodes: ['yo_yo'] },
+                { emoji: '🪁', shortcodes: ['kite'] },
+                { emoji: '🔫', shortcodes: ['water_pistol'] },
+                { emoji: '🎱', shortcodes: ['pool_8_ball'] },
+                { emoji: '🔮', shortcodes: ['crystal_ball'] },
+                { emoji: '🪡', shortcodes: ['sewing_needle'] },
+                { emoji: '🪢', shortcodes: ['knot'] },
+],
 
             travelAndPlaces: [
                 { emoji: '✈️', shortcodes: ['airplane'] },
@@ -1005,8 +3413,122 @@
                 { emoji: '🎡', shortcodes: ['ferris_wheel'] },
                 { emoji: '🎢', shortcodes: ['roller_coaster'] },
                 { emoji: '💈', shortcodes: ['barber'] },
-                { emoji: '🎪', shortcodes: ['circus_tent'] }
-            ],
+                { emoji: '🎪', shortcodes: ['circus_tent'] },
+                { emoji: '🗾', shortcodes: ['map_of_japan'] },
+                { emoji: '🏔️', shortcodes: ['snow_capped_mountain'] },
+                { emoji: '🛘', shortcodes: ['landslide'] },
+                { emoji: '🗻', shortcodes: ['mount_fuji'] },
+                { emoji: '🏗️', shortcodes: ['building_construction'] },
+                { emoji: '🪨', shortcodes: ['rock'] },
+                { emoji: '🪵', shortcodes: ['wood'] },
+                { emoji: '🛖', shortcodes: ['hut'] },
+                { emoji: '🏘️', shortcodes: ['houses'] },
+                { emoji: '🏚️', shortcodes: ['derelict_house'] },
+                { emoji: '🏤', shortcodes: ['post_office'] },
+                { emoji: '🏩', shortcodes: ['love_hotel'] },
+                { emoji: '🏪', shortcodes: ['convenience_store'] },
+                { emoji: '💒', shortcodes: ['wedding'] },
+                { emoji: '🗼', shortcodes: ['tokyo_tower'] },
+                { emoji: '🗽', shortcodes: ['statue_of_liberty'] },
+                { emoji: '⛪', shortcodes: ['church'] },
+                { emoji: '🕌', shortcodes: ['mosque'] },
+                { emoji: '🛕', shortcodes: ['hindu_temple'] },
+                { emoji: '🕍', shortcodes: ['synagogue'] },
+                { emoji: '⛩️', shortcodes: ['shinto_shrine'] },
+                { emoji: '🕋', shortcodes: ['kaaba'] },
+                { emoji: '⛲', shortcodes: ['fountain'] },
+                { emoji: '🌁', shortcodes: ['foggy'] },
+                { emoji: '🌄', shortcodes: ['sunrise_over_mountains'] },
+                { emoji: '🌅', shortcodes: ['sunrise'] },
+                { emoji: '♨️', shortcodes: ['hot_springs'] },
+                { emoji: '🛝', shortcodes: ['playground_slide'] },
+                { emoji: '🚂', shortcodes: ['locomotive'] },
+                { emoji: '🚃', shortcodes: ['railway_car'] },
+                { emoji: '🚄', shortcodes: ['high_speed_train'] },
+                { emoji: '🚅', shortcodes: ['bullet_train'] },
+                { emoji: '🚈', shortcodes: ['light_rail'] },
+                { emoji: '🚉', shortcodes: ['station'] },
+                { emoji: '🚝', shortcodes: ['monorail'] },
+                { emoji: '🚞', shortcodes: ['mountain_railway'] },
+                { emoji: '🚋', shortcodes: ['tram_car'] },
+                { emoji: '🚍', shortcodes: ['oncoming_bus'] },
+                { emoji: '🚎', shortcodes: ['trolleybus'] },
+                { emoji: '🚑', shortcodes: ['ambulance'] },
+                { emoji: '🚒', shortcodes: ['fire_engine'] },
+                { emoji: '🚓', shortcodes: ['police_car'] },
+                { emoji: '🚔', shortcodes: ['oncoming_police_car'] },
+                { emoji: '🚖', shortcodes: ['oncoming_taxi'] },
+                { emoji: '🚘', shortcodes: ['oncoming_automobile'] },
+                { emoji: '🛻', shortcodes: ['pickup_truck'] },
+                { emoji: '🚛', shortcodes: ['articulated_lorry'] },
+                { emoji: '🏎️', shortcodes: ['racing_car'] },
+                { emoji: '🛵', shortcodes: ['motor_scooter'] },
+                { emoji: '🦼', shortcodes: ['motorized_wheelchair'] },
+                { emoji: '🛺', shortcodes: ['auto_rickshaw'] },
+                { emoji: '🛹', shortcodes: ['skateboard'] },
+                { emoji: '🛼', shortcodes: ['roller_skate'] },
+                { emoji: '🚏', shortcodes: ['bus_stop'] },
+                { emoji: '🛣️', shortcodes: ['motorway'] },
+                { emoji: '🛤️', shortcodes: ['railway_track'] },
+                { emoji: '🛢️', shortcodes: ['oil_drum'] },
+                { emoji: '🛞', shortcodes: ['wheel'] },
+                { emoji: '🚨', shortcodes: ['police_car_light'] },
+                { emoji: '🚦', shortcodes: ['vertical_traffic_light'] },
+                { emoji: '🛑', shortcodes: ['stop_sign'] },
+                { emoji: '🛟', shortcodes: ['ring_buoy'] },
+                { emoji: '🚤', shortcodes: ['speedboat'] },
+                { emoji: '🛳️', shortcodes: ['passenger_ship'] },
+                { emoji: '🛥️', shortcodes: ['motor_boat'] },
+                { emoji: '🛫', shortcodes: ['airplane_departure'] },
+                { emoji: '🛬', shortcodes: ['airplane_arrival'] },
+                { emoji: '🪂', shortcodes: ['parachute'] },
+                { emoji: '💺', shortcodes: ['seat'] },
+                { emoji: '🚟', shortcodes: ['suspension_railway'] },
+                { emoji: '🚠', shortcodes: ['mountain_cableway'] },
+                { emoji: '🚡', shortcodes: ['aerial_tramway'] },
+                { emoji: '🛎️', shortcodes: ['bellhop_bell'] },
+                { emoji: '🧳', shortcodes: ['luggage'] },
+                { emoji: '⏲️', shortcodes: ['timer_clock'] },
+                { emoji: '🕰️', shortcodes: ['mantelpiece_clock'] },
+                { emoji: '🕛', shortcodes: ['twelve_o_clock'] },
+                { emoji: '🕧', shortcodes: ['twelve_thirty'] },
+                { emoji: '🕐', shortcodes: ['one_o_clock'] },
+                { emoji: '🕜', shortcodes: ['one_thirty'] },
+                { emoji: '🕑', shortcodes: ['two_o_clock'] },
+                { emoji: '🕝', shortcodes: ['two_thirty'] },
+                { emoji: '🕒', shortcodes: ['three_o_clock'] },
+                { emoji: '🕞', shortcodes: ['three_thirty'] },
+                { emoji: '🕓', shortcodes: ['four_o_clock'] },
+                { emoji: '🕟', shortcodes: ['four_thirty'] },
+                { emoji: '🕔', shortcodes: ['five_o_clock'] },
+                { emoji: '🕠', shortcodes: ['five_thirty'] },
+                { emoji: '🕕', shortcodes: ['six_o_clock'] },
+                { emoji: '🕡', shortcodes: ['six_thirty'] },
+                { emoji: '🕖', shortcodes: ['seven_o_clock'] },
+                { emoji: '🕢', shortcodes: ['seven_thirty'] },
+                { emoji: '🕗', shortcodes: ['eight_o_clock'] },
+                { emoji: '🕣', shortcodes: ['eight_thirty'] },
+                { emoji: '🕘', shortcodes: ['nine_o_clock'] },
+                { emoji: '🕤', shortcodes: ['nine_thirty'] },
+                { emoji: '🕙', shortcodes: ['ten_o_clock'] },
+                { emoji: '🕥', shortcodes: ['ten_thirty'] },
+                { emoji: '🕚', shortcodes: ['eleven_o_clock'] },
+                { emoji: '🕦', shortcodes: ['eleven_thirty'] },
+                { emoji: '🌒', shortcodes: ['waxing_crescent_moon'] },
+                { emoji: '🌔', shortcodes: ['waxing_gibbous_moon'] },
+                { emoji: '🌖', shortcodes: ['waning_gibbous_moon'] },
+                { emoji: '🌘', shortcodes: ['waning_crescent_moon'] },
+                { emoji: '🌚', shortcodes: ['new_moon_face'] },
+                { emoji: '🌛', shortcodes: ['first_quarter_moon_face'] },
+                { emoji: '🌜', shortcodes: ['last_quarter_moon_face'] },
+                { emoji: '🌝', shortcodes: ['full_moon_face'] },
+                { emoji: '🌠', shortcodes: ['shooting_star'] },
+                { emoji: '⛈️', shortcodes: ['cloud_with_lightning_and_rain'] },
+                { emoji: '☂️', shortcodes: ['umbrella'] },
+                { emoji: '⛱️', shortcodes: ['umbrella_on_ground'] },
+                { emoji: '🛙', shortcodes: ['lighthouse'] },
+                { emoji: '🪋', shortcodes: ['meteor'] },
+],
 
             weatherAndNatureExtras: [
                 { emoji: '☀️', shortcodes: ['sun'] },
@@ -1096,8 +3618,129 @@
                 { emoji: '🧼', shortcodes: ['soap'] },
                 { emoji: '🧽', shortcodes: ['sponge'] },
                 { emoji: '🧴', shortcodes: ['lotion_bottle'] },
-                { emoji: '🪠', shortcodes: ['plunger'] }
-            ],
+                { emoji: '🪠', shortcodes: ['plunger'] },
+                { emoji: '👓', shortcodes: ['glasses'] },
+                { emoji: '🕶️', shortcodes: ['sunglasses'] },
+                { emoji: '🥽', shortcodes: ['goggles'] },
+                { emoji: '🥼', shortcodes: ['lab_coat'] },
+                { emoji: '🦺', shortcodes: ['safety_vest'] },
+                { emoji: '👔', shortcodes: ['necktie'] },
+                { emoji: '👕', shortcodes: ['t_shirt'] },
+                { emoji: '👖', shortcodes: ['jeans'] },
+                { emoji: '🧣', shortcodes: ['scarf'] },
+                { emoji: '🧤', shortcodes: ['gloves'] },
+                { emoji: '🧥', shortcodes: ['coat'] },
+                { emoji: '🧦', shortcodes: ['socks'] },
+                { emoji: '👗', shortcodes: ['dress'] },
+                { emoji: '👘', shortcodes: ['kimono'] },
+                { emoji: '🥻', shortcodes: ['sari'] },
+                { emoji: '🩱', shortcodes: ['one_piece_swimsuit'] },
+                { emoji: '🩲', shortcodes: ['briefs'] },
+                { emoji: '🩳', shortcodes: ['shorts'] },
+                { emoji: '👙', shortcodes: ['bikini'] },
+                { emoji: '👚', shortcodes: ['woman_s_clothes'] },
+                { emoji: '🪭', shortcodes: ['folding_hand_fan'] },
+                { emoji: '👛', shortcodes: ['purse'] },
+                { emoji: '👜', shortcodes: ['handbag'] },
+                { emoji: '👝', shortcodes: ['clutch_bag'] },
+                { emoji: '🎒', shortcodes: ['backpack'] },
+                { emoji: '🩴', shortcodes: ['thong_sandal'] },
+                { emoji: '👞', shortcodes: ['man_s_shoe'] },
+                { emoji: '👟', shortcodes: ['running_shoe'] },
+                { emoji: '🥾', shortcodes: ['hiking_boot'] },
+                { emoji: '🥿', shortcodes: ['flat_shoe'] },
+                { emoji: '👠', shortcodes: ['high_heeled_shoe'] },
+                { emoji: '👡', shortcodes: ['woman_s_sandal'] },
+                { emoji: '🩰', shortcodes: ['ballet_shoes'] },
+                { emoji: '👢', shortcodes: ['woman_s_boot'] },
+                { emoji: '🪮', shortcodes: ['hair_pick'] },
+                { emoji: '👑', shortcodes: ['crown'] },
+                { emoji: '👒', shortcodes: ['woman_s_hat'] },
+                { emoji: '🎩', shortcodes: ['top_hat'] },
+                { emoji: '🎓', shortcodes: ['graduation_cap'] },
+                { emoji: '🧢', shortcodes: ['billed_cap'] },
+                { emoji: '🪖', shortcodes: ['military_helmet'] },
+                { emoji: '⛑️', shortcodes: ['rescue_worker_s_helmet'] },
+                { emoji: '📿', shortcodes: ['prayer_beads'] },
+                { emoji: '💄', shortcodes: ['lipstick'] },
+                { emoji: '🔉', shortcodes: ['speaker_medium_volume'] },
+                { emoji: '🎚️', shortcodes: ['level_slider'] },
+                { emoji: '🎛️', shortcodes: ['control_knobs'] },
+                { emoji: '🪊', shortcodes: ['trombone'] },
+                { emoji: '🪘', shortcodes: ['long_drum'] },
+                { emoji: '🪇', shortcodes: ['maracas'] },
+                { emoji: '🪈', shortcodes: ['flute'] },
+                { emoji: '🪉', shortcodes: ['harp'] },
+                { emoji: '💽', shortcodes: ['computer_disk'] },
+                { emoji: '📼', shortcodes: ['videocassette'] },
+                { emoji: '🔍', shortcodes: ['magnifying_glass_tilted_left'] },
+                { emoji: '🔎', shortcodes: ['magnifying_glass_tilted_right'] },
+                { emoji: '🏮', shortcodes: ['red_paper_lantern'] },
+                { emoji: '🪔', shortcodes: ['diya_lamp'] },
+                { emoji: '📕', shortcodes: ['closed_book'] },
+                { emoji: '📗', shortcodes: ['green_book'] },
+                { emoji: '📘', shortcodes: ['blue_book'] },
+                { emoji: '📙', shortcodes: ['orange_book'] },
+                { emoji: '📃', shortcodes: ['page_with_curl'] },
+                { emoji: '🪎', shortcodes: ['treasure_chest'] },
+                { emoji: '💴', shortcodes: ['yen_banknote'] },
+                { emoji: '💵', shortcodes: ['dollar_banknote'] },
+                { emoji: '💶', shortcodes: ['euro_banknote'] },
+                { emoji: '💷', shortcodes: ['pound_banknote'] },
+                { emoji: '💸', shortcodes: ['money_with_wings'] },
+                { emoji: '💹', shortcodes: ['chart_increasing_with_yen'] },
+                { emoji: '✒️', shortcodes: ['black_nib'] },
+                { emoji: '📝', shortcodes: ['memo'] },
+                { emoji: '💼', shortcodes: ['briefcase'] },
+                { emoji: '🗂️', shortcodes: ['card_index_dividers'] },
+                { emoji: '🗒️', shortcodes: ['spiral_notepad'] },
+                { emoji: '🗓️', shortcodes: ['spiral_calendar'] },
+                { emoji: '📇', shortcodes: ['card_index'] },
+                { emoji: '🖇️', shortcodes: ['linked_paperclips'] },
+                { emoji: '📏', shortcodes: ['straight_ruler'] },
+                { emoji: '📐', shortcodes: ['triangular_ruler'] },
+                { emoji: '🗃️', shortcodes: ['card_file_box'] },
+                { emoji: '🗄️', shortcodes: ['file_cabinet'] },
+                { emoji: '🗡️', shortcodes: ['dagger'] },
+                { emoji: '⚔️', shortcodes: ['crossed_swords'] },
+                { emoji: '💣', shortcodes: ['bomb'] },
+                { emoji: '🪃', shortcodes: ['boomerang'] },
+                { emoji: '🏹', shortcodes: ['bow_and_arrow'] },
+                { emoji: '🛡️', shortcodes: ['shield'] },
+                { emoji: '🪚', shortcodes: ['carpentry_saw'] },
+                { emoji: '🪛', shortcodes: ['screwdriver'] },
+                { emoji: '🗜️', shortcodes: ['clamp'] },
+                { emoji: '⛓️‍💥', shortcodes: ['broken_chain'] },
+                { emoji: '🪏', shortcodes: ['shovel'] },
+                { emoji: '⚗️', shortcodes: ['alembic'] },
+                { emoji: '🩼', shortcodes: ['crutch'] },
+                { emoji: '🩻', shortcodes: ['x_ray'] },
+                { emoji: '🚪', shortcodes: ['door'] },
+                { emoji: '🛗', shortcodes: ['elevator'] },
+                { emoji: '🪞', shortcodes: ['mirror'] },
+                { emoji: '🪟', shortcodes: ['window'] },
+                { emoji: '🛏️', shortcodes: ['bed'] },
+                { emoji: '🛋️', shortcodes: ['couch_and_lamp'] },
+                { emoji: '🪑', shortcodes: ['chair'] },
+                { emoji: '🚽', shortcodes: ['toilet'] },
+                { emoji: '🚿', shortcodes: ['shower'] },
+                { emoji: '🛁', shortcodes: ['bathtub'] },
+                { emoji: '🪤', shortcodes: ['mouse_trap'] },
+                { emoji: '🪒', shortcodes: ['razor'] },
+                { emoji: '🧷', shortcodes: ['safety_pin'] },
+                { emoji: '🪣', shortcodes: ['bucket'] },
+                { emoji: '🫧', shortcodes: ['bubbles'] },
+                { emoji: '🪥', shortcodes: ['toothbrush'] },
+                { emoji: '🚬', shortcodes: ['cigarette'] },
+                { emoji: '⚰️', shortcodes: ['coffin'] },
+                { emoji: '🪦', shortcodes: ['headstone'] },
+                { emoji: '⚱️', shortcodes: ['funeral_urn'] },
+                { emoji: '🗿', shortcodes: ['moai'] },
+                { emoji: '🪧', shortcodes: ['placard'] },
+                { emoji: '🪪', shortcodes: ['identification_card'] },
+                { emoji: '🪌', shortcodes: ['eraser'] },
+                { emoji: '🪍', shortcodes: ['net_with_handle'] },
+],
 
             uiSymbolsExtra: [
                 { emoji: '▶️', shortcodes: ['play'] },
@@ -1144,8 +3787,179 @@
                 { emoji: '✡️', shortcodes: ['star_of_david'] },
                 { emoji: '🔯', shortcodes: ['dotted_six_pointed_star'] },
                 { emoji: '🕎', shortcodes: ['menorah'] },
-                { emoji: '☯️', shortcodes: ['yin_yang'] }
-            ],
+                { emoji: '☯️', shortcodes: ['yin_yang'] },
+                { emoji: '🏧', shortcodes: ['atm_sign'] },
+                { emoji: '🚮', shortcodes: ['litter_in_bin_sign'] },
+                { emoji: '🚰', shortcodes: ['potable_water'] },
+                { emoji: '♿', shortcodes: ['wheelchair_symbol'] },
+                { emoji: '🚹', shortcodes: ['men_s_room'] },
+                { emoji: '🚺', shortcodes: ['women_s_room'] },
+                { emoji: '🚻', shortcodes: ['restroom'] },
+                { emoji: '🚼', shortcodes: ['baby_symbol'] },
+                { emoji: '🚾', shortcodes: ['water_closet'] },
+                { emoji: '🛂', shortcodes: ['passport_control'] },
+                { emoji: '🛃', shortcodes: ['customs'] },
+                { emoji: '🛄', shortcodes: ['baggage_claim'] },
+                { emoji: '🛅', shortcodes: ['left_luggage'] },
+                { emoji: '🚸', shortcodes: ['children_crossing'] },
+                { emoji: '⛔', shortcodes: ['no_entry'] },
+                { emoji: '🚫', shortcodes: ['prohibited'] },
+                { emoji: '🚳', shortcodes: ['no_bicycles'] },
+                { emoji: '🚭', shortcodes: ['no_smoking'] },
+                { emoji: '🚯', shortcodes: ['no_littering'] },
+                { emoji: '🚱', shortcodes: ['non_potable_water'] },
+                { emoji: '🚷', shortcodes: ['no_pedestrians'] },
+                { emoji: '📵', shortcodes: ['no_mobile_phones'] },
+                { emoji: '🔞', shortcodes: ['no_one_under_eighteen'] },
+                { emoji: '☢️', shortcodes: ['radioactive'] },
+                { emoji: '☣️', shortcodes: ['biohazard'] },
+                { emoji: '↗️', shortcodes: ['up_right_arrow'] },
+                { emoji: '↘️', shortcodes: ['down_right_arrow'] },
+                { emoji: '↙️', shortcodes: ['down_left_arrow'] },
+                { emoji: '↖️', shortcodes: ['up_left_arrow'] },
+                { emoji: '⤴️', shortcodes: ['right_arrow_curving_up'] },
+                { emoji: '⤵️', shortcodes: ['right_arrow_curving_down'] },
+                { emoji: '🔃', shortcodes: ['clockwise_vertical_arrows'] },
+                { emoji: '🔄', shortcodes: ['counterclockwise_arrows_button'] },
+                { emoji: '🔛', shortcodes: ['on_arrow'] },
+                { emoji: '🛐', shortcodes: ['place_of_worship'] },
+                { emoji: '⚛️', shortcodes: ['atom_symbol'] },
+                { emoji: '☦️', shortcodes: ['orthodox_cross'] },
+                { emoji: '🪯', shortcodes: ['khanda'] },
+                { emoji: '♈', shortcodes: ['aries'] },
+                { emoji: '♉', shortcodes: ['taurus'] },
+                { emoji: '♊', shortcodes: ['gemini'] },
+                { emoji: '♋', shortcodes: ['cancer'] },
+                { emoji: '♌', shortcodes: ['leo'] },
+                { emoji: '♍', shortcodes: ['virgo'] },
+                { emoji: '♎', shortcodes: ['libra'] },
+                { emoji: '♏', shortcodes: ['scorpio'] },
+                { emoji: '♐', shortcodes: ['sagittarius'] },
+                { emoji: '♑', shortcodes: ['capricorn'] },
+                { emoji: '♒', shortcodes: ['aquarius'] },
+                { emoji: '♓', shortcodes: ['pisces'] },
+                { emoji: '⛎', shortcodes: ['ophiuchus'] },
+                { emoji: '⏯️', shortcodes: ['play_or_pause_button'] },
+                { emoji: '◀️', shortcodes: ['reverse_button'] },
+                { emoji: '🔼', shortcodes: ['upwards_button'] },
+                { emoji: '⏫', shortcodes: ['fast_up_button'] },
+                { emoji: '🔽', shortcodes: ['downwards_button'] },
+                { emoji: '⏬', shortcodes: ['fast_down_button'] },
+                { emoji: '⏏️', shortcodes: ['eject_button'] },
+                { emoji: '🎦', shortcodes: ['cinema'] },
+                { emoji: '🔅', shortcodes: ['dim_button'] },
+                { emoji: '🔆', shortcodes: ['bright_button'] },
+                { emoji: '📶', shortcodes: ['antenna_bars'] },
+                { emoji: '🛜', shortcodes: ['wireless'] },
+                { emoji: '📳', shortcodes: ['vibration_mode'] },
+                { emoji: '📴', shortcodes: ['mobile_phone_off'] },
+                { emoji: '♀️', shortcodes: ['female_sign'] },
+                { emoji: '♂️', shortcodes: ['male_sign'] },
+                { emoji: '⚧️', shortcodes: ['transgender_symbol'] },
+                { emoji: '🟰', shortcodes: ['heavy_equals_sign'] },
+                { emoji: '〰️', shortcodes: ['wavy_dash'] },
+                { emoji: '⚕️', shortcodes: ['medical_symbol'] },
+                { emoji: '♻️', shortcodes: ['recycling_symbol'] },
+                { emoji: '⚜️', shortcodes: ['fleur_de_lis'] },
+                { emoji: '🔱', shortcodes: ['trident_emblem'] },
+                { emoji: '📛', shortcodes: ['name_badge'] },
+                { emoji: '🔰', shortcodes: ['japanese_symbol_for_beginner'] },
+                { emoji: '⭕', shortcodes: ['hollow_red_circle'] },
+                { emoji: '☑️', shortcodes: ['check_box_with_check'] },
+                { emoji: '❎', shortcodes: ['cross_mark_button'] },
+                { emoji: '➰', shortcodes: ['curly_loop'] },
+                { emoji: '➿', shortcodes: ['double_curly_loop'] },
+                { emoji: '〽️', shortcodes: ['part_alternation_mark'] },
+                { emoji: '✳️', shortcodes: ['eight_spoked_asterisk'] },
+                { emoji: '✴️', shortcodes: ['eight_pointed_star'] },
+                { emoji: '❇️', shortcodes: ['sparkle'] },
+                { emoji: '🫟', shortcodes: ['splatter'] },
+                { emoji: '#️⃣', shortcodes: ['keycap'] },
+                { emoji: '*️⃣', shortcodes: ['keycap'] },
+                { emoji: '0️⃣', shortcodes: ['keycap_0'] },
+                { emoji: '1️⃣', shortcodes: ['keycap_1'] },
+                { emoji: '2️⃣', shortcodes: ['keycap_2'] },
+                { emoji: '3️⃣', shortcodes: ['keycap_3'] },
+                { emoji: '4️⃣', shortcodes: ['keycap_4'] },
+                { emoji: '5️⃣', shortcodes: ['keycap_5'] },
+                { emoji: '6️⃣', shortcodes: ['keycap_6'] },
+                { emoji: '7️⃣', shortcodes: ['keycap_7'] },
+                { emoji: '8️⃣', shortcodes: ['keycap_8'] },
+                { emoji: '9️⃣', shortcodes: ['keycap_9'] },
+                { emoji: '🔟', shortcodes: ['keycap_10'] },
+                { emoji: '🔠', shortcodes: ['input_latin_uppercase'] },
+                { emoji: '🔡', shortcodes: ['input_latin_lowercase'] },
+                { emoji: '🔢', shortcodes: ['input_numbers'] },
+                { emoji: '🔣', shortcodes: ['input_symbols'] },
+                { emoji: '🔤', shortcodes: ['input_latin_letters'] },
+                { emoji: '🅰️', shortcodes: ['a_button_blood_type'] },
+                { emoji: '🆎', shortcodes: ['ab_button_blood_type'] },
+                { emoji: '🅱️', shortcodes: ['b_button_blood_type'] },
+                { emoji: '🆑', shortcodes: ['cl_button'] },
+                { emoji: '🆒', shortcodes: ['cool_button'] },
+                { emoji: '🆓', shortcodes: ['free_button'] },
+                { emoji: '🆔', shortcodes: ['id_button'] },
+                { emoji: 'Ⓜ️', shortcodes: ['circled_m'] },
+                { emoji: '🆕', shortcodes: ['new_button'] },
+                { emoji: '🆖', shortcodes: ['ng_button'] },
+                { emoji: '🅾️', shortcodes: ['o_button_blood_type'] },
+                { emoji: '🆗', shortcodes: ['ok_button'] },
+                { emoji: '🅿️', shortcodes: ['p_button'] },
+                { emoji: '🆘', shortcodes: ['sos_button'] },
+                { emoji: '🆙', shortcodes: ['up_button'] },
+                { emoji: '🆚', shortcodes: ['vs_button'] },
+                { emoji: '🈁', shortcodes: ['japanese_here_button'] },
+                { emoji: '🈂️', shortcodes: ['japanese_service_charge_button'] },
+                { emoji: '🈷️', shortcodes: ['japanese_monthly_amount_button'] },
+                { emoji: '🈶', shortcodes: ['japanese_not_free_of_charge_button'] },
+                { emoji: '🈯', shortcodes: ['japanese_reserved_button'] },
+                { emoji: '🉐', shortcodes: ['japanese_bargain_button'] },
+                { emoji: '🈹', shortcodes: ['japanese_discount_button'] },
+                { emoji: '🈚', shortcodes: ['japanese_free_of_charge_button'] },
+                { emoji: '🈲', shortcodes: ['japanese_prohibited_button'] },
+                { emoji: '🉑', shortcodes: ['japanese_acceptable_button'] },
+                { emoji: '🈸', shortcodes: ['japanese_application_button'] },
+                { emoji: '🈴', shortcodes: ['japanese_passing_grade_button'] },
+                { emoji: '🈳', shortcodes: ['japanese_vacancy_button'] },
+                { emoji: '㊗️', shortcodes: ['japanese_congratulations_button'] },
+                { emoji: '㊙️', shortcodes: ['japanese_secret_button'] },
+                { emoji: '🈺', shortcodes: ['japanese_open_for_business_button'] },
+                { emoji: '🈵', shortcodes: ['japanese_no_vacancy_button'] },
+                { emoji: '🔴', shortcodes: ['red_circle'] },
+                { emoji: '🟠', shortcodes: ['orange_circle'] },
+                { emoji: '🟡', shortcodes: ['yellow_circle'] },
+                { emoji: '🟢', shortcodes: ['green_circle'] },
+                { emoji: '🔵', shortcodes: ['blue_circle'] },
+                { emoji: '🟣', shortcodes: ['purple_circle'] },
+                { emoji: '🟤', shortcodes: ['brown_circle'] },
+                { emoji: '⚫', shortcodes: ['black_circle'] },
+                { emoji: '⚪', shortcodes: ['white_circle'] },
+                { emoji: '🟥', shortcodes: ['red_square'] },
+                { emoji: '🟧', shortcodes: ['orange_square'] },
+                { emoji: '🟨', shortcodes: ['yellow_square'] },
+                { emoji: '🟩', shortcodes: ['green_square'] },
+                { emoji: '🟦', shortcodes: ['blue_square'] },
+                { emoji: '🟪', shortcodes: ['purple_square'] },
+                { emoji: '🟫', shortcodes: ['brown_square'] },
+                { emoji: '⬛', shortcodes: ['black_large_square'] },
+                { emoji: '⬜', shortcodes: ['white_large_square'] },
+                { emoji: '◼️', shortcodes: ['black_medium_square'] },
+                { emoji: '◻️', shortcodes: ['white_medium_square'] },
+                { emoji: '◾', shortcodes: ['black_medium_small_square'] },
+                { emoji: '◽', shortcodes: ['white_medium_small_square'] },
+                { emoji: '▪️', shortcodes: ['black_small_square'] },
+                { emoji: '▫️', shortcodes: ['white_small_square'] },
+                { emoji: '🔶', shortcodes: ['large_orange_diamond'] },
+                { emoji: '🔷', shortcodes: ['large_blue_diamond'] },
+                { emoji: '🔸', shortcodes: ['small_orange_diamond'] },
+                { emoji: '🔹', shortcodes: ['small_blue_diamond'] },
+                { emoji: '🔺', shortcodes: ['red_triangle_pointed_up'] },
+                { emoji: '🔻', shortcodes: ['red_triangle_pointed_down'] },
+                { emoji: '💠', shortcodes: ['diamond_with_a_dot'] },
+                { emoji: '🔘', shortcodes: ['radio_button'] },
+                { emoji: '🔳', shortcodes: ['white_square_button'] },
+                { emoji: '🔲', shortcodes: ['black_square_button'] },
+],
 
             communicationAndMedia: [
                 { emoji: '✉️', shortcodes: ['email'] },
@@ -1251,11 +4065,224 @@
                 { emoji: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', shortcodes: ['flag_scotland'] },
                 { emoji: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', shortcodes: ['flag_wales'] },
                 { emoji: '🏴', shortcodes: ['black_flag'] },
-                { emoji: '🏳️', shortcodes: ['white_flag'] }
-            ]
+                { emoji: '🏳️', shortcodes: ['white_flag'] },
+                { emoji: '🇦🇨', shortcodes: ['flag_ascension_island'] },
+                { emoji: '🇦🇩', shortcodes: ['flag_andorra'] },
+                { emoji: '🇦🇪', shortcodes: ['flag_united_arab_emirates'] },
+                { emoji: '🇦🇫', shortcodes: ['flag_afghanistan'] },
+                { emoji: '🇦🇬', shortcodes: ['flag_antigua_barbuda'] },
+                { emoji: '🇦🇮', shortcodes: ['flag_anguilla'] },
+                { emoji: '🇦🇱', shortcodes: ['flag_albania'] },
+                { emoji: '🇦🇲', shortcodes: ['flag_armenia'] },
+                { emoji: '🇦🇴', shortcodes: ['flag_angola'] },
+                { emoji: '🇦🇶', shortcodes: ['flag_antarctica'] },
+                { emoji: '🇦🇸', shortcodes: ['flag_american_samoa'] },
+                { emoji: '🇦🇼', shortcodes: ['flag_aruba'] },
+                { emoji: '🇦🇽', shortcodes: ['flag_land_islands'] },
+                { emoji: '🇦🇿', shortcodes: ['flag_azerbaijan'] },
+                { emoji: '🇧🇦', shortcodes: ['flag_bosnia_herzegovina'] },
+                { emoji: '🇧🇧', shortcodes: ['flag_barbados'] },
+                { emoji: '🇧🇩', shortcodes: ['flag_bangladesh'] },
+                { emoji: '🇧🇫', shortcodes: ['flag_burkina_faso'] },
+                { emoji: '🇧🇭', shortcodes: ['flag_bahrain'] },
+                { emoji: '🇧🇮', shortcodes: ['flag_burundi'] },
+                { emoji: '🇧🇯', shortcodes: ['flag_benin'] },
+                { emoji: '🇧🇱', shortcodes: ['flag_st_barth_lemy'] },
+                { emoji: '🇧🇲', shortcodes: ['flag_bermuda'] },
+                { emoji: '🇧🇳', shortcodes: ['flag_brunei'] },
+                { emoji: '🇧🇴', shortcodes: ['flag_bolivia'] },
+                { emoji: '🇧🇶', shortcodes: ['flag_caribbean_netherlands'] },
+                { emoji: '🇧🇸', shortcodes: ['flag_bahamas'] },
+                { emoji: '🇧🇹', shortcodes: ['flag_bhutan'] },
+                { emoji: '🇧🇻', shortcodes: ['flag_bouvet_island'] },
+                { emoji: '🇧🇼', shortcodes: ['flag_botswana'] },
+                { emoji: '🇧🇾', shortcodes: ['flag_belarus'] },
+                { emoji: '🇧🇿', shortcodes: ['flag_belize'] },
+                { emoji: '🇨🇨', shortcodes: ['flag_cocos_keeling_islands'] },
+                { emoji: '🇨🇩', shortcodes: ['flag_congo_kinshasa'] },
+                { emoji: '🇨🇫', shortcodes: ['flag_central_african_republic'] },
+                { emoji: '🇨🇬', shortcodes: ['flag_congo_brazzaville'] },
+                { emoji: '🇨🇮', shortcodes: ['flag_c_te_d_ivoire'] },
+                { emoji: '🇨🇰', shortcodes: ['flag_cook_islands'] },
+                { emoji: '🇨🇲', shortcodes: ['flag_cameroon'] },
+                { emoji: '🇨🇵', shortcodes: ['flag_clipperton_island'] },
+                { emoji: '🇨🇶', shortcodes: ['flag_sark'] },
+                { emoji: '🇨🇷', shortcodes: ['flag_costa_rica'] },
+                { emoji: '🇨🇺', shortcodes: ['flag_cuba'] },
+                { emoji: '🇨🇻', shortcodes: ['flag_cape_verde'] },
+                { emoji: '🇨🇼', shortcodes: ['flag_cura_ao'] },
+                { emoji: '🇨🇽', shortcodes: ['flag_christmas_island'] },
+                { emoji: '🇨🇾', shortcodes: ['flag_cyprus'] },
+                { emoji: '🇩🇬', shortcodes: ['flag_diego_garcia'] },
+                { emoji: '🇩🇯', shortcodes: ['flag_djibouti'] },
+                { emoji: '🇩🇰', shortcodes: ['flag_denmark'] },
+                { emoji: '🇩🇲', shortcodes: ['flag_dominica'] },
+                { emoji: '🇩🇴', shortcodes: ['flag_dominican_republic'] },
+                { emoji: '🇩🇿', shortcodes: ['flag_algeria'] },
+                { emoji: '🇪🇦', shortcodes: ['flag_ceuta_melilla'] },
+                { emoji: '🇪🇨', shortcodes: ['flag_ecuador'] },
+                { emoji: '🇪🇪', shortcodes: ['flag_estonia'] },
+                { emoji: '🇪🇬', shortcodes: ['flag_egypt'] },
+                { emoji: '🇪🇭', shortcodes: ['flag_western_sahara'] },
+                { emoji: '🇪🇷', shortcodes: ['flag_eritrea'] },
+                { emoji: '🇪🇹', shortcodes: ['flag_ethiopia'] },
+                { emoji: '🇫🇮', shortcodes: ['flag_finland'] },
+                { emoji: '🇫🇯', shortcodes: ['flag_fiji'] },
+                { emoji: '🇫🇰', shortcodes: ['flag_falkland_islands'] },
+                { emoji: '🇫🇲', shortcodes: ['flag_micronesia'] },
+                { emoji: '🇫🇴', shortcodes: ['flag_faroe_islands'] },
+                { emoji: '🇬🇦', shortcodes: ['flag_gabon'] },
+                { emoji: '🇬🇩', shortcodes: ['flag_grenada'] },
+                { emoji: '🇬🇪', shortcodes: ['flag_georgia'] },
+                { emoji: '🇬🇫', shortcodes: ['flag_french_guiana'] },
+                { emoji: '🇬🇬', shortcodes: ['flag_guernsey'] },
+                { emoji: '🇬🇭', shortcodes: ['flag_ghana'] },
+                { emoji: '🇬🇮', shortcodes: ['flag_gibraltar'] },
+                { emoji: '🇬🇱', shortcodes: ['flag_greenland'] },
+                { emoji: '🇬🇲', shortcodes: ['flag_gambia'] },
+                { emoji: '🇬🇳', shortcodes: ['flag_guinea'] },
+                { emoji: '🇬🇵', shortcodes: ['flag_guadeloupe'] },
+                { emoji: '🇬🇶', shortcodes: ['flag_equatorial_guinea'] },
+                { emoji: '🇬🇸', shortcodes: ['flag_south_georgia_south_sandwich_islands'] },
+                { emoji: '🇬🇹', shortcodes: ['flag_guatemala'] },
+                { emoji: '🇬🇺', shortcodes: ['flag_guam'] },
+                { emoji: '🇬🇼', shortcodes: ['flag_guinea_bissau'] },
+                { emoji: '🇬🇾', shortcodes: ['flag_guyana'] },
+                { emoji: '🇭🇰', shortcodes: ['flag_hong_kong_sar_china'] },
+                { emoji: '🇭🇲', shortcodes: ['flag_heard_mcdonald_islands'] },
+                { emoji: '🇭🇳', shortcodes: ['flag_honduras'] },
+                { emoji: '🇭🇹', shortcodes: ['flag_haiti'] },
+                { emoji: '🇮🇨', shortcodes: ['flag_canary_islands'] },
+                { emoji: '🇮🇪', shortcodes: ['flag_ireland'] },
+                { emoji: '🇮🇱', shortcodes: ['flag_israel'] },
+                { emoji: '🇮🇲', shortcodes: ['flag_isle_of_man'] },
+                { emoji: '🇮🇴', shortcodes: ['flag_british_indian_ocean_territory'] },
+                { emoji: '🇮🇶', shortcodes: ['flag_iraq'] },
+                { emoji: '🇮🇷', shortcodes: ['flag_iran'] },
+                { emoji: '🇮🇸', shortcodes: ['flag_iceland'] },
+                { emoji: '🇯🇪', shortcodes: ['flag_jersey'] },
+                { emoji: '🇯🇲', shortcodes: ['flag_jamaica'] },
+                { emoji: '🇯🇴', shortcodes: ['flag_jordan'] },
+                { emoji: '🇰🇪', shortcodes: ['flag_kenya'] },
+                { emoji: '🇰🇬', shortcodes: ['flag_kyrgyzstan'] },
+                { emoji: '🇰🇭', shortcodes: ['flag_cambodia'] },
+                { emoji: '🇰🇮', shortcodes: ['flag_kiribati'] },
+                { emoji: '🇰🇲', shortcodes: ['flag_comoros'] },
+                { emoji: '🇰🇳', shortcodes: ['flag_st_kitts_nevis'] },
+                { emoji: '🇰🇵', shortcodes: ['flag_north_korea'] },
+                { emoji: '🇰🇼', shortcodes: ['flag_kuwait'] },
+                { emoji: '🇰🇾', shortcodes: ['flag_cayman_islands'] },
+                { emoji: '🇰🇿', shortcodes: ['flag_kazakhstan'] },
+                { emoji: '🇱🇦', shortcodes: ['flag_laos'] },
+                { emoji: '🇱🇧', shortcodes: ['flag_lebanon'] },
+                { emoji: '🇱🇨', shortcodes: ['flag_st_lucia'] },
+                { emoji: '🇱🇮', shortcodes: ['flag_liechtenstein'] },
+                { emoji: '🇱🇰', shortcodes: ['flag_sri_lanka'] },
+                { emoji: '🇱🇷', shortcodes: ['flag_liberia'] },
+                { emoji: '🇱🇸', shortcodes: ['flag_lesotho'] },
+                { emoji: '🇱🇹', shortcodes: ['flag_lithuania'] },
+                { emoji: '🇱🇻', shortcodes: ['flag_latvia'] },
+                { emoji: '🇱🇾', shortcodes: ['flag_libya'] },
+                { emoji: '🇲🇦', shortcodes: ['flag_morocco'] },
+                { emoji: '🇲🇨', shortcodes: ['flag_monaco'] },
+                { emoji: '🇲🇩', shortcodes: ['flag_moldova'] },
+                { emoji: '🇲🇪', shortcodes: ['flag_montenegro'] },
+                { emoji: '🇲🇫', shortcodes: ['flag_st_martin'] },
+                { emoji: '🇲🇬', shortcodes: ['flag_madagascar'] },
+                { emoji: '🇲🇭', shortcodes: ['flag_marshall_islands'] },
+                { emoji: '🇲🇰', shortcodes: ['flag_north_macedonia'] },
+                { emoji: '🇲🇱', shortcodes: ['flag_mali'] },
+                { emoji: '🇲🇲', shortcodes: ['flag_myanmar_burma'] },
+                { emoji: '🇲🇳', shortcodes: ['flag_mongolia'] },
+                { emoji: '🇲🇴', shortcodes: ['flag_macao_sar_china'] },
+                { emoji: '🇲🇵', shortcodes: ['flag_northern_mariana_islands'] },
+                { emoji: '🇲🇶', shortcodes: ['flag_martinique'] },
+                { emoji: '🇲🇷', shortcodes: ['flag_mauritania'] },
+                { emoji: '🇲🇸', shortcodes: ['flag_montserrat'] },
+                { emoji: '🇲🇹', shortcodes: ['flag_malta'] },
+                { emoji: '🇲🇺', shortcodes: ['flag_mauritius'] },
+                { emoji: '🇲🇻', shortcodes: ['flag_maldives'] },
+                { emoji: '🇲🇼', shortcodes: ['flag_malawi'] },
+                { emoji: '🇲🇿', shortcodes: ['flag_mozambique'] },
+                { emoji: '🇳🇦', shortcodes: ['flag_namibia'] },
+                { emoji: '🇳🇨', shortcodes: ['flag_new_caledonia'] },
+                { emoji: '🇳🇪', shortcodes: ['flag_niger'] },
+                { emoji: '🇳🇫', shortcodes: ['flag_norfolk_island'] },
+                { emoji: '🇳🇬', shortcodes: ['flag_nigeria'] },
+                { emoji: '🇳🇮', shortcodes: ['flag_nicaragua'] },
+                { emoji: '🇳🇴', shortcodes: ['flag_norway'] },
+                { emoji: '🇳🇵', shortcodes: ['flag_nepal'] },
+                { emoji: '🇳🇷', shortcodes: ['flag_nauru'] },
+                { emoji: '🇳🇺', shortcodes: ['flag_niue'] },
+                { emoji: '🇴🇲', shortcodes: ['flag_oman'] },
+                { emoji: '🇵🇦', shortcodes: ['flag_panama'] },
+                { emoji: '🇵🇪', shortcodes: ['flag_peru'] },
+                { emoji: '🇵🇫', shortcodes: ['flag_french_polynesia'] },
+                { emoji: '🇵🇬', shortcodes: ['flag_papua_new_guinea'] },
+                { emoji: '🇵🇰', shortcodes: ['flag_pakistan'] },
+                { emoji: '🇵🇲', shortcodes: ['flag_st_pierre_miquelon'] },
+                { emoji: '🇵🇳', shortcodes: ['flag_pitcairn_islands'] },
+                { emoji: '🇵🇷', shortcodes: ['flag_puerto_rico'] },
+                { emoji: '🇵🇸', shortcodes: ['flag_palestinian_territories'] },
+                { emoji: '🇵🇼', shortcodes: ['flag_palau'] },
+                { emoji: '🇵🇾', shortcodes: ['flag_paraguay'] },
+                { emoji: '🇶🇦', shortcodes: ['flag_qatar'] },
+                { emoji: '🇷🇪', shortcodes: ['flag_r_union'] },
+                { emoji: '🇷🇸', shortcodes: ['flag_serbia'] },
+                { emoji: '🇷🇼', shortcodes: ['flag_rwanda'] },
+                { emoji: '🇸🇦', shortcodes: ['flag_saudi_arabia'] },
+                { emoji: '🇸🇧', shortcodes: ['flag_solomon_islands'] },
+                { emoji: '🇸🇨', shortcodes: ['flag_seychelles'] },
+                { emoji: '🇸🇩', shortcodes: ['flag_sudan'] },
+                { emoji: '🇸🇪', shortcodes: ['flag_sweden'] },
+                { emoji: '🇸🇭', shortcodes: ['flag_st_helena'] },
+                { emoji: '🇸🇯', shortcodes: ['flag_svalbard_jan_mayen'] },
+                { emoji: '🇸🇱', shortcodes: ['flag_sierra_leone'] },
+                { emoji: '🇸🇲', shortcodes: ['flag_san_marino'] },
+                { emoji: '🇸🇳', shortcodes: ['flag_senegal'] },
+                { emoji: '🇸🇴', shortcodes: ['flag_somalia'] },
+                { emoji: '🇸🇷', shortcodes: ['flag_suriname'] },
+                { emoji: '🇸🇸', shortcodes: ['flag_south_sudan'] },
+                { emoji: '🇸🇹', shortcodes: ['flag_s_o_tom_pr_ncipe'] },
+                { emoji: '🇸🇻', shortcodes: ['flag_el_salvador'] },
+                { emoji: '🇸🇽', shortcodes: ['flag_sint_maarten'] },
+                { emoji: '🇸🇾', shortcodes: ['flag_syria'] },
+                { emoji: '🇸🇿', shortcodes: ['flag_eswatini'] },
+                { emoji: '🇹🇦', shortcodes: ['flag_tristan_da_cunha'] },
+                { emoji: '🇹🇨', shortcodes: ['flag_turks_caicos_islands'] },
+                { emoji: '🇹🇩', shortcodes: ['flag_chad'] },
+                { emoji: '🇹🇫', shortcodes: ['flag_french_southern_territories'] },
+                { emoji: '🇹🇬', shortcodes: ['flag_togo'] },
+                { emoji: '🇹🇯', shortcodes: ['flag_tajikistan'] },
+                { emoji: '🇹🇰', shortcodes: ['flag_tokelau'] },
+                { emoji: '🇹🇱', shortcodes: ['flag_timor_leste'] },
+                { emoji: '🇹🇲', shortcodes: ['flag_turkmenistan'] },
+                { emoji: '🇹🇳', shortcodes: ['flag_tunisia'] },
+                { emoji: '🇹🇴', shortcodes: ['flag_tonga'] },
+                { emoji: '🇹🇹', shortcodes: ['flag_trinidad_tobago'] },
+                { emoji: '🇹🇻', shortcodes: ['flag_tuvalu'] },
+                { emoji: '🇹🇼', shortcodes: ['flag_taiwan'] },
+                { emoji: '🇹🇿', shortcodes: ['flag_tanzania'] },
+                { emoji: '🇺🇬', shortcodes: ['flag_uganda'] },
+                { emoji: '🇺🇲', shortcodes: ['flag_u_s_outlying_islands'] },
+                { emoji: '🇺🇾', shortcodes: ['flag_uruguay'] },
+                { emoji: '🇺🇿', shortcodes: ['flag_uzbekistan'] },
+                { emoji: '🇻🇦', shortcodes: ['flag_vatican_city'] },
+                { emoji: '🇻🇨', shortcodes: ['flag_st_vincent_grenadines'] },
+                { emoji: '🇻🇪', shortcodes: ['flag_venezuela'] },
+                { emoji: '🇻🇬', shortcodes: ['flag_british_virgin_islands'] },
+                { emoji: '🇻🇮', shortcodes: ['flag_u_s_virgin_islands'] },
+                { emoji: '🇻🇺', shortcodes: ['flag_vanuatu'] },
+                { emoji: '🇼🇫', shortcodes: ['flag_wallis_futuna'] },
+                { emoji: '🇼🇸', shortcodes: ['flag_samoa'] },
+                { emoji: '🇽🇰', shortcodes: ['flag_kosovo'] },
+                { emoji: '🇾🇪', shortcodes: ['flag_yemen'] },
+                { emoji: '🇾🇹', shortcodes: ['flag_mayotte'] },
+                { emoji: '🇿🇲', shortcodes: ['flag_zambia'] },
+                { emoji: '🇿🇼', shortcodes: ['flag_zimbabwe'] },
+]
         }
     };
-
     const pluginFunctions = {
         globalEventsBound: false,
         _shortcodeMapCache: null,
@@ -1322,7 +4349,6 @@
         buildShortcodeMap() {
             const cache = Object.create(null);
             const data = this.getEmojiData();
-
             Object.keys(data).forEach((categoryKey) => {
                 const list = Array.isArray(data[categoryKey]) ? data[categoryKey] : [];
                 list.forEach((item) => {
@@ -1337,7 +4363,6 @@
                     });
                 });
             });
-
             this._shortcodeMapCache = cache;
             return cache;
         },
@@ -1362,7 +4387,6 @@
             const order = this.getCategoryOrder(settings);
             const categories = [];
             const pushed = new Set();
-
             const appendCategory = (key) => {
                 const list = Array.isArray(data[key]) ? data[key] : [];
                 categories.push({
@@ -1377,20 +4401,79 @@
                 });
                 pushed.add(key);
             };
-
             order.forEach((key) => appendCategory(key));
-
             Object.keys(data)
                 .filter((key) => !pushed.has(key))
                 .sort((a, b) => String(a).localeCompare(String(b)))
                 .forEach((key) => appendCategory(key));
-
             return categories;
+        },
+
+        groupSkinToneVariants(items) {
+            const groups = new Map();
+            const orderedGroups = [];
+
+            items.forEach((item) => {
+                const baseEmoji = item.emoji.replace(/[\u{1F3FB}-\u{1F3FF}]/gu, '');
+                let group = groups.get(baseEmoji);
+                if (!group) {
+                    group = { baseEmoji, items: [], hasVariants: false };
+                    groups.set(baseEmoji, group);
+                    orderedGroups.push(group);
+                }
+                if (!group.items.some((variant) => variant.emoji === item.emoji)) {
+                    group.items.push(item);
+                }
+                if (baseEmoji !== item.emoji) group.hasVariants = true;
+            });
+
+            return orderedGroups.map((group) => {
+                if (!group.hasVariants) return group.items[0];
+                const variants = group.items;
+                let selectedEmoji = group.baseEmoji === '🤜' ? '🤜🏿' : group.baseEmoji;
+                try {
+                    const preferences = JSON.parse(localStorage.getItem('bs-emoji-picker-skin-tones') || '{}');
+                    if (variants.some((item) => item.emoji === preferences[group.baseEmoji])) {
+                        selectedEmoji = preferences[group.baseEmoji];
+                    }
+                } catch (e) {
+                    // Fall back to the default skin tone when storage is unavailable.
+                }
+                const selected = variants.find((item) => item.emoji === selectedEmoji)
+                    || { ...variants[0], emoji: selectedEmoji };
+                return { ...selected, baseEmoji: group.baseEmoji, variants };
+            });
+        },
+
+        closeSkinToneOptions() {
+            $('.emoji-variant-options.show').each(function () {
+                const $options = $(this);
+                const $picker = $options.data('variant-picker');
+                $options.removeClass('show').prop('hidden', true).css({ left: '', top: '' });
+                if ($picker && $picker.length) {
+                    $options.appendTo($picker);
+                    $picker.removeClass('show')
+                        .find('.emoji-variant-toggle, .emoji-variant-base').attr('aria-expanded', 'false');
+                }
+            });
+        },
+
+        positionSkinToneOptions($options, $anchor) {
+            $options.appendTo(document.body).prop('hidden', false).addClass('show').css({ left: '0px', top: '0px' });
+            const anchorRect = $anchor[0].getBoundingClientRect();
+            const panelRect = $options[0].getBoundingClientRect();
+            const margin = 8;
+            const left = Math.max(margin, Math.min(
+                anchorRect.left + anchorRect.width / 2 - panelRect.width / 2,
+                window.innerWidth - panelRect.width - margin
+            ));
+            let top = anchorRect.top - panelRect.height - margin;
+            if (top < margin) top = Math.min(window.innerHeight - panelRect.height - margin, anchorRect.bottom + margin);
+            $options.css({ left: `${left}px`, top: `${Math.max(margin, top)}px` });
         },
 
         replaceShortcodes(str) {
             const shortcodeMap = this.getShortcodeMap();
-
             return String(str).replace(/:([a-z0-9_+\-]+):/gi, (match, code) => {
                 const normalized = String(code || '').toLowerCase();
                 return shortcodeMap[normalized] || match;
@@ -1400,12 +4483,10 @@
         replaceAscii(str) {
             let output = String(str);
             const rules = this.getAsciiMap();
-
             for (const entry of rules) {
                 if (!entry || !(entry.re instanceof RegExp) || typeof entry.emoji !== 'string') continue;
                 output = output.replace(entry.re, entry.emoji);
             }
-
             return output;
         },
 
@@ -1413,7 +4494,6 @@
             if (typeof str !== 'string') {
                 throw new TypeError('emojifyText expects a string');
             }
-
             let output = str;
             output = this.replaceShortcodes(output);
             output = this.replaceAscii(output);
@@ -1424,7 +4504,6 @@
             if (typeof html !== 'string') {
                 throw new TypeError('emojifyHtml expects a string');
             }
-
             const $tmp = $('<div>').html(html);
             this.emojifyDom($tmp);
             return $tmp.html();
@@ -1432,20 +4511,16 @@
 
         emojifyDom(root) {
             const $list = this.normalizeDomInput(root);
-
             if (!$list.length) {
                 throw new TypeError('emojifyDom expects DOM, jQuery, NodeList, array-like or selector');
             }
-
             $list.each((_, node) => {
                 const el = node;
                 if (!el) return;
-
                 if (this.isTextInput($(el)) || this.isContentEditable($(el))) {
                     this.emojifyTarget($(el));
                     return;
                 }
-
                 const walker = document.createTreeWalker(
                     el,
                     NodeFilter.SHOW_TEXT,
@@ -1453,7 +4528,6 @@
                         acceptNode(textNode) {
                             const parent = textNode.parentNode;
                             if (!parent) return NodeFilter.FILTER_REJECT;
-
                             const tag = (parent.nodeName || '').toLowerCase();
                             if (
                                 tag === 'script' ||
@@ -1465,18 +4539,15 @@
                             ) {
                                 return NodeFilter.FILTER_REJECT;
                             }
-
                             return NodeFilter.FILTER_ACCEPT;
                         }
                     }
                 );
-
                 const nodes = [];
                 let current;
                 while ((current = walker.nextNode())) {
                     nodes.push(current);
                 }
-
                 for (const textNode of nodes) {
                     const original = textNode.nodeValue;
                     const replaced = this.emojifyText(original);
@@ -1485,7 +4556,6 @@
                     }
                 }
             });
-
             return $list;
         },
 
@@ -1493,13 +4563,10 @@
             if (!this.isContentEditable($editable)) {
                 throw new TypeError('Invalid contenteditable target');
             }
-
             const el = $editable[0];
             const selection = window.getSelection();
-
             let startNode = null;
             let startOffset = 0;
-
             if (selection && selection.rangeCount > 0) {
                 const range = selection.getRangeAt(0);
                 if (el.contains(range.startContainer)) {
@@ -1507,7 +4574,6 @@
                     startOffset = range.startOffset;
                 }
             }
-
             const walker = document.createTreeWalker(
                 el,
                 NodeFilter.SHOW_TEXT,
@@ -1515,7 +4581,6 @@
                     acceptNode(textNode) {
                         const parent = textNode.parentNode;
                         if (!parent) return NodeFilter.FILTER_REJECT;
-
                         const tag = (parent.nodeName || '').toLowerCase();
                         if (
                             tag === 'script' ||
@@ -1526,38 +4591,31 @@
                         ) {
                             return NodeFilter.FILTER_REJECT;
                         }
-
                         return NodeFilter.FILTER_ACCEPT;
                     }
                 }
             );
-
             const nodes = [];
             let current;
             while ((current = walker.nextNode())) {
                 nodes.push(current);
             }
-
             let changed = false;
             let newCaretNode = null;
             let newCaretOffset = 0;
-
             for (const textNode of nodes) {
                 const original = textNode.nodeValue;
                 const replaced = this.emojifyText(original);
-
                 if (startNode === textNode) {
                     const left = original.slice(0, startOffset);
                     newCaretOffset = this.emojifyText(left).length;
                     newCaretNode = textNode;
                 }
-
                 if (replaced !== original) {
                     textNode.nodeValue = replaced;
                     changed = true;
                 }
             }
-
             if (changed && selection && newCaretNode && el.contains(newCaretNode)) {
                 try {
                     const safeOffset = Math.min(newCaretOffset, newCaretNode.nodeValue.length);
@@ -1567,10 +4625,10 @@
                     selection.removeAllRanges();
                     selection.addRange(newRange);
                 } catch (e) {
+
                     // ignore caret restore failure
                 }
             }
-
             return $editable;
         },
 
@@ -1578,38 +4636,30 @@
             if (!$target || !$target.length) {
                 throw new TypeError('Invalid target');
             }
-
             if (this.isTextInput($target)) {
                 const value = String($target.val() ?? '');
                 const start = $target.prop('selectionStart') ?? value.length;
                 const end = $target.prop('selectionEnd') ?? value.length;
-
                 const before = value.slice(0, start);
                 const middle = value.slice(start, end);
                 const after = value.slice(end);
-
                 const newBefore = this.emojifyText(before);
                 const newMiddle = this.emojifyText(middle);
                 const newAfter = this.emojifyText(after);
-
                 const newValue = newBefore + newMiddle + newAfter;
-
                 if (newValue !== value) {
                     $target.val(newValue);
                     const newCursor = newBefore.length + newMiddle.length;
                     $target.prop('selectionStart', newCursor);
                     $target.prop('selectionEnd', newCursor);
                 }
-
                 $target.addClass(LISTENER_CLASS);
                 return $target;
             }
-
             if (this.isContentEditable($target)) {
                 $target.addClass(LISTENER_CLASS);
                 return this.emojifyContenteditable($target);
             }
-
             throw new TypeError('Target must be input, textarea or contenteditable');
         },
 
@@ -1619,7 +4669,6 @@
             const end = $target.prop('selectionEnd') ?? value.length;
             const newValue = value.slice(0, start) + emoji + value.slice(end);
             const newCursor = start + emoji.length;
-
             $target.focus();
             $target.val(newValue);
             $target.prop('selectionStart', newCursor);
@@ -1632,38 +4681,30 @@
             if (!el || !el.isContentEditable) {
                 throw new TypeError('Invalid contenteditable target');
             }
-
             const selection = window.getSelection();
             let range;
-
             if (selection && selection.rangeCount > 0) {
                 const tempRange = selection.getRangeAt(0);
                 if (el.contains(tempRange.commonAncestorContainer)) {
                     range = tempRange;
                 }
             }
-
             if (!range) {
                 el.focus();
                 range = document.createRange();
                 range.selectNodeContents(el);
                 range.collapse(false);
             }
-
             range.deleteContents();
-
             const node = document.createTextNode(emoji);
             range.insertNode(node);
-
             const newRange = document.createRange();
             newRange.setStartAfter(node);
             newRange.collapse(true);
-
             if (selection) {
                 selection.removeAllRanges();
                 selection.addRange(newRange);
             }
-
             $editable.trigger('input');
         },
 
@@ -1671,30 +4712,25 @@
             if (!$target || !$target.length) {
                 throw new TypeError('Invalid target');
             }
-
             if (this.isTextInput($target)) {
                 this.insertEmojiAtCursorTextInput($target, emoji);
                 return;
             }
-
             if (this.isContentEditable($target)) {
                 this.insertEmojiAtCursorContenteditable($target, emoji);
                 return;
             }
-
             throw new TypeError('Target must be input, textarea or contenteditable');
         },
 
         isOnlyEmoji(input) {
             const text = String(input ?? '').trim();
             if (!text) return false;
-
             const withoutSpaces = text.replace(/\s+/g, '');
             const nonEmojiChars = withoutSpaces.replace(
                 /(\p{Extended_Pictographic}|\p{Emoji_Presentation}|\p{Emoji}\uFE0F|\u200D)+/gu,
                 ''
             );
-
             return nonEmojiChars.length === 0;
         },
 
@@ -1705,16 +4741,13 @@
                 settings.navOverflow.getInstance($existingTabsNav[0])?.dispose();
             }
             $wrapper.empty();
-
             const index = ++menuInstanceCounter;
-
             const menuContainerId = `bs-emoji-picker-menu-container-${index}`;
             const $menuContainer = $('<div>', {
                 id: menuContainerId,
                 class: `menu-wrapper ${MENU_CLASS}`,
                 'data-index': index
             }).appendTo($wrapper);
-
             const menuToggleClass = settings.btnShowToggle ? ' menu-toggle' : '';
             if (settings.btnShowToggle && !document.getElementById('bs-emoji-picker-menu-toggle-style')) {
                 $('<style>', {
@@ -1723,7 +4756,6 @@
                 }).appendTo(document.head);
             }
             const buttonHtml = settings.btnText || `<i class="${this.escapeHtml(settings.btnIconClass)}"></i>`;
-
             $('<button>', {
                 class: `${settings.btnClass}${menuToggleClass}`,
                 type: 'button',
@@ -1732,11 +4764,9 @@
                 'aria-expanded': 'false',
                 html: buttonHtml
             }).appendTo($menuContainer);
-
             const $menu = $('<div>', {
                 class: 'menu menu-emoji-content p-0'
             }).appendTo($menuContainer);
-
             const $menuWrapper = $('<div>', {
                 class: 'menu-emoji-scroll-area',
                 style: 'min-width:min(340px,100vw);max-width:min(520px,100vw);box-sizing:border-box;max-height:400px;overflow-y:auto;'
@@ -1744,46 +4774,37 @@
 
             // Directly attach scroll handler for better reliability than delegation
             $menuWrapper.on('scroll', (e) => {
+                this.closeSkinToneOptions();
                 const $target = $(e.currentTarget);
                 const $wrapper = $target.closest(`.${WRAPPER_CLASS}`);
-
                 if ($wrapper.find('.js-emoji-search').val()) return;
-
                 const $headers = $wrapper.find('.js-emoji-category-header');
                 const $tabs = $wrapper.find('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab]');
                 const $stickyTop = $wrapper.find('.sticky-top').first();
                 const stickyNavHeight = $stickyTop.outerHeight() || 82;
                 let activeCategory = null;
-
                 const scrollTop = $target.scrollTop();
                 const isAtBottom = Math.abs(scrollTop + $target.innerHeight() - $target[0].scrollHeight) < 5;
-
                 let lastCategory = null;
                 $headers.each(function() {
                     const $header = $(this);
-                    
                     const originalStyle = $header.attr('style') || '';
                     $header.css({ position: 'relative', top: '0' });
                     const realHeaderRect = $header[0].getBoundingClientRect();
                     $header.attr('style', originalStyle);
-
                     const containerRect = $target[0].getBoundingClientRect();
                     const offsetTop = realHeaderRect.top - containerRect.top + scrollTop;
-                    
                     if (scrollTop >= offsetTop - stickyNavHeight - 5) {
                         activeCategory = $header.data('category');
                     }
                     lastCategory = $header.data('category');
                 });
-
                 if (isAtBottom && lastCategory) {
                     activeCategory = lastCategory;
                 }
-
                 if (!activeCategory && $headers.length) {
                     activeCategory = $headers.first().data('category');
                 }
-
                 if (activeCategory) {
                     $wrapper.data('active-tab', activeCategory);
                     $tabs.each(function() {
@@ -1810,23 +4831,19 @@
                     });
                 }
             });
-
             const $stickyTop = $('<div>', {
                 class: 'sticky-top bg-body border-bottom',
                 style: 'z-index: 1020 !important;'
             }).appendTo($menuWrapper);
-
             const $searchWrap = $('<div>', {
                 class: 'py-2 px-5'
             }).appendTo($stickyTop);
-
             $('<input>', {
                 type: 'search',
                 class: 'form-control rounded-pill form-control-sm js-emoji-search',
                 placeholder: 'Search emojis',
                 autocomplete: 'off'
             }).appendTo($searchWrap);
-
             const $tabsNav = $('<div>', {
                 class: 'nav-overflow js-emoji-tabs-nav border-top',
                 style: 'overflow-x: auto;',
@@ -1834,29 +4851,31 @@
                 'data-bs-threshold': '3',
                 'data-bs-more-text': ' '
             }).appendTo($stickyTop);
-
             $('<ul>', {
                 class: 'nav'
             }).appendTo($tabsNav);
-
             if (!document.getElementById('bs-emoji-picker-nav-overflow-label-style')) {
                 $('<style>', {
                     id: 'bs-emoji-picker-nav-overflow-label-style',
                     text: '.js-emoji-tabs-nav .emoji-category-label { display: none; } .nav-overflow-menu .emoji-category-label { display: inline !important; position: static !important; width: auto !important; height: auto !important; padding: 0 !important; margin: 0 !important; overflow: visible !important; clip: auto !important; white-space: nowrap !important; }'
                 }).appendTo(document.head);
             }
-
+            if (!document.getElementById('bs-emoji-picker-skin-tone-style')) {
+                $('<style>', {
+                    id: 'bs-emoji-picker-skin-tone-style',
+                    text: '.emoji-variant-picker { display: inline-flex; align-items: center; } .emoji-variant-picker .emoji-variant-toggle { display: none; } .emoji-variant-options { display: none; position: fixed; z-index: 1085; align-items: center; justify-content: center; flex-wrap: wrap; gap: .125rem; width: max-content; max-width: calc(100vw - 16px); max-height: min(16rem, calc(100vh - 16px)); overflow-y: auto; padding: .25rem; border: 1px solid var(--bs-border-color); border-radius: 999px; backdrop-filter: blur(8px); box-shadow: 0 .25rem .75rem rgba(0,0,0,.18); } .emoji-variant-options.show { display: flex; } .emoji-variant-options .js-emoji-insert { width: 2rem; height: 2rem; padding: 0; border-radius: 50% !important; } .emoji-variant-options .js-emoji-insert:hover, .emoji-variant-options .js-emoji-insert:focus-visible { background: var(--bs-tertiary-bg) !important; }'
+                }).appendTo(document.head);
+            }
             $('<div>', {
                 class: 'menu-emoji-list'
             }).appendTo($menuWrapper);
-
             this.fillDropdown($wrapper);
-
             if (settings.navOverflow?.getOrCreateInstance && $tabsNav.length) {
                 settings.navOverflow.getOrCreateInstance($tabsNav[0], {
                     threshold: 3,
                     moreText: 'More'
                 });
+
                 // Keep the overflow menu outside the scrollable picker panel so it isn't clipped.
                 $tabsNav.find('.nav-overflow-toggle').attr('data-bs-container', 'body');
                 $tabsNav.find('.nav-overflow-menu').attr('data-picker-wrapper', menuContainerId).css({
@@ -1889,11 +4908,9 @@
                 const recentCategory = index.find(c => c.key === 'recent');
                 recentCategory.items = recent.map(e => ({ emoji: e, shortcodes: [] }));
             }
-
             $list.empty();
-
             let activeTabKey = $wrapper.data('active-tab') || index.find(category => category.key !== 'recent' && category.items.length)?.key || (index.length ? index[0].key : null);
-            
+
             // Ensure the active tab exists in index (safety)
             if (activeTabKey && !index.some(c => c.key === activeTabKey)) {
                 activeTabKey = index.length ? index[0].key : null;
@@ -1913,7 +4930,6 @@
                         title: cat.label,
                         html: `<i class="${iconClass}" aria-hidden="true"></i><span class="emoji-category-label">${this.escapeHtml(cat.label)}</span>`
                     }).appendTo($item);
-
                     if (cat.key === activeTabKey) {
                         $btn.addClass('active').removeClass('fg-muted').addClass('btn-subtle theme-primary fg-primary border-bottom border-primary').css({
                             'border-bottom': '2px solid var(--bs-primary-base)',
@@ -1925,10 +4941,7 @@
                 });
             }
             $tabsNav.toggleClass('d-none', Boolean(q));
-
             let anyShown = false;
-
-
             index.forEach(({ key, label, items }) => {
                 const filtered = q
                     ? items.filter((item) => {
@@ -1936,11 +4949,9 @@
                             item.emoji,
                             ...(Array.isArray(item.shortcodes) ? item.shortcodes : [])
                         ].join(' ').toLowerCase();
-
                         return haystack.includes(q);
                     })
                     : items;
-
                 if (!filtered.length) {
                     if (key === 'recent' && !q) {
                         anyShown = true;
@@ -1957,35 +4968,82 @@
                     }
                     return;
                 }
-
                 anyShown = true;
-
                 $('<div>', {
                     class: 'menu-header sticky-top bg-body py-1 js-emoji-category-header',
                     style: `top: ${q ? '48px' : '82px'}; z-index: 1010; font-size: 0.75rem;`, // Align below sticky top
                     text: label,
                     'data-category': key
                 }).appendTo($list);
-
                 const $grid = $('<div>', {
                     class: 'd-flex flex-wrap gap-1 px-1 pb-1 pt-1 js-emoji-grid'
                 }).appendTo($list);
-
-                filtered.forEach(({ emoji, shortcodes }) => {
+                const visibleItems = q ? filtered : this.groupSkinToneVariants(filtered);
+                visibleItems.forEach(({ emoji, shortcodes, variants }) => {
                     const title = (shortcodes || []).map((code) => `:${code}:`).join('  |  ');
 
+                    const appendEmojiButton = ($parent, variant, extraClass = '') => $('<button>', {
+                        type: 'button',
+                        class: `d-inline-flex justify-content-center align-items-center border-0 rounded js-emoji-insert bg-transparent ${extraClass}`,
+                        style: 'cursor:pointer;width:2rem;height:2rem;font-size:18px;',
+                        'data-emoji': variant.emoji,
+                        title: (variant.shortcodes || []).map((code) => `:${code}:`).join('  |  ') || variant.emoji,
+                        'aria-label': (variant.shortcodes || [])[0]?.replaceAll('_', ' ') || variant.emoji,
+                        text: variant.emoji
+                    }).appendTo($parent);
+
+                    if (!variants || variants.length < 2) {
+                        appendEmojiButton($grid, { emoji, shortcodes });
+                        return;
+                    }
+
+                    const baseLabel = (shortcodes || [])[0]?.replaceAll('_', ' ') || emoji;
+                    const baseEmoji = variants.find((variant) => !/[\u{1F3FB}-\u{1F3FF}]/u.test(variant.emoji))?.emoji || emoji;
+                    const $picker = $('<div>', { class: 'emoji-variant-picker' }).appendTo($grid);
                     $('<button>', {
                         type: 'button',
-                        class: 'd-inline-flex justify-content-center align-items-center border-0 rounded js-emoji-insert bg-transparent',
+                        class: 'd-inline-flex justify-content-center align-items-center border-0 rounded emoji-variant-base bg-transparent',
                         style: 'cursor:pointer;width:2rem;height:2rem;font-size:18px;',
-                        'data-emoji': emoji,
-                        title,
-                        'aria-label': title || emoji,
+                        'data-base-emoji': baseEmoji,
+                        'aria-expanded': 'false',
+                        'aria-haspopup': 'true',
+                        'aria-label': `Choose a skin tone for ${baseLabel}`,
+                        title: `Choose a skin tone: ${baseLabel}`,
                         text: emoji
-                    }).appendTo($grid);
+                    }).appendTo($picker);
+                    const $variantBase = $picker.find('.emoji-variant-base');
+                    const $variantToggle = $('<button>', {
+                        type: 'button',
+                        class: 'emoji-variant-toggle',
+                        'aria-expanded': 'false',
+                        'aria-label': `Choose a skin tone for ${baseLabel}`,
+                        title: `Skin tone options: ${baseLabel}`,
+                        text: '▾'
+                    }).appendTo($picker);
+
+                    const $options = $('<div>', {
+                        class: 'emoji-variant-options bg-body opacity-100',
+                        hidden: true,
+                        role: 'group',
+                        'data-picker-wrapper': $wrapper.find('.menu-wrapper').attr('id'),
+                        'aria-label': `Skin tone options for ${baseLabel}`
+                    }).appendTo($picker);
+                    $options.data('variant-picker', $picker);
+                    variants.forEach((variant) => appendEmojiButton($options, variant));
+
+                    const toggleVariantPicker = (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        const isOpening = !$options.hasClass('show');
+                        this.closeSkinToneOptions();
+                        if (!isOpening) return;
+                        $picker.addClass('show');
+                        $picker.find('.emoji-variant-toggle, .emoji-variant-base').attr('aria-expanded', 'true');
+                        this.positionSkinToneOptions($options, $(event.currentTarget));
+                    };
+                    $variantBase.on('click.bsEmojiPickerSkinTone', toggleVariantPicker);
                 });
             });
-
             if (!anyShown) {
                 $('<div>', {
                     class: 'fg-muted small px-2 py-2',
@@ -1998,7 +5056,6 @@
             const data = this.getEmojiData();
             const out = [];
             const seen = new Set();
-
             Object.keys(data).forEach((key) => {
                 const list = Array.isArray(data[key]) ? data[key] : [];
                 list.forEach((item) => {
@@ -2008,30 +5065,25 @@
                     out.push(item.emoji);
                 });
             });
-
             this.getAsciiMap().forEach((item) => {
                 if (!item || typeof item.emoji !== 'string') return;
                 if (seen.has(item.emoji)) return;
                 seen.add(item.emoji);
                 out.push(item.emoji);
             });
-
             return out;
         },
 
         showDemo($wrapper, count = 100, time = 1000) {
             const uniqueEmojis = this.getAllUniqueEmojis();
             if (!uniqueEmojis.length) return;
-
             $wrapper.addClass('position-absolute overflow-hidden');
-
             let createdCount = 0;
             const interval = setInterval(() => {
                 if (createdCount >= count) {
                     clearInterval(interval);
                     return;
                 }
-
                 const emoji = uniqueEmojis[Math.floor(Math.random() * uniqueEmojis.length)];
                 const fontSize = Math.random() * 3 + 1;
                 const fontSizePx = fontSize * 16;
@@ -2039,7 +5091,6 @@
                 const wrapperHeight = $wrapper.height() || 0;
                 const top = Math.random() * Math.max(wrapperHeight - fontSizePx, 0) + fontSizePx / 2;
                 const left = Math.random() * Math.max(wrapperWidth - fontSizePx, 0) + fontSizePx / 2;
-
                 $('<span>', {
                     text: emoji,
                     class: 'emoji-demo',
@@ -2052,81 +5103,84 @@
                         transform: `translate(-50%, -50%) rotate(${Math.random() * 60 - 30}deg)`
                     }
                 }).appendTo($wrapper);
-
                 createdCount += 1;
             }, time);
         },
 
         bindGlobalEvents() {
             if (this.globalEventsBound) return;
-
             document.addEventListener('show.bs.menu', (event) => {
                 const $toggle = $(event.target);
                 if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
-
+                pluginFunctions.closeSkinToneOptions();
                 const $wrapper = $toggle.closest(`.${WRAPPER_CLASS}`);
                 if ($wrapper.length) pluginFunctions.fillDropdown($wrapper);
-
                 const $menu = $wrapper.find('.menu-emoji-content').first();
                 $menu.find('.menu-emoji-scroll-area').stop(true).animate({ scrollTop: 0 }, 150);
                 $menu.find('.js-emoji-search').val('');
             });
-
             document.addEventListener('shown.bs.menu', (event) => {
                 const $toggle = $(event.target);
                 if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
-
                 const $menu = $toggle.closest(`.${WRAPPER_CLASS}`).find('.menu-emoji-content').first();
                 $menu.find('.js-emoji-search').trigger('focus');
                 $menu.find('.menu-emoji-scroll-area').trigger('scroll');
             });
-
             document.addEventListener('hide.bs.menu', (event) => {
                 const $toggle = $(event.target);
                 if (!$toggle.is(`.${MENU_CLASS} > [data-bs-toggle="menu"]`)) return;
+                pluginFunctions.closeSkinToneOptions();
                 if (this._keepOpen) {
                     event.preventDefault();
                     this._keepOpen = false;
                 }
             });
-
             document.addEventListener('click', (event) => {
+                if (!event.target.closest('.emoji-variant-picker, .emoji-variant-options')) {
+                    pluginFunctions.closeSkinToneOptions();
+                }
                 if ($(event.target).closest('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab], .nav-overflow-toggle').length) {
                     this._keepOpen = true;
                 }
             }, true);
-
+            window.addEventListener('resize', () => pluginFunctions.closeSkinToneOptions());
+            window.addEventListener('scroll', () => pluginFunctions.closeSkinToneOptions(), true);
             $(document)
                 .on('mousedown', `.${WRAPPER_CLASS} .menu-emoji-content`, (e) => {
+
                     // This catches the mousedown before Bootstrap's menu toggle listener
+
                     // which usually closes the menu on click/mousedown elsewhere.
                     const $target = $(e.target);
                     if ($target.closest('.js-emoji-tab-btn').length || $target.closest('.js-emoji-search').length || $target.closest('.nav-overflow-toggle').length) {
                         if ($target.closest('.nav-overflow-toggle').length) this._keepOpen = true;
+
                         // e.preventDefault(); // Don't prevent default on search or it won't focus
                         e.stopPropagation();
                     }
                 })
                 .on('click', `.${WRAPPER_CLASS} .menu-emoji-content`, (e) => {
+
                     // Prevent closing when clicking anywhere in the menu EXCEPT on emoji buttons
                     const $target = $(e.target);
+
                     // Use a more specific selector to identify emoji insert buttons
                     const isEmoji = $target.closest('.js-emoji-insert').length > 0;
-
                     if (!isEmoji) {
                         e.stopPropagation();
                     } else {
+
                         // If it is an emoji, ensure we don't prevent Bootstrap from closing the menu
                         this._keepOpen = false;
                     }
                 })
                 .on('mousedown click', `.js-emoji-tab-btn, .js-emoji-tab-btn i, .nav-overflow-menu .menu-item[data-tab]`, (e) => {
+
                     // Prevent any menu closing behavior from Bootstrap
                     this._keepOpen = true;
                     e.preventDefault();
                     e.stopPropagation();
                     e.stopImmediatePropagation();
-
                     if (e.type === 'click') {
                         const $btn = $(e.currentTarget).closest('.js-emoji-tab-btn, .nav-overflow-menu .menu-item[data-tab]');
                         let $wrapper = $btn.closest(`.${WRAPPER_CLASS}`);
@@ -2139,7 +5193,6 @@
                         const tabKey = $btn.data('tab');
                         const $menuWrapper = $wrapper.find('.menu-emoji-scroll-area');
                         const $header = $wrapper.find(`.js-emoji-category-header[data-category="${tabKey}"]`);
-
                         if ($header.length) {
                             $wrapper.data('active-tab', tabKey);
                             const $navTabs = $wrapper.find('.js-emoji-tab-btn');
@@ -2162,22 +5215,18 @@
                                 $overflowItems.removeClass('active').attr('aria-pressed', 'false');
                                 $btn.addClass('active').attr('aria-pressed', 'true');
                             }
-
                             const stickyNavHeight = $wrapper.find('.sticky-top').outerHeight() || 82;
                             const wrapperRect = $menuWrapper[0].getBoundingClientRect();
-                            
                             const originalStyle = $header.attr('style') || '';
                             $header.css({ position: 'relative', top: '0' });
                             const realHeaderRect = $header[0].getBoundingClientRect();
                             $header.attr('style', originalStyle);
-
                             const headerOffsetTop = realHeaderRect.top - wrapperRect.top + $menuWrapper.scrollTop();
-
                             const targetScrollTop = headerOffsetTop - stickyNavHeight + 1;
-
                             $menuWrapper.stop(true).animate({
                                 scrollTop: targetScrollTop
                             }, 200, () => {
+
                                 // Force scroll trigger to update tabs immediately
                                 $menuWrapper.trigger('scroll');
                             });
@@ -2197,19 +5246,39 @@
                         console.error(err);
                     }
                 })
-                .on('click', `.${WRAPPER_CLASS} [data-emoji]`, (e) => {
+                .on('click', `.${WRAPPER_CLASS} [data-emoji], .emoji-variant-options [data-emoji]`, (e) => {
                     e.preventDefault();
-
                     const $button = $(e.currentTarget);
-                    const $wrapper = $button.closest(`.${WRAPPER_CLASS}`);
+                    let $wrapper = $button.closest(`.${WRAPPER_CLASS}`);
+                    const $optionsPanel = $button.closest('.emoji-variant-options');
+                    if (!$wrapper.length && $optionsPanel.length) {
+                        const wrapperId = $optionsPanel.attr('data-picker-wrapper');
+                        const menuContainer = wrapperId && document.getElementById(wrapperId);
+                        if (menuContainer) $wrapper = $(menuContainer).closest(`.${WRAPPER_CLASS}`);
+                    }
                     const settings = this.getSettings($wrapper);
                     if (!settings) return;
-
                     const emoji = String($button.data('emoji') || '');
+
+                    const $variantPicker = $button.closest('.emoji-variant-picker').length
+                        ? $button.closest('.emoji-variant-picker')
+                        : ($optionsPanel.data('variant-picker') || $());
+                    if ($variantPicker.length) {
+                        const baseEmoji = $variantPicker.find('.emoji-variant-base').attr('data-base-emoji');
+                        try {
+                            const preferences = JSON.parse(localStorage.getItem('bs-emoji-picker-skin-tones') || '{}');
+                            preferences[baseEmoji] = emoji;
+                            localStorage.setItem('bs-emoji-picker-skin-tones', JSON.stringify(preferences));
+                        } catch (e) {
+                            // The active picker still updates even if preferences cannot be stored.
+                        }
+                        $variantPicker.find('.emoji-variant-base').text(emoji);
+                        this.closeSkinToneOptions();
+                    }
 
                     // Update Recent Emojis
                     let recent = JSON.parse(localStorage.getItem('bs-emoji-picker-recent') || '[]');
-                    
+
                     // Remove if already exists and move to front
                     const existingIndex = recent.indexOf(emoji);
                     if (existingIndex !== -1) {
@@ -2221,11 +5290,9 @@
 
                     // Invalidate caches to show updated recent list next time menu opens
                     this.invalidateCaches();
-
                     if (typeof settings.onClickEmoji === 'function') {
                         settings.onClickEmoji(emoji);
                     }
-
                     const $target = this.getTarget(settings);
                     if ($target.length) {
                         try {
@@ -2235,40 +5302,31 @@
                         }
                     }
                 });
-
             this.globalEventsBound = true;
         }
     };
-
     $.bsEmojiPicker.rebuildShortcodeMap = function () {
         pluginFunctions.invalidateCaches();
         return pluginFunctions.getShortcodeMap();
     };
-
     $.bsEmojiPicker.getShortcodeMap = function () {
         return $.extend({}, pluginFunctions.getShortcodeMap());
     };
-
     $.bsEmojiPicker.emojifyText = function (text) {
         return pluginFunctions.emojifyText(text);
     };
-
     $.bsEmojiPicker.emojify = function (input) {
         if (input == null) {
             throw new TypeError('Invalid input');
         }
-
         if (typeof input === 'string') {
             const trimmed = input.trim();
-
             const looksLikeHtml = /<[^>]+>/.test(trimmed);
             if (looksLikeHtml) {
                 return pluginFunctions.emojifyHtml(input);
             }
-
             try {
                 const $maybeDom = $(input);
-
                 if ($maybeDom.length && (
                     trimmed.startsWith('.') ||
                     trimmed.startsWith('#') ||
@@ -2280,53 +5338,41 @@
                     return pluginFunctions.emojifyDom($maybeDom);
                 }
             } catch (e) {
+
                 // ignore selector parse errors
             }
-
             return pluginFunctions.emojifyText(input);
         }
-
         if (input.jquery) {
             return pluginFunctions.emojifyDom(input);
         }
-
         if (input instanceof Element || input === document || input === window) {
             return pluginFunctions.emojifyDom(input);
         }
-
         if (typeof input === 'object' && typeof input.length === 'number') {
             return pluginFunctions.emojifyDom(input);
         }
-
         throw new TypeError('Unsupported input type');
     };
-
     $.bsEmojiPicker.emojifyHtml = function (html) {
         return pluginFunctions.emojifyHtml(html);
     };
-
     $.bsEmojiPicker.emojifyDom = function (root) {
         return pluginFunctions.emojifyDom(root);
     };
-
     $.bsEmojiPicker.emojifyElement = function ($target) {
         return pluginFunctions.emojifyTarget($target);
     };
-
     $.bsEmojiPicker.isOnlyEmoji = function (text) {
         return pluginFunctions.isOnlyEmoji(text);
     };
-
     $.bsEmojiPicker.showDemo = function ($wrapper, count = 100, time = 1000) {
         return pluginFunctions.showDemo($wrapper, count, time);
     };
-
     $.fn.bsEmojiPicker = function (methodOrOptions, ...params) {
         if (!this.length) return this;
-
         if (typeof methodOrOptions === 'string') {
             const method = methodOrOptions;
-
             if (method === 'rebuild') {
                 return this.each(function () {
                     const $wrapper = $(this);
@@ -2335,7 +5381,6 @@
                     pluginFunctions.buildDropdown($wrapper);
                 });
             }
-
             if (method === 'search') {
                 const query = params[0] || '';
                 return this.each(function () {
@@ -2343,31 +5388,24 @@
                     pluginFunctions.fillDropdown($wrapper, query);
                 });
             }
-
             if (typeof pluginFunctions[method] !== 'function') {
                 throw new Error(`Unknown method "${method}"`);
             }
-
             const result = pluginFunctions[method](...params);
             return typeof result === 'undefined' ? this : result;
         }
-
         return this.each(function () {
             const $wrapper = $(this);
             let settings = pluginFunctions.getSettings($wrapper);
-
             if (!settings) {
                 const options = typeof methodOrOptions === 'object' && methodOrOptions !== null
                     ? methodOrOptions
                     : {};
-
                 settings = $.extend(true, {}, $.bsEmojiPicker.defaults, options);
-
                 $wrapper.addClass(WRAPPER_CLASS);
                 pluginFunctions.setSettings($wrapper, settings);
                 pluginFunctions.buildDropdown($wrapper);
                 pluginFunctions.bindGlobalEvents();
-
                 const $target = pluginFunctions.getTarget(settings);
                 if ($target.length) {
                     $target.addClass(LISTENER_CLASS);
